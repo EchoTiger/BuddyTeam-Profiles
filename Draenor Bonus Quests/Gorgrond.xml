@@ -1,0 +1,451 @@
+<HBProfile>
+
+<Name>Gorgrond Bonus Quests</Name>
+
+
+<MinDurability>0.3</MinDurability>
+<MinFreeBagSlots>3</MinFreeBagSlots>
+
+<SellGrey>true</SellGrey>
+<SellWhite>true</SellWhite>
+<SellGreen>true</SellGreen>
+<SellBlue>true</SellBlue>
+<SellPurple>false</SellPurple>
+<MailGrey>false</MailGrey>
+<MailWhite>true</MailWhite>
+<MailGreen>true</MailGreen>
+<MailBlue>true</MailBlue>
+<MailPurple>true</MailPurple>
+
+<Blackspots>
+	<Blackspot X="6630.84" Y="1119.565" Z="38.01022" Radius="36.72455" /> <!-- Crushfang's End, two dying peons behind fences. -->
+	<Blackspot X="5299.294" Y="1001.544" Z="118.0983" Radius="1.134082" /> <!-- Ogre Jar wedged in a bad place. -->
+	<Blackspot X="5296.521" Y="992.0999" Z="117.1395" Radius="19.51692" /> <!-- Prevent bot from going up on a wall -->
+	<Blackspot X="6688.728" Y="12.4893" Z="73.99632" Radius="18.9693" /> <!-- Tree with exposed roots. -->
+	<Blackspot X="5222.745" Y="863.8576" Z="135.6594" Radius="7.898556" /> <!-- Ogre jar in bad spot. -->
+</Blackspots>
+
+<AvoidMobs></AvoidMobs>
+	<Vendors>
+		<!--Shadowmoon Valley:-->
+		<!--Exile's Rise-->
+		<Vendor Name="Mokarg" Entry="76198" Type="Repair" X="1475.611" Y="-790.243" Z="38.12963" />
+		<Vendor Name="Rovan Astalan" Entry="81614" Type="Repair" X="-780.2448" Y="-677.118" Z="108.6697" />
+		<!--__________________________________________________________________________________________________________________________________________-->
+		<!--Spires of Arak:-->
+		<!--Veil Terokk-->
+		<Vendor Name="Kuro'ak" Entry="86386" Type="Food" X="-394.9809" Y="1852.606" Z="53.45683" />
+		<Vendor Name="Ruuan the Seer" Entry="87775" Type="Repair" X="-432.757" Y="1850.8" Z="41.6203" />
+		<!--Pinchwhistle Gearworks-->
+		<Vendor Name="Twizix Copperbomb" Entry="82183" Type="Repair" X="-1483.905" Y="981.5174" Z="8.025256" />
+
+		<!--__________________________________________________________________________________________________________________________________________-->
+		<!--Talador:-->
+		<!--Anchorite's Sojourn-->
+		<Vendor Name="Caregiver Uluura" Entry="75430" Type="Food" X="2144.236" Y="1232.42" Z="117.2146" />
+		<!--Shattrath City-->
+		<Vendor Name="Reema" Entry="86317" Type="Repair" X="2663.982" Y="2796.673" Z="246.1862" />
+		<Vendor Name="Bordos" Entry="82635" Type="Repair" X="2617.845" Y="2823.831" Z="242.3916" />
+		<Vendor Name="Fiaana" Entry="82636" Type="Food" X="2620.902" Y="2783.97" Z="242.3923" />
+		<!--Zangarra-->
+		<Vendor Name="James Lamone" Entry="80930" Type="Repair" X="3214.887" Y="835.0538" Z="80.63318" />
+		<!--__________________________________________________________________________________________________________________________________________-->
+		<!--Nagrand:-->
+		<!--The Ring of Trials-->
+		<Vendor Name="Grogglefitz" Entry="79199" Type="Food" X="3013.191" Y="4762.819" Z="128.275" />
+		<Vendor Name="Pyxni Pennypocket" Entry="79310" Type="Repair" X="3085.323" Y="4849.036" Z="128.3325" />
+		<!--__________________________________________________________________________________________________________________________________________-->
+		<!--Gorgrond:-->
+		<!--Breaker's Crown-->
+		<Vendor Name="Budgy" Entry="84234" Type="Repair" X="6610.504" Y="1286.526" Z="64.83815" />
+		<!--__________________________________________________________________________________________________________________________________________-->
+		<!--Frostfire Ridge: Bloodmaul Slag Mines-->
+		<Vendor Name="Urkag" Entry="85545" Type="Repair" X="7400.561" Y="4335.775" Z="126.4071" />
+		<Vendor Name="Barduun" Entry="85547" Type="Food" X="7370.463" Y="4342.348" Z="127.2008" />
+		<!--__________________________________________________________________________________________________________________________________________-->
+		<!--Garrison Vendors-->
+		<Vendor Name="Provisioner Hanfa" Entry="81346" Type="Repair" X="1854.957" Y="269.2205" Z="76.63961" UsableWhen="Me.IsAlliance" />
+		<Vendor Name="Supplymaster Eri" Entry="76872" Type="Repair" X="5626.828" Y="4629.681" Z="139.3038" UsableWhen="Me.IsHorde" />
+	</Vendors>
+	<!--MAILBOXES-->
+	<Mailboxes>
+		<!--Shattrath City-->
+		<Mailbox X="2614.091" Y="2799.328" Z="242.3915" />
+		<!--Fort Wrynn-->
+		<!--Zangarra-->
+		<Mailbox X="3183.211" Y="773.5329" Z="78.33458" />
+		<!--Pinchwhistle Gearworks-->
+		<Mailbox X="-1567.494" Y="942.592" Z="10.57905" />
+		<!--Garrison-->
+		<Mailbox X="1923.274" Y="299.2899" Z="88.96642" UsableWhen="Me.IsAlliance" />
+		<Mailbox X="5580.682" Y="4570.392" Z="136.558" UsableWhen="Me.IsHorde" />
+	</Mailboxes>
+
+<!--Echo:
+<Objective/> isn't detecting that the 'boss mobs' are dead and that the objective is completed.
+Using KillUntilComplete instead.
+-->
+
+<QuestOrder>
+
+	<If Condition="!IsQuestCompleted(36520)" > <!-- Tailthrasher Basin, southern Gorgrond -->
+		<If Condition="!HasQuest(36520)" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Tailthrasher Basin.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="Tailthrasher Basin" X="4551.19" Y="1275.023" Z="145.4546" />
+			<EnableBehavior Name="Pull" />
+		</If>
+		<While Condition="!IsObjectiveComplete(2, 36520)" >
+			<CustomBehavior File="InteractWith" QuestId="36520" MobId="85810" TerminateWhen="IsObjectiveComplete(2, 36520)" >
+				<HuntingGrounds WaypointVisitStrategy="InOrder">
+					<Hotspot X="4622.737" Y="1355.936" Z="119.246" />
+					<Hotspot X="4692.831" Y="1308.706" Z="122.0948" />
+					<Hotspot X="4640.547" Y="1499.312" Z="126.5769" />
+				</HuntingGrounds>
+			</CustomBehavior>
+		</While>
+		<CustomBehavior File="KillUntilComplete" QuestId="36520" MobId="85733" X="4749.683" Y="1435.49" Z="138.4854" TerminateWhen="IsObjectiveComplete(3, 36520)" />
+		<CustomBehavior File="KillUntilComplete" QuestId="36520" MobId1="85770" MobId2="85724" MobId3="85718" MobId4="85725" TerminateWhen="IsObjectiveComplete(1, 36520)" >
+			<HuntingGrounds>
+				<Hotspot X="4664.397" Y="1400.371" Z="136.5752" />
+				<Hotspot X="4681.579" Y="1326.879" Z="122.1064" />
+				<Hotspot X="4635.645" Y="1496.011" Z="124.9741" />
+			</HuntingGrounds>
+		</CustomBehavior>
+	</If>
+
+	<If Condition="!IsQuestCompleted(36504) &amp;&amp; SpellManager.HasSpell(&quot;Champion&apos;s Honor&quot;)" > <!-- Evermorn Springs, southern Gorgrond -->
+		<If Condition="!HasQuest(36504)" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Evermorn Springs.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="Evermorn Springs" X="5254.659" Y="1456.283" Z="84.42194" />
+			<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(36504)" />
+			<EnableBehavior Name="Pull" />
+		</If>
+		<Objective QuestName="Bonus Objective: Evermorn Springs" QuestId="36504" Type="KillMob" MobId="81575" KillCount="10" />
+		<Objective QuestName="Bonus Objective: Evermorn Springs" QuestId="36504" Type="KillMob" MobId="82062" KillCount="1" />
+		<CustomBehavior File="KillUntilComplete" QuestId="36504" MobId="81553" TerminateWhen="IsObjectiveComplete(3, 36504)" >
+			<HuntingGrounds>
+				<Hotspot X="5157.021" Y="1781.686" Z="120.8765" />
+				<Hotspot X="5085.153" Y="1814.424" Z="120.1872" />
+			</HuntingGrounds>
+		</CustomBehavior>
+	</If>
+
+	<While Condition="!IsQuestCompleted(36500) &amp;&amp; SpellManager.HasSpell(&quot;Champion&apos;s Honor&quot;)" > <!-- The Razorbloom, southern Gorgrond -->
+		<If Condition="!HasQuest(36500)" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to The Razorbloom.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="The Razorbloom" X="5500.91" Y="1230.265" Z="91.35429" />
+			<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(36500)" />
+			<EnableBehavior Name="Pull" />
+		</If>
+		<Objective QuestName="Bonus Objective: The Razorbloom" QuestId="36500" Type="KillMob" MobId="81634" KillCount="1" />
+		<Objective QuestName="Bonus Objective: The Razorbloom" QuestId="36500" Type="KillMob" MobId="81617" KillCount="12" />
+
+		<If Condition="!IsObjectiveComplete(3, 36500)" >
+			<CustomBehavior File="TargetAndMoveToMob" MobId="85732" MoveWithinMaxRangeOfMob="6" TerminateWhen="IsObjectiveComplete(3, 36500) &amp;&amp; !IsQuestCompleted(36500) &amp;&amp; !HasQuest(36500)" >
+				<HuntingGrounds>
+					<Hotspot X="5648.192" Y="1198.595" Z="89.2859" />
+					<Hotspot X="5608.077" Y="1122.168" Z="84.00389" />
+				</HuntingGrounds>
+			</CustomBehavior>
+			<CustomBehavior File="Misc\RunLua" Lua="MoveForwardStart();" WaitTime="700" />
+			<CustomBehavior File="Misc\RunLua" Lua="MoveForwardStop();" />
+		</If>
+		<!--<Objective QuestName="Bonus Objective: The Razorbloom" QuestId="36500" Type="KillMob" MobId="85732" KillCount="25" />-->
+	</While>
+
+	<If Condition="!IsQuestCompleted(35881)" > <!-- Ruins of the First Bastion, southern Gorgrond -->  <!-- Looped as while even after quest was completed. -->
+		<If Condition="!HasQuest(35881)" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Ruins of the First Bastion.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="Ruins of the First Bastion" X="5216.542" Y="992.7067" Z="103.4424" />
+			<EnableBehavior Name="Pull" />
+		</If>
+		<Objective QuestName="Bonus Objective: Ruins of the First Bastion" QuestId="35881" Type="KillMob" MobId="83450" KillCount="20" />
+		<While Condition="!IsObjectiveComplete(2, 35881)" >
+			<CustomBehavior File="InteractWith" QuestId="35881" MobId="233296" Range="7" TerminateWhen="IsObjectiveComplete(2, 35881)" >
+				<HuntingGrounds WaypointVisitStrategy="InOrder">
+					<Hotspot X="5217.877" Y="975.8366" Z="102.3339" />
+					<Hotspot X="5258.97" Y="920.384" Z="105.5563" />
+					<Hotspot X="5282.352" Y="988.0445" Z="106.751" />
+					<Hotspot X="5200.362" Y="858.0595" Z="128.1036" />
+				</HuntingGrounds>
+			</CustomBehavior>
+		</While>
+		<CustomBehavior File="KillUntilComplete" QuestId="35881" MobId="83452" X="5161.407" Y="808.0729" Z="136.4296" TerminateWhen="IsObjectiveComplete(3, 35881)" />
+	</If>
+
+	<If Condition="!IsQuestCompleted(34724)" > <!-- The Forgotten Caves, southern Gorgrond -->
+		<If Condition="!HasQuest(34724)" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to The Forgotten Caves.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="The Forgotten Caves" X="5313.846" Y="875.9498" Z="115.6524" />
+			<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(34724)" />
+			<EnableBehavior Name="Pull" />
+		</If>
+		<CustomBehavior File="KillUntilComplete" QuestId="34724" MobId1="76534" MobId2="76465" TerminateWhen="IsObjectiveComplete(1, 34724)" >
+			<HuntingGrounds>
+				<Hotspot X="5304.765" Y="876.5163" Z="113.6335" />
+				<Hotspot X="5310.488" Y="789.4564" Z="111.4806" />
+				<Hotspot X="5248.108" Y="726.8798" Z="99.38234" />
+			</HuntingGrounds>
+		</CustomBehavior>
+
+		<CustomBehavior File="KillUntilComplete" QuestId="34724" MobId="76548" TerminateWhen="IsObjectiveComplete(2, 34724)" >
+			<HuntingGrounds>
+				<Hotspot X="5304.765" Y="876.5163" Z="113.6335" />
+				<Hotspot X="5310.488" Y="789.4564" Z="111.4806" />
+				<Hotspot X="5248.108" Y="726.8798" Z="99.38234" />
+			</HuntingGrounds>
+		</CustomBehavior>
+		<While Condition="!IsObjectiveComplete(3, 34724) &amp;&amp; HasQuest(34724)" >
+			<MoveTo DestName="Gorg the Host" X="5249.643" Y="716.8337" Z="97.50163" />
+			<CustomBehavior File="WaitTimer" WaitTime="5000" TerminateWhen="!Me.Combat" />
+			<MoveTo DestName="Gorg the Host" X="5244.111" Y="709.4721" Z="97.82377" />
+			<CustomBehavior File="MyCTM" X="5245.159" Y="700.5564" Z="102.5283" />
+			<CustomBehavior File="WaitTimer" WaitTime="500" />
+			<CustomBehavior File="MyCTM" X="5250.422" Y="697.1744" Z="102.7632" TerminateWhen="Me.Z &lt;= 100" />
+			<CustomBehavior File="WaitTimer" WaitTime="500" />
+			<CustomBehavior File="KillUntilComplete" QuestId="34724" MobId="76496" X="5254.366" Y="676.6215" Z="102.9322" TerminateWhen="IsObjectiveComplete(3, 34724) || Me.Z &lt;= 101" />
+			<CustomBehavior File="MyCTM" X="5260.068" Y="703.2797" Z="99.17856" />
+		</While>
+	</If>
+
+	<If Condition="!IsQuestCompleted(36564) &amp;&amp; SpellManager.HasSpell(&quot;Champion&apos;s Honor&quot;)" > <!-- Tangleheart, southern Gorgrond -->
+		<If Condition="!HasQuest(36564)" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Tangleheart.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="Tangleheart" X="5666.406" Y="423.5011" Z="100.3807" />
+			<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(36564)" />
+			<EnableBehavior Name="Pull" />
+		</If>
+		<Objective QuestName="Bonus Objective: Tangleheart" QuestId="36564" Type="KillMob" MobId="82372" KillCount="1" />
+		<Objective QuestName="Bonus Objective: Tangleheart" QuestId="36564" Type="UseObject" ObjectId="235903" UseCount="10" />
+		<CustomBehavior File="KillUntilComplete" QuestId="36564" MobId="82322" TerminateWhen="IsObjectiveComplete(1, 36564)" >
+			<HuntingGrounds>
+				<Hotspot X="6091.647" Y="36.95814" Z="48.42479" />
+				<Hotspot X="6132.73" Y="-69.91637" Z="47.65653" />
+				<Hotspot X="5767.253" Y="210.994" Z="76.82208" />
+				<Hotspot X="5676.38" Y="69.09874" Z="81.3604" />
+				<Hotspot X="5657.108" Y="317.8479" Z="88.74775" />
+				<Hotspot X="5893.969" Y="185.6868" Z="53.20989" />
+			</HuntingGrounds>
+		</CustomBehavior>
+	</If>
+
+	<If Condition="!IsQuestCompleted(36563)" > <!-- Mistcreep Mire, mid Gorgrond -->
+		<If Condition="!HasQuest(36563)" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Mistcreep Mire.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="The Forgotten Caves" X="5857.397" Y="911.9937" Z="47.29003" />
+			<EnableBehavior Name="Pull" />
+		</If>
+		<CustomBehavior File="KillUntilComplete" QuestId="36563" MobId="85693" TerminateWhen="IsObjectiveComplete(1, 36563) || !HasQuest(36563)" >
+			<HuntingGrounds>
+				<Hotspot X="5925.766" Y="867.4125" Z="47.68984" />
+				<Hotspot X="5975.147" Y="908.1544" Z="52.87761" />
+				<Hotspot X="5979.263" Y="727.6641" Z="43.26888" />
+				<Hotspot X="5903.233" Y="773.3055" Z="41.26099" />
+			</HuntingGrounds>
+		</CustomBehavior>
+		<CustomBehavior File="KillUntilComplete" QuestId="36563" MobId="85786" TerminateWhen="IsObjectiveComplete(2, 36563) || !HasQuest(36563)" >
+			<HuntingGrounds>
+				<Hotspot X="5870.462" Y="972.0964" Z="52.89219" />
+				<Hotspot X="5915.771" Y="856.0225" Z="46.70253" />
+				<Hotspot X="6047.883" Y="836.684" Z="54.01108" />
+			</HuntingGrounds>
+		</CustomBehavior>
+	</If>
+
+	<If Condition="!IsQuestCompleted(36473) &amp;&amp; SpellManager.HasSpell(164050)" > <!-- Affliction Ridge, mid Gorgrond -->
+		<If Condition="!HasQuest(36473)" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Affliction Ridge.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="Affliction Ridge" X="6113.302" Y="940.6376" Z="91.10766" />
+			<EnableBehavior Name="Pull" />
+		</If>
+		<While Condition="!IsObjectiveComplete(2, 36473)" >
+			<MoveTo DestName="Ancient Seedbearer #1" X="6117.884" Y="1293.662" Z="75.4975" />
+			<CustomBehavior File="InteractWith" QuestId="36473" MobId="85524" X="6118.614" Y="1294.847" Z="75.56393" TerminateWhen="IsObjectiveComplete(2, 36473) || !HasQuest(36473)" />
+			<MoveTo DestName="Ancient Seedbearer #2" X="6090.437" Y="1344.038" Z="66.58992" />
+			<CustomBehavior File="InteractWith" QuestId="36473" MobId="85524" X="6091.611" Y="1341.894" Z="66.67241" TerminateWhen="IsObjectiveComplete(2, 36473) || !HasQuest(36473)" />
+			<MoveTo DestName="Ancient Seedbearer #3" X="6059.327" Y="1345.313" Z="73.00879" />
+			<CustomBehavior File="InteractWith" QuestId="36473" MobId="85524" X="6055.791" Y="1342.849" Z="74.22137" TerminateWhen="IsObjectiveComplete(2, 36473) || !HasQuest(36473)" />
+			<MoveTo DestName="Ancient Seedbearer #4" X="6121.661" Y="1408.622" Z="48.41551" />
+			<CustomBehavior File="InteractWith" QuestId="36473" MobId="85524" X="6121.661" Y="1408.622" Z="48.41551" TerminateWhen="IsObjectiveComplete(2, 36473) || !HasQuest(36473)" />
+			<MoveTo DestName="Ancient Seedbearer #5" X="6084.318" Y="1440.922" Z="69.50586" />
+			<CustomBehavior File="InteractWith" QuestId="36473" MobId="85524" X="6084.318" Y="1440.922" Z="69.50586" TerminateWhen="IsObjectiveComplete(2, 36473) || !HasQuest(36473)" />
+		</While>
+
+		<CustomBehavior File="KillUntilComplete" QuestId="36473" MobId1="80685" MobId2="80697" MobId3="81786" MobId4="80689" MobId5="80695" MobId6="80698" MobId7="85538" MobId8="84692" MobId9="80690" MobId10="80696" MobId11="80699" MobId12="80688" TerminateWhen="IsObjectiveComplete(1, 36473)" >
+			<HuntingGrounds>
+				<Hotspot X="6064.06" Y="1215.109" Z="117.1665" />
+				<Hotspot X="6090.353" Y="1301.902" Z="75.55322" />
+				<Hotspot X="6095.553" Y="1373.205" Z="66.13525" />
+				<Hotspot X="6063.261" Y="1452.169" Z="72.22489" />
+			</HuntingGrounds>
+		</CustomBehavior>
+	</If>
+
+	<While Condition="!IsQuestCompleted(36566) &amp;&amp; SpellManager.HasSpell(164050)" > <!-- Stonemaul Arena, mid Gorgrond -->
+		<If Condition="!HasQuest(36566)" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Stonemaul Arena.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="Stonemaul Arena" X="6028.301" Y="1631.128" Z="79.51354" />
+			<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(36566)" />
+			<EnableBehavior Name="Pull" />
+		</If>
+		<CustomBehavior File="InteractWith" QuestId="36566" MobIds="235916" NumOfTimes="50" Range="4" TerminateWhen="IsObjectiveComplete(2, 36566) || !HasQuest(36566)" >
+			<HuntingGrounds>
+				<Hotspot Name="North Entrance" X="6027.52" Y="1694.843" Z="76.73864" ArrivalTolerance="5" />
+				<Hotspot Name="Inside Tower" X="5941.154" Y="1854.749" Z="68.31141" ArrivalTolerance="5" />
+			</HuntingGrounds>
+		</CustomBehavior>
+		<CustomBehavior File="KillUntilComplete" QuestId="36566" MobId="79621" X="5954.416" Y="1752.411" Z="62.67847" TerminateWhen="IsObjectiveComplete(4, 36566) || !HasQuest(36566)" />
+		<CustomBehavior File="KillUntilComplete" QuestId="36566" MobId="79626" X="5842.162" Y="1878.981" Z="84.85074" TerminateWhen="IsObjectiveComplete(5, 36566) || !HasQuest(36566)" />
+		<CustomBehavior File="KillUntilComplete" QuestId="36566" MobId="79623" X="5977.632" Y="1707.88" Z="118.5487"  TerminateWhen="IsObjectiveComplete(3, 36566) || !HasQuest(36566)" />
+		<CustomBehavior File="KillUntilComplete" QuestId="36566" MobId1="75819" MobId2="75835" TerminateWhen="IsObjectiveComplete(1, 36566) || !HasQuest(36566)" >
+			<HuntingGrounds>
+				<Hotspot X="6001.991" Y="1724.773" Z="77.37874" />
+				<Hotspot X="5935.003" Y="1817.765" Z="62.67784" />
+			</HuntingGrounds>
+		</CustomBehavior>
+	</While>
+
+	<If Condition="!IsQuestCompleted(36603)" > <!-- Brimstone Springs, mid Gorgrond -->
+		<If Condition="!HasQuest(36603)" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Brimstone Springs.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="Brimstone Springs" X="6333.886" Y="1696.357" Z="75.88833" />
+			<EnableBehavior Name="Pull" />
+		</If>
+		<Objective QuestName="Bonus Objective: Brimstone Springs" QuestId="36603" Type="KillMob" MobId="85924" KillCount="8" />
+		<Objective QuestName="Bonus Objective: Brimstone Springs" QuestId="36603" Type="KillMob" MobId="85960" KillCount="15" />
+		<CustomBehavior File="KillUntilComplete" QuestId="36603" MobId="85942" >
+			<HuntingGrounds>
+				<Hotspot X="6730.562" Y="1753.625" Z="36.491" />
+				<Hotspot X="6730.562" Y="1753.625" Z="36.491" />
+				<Hotspot X="6721.81" Y="1816.776" Z="41.75785" />
+				<Hotspot X="6664.009" Y="1801.7" Z="34.19957" />
+			</HuntingGrounds>
+		</CustomBehavior>
+	</If>
+
+	<If Condition="!IsQuestCompleted(36476) &amp;&amp; SpellManager.HasSpell(164050)" > <!-- South Gronn Canyon, upper-mid Gorgrond -->
+		<If Condition="!HasQuest(36476)" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to South Gronn Canyon.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="South Gronn Canyon" X="6812.661" Y="1513.258" Z="7.483188" />
+			<EnableBehavior Name="Pull" />
+		</If>
+		<CustomBehavior File="InteractWith" QuestId="36476" MobId="85540" NumOfTimes="20" MobState="Alive" IgnoreMobsInBlackspots="True" TerminateWhen="IsObjectiveComplete(3, 36476)" >
+			<HuntingGrounds WaypointVisitStrategy="InOrder">
+				<Hotspot X="6678.63" Y="1214.693" Z="33.65158" />
+				<Hotspot X="6725.35" Y="1109.063" Z="63.63947" />
+				<Hotspot X="6551.997" Y="1189.811" Z="53.1194" />
+			</HuntingGrounds>
+		</CustomBehavior>
+		<CustomBehavior File="KillUntilComplete" QuestId="36476" MobId="75091" TerminateWhen="IsObjectiveComplete(2, 36476)" >
+			<HuntingGrounds>
+				<Hotspot X="6767.914" Y="1155.949" Z="71.45902" />
+				<Hotspot X="6681.999" Y="1147.042" Z="38.01625" />
+				<Hotspot X="6576.768" Y="1209.511" Z="54.11635" />
+			</HuntingGrounds>
+		</CustomBehavior>
+		<CustomBehavior File="KillUntilComplete" QuestId="36476" MobId1="85528" MobId2="81206" MobId3="81207" MobId4="81518" TerminateWhen="IsObjectiveComplete(1, 36476)" >
+			<HuntingGrounds>
+				<Hotspot X="6752.688" Y="1412.994" Z="23.56459" />
+				<Hotspot X="6677.265" Y="1475.366" Z="18.77449" />
+				<Hotspot X="6808.789" Y="1464.834" Z="14.46626" />
+			</HuntingGrounds>
+		</CustomBehavior>
+	</If>
+
+	<If Condition="!IsQuestCompleted(36480)" > <!-- Valley of Destruction, upper-mid Gorgrond -->
+		<If Condition="!HasQuest(36480)" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Valley of Destruction.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="Valley of Destruction" X="7008.043" Y="1384.127" Z="24.07438" />
+			<EnableBehavior Name="Pull" />
+		</If>
+		<While Condition="!IsObjectiveComplete(3, 36480)" >
+			<CustomBehavior File="RunLikeHell" QuestId="36480" >
+				<Hotspot X="6922.813" Y="1340.201" Z="33.66273" />
+				<Hotspot X="6918.68" Y="1325.983" Z="34.21039" />
+
+				<Hotspot X="6909.318" Y="1293.138" Z="43.48063" />
+				<Hotspot X="6908.121" Y="1280.704" Z="43.17589" />
+
+				<Hotspot X="6935.491" Y="1212.653" Z="30.91845" />
+				<Hotspot X="6953.456" Y="1224.6" Z="29.06397" />
+
+				<Hotspot X="6992.038" Y="1208.855" Z="28.26805" />
+				<Hotspot X="6982.614" Y="1194.64" Z="27.41848" />
+
+				<Hotspot X="6929.628" Y="1154.634" Z="30.05296" />
+				<Hotspot X="6919.312" Y="1143.908" Z="29.55052" />
+
+				<Hotspot X="6958.807" Y="1144.309" Z="28.12758" />
+				<Hotspot X="6967.307" Y="1152.608" Z="28.11997" />
+
+				<Hotspot X="6991.171" Y="1128.445" Z="28.38675" />
+				<Hotspot X="7001.991" Y="1114.323" Z="28.84806" />
+			</CustomBehavior>
+			<MoveTo X="6932.446" Y="1352.357" Z="30.73879" />
+		</While>
+		<CustomBehavior File="KillUntilComplete" QuestId="36480" MobId="81246" TerminateWhen="IsObjectiveComplete(1, 36480)" >
+			<HuntingGrounds>
+				<Hotspot X="6941.838" Y="1305.181" Z="33.62055" />
+				<Hotspot X="7023.07" Y="1410.377" Z="26.66492" />
+				<Hotspot X="7196.093" Y="1453.335" Z="56.82071" />
+			</HuntingGrounds>
+		</CustomBehavior>
+		<CustomBehavior File="KillUntilComplete" QuestId="36480" MobId="81775" TerminateWhen="IsObjectiveComplete(2, 36480)" >
+			<HuntingGrounds>
+				<Hotspot X="7049.477" Y="1279.57" Z="28.16082" />
+				<Hotspot X="6900.877" Y="1398.332" Z="33.71987" />
+				<Hotspot X="6970.446" Y="1172.775" Z="30.21252" />
+			</HuntingGrounds>
+		</CustomBehavior>
+	</If>
+
+	<If Condition="!IsQuestCompleted(36571)" > <!-- Iyun Weald, eastern-mid Gorgrond -->
+		<If Condition="!HasQuest(36571)" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Iyun Weald.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="Iyun Weald" X="6658.743" Y="-71.13366" Z="74.32645" />
+			<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(36571)" />
+			<EnableBehavior Name="Pull" />
+		</If>
+		<Objective QuestName="Bonus Objective: Iyun Weald" QuestId="36571" Type="KillMob" MobId="80744" KillCount="12" />
+		<Objective QuestName="Bonus Objective: Iyun Weald" QuestId="36571" Type="KillMob" MobId="85815" KillCount="20" >
+			<Hotspots>
+				<Hotspot X="6660.359" Y="-69.25423" Z="73.92222" />
+				<Hotspot X="6744.791" Y="-11.29377" Z="74.31512" />
+				<Hotspot X="6715.36" Y="41.28747" Z="73.81193" />
+				<Hotspot X="6630.246" Y="97.71339" Z="74.55923" />
+				<Hotspot X="6524.88" Y="51.77673" Z="74.78112" />
+			</Hotspots>
+		</Objective>
+		<CustomBehavior File="KillUntilComplete" QuestId="36571" MobId="85807" TerminateWhen="IsObjectiveComplete(3, 36571)" >
+			<HuntingGrounds>
+				<Hotspot X="6660.359" Y="-69.25423" Z="73.92222" />
+				<Hotspot X="6744.791" Y="-11.29377" Z="74.31512" />
+				<Hotspot X="6715.36" Y="41.28747" Z="73.81193" />
+				<Hotspot X="6630.246" Y="97.71339" Z="74.55923" />
+				<Hotspot X="6524.88" Y="51.77673" Z="74.78112" />
+			</HuntingGrounds>
+		</CustomBehavior>
+	</If>
+
+	<If Condition="Me.IsAlliance" >
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Bonus quest farming complete.  While you want to farm Ashran you must load it manually.&quot;);" />
+	</If>
+	<If Condition="Me.IsHorde" >
+		<CustomBehavior File="LoadProfile" ProfileName="Nagrand.xml" RememberProfile="false" />
+	</If>
+
+</QuestOrder>
+</HBProfile>

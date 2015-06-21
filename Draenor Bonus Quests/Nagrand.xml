@@ -1,0 +1,121 @@
+<HBProfile>
+
+<Name>Nagrand Bonus Quests</Name>
+
+
+<MinDurability>0.3</MinDurability>
+<MinFreeBagSlots>3</MinFreeBagSlots>
+
+<SellGrey>true</SellGrey>
+<SellWhite>true</SellWhite>
+<SellGreen>true</SellGreen>
+<SellBlue>true</SellBlue>
+<SellPurple>false</SellPurple>
+<MailGrey>false</MailGrey>
+<MailWhite>true</MailWhite>
+<MailGreen>true</MailGreen>
+<MailBlue>true</MailBlue>
+<MailPurple>true</MailPurple>
+
+<Blackspots>
+	<Blackspot X="2288.263" Y="7164.707" Z="14.08429" Radius="2.656748" /> <!-- Bugged NPC in wall. -->
+</Blackspots>
+<AvoidMobs></AvoidMobs>
+
+	<Mailboxes>
+		<Mailbox X="3209.496" Y="4602.257" Z="142.9012" UsableWhen="Me.IsHorde" /><!--  Wor'var  -->
+		<Mailbox X="3130.849" Y="6540.652" Z="12.91128" UsableWhen="Me.IsHorde" /><!--  Riverside Port - Horde  -->
+		
+		<Mailbox X="2575.935" Y="5711.087" Z="100.7982" UsableWhen="Me.IsAlliance" />	<!--  Telaar  -->
+		<Mailbox X="3403.552" Y="5780.667" Z="37.64209" UsableWhen="Me.IsAlliance" />	<!--  Yrel's Watch  -->
+
+		<!--Garrison-->
+		<Mailbox X="1923.274" Y="299.2899" Z="88.96642" UsableWhen="Me.IsAlliance" />
+		<Mailbox X="5580.682" Y="4570.392" Z="136.558" UsableWhen="Me.IsHorde" />
+	</Mailboxes>
+
+	<Vendors>
+		<Vendor Name="Sumi" Entry="82343" Type="Repair" X="3228.321" Y="4625.069" Z="145.0768" UsableWhen="Me.IsHorde" /><!--  Wor'var  -->
+		<Vendor Name="Elathriel Sunstriker" Entry="82345" Type="Food" X="3204.842" Y="4622.534" Z="145.8241" UsableWhen="Me.IsHorde" /><!--  Wor'var  -->
+		<Vendor Name="Tai'tasi" Entry="82344" Type="Repair" X="3121.195" Y="6559.984" Z="12.77843" UsableWhen="Me.IsHorde" /><!--  Riverside Port - Horde  -->
+	
+		<Vendor Name="Caregiver Felaani" Entry="80006" Type="Food" X="2557.208" Y="5699.377" Z="102.2421" UsableWhen="Me.IsAlliance" /><!--  Telaar  -->
+		<Vendor Name="Tradesman Portanuus" Entry="81253" Type="Repair" X="3382.086" Y="5781.919" Z="37.64205" UsableWhen="Me.IsAlliance" /><!--  Yrel's Watch  -->
+		<Vendor Name="Amma Stouthearth" Entry="81249" Type="Food" X="3409.97" Y="5780.557" Z="37.64214" UsableWhen="Me.IsAlliance" /><!--  Yrel's Watch  -->
+
+		<Vendor Name="Rizmax Copperwattz" Entry="87396" Type="Repair" X="3325.174" Y="6443.257" Z="16.31485"/><!--  Ruins of Na'gwa  -->
+		<Vendor Name="Chef Grogglefitz" Entry="79199" Type="Food" X="3013.191" Y="4762.819" Z="128.2746"/><!--  Ring of Trials  -->
+		<Vendor Name="Pyxni Pennypocket" Entry="79310" Type="Repair" X="3085.323" Y="4849.036" Z="128.3313"/><!--  Ring of Trials  -->
+		<!--Garrison Vendors-->
+		<Vendor Name="Provisioner Hanfa" Entry="81346" Type="Repair" X="1854.957" Y="269.2205" Z="76.63961" UsableWhen="Me.IsAlliance" />
+		<Vendor Name="Supplymaster Eri" Entry="76872" Type="Repair" X="5626.828" Y="4629.681" Z="139.3038" UsableWhen="Me.IsHorde" />
+	</Vendors>
+<!-- Missing:
+		Snarlpaw Ledge
+-->
+
+<QuestOrder>
+
+	<If Condition="!IsQuestCompleted(35379)" > <!-- Hemet's Happy Hunting Grounds, eastern Nagrand -->
+		<If Condition="!HasQuest(35379)" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Hemet's Happy Hunting Grounds.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="Hemet's Happy Hunting Grounds" X="3037.637" Y="4319.546" Z="164.1211" />
+			<EnableBehavior Name="Pull" />
+		</If>
+		<Objective QuestName="Bonus Objective: Hemet's Happy Hunting Grounds" QuestId="35379" Type="KillMob" MobId="82205" KillCount="1" />
+		<Objective QuestName="Bonus Objective: Hemet's Happy Hunting Grounds" QuestId="35379" Type="KillMob" MobId="82209" KillCount="1" />
+		<CustomBehavior File="KillUntilComplete" QuestId="35379" MobId="82202" X="3264.267" Y="4274.504" Z="146.4191" TerminateWhen="IsObjectiveComplete(4, 35379)" />
+		<CustomBehavior File="KillUntilComplete" QuestId="35379" MobId="81902" TerminateWhen="IsObjectiveComplete(1, 35379)" >
+			<HuntingGrounds>
+				<Hotspot X="3026.833" Y="4346.126" Z="158.0947" />
+				<Hotspot X="3117.406" Y="4283.711" Z="165.7914" />
+			</HuntingGrounds>
+		</CustomBehavior>
+	</If>
+
+	<If Condition="!IsQuestCompleted(34723)" > <!-- Ironfist Harbor, south-west Nagrand -->
+		<If Condition="!HasQuest(34723)" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Ironfist Harbor.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="Ironfist Harbor" X="2103.605" Y="6878.182" Z="1.212917" />
+			<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(34723) || Me.Combat" />
+			<EnableBehavior Name="Pull" />
+		</If>
+		<Objective QuestName="Bonus Objective: Ironfist Harbor" QuestId="34723" Type="KillMob" MobId="79651" KillCount="1" />
+		<If Condition="!IsObjectiveComplete(4, 34723)" >
+			<MoveTo X="2275.847" Y="7197.969" Z="28.61393" />
+			<MoveTo X="2216.777" Y="7180.472" Z="33.13616" />
+			<CustomBehavior File="KillUntilComplete" QuestId="34723" MobId="79588" X="2205.747" Y="7167.661" Z="34.17261" TerminateWhen="IsObjectiveComplete(4, 34723)" />
+			<MoveTo X="2194.194" Y="7105.935" Z="3.260756" />
+		</If>
+			<CustomBehavior File="InteractWith" QuestId="34723" MobId="230653" NumOfTimes="30" TerminateWhen="IsObjectiveComplete(2, 34723)" >
+				<HuntingGrounds>
+					<Hotspot X="2040.59" Y="7133.468" Z="2.290698" />
+					<Hotspot X="1974.882" Y="7177.077" Z="11.91693" />
+				</HuntingGrounds>
+			</CustomBehavior>
+			<!--<Objective QuestName="Bonus Objective: Ironfist Harbor" QuestId="34723" Type="UseObject" ObjectId="230653" UseCount="12" >
+				<Hotspots>
+					<Hotspot X="2040.59" Y="7133.468" Z="2.290698" />
+					<Hotspot X="1974.882" Y="7177.077" Z="11.91693" />
+				</Hotspots>
+			</Objective>-->
+
+		<CustomBehavior File="KillUntilComplete" QuestId="34723" MobId1="79581" MobId2="79591" MobId3="84849" MobId4="79584" MobId5="79725" MobId6="79754" TerminateWhen="IsObjectiveComplete(1, 34723)" >
+			<HuntingGrounds>
+				<Hotspot X="1964.789" Y="7167.954" Z="12.42943" />
+				<Hotspot X="2094.079" Y="7088.451" Z="2.591701" />
+			</HuntingGrounds>
+		</CustomBehavior>
+	</If>
+
+	<If Condition="Me.IsAlliance" >
+		<CustomBehavior File="LoadProfile" ProfileName="Gorgrond.xml" RememberProfile="false" />
+	</If>
+	<If Condition="Me.IsHorde" >
+		<CustomBehavior File="LoadProfile" ProfileName="Talador.xml" RememberProfile="false" />
+	</If>
+
+</QuestOrder>
+</HBProfile>

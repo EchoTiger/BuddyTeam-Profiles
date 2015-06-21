@@ -1,0 +1,231 @@
+<!-- Echo's notes, delete me when no longer relevent.
+	Notes:
+-->
+<HBProfile>
+	<Name>Spires of Arak Rare hunting</Name>
+	
+	
+	<MinDurability>0.2</MinDurability>
+	<MinFreeBagSlots>2</MinFreeBagSlots>
+
+	<MailGrey>false</MailGrey>
+	<MailWhite>false</MailWhite>
+	<MailGreen>false</MailGreen>
+	<MailBlue>true</MailBlue>
+	<MailPurple>true</MailPurple>
+
+	<SellGrey>true</SellGrey>
+	<SellWhite>true</SellWhite>
+	<SellGreen>true</SellGreen>
+	<SellBlue>true</SellBlue>
+	<SellPurple>false</SellPurple>
+
+	<Mailboxes>
+		<!--Garrison-->
+		<Mailbox X="1923.274" Y="299.2899" Z="88.96642" UsableWhen="Me.IsAlliance" />
+		<Mailbox X="5580.682" Y="4570.392" Z="136.558" UsableWhen="Me.IsHorde" />
+	</Mailboxes>
+	<Vendors>
+		<Vendor Name="Percy" Entry="79748" Type="Sell" X="863.1875" Y="2035.922" Z="181.2414"/>
+		<!--  Terrokar Pass  -->
+		<Vendor Name="Percy" Entry="79748" Type="Sell" X="643.0799" Y="1931.465" Z="143.9573"/>
+		<!--  Skettis  -->
+		<Vendor Name="Percy" Entry="79748" Type="Sell" X="-412.0764" Y="1735.769" Z="47.75461"/>
+		<!--  Terokkar Wayshrine  -->
+		<Vendor Name="Kuro'ak" Entry="86386" Type="Food" X="-394.9809" Y="1852.606" Z="53.45686"/>
+		<!--  Veil Terokk  -->
+		<Vendor Name="Ruuan the Seer" Entry="87775" Type="Repair" X="-432.757" Y="1850.8" Z="41.62031"/>
+		<!--  Southport  -->
+		<Vendor Name="Tickle Bubblefizz" Entry="82156" Type="Sell" X="-671.5364" Y="2419.594" Z="34.98823"/>
+		<!--  Admiral Taylor G  -->
+		<Vendor Name="Nozwik Charbroil" Entry="82568" Type="Food" X="-1575.559" Y="958.059" Z="10.61832"/>
+		<!--  Pinchwhistle GW  -->
+		<Vendor Name="Twizix Copperbomb" Entry="82183" Type="Repair" X="-1483.905" Y="981.5174" Z="8.025555"/>
+		<!--  Pinchwhistle GW  -->
+		<Vendor Name="Q2-MLT Fabricator" Entry="82182" Type="Repair" X="-2332.87" Y="1117.309" Z="28.32723"/>
+		<!--  Pinchwhistle Point  -->
+		<Vendor Name="Akana" Entry="80777" Type="Sell" X="-337.4931" Y="909.0139" Z="75.39072"/>
+		<!--  Talon Watch  -->
+		<Vendor Name="Zektar" Entry="88045" Type="Repair" X="-656.007" Y="1524.108" Z="36.65781"/>
+		<!--  Veil Terokk  -->
+		<Vendor Name="Alex Johnson" Entry="84132" Type="Repair" X="-1097.946" Y="2239.363" Z="9.030098" UsableWhen="Me.IsAlliance" />
+		<!--  Durotan's Grasp  -->
+		<Vendor Name="Lo'gron the Shoulder" Entry="81093" Type="Repair" X="2793.32" Y="2519.001" Z="121.1413" UsableWhen="Me.IsHorde" />
+		<!--Garrison Vendors-->
+		<Vendor Name="Provisioner Hanfa" Entry="81346" Type="Repair" X="1854.957" Y="269.2205" Z="76.63961" UsableWhen="Me.IsAlliance" />
+		<Vendor Name="Supplymaster Eri" Entry="76872" Type="Repair" X="5626.828" Y="4629.681" Z="139.3038" UsableWhen="Me.IsHorde" />
+	</Vendors>
+
+	<QuestOrder>		
+
+		<CustomBehavior File="RunCode" Code="RoutineManager.SetCapabilityState(CapabilityFlags.MultiMobPull, CapabilityState.Disallowed);"/>
+		<DisableBehavior Name="Pull" />
+		<CustomBehavior File="UserSettings" HarvestHerbs="false" HarvestMinerals="false" /> <!-- Harvesting will bug out CTMs. --> 
+
+		<If Condition="!IsQuestCompleted(36267)" > <!-- Durkath Steelmaw -->
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.PowderBlue, &quot;[Profile Notification]: Moving to kill Durkath Steelmaw.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="Durkath Steelmaw" X="212.8058" Y="1878.275" Z="21.97794" />
+			<EnableBehavior Name="Pull" />
+			<CustomBehavior File="InteractWith" MobId="84807" X="233.0868" Y="1867.786" Z="22.08281" TerminateWhen="IsQuestCompleted(36267)" />
+		</If>
+
+		<If Condition="!IsQuestCompleted(35599)" > <!-- Blade-Dancer Aeryx -->
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.PowderBlue, &quot;[Profile Notification]: Moving to kill Blade-Dancer Aeryx.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="Blade-Dancer Aeryx" X="463.1197" Y="1817.557" Z="100.4237" />
+			<EnableBehavior Name="Pull" />
+			<CustomBehavior File="InteractWith" MobId="80614" X="444.3177" Y="1843.927" Z="104.5335" TerminateWhen="IsQuestCompleted(35599)" />
+		</If>
+
+		<If Condition="!IsQuestCompleted(36470)" > <!-- Rotcap -->
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.PowderBlue, &quot;[Profile Notification]: Moving to kill Rotcap.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="Rotcap" X="329.273" Y="2338.566" Z="-1.604328" />
+			<EnableBehavior Name="Pull" />
+			<CustomBehavior File="InteractWith" MobId="85504" X="260.9764" Y="2360.224" Z="-3.293562" TerminateWhen="IsQuestCompleted(36470)" />
+		</If>
+
+		<If Condition="!IsQuestCompleted(36265)" > <!-- Stonespite -->
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.PowderBlue, &quot;[Profile Notification]: Moving to kill Stonespite.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="Stonespite" X="529.8316" Y="2652.647" Z="125.061" />
+			<EnableBehavior Name="Pull" />
+			<CustomBehavior File="InteractWith" MobId="84805" X="500.0816" Y="2648.233" Z="117.0303" TerminateWhen="IsQuestCompleted(36265)" />
+		</If>
+
+		<If Condition="!IsQuestCompleted(36943)" > <!-- Gaze -->
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.PowderBlue, &quot;[Profile Notification]: Moving to kill Gaze.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="Gaze" X="359.9834" Y="3172.826" Z="112.6912" />
+			<CustomBehavior File="InteractWith" MobId="236961" X="350.5295" Y="3173.824" Z="115.0424" />
+			<CustomBehavior File="WaitTimer" WaitTime="25000" TerminateWhen="Me.Combat" />
+			<CustomBehavior File="InteractWith" MobId="86978" X="401.115" Y="3154.12" Z="115.5573" TerminateWhen="IsQuestCompleted(36943)" />
+		</If>
+
+		<If Condition="!IsQuestCompleted(36305)" > <!-- Gobblefin -->
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.PowderBlue, &quot;[Profile Notification]: Moving to kill Gobblefin.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="Gobblefin" X="-976.7334" Y="2524.565" Z="-0.9308962" />
+			<EnableBehavior Name="Pull" />
+			<CustomBehavior File="MyCTM" X="-984.1103" Y="2611.321" Z="-1.868681" />
+			<CustomBehavior File="MyCTM" X="-997.5521" Y="2654.548" Z="-27.08197" TerminateWhen="Me.Combat" />
+			<CustomBehavior File="WaitTimer" WaitTime="5000" />
+			<CustomBehavior File="MyCTM" X="-975.7526" Y="2517.478" Z="2.655511" />
+		</If>
+
+		<If Condition="!IsQuestCompleted(36396)" > <!-- Mutafen -->
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.PowderBlue, &quot;[Profile Notification]: Moving to kill Mutafen.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="Mutafen" X="-2189.305" Y="1427.71" Z="0.5179077" />
+			<EnableBehavior Name="Pull" />
+			<CustomBehavior File="InteractWith" MobId="84417" X="-2215.329" Y="1450.35" Z="1.728128" TerminateWhen="IsQuestCompleted(36396)" />
+		</If>
+
+		<If Condition="!IsQuestCompleted(36306)" > <!-- Jiasska the Sporegorger -->
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.PowderBlue, &quot;[Profile Notification]: Moving to kill Jiasska the Sporegorger.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="Jiasska the Sporegorger" X="-2414.114" Y="1246.598" Z="0.3371416" />
+			<EnableBehavior Name="Pull" />
+			<CustomBehavior File="InteractWith" MobId="84955" X="-2445.21" Y="1259.734" Z="0.9380474" TerminateWhen="IsQuestCompleted(36306)" />
+		</If>
+
+		<If Condition="!IsQuestCompleted(36291)" > <!-- Betsi Boombasket -->
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.PowderBlue, &quot;[Profile Notification]: Moving to kill Betsi Boombasket.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="Betsi Boombasket" X="-2057.858" Y="1151.969" Z="25.71507" />
+			<EnableBehavior Name="Pull" />
+			<CustomBehavior File="InteractWith" MobId="84887" X="-2027.67" Y="1147.368" Z="29.24389" TerminateWhen="IsQuestCompleted(36291)" />
+		</If>
+
+		<If Condition="!IsQuestCompleted(36254)" > <!-- Tesska the Broken -->
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.PowderBlue, &quot;[Profile Notification]: Moving to kill Tesska the Broken.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="Tesska the Broken" X="-1586.519" Y="1191.438" Z="27.36337" />
+			<EnableBehavior Name="Pull" />
+			<CustomBehavior File="InteractWith" MobId="84775" X="-1609.655" Y="1210.142" Z="28.77505" TerminateWhen="IsQuestCompleted(36254)" />
+		</If>
+
+		<If Condition="!IsQuestCompleted(36278)" > <!-- Talonbreaker -->
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.PowderBlue, &quot;[Profile Notification]: Moving to kill Talonbreaker.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="Talonbreaker" X="-1168.071" Y="1403.606" Z="250.6868" />
+			<EnableBehavior Name="Pull" />
+			<CustomBehavior File="InteractWith" MobId="84836" X="-1169.592" Y="1370.451" Z="251.7422" TerminateWhen="IsQuestCompleted(36278)" />
+		</If>
+
+		<If Condition="!IsQuestCompleted(36283)" > <!-- Blightglow -->
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.PowderBlue, &quot;[Profile Notification]: Moving to kill Blightglow.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="Blightglow" X="-1233.296" Y="828.2977" Z="0.8306592" />
+			<EnableBehavior Name="Pull" />
+			<CustomBehavior File="InteractWith" MobId="84856" TerminateWhen="IsQuestCompleted(36283)" >
+				<HuntingGrounds>
+					<Hotspot X="-1222.602" Y="801.6334" Z="-0.3488801" />
+					<Hotspot X="-1374.286" Y="723.2607" Z="-0.3498157" />
+				</HuntingGrounds>
+			</CustomBehavior>
+		</If>
+
+		<If Condition="!IsQuestCompleted(36288)" > <!-- Oskiira the Vengeful -->
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.PowderBlue, &quot;[Profile Notification]: Moving to kill Oskiira the Vengeful.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="Oskiira the Vengeful" X="-775.7086" Y="728.2426" Z="38.81397" />
+			<EnableBehavior Name="Pull" />
+			<CustomBehavior File="InteractWith" MobId="84872" X="-802.9305" Y="743.6007" Z="51.13026" TerminateWhen="IsQuestCompleted(36288)" />
+		</If>
+
+		<If Condition="!IsQuestCompleted(36276)" > <!-- Sangrikrass -->
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.PowderBlue, &quot;[Profile Notification]: Moving to kill Sangrikrass.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="Sangrikrass" X="-567.4929" Y="536.5634" Z="54.17989" />
+			<EnableBehavior Name="Pull" />
+			<CustomBehavior File="InteractWith" MobId="84820" X="-584.7014" Y="515.2986" Z="46.72667" NumOfTimes="8" TerminateWhen="Unit(84833) != null" />
+			<CustomBehavior File="InteractWith" MobId="84833" X="-584.7014" Y="515.2986" Z="46.72667" TerminateWhen="IsQuestCompleted(36276)" />
+		</If>
+
+		<If Condition="!IsQuestCompleted(36298)" > <!-- Sunderthorn -->
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.PowderBlue, &quot;[Profile Notification]: Moving to kill Sunderthorn.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="Sunderthorn" X="-438.7396" Y="1134.831" Z="29.75215" />
+			<EnableBehavior Name="Pull" />
+			<CustomBehavior File="InteractWith" MobState="Alive" MobId="84905" TerminateWhen="Unit(84912) != null" >
+				<HuntingGrounds>
+					<Hotspot X="-434.3511" Y="1121.231" Z="33.30974" />
+					<Hotspot X="-448.3173" Y="1113.948" Z="32.68842" />
+				</HuntingGrounds>
+			</CustomBehavior> <!-- Needs to be KillUntilComplete, but KillUntilComplete is broken? -->
+			<CustomBehavior File="InteractWith" MobId="84912" X="-446.1368" Y="1105.909" Z="39.38996" TerminateWhen="IsQuestCompleted(36298)" />
+		</If>
+
+		<If Condition="!IsQuestCompleted(36279)" > <!-- Poisonmaster Bortusk -->
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.PowderBlue, &quot;[Profile Notification]: Moving to kill Poisonmaster Bortusk.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="Poisonmaster Bortusk" X="-152.1724" Y="1039.875" Z="72.94115" />
+			<EnableBehavior Name="Pull" />
+			<CustomBehavior File="InteractWith" MobId="84838" X="-133.1684" Y="1075.521" Z="69.04044" TerminateWhen="IsQuestCompleted(36279)" />
+		</If>
+
+		<If Condition="!IsQuestCompleted(36268)" > <!-- Kalos the Bloodbathed -->
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.PowderBlue, &quot;[Profile Notification]: Moving to kill Kalos the Bloodbathed.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="Kalos the Bloodbathed" X="-139.8187" Y="906.2869" Z="61.66031" />
+			<EnableBehavior Name="Pull" />
+			<CustomBehavior File="InteractWith" MobId="84810" X="-126.0417" Y="876.7101" Z="63.62825" TerminateWhen="IsQuestCompleted(36268)" />
+		</If>
+
+		<If Condition="!IsQuestCompleted(36887)" > <!-- Hermit Palefur -->
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.PowderBlue, &quot;[Profile Notification]: Moving to kill Hermit Palefur.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="Hermit Palefur" X="755.6926" Y="1089.806" Z="71.34908" />
+			<EnableBehavior Name="Pull" />
+			<CustomBehavior File="InteractWith" MobId="86724" X="783.4827" Y="1088.531" Z="74.07487" TerminateWhen="IsQuestCompleted(36887)" />
+		</If>
+
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.BlueViolet, &quot;[Profile Notification]: Rare hunting complete!  Going to the Garrison to mail and vendor.&quot;);" />
+		<CustomBehavior File="ForceSetVendor" DoSell="True" DoRepair="True" />
+		<CustomBehavior File="UserSettings" Preset="UserOriginal" />
+
+
+	</QuestOrder>
+</HBProfile>

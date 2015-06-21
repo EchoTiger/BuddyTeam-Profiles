@@ -1,0 +1,160 @@
+<HBProfile>
+
+<Name>Shadowmoon Valley Bonus Quests</Name>
+
+
+<MinDurability>0.3</MinDurability>
+<MinFreeBagSlots>3</MinFreeBagSlots>
+
+<SellGrey>true</SellGrey>
+<SellWhite>true</SellWhite>
+<SellGreen>true</SellGreen>
+<SellBlue>true</SellBlue>
+<SellPurple>false</SellPurple>
+<MailGrey>false</MailGrey>
+<MailWhite>true</MailWhite>
+<MailGreen>true</MailGreen>
+<MailBlue>true</MailBlue>
+<MailPurple>true</MailPurple>
+
+<Blackspots>
+	<Blackspot X="1163.746" Y="849.8212" Z="98.0319" Radius="6.461143" /> <!-- Object stuck in wall. -->
+	<Blackspot X="1111.813" Y="754.8465" Z="102.4463" Radius="5.297795" /> <!-- Object stuck in wall. -->
+	<Blackspot X="1108.787" Y="759.3284" Z="102.3795" Radius="8.474683" /> <!-- Object stuck in wall. -->
+</Blackspots>
+<AvoidMobs></AvoidMobs>
+
+	<Mailboxes>
+		<!--Garrison-->
+		<Mailbox X="1923.274" Y="299.2899" Z="88.96642" UsableWhen="Me.IsAlliance" />
+		<Mailbox X="5580.682" Y="4570.392" Z="136.558" UsableWhen="Me.IsHorde" />
+	</Mailboxes>
+	<Vendors>
+		<!--Shadowmoon Valley:-->
+		<!--Exile's Rise-->
+		<Vendor Name="Mokarg" Entry="76198" Type="Repair" X="1475.611" Y="-790.243" Z="38.12963" />
+		<Vendor Name="Rovan Astalan" Entry="81614" Type="Repair" X="-780.2448" Y="-677.118" Z="108.6697" />
+		<!--__________________________________________________________________________________________________________________________________________-->
+		<!--Spires of Arak:-->
+		<!--Veil Terokk-->
+		<Vendor Name="Kuro'ak" Entry="86386" Type="Food" X="-394.9809" Y="1852.606" Z="53.45683" />
+		<Vendor Name="Ruuan the Seer" Entry="87775" Type="Repair" X="-432.757" Y="1850.8" Z="41.6203" />
+		<!--Pinchwhistle Gearworks-->
+		<Vendor Name="Twizix Copperbomb" Entry="82183" Type="Repair" X="-1483.905" Y="981.5174" Z="8.025256" />
+
+		<!--__________________________________________________________________________________________________________________________________________-->
+		<!--Talador:-->
+		<!--Anchorite's Sojourn-->
+		<Vendor Name="Caregiver Uluura" Entry="75430" Type="Food" X="2144.236" Y="1232.42" Z="117.2146" />
+		<!--Shattrath City-->
+		<Vendor Name="Reema" Entry="86317" Type="Repair" X="2663.982" Y="2796.673" Z="246.1862" />
+		<Vendor Name="Bordos" Entry="82635" Type="Repair" X="2617.845" Y="2823.831" Z="242.3916" />
+		<Vendor Name="Fiaana" Entry="82636" Type="Food" X="2620.902" Y="2783.97" Z="242.3923" />
+		<!--Zangarra-->
+		<Vendor Name="James Lamone" Entry="80930" Type="Repair" X="3214.887" Y="835.0538" Z="80.63318" />
+		<!--__________________________________________________________________________________________________________________________________________-->
+		<!--Nagrand:-->
+		<!--The Ring of Trials-->
+		<Vendor Name="Grogglefitz" Entry="79199" Type="Food" X="3013.191" Y="4762.819" Z="128.275" />
+		<Vendor Name="Pyxni Pennypocket" Entry="79310" Type="Repair" X="3085.323" Y="4849.036" Z="128.3325" />
+		<!--__________________________________________________________________________________________________________________________________________-->
+		<!--Gorgrond:-->
+		<!--Breaker's Crown-->
+		<Vendor Name="Budgy" Entry="84234" Type="Repair" X="6610.504" Y="1286.526" Z="64.83815" />
+		<!--__________________________________________________________________________________________________________________________________________-->
+		<!--Frostfire Ridge: Bloodmaul Slag Mines-->
+		<Vendor Name="Urkag" Entry="85545" Type="Repair" X="7400.561" Y="4335.775" Z="126.4071" />
+		<Vendor Name="Barduun" Entry="85547" Type="Food" X="7370.463" Y="4342.348" Z="127.2008" />
+		<!--__________________________________________________________________________________________________________________________________________-->
+		<!--Garrison Vendors-->
+		<Vendor Name="Provisioner Hanfa" Entry="81346" Type="Repair" X="1854.957" Y="269.2205" Z="76.63961" UsableWhen="Me.IsAlliance" />
+		<Vendor Name="Supplymaster Eri" Entry="76872" Type="Repair" X="5626.828" Y="4629.681" Z="139.3038" UsableWhen="Me.IsHorde" />
+	</Vendors>
+
+<!-- Missing: 34076, the Burial Fields -->
+
+<QuestOrder>
+
+	<If Condition="Me.IsHorde" >
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Red, &quot;[Profile Warning]: Bonus quests for Shadowmoon Valley can only be completed as Alliance.&quot;);" />
+		<CustomBehavior File="Halt" />
+	</If>
+
+	<If Condition="!IsQuestCompleted(34504)" > <!-- Bloodthorn Cave, western Shadowmoon Valley -->
+		<If Condition="!HasQuest(34504)" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Bloodthorn Cave.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="Bloodthorn Cave" X="1189.02" Y="669.9084" Z="108.1194" />
+			<EnableBehavior Name="Pull" />
+		</If>
+		<While Condition="!IsObjectiveComplete(2, 34504)" >
+			<CustomBehavior File="InteractWith" QuestId="34504" IgnoreMobsInBlackspots="True" IgnoreLoSToTarget="false" MobId1="78902" MobId2="78903" MobId3="78904" WaitTime="3000" TerminateWhen="IsObjectiveComplete(2, 34504)" >
+				<HuntingGrounds WaypointVisitStrategy="InOrder">
+					<Hotspot X="1190.504" Y="701.8886" Z="111.2416" />
+					<Hotspot X="1218.643" Y="775.8749" Z="108.3763" />
+					<Hotspot X="1167.824" Y="804.0121" Z="97.21323" />
+					<Hotspot X="1094.584" Y="847.6463" Z="102.8699" />
+					<Hotspot X="1095.854" Y="740.9146" Z="97.88039" />
+					<Hotspot X="1190.741" Y="724.5451" Z="112.365" />
+				</HuntingGrounds>
+			</CustomBehavior>
+		</While>
+		<CustomBehavior File="KillUntilComplete" QuestId="34504" MobId="76382" TerminateWhen="IsObjectiveComplete(1, 34504)" >
+			<HuntingGrounds>
+					<Hotspot X="1190.504" Y="701.8886" Z="111.2416" />
+					<Hotspot X="1218.643" Y="775.8749" Z="108.3763" />
+					<Hotspot X="1167.824" Y="804.0121" Z="97.21323" />
+					<Hotspot X="1094.584" Y="847.6463" Z="102.8699" />
+					<Hotspot X="1095.854" Y="740.9146" Z="97.88039" />
+					<Hotspot X="1190.741" Y="724.5451" Z="112.365" />
+			</HuntingGrounds>
+		</CustomBehavior>
+	</If>
+
+	<While Condition="!IsQuestCompleted(34496)" > <!-- Hills of Valuun, western Shadowmoon Valley -->
+		<If Condition="!HasQuest(34496)" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Hills of Valuun.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="Hills of Valuun" X="1154.234" Y="-1719.671" Z="19.27662" />
+			<EnableBehavior Name="Pull" />
+		</If>
+		<CustomBehavior File="KillUntilComplete" QuestId="34496" MobId="75483" TerminateWhen="IsObjectiveComplete(1, 34496)" >
+			<HuntingGrounds>
+				<Hotspot X="1154.234" Y="-1719.671" Z="19.27662" />
+				<Hotspot X="1188.156" Y="-1928.854" Z="18.95944" />
+				<Hotspot X="1338.047" Y="-2021.981" Z="50.56272" />
+				<Hotspot X="1177.547" Y="-2108.516" Z="21.45519" />
+			</HuntingGrounds>
+		</CustomBehavior>
+		<CustomBehavior File="KillUntilComplete" QuestId="34496" MobId="82354" TerminateWhen="IsObjectiveComplete(2, 34496)" >
+			<HuntingGrounds>
+				<Hotspot X="1154.234" Y="-1719.671" Z="19.27662" />
+				<Hotspot X="1188.156" Y="-1928.854" Z="18.95944" />
+				<Hotspot X="1338.047" Y="-2021.981" Z="50.56272" />
+				<Hotspot X="1177.547" Y="-2108.516" Z="21.45519" />
+			</HuntingGrounds>
+		</CustomBehavior>
+	</While>
+
+	<If Condition="!IsQuestCompleted(34728)" > <!-- The Shimmer Moor, south-east Shadowmoon Valley -->
+		<If Condition="!HasQuest(34728)" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to The Shimmer Moor.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="The Shimmer Moor" X="-128.2493" Y="-1683.439" Z="72.79427" />
+			<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(34728)" />
+			<EnableBehavior Name="Pull" />
+		</If>
+		<Objective QuestName="Bonus Objective: The Shimmer Moor" QuestId="34728" Type="CollectItem" ItemId="111559" CollectCount="14" />
+		<Objective QuestName="Bonus Objective: The Shimmer Moor" QuestId="34728" Type="KillMob" MobId="79658" KillCount="8" />
+		<!--<Objective QuestName="Bonus Objective: The Shimmer Moor" QuestId="34728" Type="KillMob" MobId="79681" KillCount="1" />, would never complete. -->
+		<CustomBehavior File="KillUntilComplete" QuestId="34728" MobId="79681" X="-141.158" Y="-1941.168" Z="82.5938" TerminateWhen="IsObjectiveComplete(3, 34728)" />
+	</If>
+
+	<If Condition="Me.IsAlliance" >
+		<CustomBehavior File="LoadProfile" ProfileName="Spires of Arak.xml" RememberProfile="false" />
+	</If>
+
+</QuestOrder>
+
+
+</HBProfile>

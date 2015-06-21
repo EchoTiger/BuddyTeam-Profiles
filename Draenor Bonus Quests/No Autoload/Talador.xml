@@ -1,0 +1,177 @@
+<HBProfile>
+
+<Name>Talador Bonus Quests</Name>
+
+
+<MinDurability>0.3</MinDurability>
+<MinFreeBagSlots>3</MinFreeBagSlots>
+
+<SellGrey>true</SellGrey>
+<SellWhite>true</SellWhite>
+<SellGreen>true</SellGreen>
+<SellBlue>true</SellBlue>
+<SellPurple>false</SellPurple>
+<MailGrey>false</MailGrey>
+<MailWhite>true</MailWhite>
+<MailGreen>true</MailGreen>
+<MailBlue>true</MailBlue>
+<MailPurple>true</MailPurple>
+
+<Blackspots></Blackspots>
+<AvoidMobs></AvoidMobs>
+
+	<Vendors>
+		<!--Shadowmoon Valley:-->
+		<!--Exile's Rise-->
+		<Vendor Name="Mokarg" Entry="76198" Type="Repair" X="1475.611" Y="-790.243" Z="38.12963" />
+		<Vendor Name="Rovan Astalan" Entry="81614" Type="Repair" X="-780.2448" Y="-677.118" Z="108.6697" />
+		<!--__________________________________________________________________________________________________________________________________________-->
+		<!--Spires of Arak:-->
+		<!--Veil Terokk-->
+		<Vendor Name="Kuro'ak" Entry="86386" Type="Food" X="-394.9809" Y="1852.606" Z="53.45683" />
+		<Vendor Name="Ruuan the Seer" Entry="87775" Type="Repair" X="-432.757" Y="1850.8" Z="41.6203" />
+		<!--Pinchwhistle Gearworks-->
+		<Vendor Name="Twizix Copperbomb" Entry="82183" Type="Repair" X="-1483.905" Y="981.5174" Z="8.025256" />
+
+		<!--__________________________________________________________________________________________________________________________________________-->
+		<!--Talador:-->
+		<!--Anchorite's Sojourn-->
+		<Vendor Name="Caregiver Uluura" Entry="75430" Type="Food" X="2144.236" Y="1232.42" Z="117.2146" />
+		<!--Shattrath City-->
+		<Vendor Name="Reema" Entry="86317" Type="Repair" X="2663.982" Y="2796.673" Z="246.1862" />
+		<Vendor Name="Bordos" Entry="82635" Type="Repair" X="2617.845" Y="2823.831" Z="242.3916" />
+		<Vendor Name="Fiaana" Entry="82636" Type="Food" X="2620.902" Y="2783.97" Z="242.3923" />
+		<!--Zangarra-->
+		<Vendor Name="James Lamone" Entry="80930" Type="Repair" X="3214.887" Y="835.0538" Z="80.63318" />
+		<!--__________________________________________________________________________________________________________________________________________-->
+		<!--Nagrand:-->
+		<!--The Ring of Trials-->
+		<Vendor Name="Grogglefitz" Entry="79199" Type="Food" X="3013.191" Y="4762.819" Z="128.275" />
+		<Vendor Name="Pyxni Pennypocket" Entry="79310" Type="Repair" X="3085.323" Y="4849.036" Z="128.3325" />
+		<!--__________________________________________________________________________________________________________________________________________-->
+		<!--Gorgrond:-->
+		<!--Breaker's Crown-->
+		<Vendor Name="Budgy" Entry="84234" Type="Repair" X="6610.504" Y="1286.526" Z="64.83815" />
+		<!--__________________________________________________________________________________________________________________________________________-->
+		<!--Frostfire Ridge: Bloodmaul Slag Mines-->
+		<Vendor Name="Urkag" Entry="85545" Type="Repair" X="7400.561" Y="4335.775" Z="126.4071" />
+		<Vendor Name="Barduun" Entry="85547" Type="Food" X="7370.463" Y="4342.348" Z="127.2008" />
+		<!--__________________________________________________________________________________________________________________________________________-->
+		<!--Garrison Vendors-->
+		<Vendor Name="Provisioner Hanfa" Entry="81346" Type="Repair" X="1854.957" Y="269.2205" Z="76.63961" UsableWhen="Me.IsAlliance" />
+		<Vendor Name="Supplymaster Eri" Entry="76872" Type="Repair" X="5626.828" Y="4629.681" Z="139.3038" UsableWhen="Me.IsHorde" />
+	</Vendors>
+	<!--MAILBOXES-->
+	<Mailboxes>
+		<!--Shattrath City-->
+		<Mailbox X="2614.091" Y="2799.328" Z="242.3915" />
+		<!--Fort Wrynn-->
+		<!--Zangarra-->
+		<Mailbox X="3183.211" Y="773.5329" Z="78.33458" />
+		<!--Pinchwhistle Gearworks-->
+		<Mailbox X="-1567.494" Y="942.592" Z="10.57905" />
+		<!--Axefall-->
+		<!--Garrison-->
+		<Mailbox X="1923.274" Y="299.2899" Z="88.96642" UsableWhen="Me.IsAlliance" />
+		<Mailbox X="5580.682" Y="4570.392" Z="136.558" UsableWhen="Me.IsHorde" />
+	</Mailboxes>
+
+<!-- Missing:
+		Aruuna's Desolation
+		Zorkra's Fall
+		Zagarra
+		Orunai
+-->
+
+<QuestOrder>
+
+	<If Condition="!IsQuestCompleted(34667)" > <!-- Court of Souls, mid Talador -->
+		<If Condition="!HasQuest(34667)" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Court of Souls.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="Court of Souls" X="2000.563" Y="3228.425" Z="121.1691" />
+			<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(34667)" />
+			<EnableBehavior Name="Pull" />
+		</If>
+		<CustomBehavior File="KillUntilComplete" QuestId="34667" MobId="79482" TerminateWhen="IsObjectiveComplete(1, 34667)" >
+			<HuntingGrounds>
+				<Hotspot X="1974.105" Y="3275.445" Z="121.3123" />
+				<Hotspot X="1926.56" Y="3324.992" Z="121.3119" />
+			</HuntingGrounds>
+		</CustomBehavior>
+		<Objective QuestName="Bonus Objective: Court of Souls" QuestId="34667" Type="KillMob" MobId="79503" KillCount="10" />
+		<If Condition="!IsObjectiveComplete(3, 34667)" >
+			<CustomBehavior File="InteractWith" MobId="79523" X="1906.354" Y="3225.242" Z="133.759" PreInteractMountStrategy="Dismount" TerminateWhen="Me.InVehicle" WaitTime="1500" />
+			<DisableBehavior Name="Combat" />
+			<While Condition="!IsObjectiveComplete(3, 34667) &amp;&amp; Me.InVehicle &amp;&amp; HasQuest(34667)" >
+				<CustomBehavior File="TargetAndMoveToMob" MobId="79514" TargetOnlyIfHealthPercentAbove="90" TerminateWhen="Me.GotTarget" />
+				<CustomBehavior File="Misc\RunLua" Lua="OverrideActionBarButton1:Click();" WaitTime="3000" />
+				<CustomBehavior File="Misc\RunLua" Lua="ClearTarget();" />
+				<If Condition="IsObjectiveComplete(3, 34667) &amp;&amp; !HasQuest(34667) &amp;&amp; Me.InVehicle" >
+					<CustomBehavior File="Misc\RunLua" Lua="OverrideActionBarLeaveFrameLeaveButton:Click();" />
+				</If>
+			</While>
+			<If Condition="Me.InVehicle" >
+				<CustomBehavior File="Misc\RunLua" Lua="OverrideActionBarLeaveFrameLeaveButton:Click();" />
+			</If>
+			<EnableBehavior Name="Combat" />
+		</If>
+	</If>
+
+	<If Condition="!IsQuestCompleted(34660)" > <!-- Zorkra's Fall, southern Talador -->
+		<If Condition="!HasQuest(34660)" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Zorkra's Fall.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="Zorkra's Fall" X="969.8188" Y="2731.16" Z="137.1027" />
+			<EnableBehavior Name="Pull" />
+		</If>
+		<CustomBehavior File="InteractWith" QuestId="34660" NumOfTimes="10" IgnoreMobsInBlackspots="True" IgnoreLoSToTarget="false" MobId="79520" X="947.933" Y="2640.73" Z="141.6125" TerminateWhen="IsObjectiveComplete(1, 34660)" />
+		<Objective QuestName="Bonus Objective: Zorkra's Fall" QuestId="34660" Type="KillMob" MobId="79544" KillCount="6" />
+	</If>
+
+	<If Condition="!IsQuestCompleted(35237) &amp;&amp; Me.IsHorde" > <!-- Mor'gran Logworks, northern Talador -->
+		<If Condition="!HasQuest(35237)" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Mor'gran Logworks.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="Mor'gran Logworks" X="3122.872" Y="1894.693" Z="128.6658" />
+			<EnableBehavior Name="Pull" />
+		</If>
+		<Objective QuestName="Bonus Objective: Mor'gran Logworks" QuestId="35237" Type="CollectItem" ItemId="112994" CollectCount="20" />
+		<CustomBehavior File="KillUntilComplete" QuestId="35237" MobId="75815" TerminateWhen="IsObjectiveComplete(1, 35237)" >
+			<HuntingGrounds>
+				<Hotspot X="3136.523" Y="1868.182" Z="137.3" />
+				<Hotspot X="3055.021" Y="1954.647" Z="117.8256" />
+				<Hotspot X="3195.167" Y="1994.116" Z="118.2402" />
+			</HuntingGrounds>
+		</CustomBehavior>
+	</If>
+
+	<If Condition="!IsQuestCompleted(37421)" > <!-- Kuuro's Calm, northern Talador -->
+		<If Condition="!HasQuest(37421)" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Kuuro's Calm.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="Kuuro's Calm" X="3494.314" Y="1402.375" Z="115.9437" />
+			<EnableBehavior Name="Pull" />
+		</If>
+		<CustomBehavior File="KillUntilComplete" QuestId="37421" MobId="80013" TerminateWhen="IsObjectiveComplete(1, 37421)" >
+			<HuntingGrounds>
+				<Hotspot X="3543.029" Y="1335.53" Z="116.7838" />
+				<Hotspot X="3774.019" Y="1181.711" Z="82.73631" />
+				<Hotspot X="3724.028" Y="1162.987" Z="83.66439" />
+				<Hotspot X="3680.722" Y="1098.54" Z="107.2332" />
+				<Hotspot X="3839.212" Y="1131.293" Z="108.7187" />
+			</HuntingGrounds>
+		</CustomBehavior>
+		<CustomBehavior File="KillUntilComplete" QuestId="37421" MobId="80072" TerminateWhen="IsObjectiveComplete(2, 37421)" >
+			<HuntingGrounds>
+				<Hotspot X="3543.029" Y="1335.53" Z="116.7838" />
+				<Hotspot X="3774.019" Y="1181.711" Z="82.73631" />
+				<Hotspot X="3724.028" Y="1162.987" Z="83.66439" />
+				<Hotspot X="3680.722" Y="1098.54" Z="107.2332" />
+				<Hotspot X="3839.212" Y="1131.293" Z="108.7187" />
+			</HuntingGrounds>
+		</CustomBehavior>
+	</If>
+
+</QuestOrder>
+</HBProfile>

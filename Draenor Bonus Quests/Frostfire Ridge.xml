@@ -1,0 +1,154 @@
+<HBProfile>
+
+<Name>Frostfire Ridge Bonus Quests</Name>
+
+
+<MinDurability>0.3</MinDurability>
+<MinFreeBagSlots>3</MinFreeBagSlots>
+
+<SellGrey>true</SellGrey>
+<SellWhite>true</SellWhite>
+<SellGreen>true</SellGreen>
+<SellBlue>true</SellBlue>
+<SellPurple>false</SellPurple>
+<MailGrey>false</MailGrey>
+<MailWhite>true</MailWhite>
+<MailGreen>true</MailGreen>
+<MailBlue>true</MailBlue>
+<MailPurple>true</MailPurple>
+
+<Blackspots></Blackspots>
+<AvoidMobs></AvoidMobs>
+
+	<Vendors>
+		<!--Shadowmoon Valley:-->
+		<!--Exile's Rise-->
+		<Vendor Name="Mokarg" Entry="76198" Type="Repair" X="1475.611" Y="-790.243" Z="38.12963" />
+		<Vendor Name="Rovan Astalan" Entry="81614" Type="Repair" X="-780.2448" Y="-677.118" Z="108.6697" />
+		<!--__________________________________________________________________________________________________________________________________________-->
+		<!--Spires of Arak:-->
+		<!--Veil Terokk-->
+		<Vendor Name="Kuro'ak" Entry="86386" Type="Food" X="-394.9809" Y="1852.606" Z="53.45683" />
+		<Vendor Name="Ruuan the Seer" Entry="87775" Type="Repair" X="-432.757" Y="1850.8" Z="41.6203" />
+		<!--Pinchwhistle Gearworks-->
+		<Vendor Name="Twizix Copperbomb" Entry="82183" Type="Repair" X="-1483.905" Y="981.5174" Z="8.025256" />
+
+		<!--__________________________________________________________________________________________________________________________________________-->
+		<!--Talador:-->
+		<!--Anchorite's Sojourn-->
+		<Vendor Name="Caregiver Uluura" Entry="75430" Type="Food" X="2144.236" Y="1232.42" Z="117.2146" />
+		<!--Shattrath City-->
+		<Vendor Name="Reema" Entry="86317" Type="Repair" X="2663.982" Y="2796.673" Z="246.1862" />
+		<Vendor Name="Bordos" Entry="82635" Type="Repair" X="2617.845" Y="2823.831" Z="242.3916" />
+		<Vendor Name="Fiaana" Entry="82636" Type="Food" X="2620.902" Y="2783.97" Z="242.3923" />
+		<!--Zangarra-->
+		<Vendor Name="James Lamone" Entry="80930" Type="Repair" X="3214.887" Y="835.0538" Z="80.63318" />
+		<!--__________________________________________________________________________________________________________________________________________-->
+		<!--Nagrand:-->
+		<!--The Ring of Trials-->
+		<Vendor Name="Grogglefitz" Entry="79199" Type="Food" X="3013.191" Y="4762.819" Z="128.275" />
+		<Vendor Name="Pyxni Pennypocket" Entry="79310" Type="Repair" X="3085.323" Y="4849.036" Z="128.3325" />
+		<!--__________________________________________________________________________________________________________________________________________-->
+		<!--Gorgrond:-->
+		<!--Breaker's Crown-->
+		<Vendor Name="Budgy" Entry="84234" Type="Repair" X="6610.504" Y="1286.526" Z="64.83815" />
+		<!--__________________________________________________________________________________________________________________________________________-->
+		<!--Frostfire Ridge: Bloodmaul Slag Mines-->
+		<Vendor Name="Urkag" Entry="85545" Type="Repair" X="7400.561" Y="4335.775" Z="126.4071" />
+		<Vendor Name="Barduun" Entry="85547" Type="Food" X="7370.463" Y="4342.348" Z="127.2008" />
+		<!--__________________________________________________________________________________________________________________________________________-->
+		<!--Garrison Vendors-->
+		<Vendor Name="Provisioner Hanfa" Entry="81346" Type="Repair" X="1854.957" Y="269.2205" Z="76.63961" UsableWhen="Me.IsAlliance" />
+		<Vendor Name="Supplymaster Eri" Entry="76872" Type="Repair" X="5626.828" Y="4629.681" Z="139.3038" UsableWhen="Me.IsHorde" />
+	</Vendors>
+	<!--MAILBOXES-->
+	<Mailboxes>
+		<!--Shattrath City-->
+		<Mailbox X="2614.091" Y="2799.328" Z="242.3915" />
+		<!--Fort Wrynn-->
+		<!--Zangarra-->
+		<Mailbox X="3183.211" Y="773.5329" Z="78.33458" />
+		<!--Pinchwhistle Gearworks-->
+		<Mailbox X="-1567.494" Y="942.592" Z="10.57905" />
+		<!--Garrison-->
+		<Mailbox X="1923.274" Y="299.2899" Z="88.96642" UsableWhen="Me.IsAlliance" />
+		<Mailbox X="5580.682" Y="4570.392" Z="136.558" UsableWhen="Me.IsHorde" />
+	</Mailboxes>
+
+<!-- Missing:
+		Aruuna's Desolation
+		Kuuros Claim or Zagarra
+		Mor'gran Logworks or Orunai Coast
+		Zorkra's Fall
+-->
+
+<QuestOrder>
+
+	<If Condition="Me.IsAlliance" >
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Red, &quot;[Profile Warning]: Bonus quests for Frostfire Ridge can only be completed as Horde.&quot;);" />
+		<CustomBehavior File="Halt" />
+	</If>
+
+	<If Condition="!IsQuestCompleted(34505)" > <!-- Forbidden Glacier, western Frostfire Ridge -->
+		<If Condition="!HasQuest(34505)" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Forbidden Glacier.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="Forbidden Glacier" X="6112.04" Y="5739.216" Z="141.4469" />
+			<EnableBehavior Name="Pull" />
+		</If>
+		<CustomBehavior File="InteractWith" QuestId="34505" NumOfTimes="28" IgnoreMobsInBlackspots="True" IgnoreLoSToTarget="false" MobId1="78894" MobId2="78907" MobId3="78870" WaitTime="2000" KeepTargetSelected="true" Range="4" TerminateWhen="IsObjectiveComplete(2, 34505)" >
+			<HuntingGrounds WaypointVisitStrategy="InOrder">
+				<Hotspot X="6096.216" Y="5693.509" Z="145.0299" />
+				<Hotspot X="6146.199" Y="5825.197" Z="145.7623" />
+				<Hotspot X="6221.833" Y="5932.442" Z="142.7567" />
+			</HuntingGrounds>
+		</CustomBehavior>
+		<Objective QuestName="Bonus Objective: Forbidden Glacier" QuestId="34505" Type="KillMob" MobId="78791" KillCount="10" />
+	</If>
+
+	<If Condition="!IsQuestCompleted(33145)" > <!-- Grimfrost Hill, eastern Frostfire Ridge -->
+		<If Condition="!HasQuest(33145)" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Grimfrost Hill.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="Grimfrost Hill" X="6342.8" Y="3513.593" Z="144.3603" />
+			<EnableBehavior Name="Pull" />
+		</If>
+		<CustomBehavior File="InteractWith" QuestId="33145" NumOfTimes="8" IgnoreMobsInBlackspots="True" IgnoreLoSToTarget="false" MobId="73284" WaitTime="2000" KeepTargetSelected="true" Range="4" TerminateWhen="IsObjectiveComplete(2, 33145)" X="6381.066" Y="3428.322" Z="144.0861" />
+		<CustomBehavior File="KillUntilComplete" QuestId="33145" MobId1="72955" MobId2="72953" TerminateWhen="IsObjectiveComplete(1, 33145)" >
+			<HuntingGrounds>
+				<Hotspot X="6394.634" Y="3369.659" Z="163.357" />
+				<Hotspot X="6333.068" Y="3355.603" Z="163.0584" />
+				<Hotspot X="6312.52" Y="3438.031" Z="144.8079" />
+				<Hotspot X="6372.678" Y="3452.174" Z="144.8721" />
+			</HuntingGrounds>
+		</CustomBehavior>
+	</If>
+
+	<If Condition="!IsQuestCompleted(34501)" > <!-- Frostbite Hollow, northern Frostfire Ridge -->
+		<If Condition="!HasQuest(34501)" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Frostbite Hollow.&quot;);" />
+			<DisableBehavior Name="Pull" />
+			<MoveTo DestName="Frostbite Hollow" X="7529.899" Y="3478.612" Z="103.6384" />
+			<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(34501)" />
+			<EnableBehavior Name="Pull" />
+		</If>
+		<CustomBehavior File="KillUntilComplete" QuestId="34501" MobId="78896" X="7534.663" Y="3403.609" Z="109.4318" TerminateWhen="IsObjectiveComplete(1, 34501)" />
+		<CustomBehavior File="KillUntilComplete" QuestId="34501" MobId="78893" X="7494.774" Y="3436.616" Z="104.1534" TerminateWhen="IsObjectiveComplete(2, 34501)" />
+		<CustomBehavior File="KillUntilComplete" QuestId="34501" MobId="78764" X="7464.165" Y="3357.888" Z="112.0488" TerminateWhen="IsObjectiveComplete(3, 34501)" />
+		<CustomBehavior File="KillUntilComplete" QuestId="34501" MobId="78758" TerminateWhen="IsObjectiveComplete(4, 34501)" >
+			<HuntingGrounds>
+				<Hotspot X="7534.373" Y="3486.727" Z="103.2325" />
+				<Hotspot X="7424.188" Y="3341.304" Z="103.2934" />
+				<Hotspot X="7552.432" Y="3401.243" Z="103.6767" />
+			</HuntingGrounds>
+		</CustomBehavior>
+	</If>
+
+	<If Condition="Me.IsHorde" >
+		<CustomBehavior File="LoadProfile" ProfileName="Gorgrond.xml" RememberProfile="false" />
+	</If>
+
+</QuestOrder>
+
+
+</HBProfile>
