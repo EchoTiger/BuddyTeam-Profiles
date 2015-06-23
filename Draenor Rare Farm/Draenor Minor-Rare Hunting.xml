@@ -457,7 +457,7 @@
 
 		<!-- Gorgrond -->
 		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Scanning Gorgrond Rares...&quot;);" />
-		<While Condition="!IsQuestCompleted(36656)" > <!-- Sunclaw :: NOTE - The second climbing robe isn't considered by the bot.  It tries going after the one further away. -->
+		<!--<While Condition="!IsQuestCompleted(36656)" >  Sunclaw :: NOTE - The second climbing robe isn't considered by the bot.  It tries going after the one further away. 
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.PowderBlue, &quot;[Profile Notification]: Moving to kill Sunclaw.&quot;);" />
 			<DisableBehavior Name="Pull" />
 			<MoveTo DestName="Sunclaw" X="4494.618" Y="1393.047" Z="137.6965" />
@@ -476,12 +476,12 @@
 			<CustomBehavior File="MyCTM" X="4541.13" Y="1419.747" Z="153.7954" />
 			<CustomBehavior File="MyCTM" X="4544.12" Y="1413.599" Z="154.1136" />
 			<CustomBehavior File="WaitTimer" WaitTime="500" />
-			<CustomBehavior File="InteractWith" MovementBy="None" MobId="236173" X="4544.135" Y="1413.563" Z="160.3604" /> <!-- Second climbing robe. -->
+			<CustomBehavior File="InteractWith" MovementBy="None" MobId="236173" X="4544.135" Y="1413.563" Z="160.3604" /> Second climbing robe.
 			<CustomBehavior File="MyCTM" X="4554.544" Y="1420.902" Z="165.3394" />
 			<CustomBehavior File="InteractWith" MobState="Alive" MobId="86137" X="4566.4" Y="1406.427" Z="164.241" TerminateWhen="IsQuestCompleted(36656)" />
 			<CustomBehavior File="WaitTimer" WaitTime="5000" />
 			<CustomBehavior File="MyCTM" X="4611.132" Y="1399.25" Z="120.0228" />
-		</While>
+		</While>-->
 
 		<While Condition="!IsQuestCompleted(36600)" > <!-- Riptar -->
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.PowderBlue, &quot;[Profile Notification]: Moving to kill Riptar.&quot;);" />
@@ -713,7 +713,7 @@
 			<CustomBehavior File="MyCTM" X="2860.568" Y="4476.245" Z="175.5533" />
 		</While>
 
-		<While Condition="!IsQuestCompleted(34862)" > <!-- Hyperious -->
+		<!-- <While Condition="!IsQuestCompleted(34862)" >  Hyperious :: Will need to be handled more percisely.  Bot want to navigate in lava.
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.PowderBlue, &quot;[Profile Notification]: Moving to kill Hyperious.&quot;);" />
 			<DisableBehavior Name="Pull" />
 			<MoveTo DestName="Hyperious" X="2826.057" Y="4388.929" Z="173.8331" />
@@ -725,7 +725,7 @@
 			<CustomBehavior File="InteractWith" MobState="Alive" MobId="230671" X="2789.184" Y="4394.698" Z="167.9614" TerminateWhen="Unit(78161) != null" />
 			<MoveTo X="2834.162" Y="4355.255" Z="163.9079" />
 			<CustomBehavior File="InteractWith" MobState="Alive" MobId="78161" X="2844.181" MinRange="20" Y="4372.069" Z="158.8313" TerminateWhen="IsQuestCompleted(34862)" />
-		</While>
+		</While> -->
 
 		<While Condition="!IsQuestCompleted(35932)" > <!-- Malroc Stonesunder -->
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.PowderBlue, &quot;[Profile Notification]: Moving to kill Malroc Stonesunder.&quot;);" />
@@ -825,7 +825,8 @@
 				MoveBehindMobCastingSpellId="163421"
 				MoveOutOfGroundEffectAuraId="161918"
 				EventCompleteWhen="SpecificMobsDead" 
-				EventCompleteDeadMobId="83591" >
+				EventCompleteDeadMobId="83591"
+				TerminateWhen="IsQuestCompleted(35920)" >
 			 	<Safespots>
 					<Hotspot X="3428.244" Y="5633.127" Z="39.90078" />
 					<Hotspot X="3443.545" Y="5636.51" Z="40.2538" />
@@ -1145,10 +1146,10 @@
 			<MoveTo DestName="Echo of Murmur" X="2105.503" Y="3780.136" Z="146.172" />
 			<EnableBehavior Name="Pull" />
 			<CustomBehavior File="WaitTimer" WaitTime="180000" TerminateWhen="Unit(77795).HasAura(156894) != null" />
-			<CustomBehavior File="InteractWith" MobState="Alive" MobId="77794" NumOfTimes="3" WaitForNpcs="false" X="2155.356" Y="3797.817" Z="136.9673" />
+			<CustomBehavior File="InteractWith" MobState="Alive" MobId="77794" NumOfTimes="3" WaitForNpcs="false" X="2155.356" Y="3797.817" Z="136.9673" TerminateWhen="IsQuestCompleted(34221)" />
 			<CustomBehavior File="InteractWith" MobState="Alive" MobId="77795" X="2155.356" Y="3797.817" Z="136.9673" TerminateWhen="IsQuestCompleted(34221)" />
 			<CustomBehavior File="WaitTimer" WaitTime="5000" />
-			<CustomBehavior File="InteractWith" MobState="Alive" MobId="77828" X="2155.356" Y="3797.817" Z="136.9673" />
+			<CustomBehavior File="InteractWith" MobState="Alive" WaitForNpcs="false" MobId="77828" X="2155.356" Y="3797.817" Z="136.9673" />
 			<If Condition="HasItem(113670)" ><CustomBehavior File="UseItem" ItemId="113670" /></If>
 			<If Condition="HasItem(113670)" ><CustomBehavior File="DeleteItems" Ids="113670" /></If>
 		</While>
@@ -1441,7 +1442,7 @@
 			<DisableBehavior Name="Pull" />
 			<MoveTo DestName="Bahameye" X="2406.954" Y="430.3334" Z="0.5979487" />
 			<EnableBehavior Name="Pull" />
-			<CustomBehavior File="InteractWith" MobState="Alive" MobId="81406" TerminateWhen="IsQuestCompleted(35281)" >
+			<CustomBehavior File="InteractWith" MobState="Alive" InteractByLooting="true" MinRange="1" MobId="81406" TerminateWhen="IsQuestCompleted(35281)" >
 				<HuntingGrounds>
 						<Hotspot X="2398.281" Y="332.199" Z="-14.62498" />
 						<Hotspot X="2441.441" Y="288.4679" Z="-14.39747" />
@@ -1502,7 +1503,7 @@
 			<MoveTo DestName="Voidseer Kalurg" X="841.1249" Y="51.82577" Z="-5.210175" />
 			<CustomBehavior File="WaitTimer" WaitTime="120000" TerminateWhen="Unit(83385) != null" />
 			<EnableBehavior Name="Pull" />
-			<While Condition="Unit(83385).HasAura(167081) != null &amp;&amp; Unit(83385).IsAlive != null &amp;&amp; !IsQuestCompleted(35847)" >
+			<While Condition="!IsQuestCompleted(35847)" > <!-- Unit(83385).HasAura(167081) != null &amp;&amp; Unit(83385).IsAlive != null &amp;&amp;  -->
 				<MoveTo X="815.882" Y="34.87153" Z="-5.210138" />
 				<MoveTo X="803.8416" Y="33.42232" Z="-5.21183" />
 
@@ -1535,7 +1536,7 @@
 			<CustomBehavior File="WaitTimer" WaitTime="65000" TerminateWhen="Unit(75434) != null || IsQuestCompleted(33038)" />
 			<EnableBehavior Name="Pull" />
 			<!-- Need to stay at X="854.1543" Y="-597.248" Z="-17.00483" />, add me if issues occur. -->
-			<CustomBehavior File="InteractWith" MobState="Alive" MobId="75434" X="848.5359" Y="-594.9484" Z="-18.51593" TerminateWhen="IsQuestCompleted(33038)" />
+			<CustomBehavior File="InteractWith" ProactiveCombatStrategy="ClearMobsThatWillAggro" MobState="Alive" MobId="75434" X="856.653" Y="-602.4022" Z="-15.82008" TerminateWhen="IsQuestCompleted(33038)" />
 		</While>
 
 		<While Condition="!IsQuestCompleted(35558)" > <!-- Hypnocroak -->
@@ -1552,6 +1553,7 @@
 			<CustomBehavior File="MyCTM" X="436.8978" Y="-325.056" Z="55.83499" />
 			<CustomBehavior File="MyCTM" X="434.4436" Y="-320.5463" Z="52.17691" />
 			<CustomBehavior File="MyCTM" X="461.2343" Y="-309.926" Z="21.42268" />
+			<DisableBehavior Name="Vendor" />
 			<EnableBehavior Name="Pull" />
 			<EnableBehavior Name="Combat" />
 			<CustomBehavior File="InteractWith" MobState="Alive" MobId="79524" X="485.6858" Y="-233.8889" Z="10.54669" TerminateWhen="IsQuestCompleted(35558)" />
@@ -1560,6 +1562,7 @@
 			<If Condition="HasItem(113631)" ><CustomBehavior File="DeleteItems" Ids="113631" /></If>
 			<CustomBehavior File="MyCTM" X="467.4222" Y="-340.5292" Z="-27.5157" />
 			<CustomBehavior File="MyCTM" X="549.5749" Y="-511.4449" Z="-25.91155" />
+			<EnableBehavior Name="Vendor" />
 		</While>
 
 		<While Condition="!IsQuestCompleted(33642)" > <!-- Mother Om'ra -->
@@ -1698,7 +1701,7 @@
 			<DisableBehavior Name="Pull" />
 			<MoveTo DestName="Ba'ruun" X="1822.091" Y="-1268.463" Z="-0.3902189" />
 			<EnableBehavior Name="Pull" />
-			<CustomBehavior File="MyCTM" X="1912.458" Y="-1274.915" Z="-0.4030526" />
+			<CustomBehavior File="MyCTM" X="1912.458" Y="-1274.915" Z="-0.4030218" />
 			<CustomBehavior File="InteractWith" MobState="Alive" MobId="82326" X="1912.458" Y="-1274.915" Z="-0.4030526" TerminateWhen="IsQuestCompleted(35731)" />
 			<CustomBehavior File="MyCTM" X="1829.46" Y="-1268.125" Z="-0.3939373" />
 		</While>

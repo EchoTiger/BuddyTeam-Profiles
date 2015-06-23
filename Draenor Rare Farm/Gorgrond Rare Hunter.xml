@@ -97,7 +97,7 @@
 			<CustomBehavior File="ForceSetVendor" DoSell="true" DoRepair="true" />
 		</If>
 
-		<If Condition="!IsQuestCompleted(36656)" > <!-- Sunclaw :: NOTE - The second climbing robe isn't considered by the bot.  It tries going after the one further away. -->
+		<If Condition="!IsQuestCompleted(36656)" > <!-- Sunclaw :: NOTE - The second climbing rope isn't considered by the bot.  It tries going after the one further away. -->
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.PowderBlue, &quot;[Profile Notification]: Moving to kill Sunclaw.&quot;);" />
 			<DisableBehavior Name="Pull" />
 			<MoveTo DestName="Sunclaw" X="4494.618" Y="1393.047" Z="137.6965" />
@@ -116,7 +116,7 @@
 			<CustomBehavior File="MyCTM" X="4541.13" Y="1419.747" Z="153.7954" />
 			<CustomBehavior File="MyCTM" X="4544.12" Y="1413.599" Z="154.1136" />
 			<CustomBehavior File="WaitTimer" WaitTime="500" />
-			<CustomBehavior File="InteractWith" MovementBy="None" MobId="236173" X="4544.135" Y="1413.563" Z="160.3604" /> <!-- Second climbing robe. -->
+			<CustomBehavior File="InteractWith" MovementBy="None" MobId="236173" X="4544.135" Y="1413.563" Z="160.3604" /> <!-- Second climbing rope. -->
 			<CustomBehavior File="MyCTM" X="4554.544" Y="1420.902" Z="165.3394" />
 			<CustomBehavior File="InteractWith" MobId="86137" X="4566.4" Y="1406.427" Z="164.241" TerminateWhen="IsQuestCompleted(36656)" />
 			<CustomBehavior File="WaitTimer" WaitTime="5000" />
