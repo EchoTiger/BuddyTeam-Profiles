@@ -39,13 +39,11 @@
 	<SellPurple>false</SellPurple>
 
 	<UseMount>True</UseMount>
-
 	<TargetElites>True</TargetElites>
 
 	<Blacklist>
 		<Mob Name="Marsh Anaconda" Id="87039" />
 	</Blacklist>
-
 	<Vendors>
 		<!--Shadowmoon Valley:-->
 		<!--Exile's Rise-->
@@ -489,53 +487,4 @@
 		<CustomBehavior File="LoadProfile" ProfileName="Gorgrond Treasure Hunter.xml" RememberProfile="false" />
 
 	</QuestOrder>
-
-	<Quest Name="Eye Need That" Id="34230" >
-		<Objective QuestName="Eye Need That" QuestId="34230" Type="CollectItem" ItemId="109700" CollectCount="1" >
-			<CollectFrom>
-				<Mob Name="Ogzor the Necrothurge" Id="73243"  />
-			</CollectFrom>
-			<Hotspots>
-				<Hotspot X="7994.729" Y="6085.684" Z="61.44958" />
-			</Hotspots>
-		</Objective>
-	</Quest>
-
-	<Quest Name="DummyKillMob" Id="123456" >
-		<Objective Type="KillMob" MobId="1" Name="Mob" KillCount="1">
-			<Hotspots>
-				<Hotspot X="1" Y="1" Z="1" />
-			</Hotspots>
-		</Objective>
-	</Quest>
-
-	<Quest Name="DummyCollectfromGameObject" Id="123456" >
-		<Objective Type="CollectItem" ItemId="1" Name="Item" CollectCount="1">
-			<CollectFrom>
-				<GameObject Name="GameObject" Id="1"/>
-			</CollectFrom>
-			<Hotspots>
-				<Hotspot X="1" Y="1" Z="1" />
-			</Hotspots>
-		</Objective>
-	</Quest>
-
-	<Quest Name="DummyCollectfromMob" Id="123456" >
-		<Objective Type="CollectItem" ItemId="1" Name="Item" CollectCount="1">
-			<CollectFrom>
-				<Mob Name="Mob"  Id="1" />
-			</CollectFrom>
-			<Hotspots>
-				<Hotspot X="1" Y="1" Z="1" />
-			</Hotspots>
-		</Objective>
-	</Quest>
-
-	<!-- 
-A comment:
-				<CustomBehavior File="ForcedDismount" />
-				Nav="Fly" 
-				/dump IsQuestFlaggedCompleted(11350)
--->
-
 </HBProfile>

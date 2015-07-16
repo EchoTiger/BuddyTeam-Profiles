@@ -1390,7 +1390,7 @@
 					<Hotspot X="-448.3173" Y="1113.948" Z="32.68842" />
 				</HuntingGrounds>
 			</CustomBehavior> <!-- Needs to be KillUntilComplete, but KillUntilComplete is broken? -->
-			<CustomBehavior File="InteractWith" MobState="Alive" MobId="84912" X="-446.1368" Y="1105.909" Z="39.38996" TerminateWhen="IsQuestCompleted(36298)" />
+			<CustomBehavior File="InteractWith" MobState="Alive" MobId="84912" X="-446.1368" Y="1105.909" Z="39.38996" TerminateWhen="IsQuestCompleted(36298) || Unit(84912) == null" />
 		</While>
 
 		<While Condition="!IsQuestCompleted(36297)" > <!-- Festerbloom -->
@@ -1528,7 +1528,7 @@
 			<CustomBehavior File="InteractWith" MobState="Alive" MobId="74206" WaitTime="2500" X="668.5972" Y="-464.0868" Z="-27.03062" TerminateWhen="IsQuestCompleted(33043)" />
 		</While>
 
-		<While Condition="!IsQuestCompleted(33038)" > <!-- Windfang Matriarch -->
+		<While Condition="!IsQuestCompleted(33038) &amp;&amp; Me.IsAlliance" > <!-- Windfang Matriarch -->
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.PowderBlue, &quot;[Profile Notification]: Moving to kill Windfang Matriarch.&quot;);" />
 			<DisableBehavior Name="Pull" />
 			<MoveTo DestName="Windfang Matriarch" X="854.0508" Y="-600.7918" Z="-16.52577" />
@@ -1570,7 +1570,7 @@
 			<DisableBehavior Name="Pull" />
 			<MoveTo DestName="Mother Om'ra" X="122.5767" Y="-658.0777" Z="14.05003" />
 			<CustomBehavior File="WaitTimer" WaitTime="65000" TerminateWhen="Unit(75071) != null || IsQuestCompleted(33642)" />
-			<CustomBehavior File="InteractWith" MobState="Alive" MobId="78993" NumOfTimes="8" X="84.81424" Y="-675.9236" Z="14.2263" TerminateWhen="!Unit(75071).HasAura(159571) || IsQuestCompleted(33642)" />
+			<CustomBehavior File="InteractWith" MobState="Alive" WaitForNpcs="false" Range="1" MobId="78993" NumOfTimes="20" X="84.81424" Y="-675.9236" Z="14.2263" />
 			<EnableBehavior Name="Pull" />
 			<!-- Need to stay at X="854.1543" Y="-597.248" Z="-17.00483" />, add me if issues occur. -->
 			<CustomBehavior File="InteractWith" MobState="Alive" MobId="75071" X="84.81424" Y="-675.9236" Z="14.2263" TerminateWhen="IsQuestCompleted(33642)" />
@@ -1607,7 +1607,9 @@
 
 		<!-- Consider going after level 100 rares here.  Up on mountain to the south then to the isolated island further south -->
 
-		<While Condition="!IsQuestCompleted(33389)" > <!-- Yggdrel  ::Tough fight!!:: -->
+		<!--<While Condition="!IsQuestCompleted(33389)" >  Yggdrel ::
+		Another perfect example of how Blizzard easily overlooks things.  
+		This mob is impossible to solo even at 100 unless you're a Hunter or geared.  Perhaps we should use this guy to solo Gul'dan.
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.PowderBlue, &quot;[Profile Notification]: Moving to kill Yggdrel.&quot;);" />
 			<DisableBehavior Name="Pull" />
 			<MoveTo DestName="Yggdrel" X="-331.7229" Y="-967.576" Z="2.501248" />
@@ -1615,7 +1617,7 @@
 			<CustomBehavior File="InteractWith" MobState="Alive" MobId="75435" X="-286.474" Y="-969.4045" Z="-4.987937" TerminateWhen="IsQuestCompleted(33389)" />
 			<If Condition="HasItem(113570)" ><CustomBehavior File="UseItem" ItemId="113570" /></If>
 			<If Condition="HasItem(113570)" ><CustomBehavior File="DeleteItems" Ids="113570" /></If>
-		</While>
+		</While> -->
 
 		<!--  <While Condition="!IsQuestCompleted(35732)" > Shinri - Not suitable to be killed. Mob flees at an increased speed - players must chase and kill 
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.PowderBlue, &quot;[Profile Notification]: Moving to kill Shinri.&quot;);" />

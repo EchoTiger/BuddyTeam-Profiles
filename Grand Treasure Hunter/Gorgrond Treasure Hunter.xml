@@ -40,7 +40,6 @@
 	<SellPurple>false</SellPurple>
 
 	<UseMount>True</UseMount>
-
 	<TargetElites>True</TargetElites>
 
 	<Blacklist>
@@ -638,61 +637,10 @@
 		</If>
 
 		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.BlueViolet, &quot;[Profile Notification]: Treasure farming complete!  Going to mail and vendor.&quot;);" />
-
 		<CustomBehavior File="ForceSetVendor" DoSell="True" DoRepair="True" />
 
 		<CustomBehavior File="UserSettings" Preset="UserOriginal" />
 		<CustomBehavior File="LoadProfile" ProfileName="Nagrand Treasure Hunter.xml" RememberProfile="false" />
 
 	</QuestOrder>
-
-	<!-- Template
-		<While Condition="!IsQuestCompleted(33940)" >
-		<MoveTo DestName="Crag-Leaper's Cache" X="6980.578" Y="4897.733" Z="185.2966" />
-		<CustomBehavior File="InteractWith" WaitTime="9000" MobIds="226983" ProactiveCombatStrategy="ClearMobsThatWillAggro" MovementBy="NavigatorOnly" >
-			<HuntingGrounds>
-				<Hotspot Name="Crag-Leaper's Cache" X="6980.578" Y="4897.733" Z="185.2966" />
-			</HuntingGrounds>
-		</CustomBehavior>
-		</While>
-		-->
-
-
-	<Quest Name="DummyKillMob" Id="123456" >
-		<Objective Type="KillMob" MobId="1" Name="Mob" KillCount="1">
-			<Hotspots>
-				<Hotspot X="1" Y="1" Z="1" />
-			</Hotspots>
-		</Objective>
-	</Quest>
-
-	<Quest Name="DummyCollectfromGameObject" Id="123456" >
-		<Objective Type="CollectItem" ItemId="1" Name="Item" CollectCount="1">
-			<CollectFrom>
-				<CustomBehavior File="InteractWith" WaitTime="9000" Name="GameObject" Id="1"/>
-			</CollectFrom>
-			<Hotspots>
-				<Hotspot X="1" Y="1" Z="1" />
-			</Hotspots>
-		</Objective>
-	</Quest>
-
-	<Quest Name="DummyCollectfromMob" Id="123456" >
-		<Objective Type="CollectItem" ItemId="1" Name="Item" CollectCount="1">
-			<CollectFrom>
-				<Mob Name="Mob"  Id="1" />
-			</CollectFrom>
-			<Hotspots>
-				<Hotspot X="1" Y="1" Z="1" />
-			</Hotspots>
-		</Objective>
-	</Quest>
-
-	<!-- 
-A comment:
-				<CustomBehavior File="ForcedDismount" />
-				Nav="Fly" 
-				/dump IsQuestFlaggedCompleted(11350)
--->
-
 </HBProfile>
