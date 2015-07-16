@@ -3,8 +3,8 @@
 -->
 <HBProfile>
 	<Name>Gogrond Rare Hunter</Name>
-	
-	
+
+
 	<MinDurability>0.2</MinDurability>
 	<MinFreeBagSlots>2</MinFreeBagSlots>
 
@@ -42,7 +42,6 @@
 		<Vendor Name="Ruuan the Seer" Entry="87775" Type="Repair" X="-432.757" Y="1850.8" Z="41.6203" />
 		<!--Pinchwhistle Gearworks-->
 		<Vendor Name="Twizix Copperbomb" Entry="82183" Type="Repair" X="-1483.905" Y="981.5174" Z="8.025256" />
-
 		<!--__________________________________________________________________________________________________________________________________________-->
 		<!--Talador:-->
 		<!--Anchorite's Sojourn-->
@@ -90,7 +89,7 @@
 
 		<CustomBehavior File="RunCode" Code="RoutineManager.SetCapabilityState(CapabilityFlags.MultiMobPull, CapabilityState.Disallowed);"/>
 		<DisableBehavior Name="Pull" />
-		<CustomBehavior File="UserSettings" HarvestHerbs="false" HarvestMinerals="false" /> <!-- Harvesting will bug out CTMs. --> 
+		<CustomBehavior File="UserSettings" HarvestHerbs="false" HarvestMinerals="false" /> <!-- Harvesting will bug out CTMs. -->
 
 		<If Condition="Me.ZoneId == 7078 || Me.ZoneId == 7004" >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.BlueViolet, &quot;[Profile Notification]: Going to vendor and mail before we start farming.&quot;);" />
