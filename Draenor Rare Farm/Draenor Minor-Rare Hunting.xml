@@ -3,8 +3,8 @@
 -->
 <HBProfile>
 	<Name>Draenor Minor Rare Hunting</Name>
-	
-	
+
+
 	<MinDurability>0.2</MinDurability>
 	<MinFreeBagSlots>2</MinFreeBagSlots>
 
@@ -254,7 +254,7 @@
 	<QuestOrder>
 		<CustomBehavior File="RunCode" Code="RoutineManager.SetCapabilityState(CapabilityFlags.MultiMobPull, CapabilityState.Disallowed);"/>
 		<DisableBehavior Name="Pull" />
-		<CustomBehavior File="UserSettings" HarvestHerbs="false" HarvestMinerals="false" /> <!-- Harvesting will bug out CTMs. --> 
+		<CustomBehavior File="UserSettings" HarvestHerbs="false" HarvestMinerals="false" /> <!-- Harvesting will bug out CTMs. -->
 
 		<!--Frostfire Ridge -->
 		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Scanning Frostfire Ridge Rares...&quot;);" />
@@ -458,7 +458,7 @@
 
 		<!-- Gorgrond -->
 		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Scanning Gorgrond Rares...&quot;);" />
-		<!--<While Condition="!IsQuestCompleted(36656)" >  Sunclaw :: NOTE - The second climbing robe isn't considered by the bot.  It tries going after the one further away. 
+		<!--<While Condition="!IsQuestCompleted(36656)" >  Sunclaw :: NOTE - The second climbing robe isn't considered by the bot.  It tries going after the one further away.
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.PowderBlue, &quot;[Profile Notification]: Moving to kill Sunclaw.&quot;);" />
 			<DisableBehavior Name="Pull" />
 			<MoveTo DestName="Sunclaw" X="4494.618" Y="1393.047" Z="137.6965" />
@@ -637,6 +637,8 @@
 			<CustomBehavior File="MyCTM" X="6252.231" Y="-83.51987" Z="-23.61739" />
 			<CustomBehavior File="MyCTM" X="6258.374" Y="-39.47982" Z="-1.839986" />
 			<CustomBehavior File="MyCTM" X="6251.598" Y="4.304129" Z="0.6042955" />
+			<CustomBehavior File="WaitTimer" WaitTime="5000" />
+			<CustomBehavior File="InteractWith" InteractByLooting="true" Range="1" MobId="86410" TerminateWhen="IsQuestCompleted(35281)" />
 		</While>
 
 		<While Condition="!IsAchievementCompleted(9400, 8)" > <!-- Fungal Praetorian -->
@@ -1025,7 +1027,7 @@
 			<CustomBehavior File="InteractWith" MobState="Alive" MobId="77626" TerminateWhen="IsQuestCompleted(34167)" >
 				<HuntingGrounds>
 					<Hotspot X="2426.997" Y="1148.189" Z="134.8304" />
-					<Hotspot X="2416.55" Y="1346.353" Z="123.8421" />		
+					<Hotspot X="2416.55" Y="1346.353" Z="123.8421" />
 				</HuntingGrounds>
 			</CustomBehavior>
 		</While>
@@ -1438,14 +1440,19 @@
 			<DisableBehavior Name="Pull" />
 			<MoveTo DestName="Bahameye" X="2406.954" Y="430.3334" Z="0.5979487" />
 			<EnableBehavior Name="Pull" />
-			<CustomBehavior File="InteractWith" MobState="Alive" InteractByLooting="true" MinRange="1" MobId="81406" TerminateWhen="IsQuestCompleted(35281)" >
+			<CustomBehavior File="InteractWith" MobState="Alive" InteractByLooting="true" Range="1" MobId="81406" TerminateWhen="IsQuestCompleted(35281)" >
 				<HuntingGrounds>
 						<Hotspot X="2398.281" Y="332.199" Z="-14.62498" />
 						<Hotspot X="2441.441" Y="288.4679" Z="-14.39747" />
-						<Hotspot X="2369.315" Y="215.587" Z="-21.09515" />		
+						<Hotspot X="2369.315" Y="215.587" Z="-21.09515" />
 				</HuntingGrounds>
 			</CustomBehavior>
-			<MoveTo X="2354.62" Y="423.7316" Z="-0.4792021" />
+			<CustomBehavior File="WaitTimer" WaitTime="5000" />
+			<CustomBehavior File="InteractWith" InteractByLooting="true" Range="1" MobId="81406" TerminateWhen="IsQuestCompleted(35281)" />
+			<While Condition="(Me.Location.Distance(new WoWPoint(2354.62, 423.7316, -0.4792021)) &gt; 15) &amp;&amp; IsQuestCompleted(35281)" >
+				<!-- We ~need~ to get to this location -->
+				<MoveTo X="2354.62" Y="423.7316" Z="-0.4792021" />
+			</While>
 		</While>
 
 		<While Condition="!IsQuestCompleted(33640)" > <!-- Veloss -->
@@ -1475,7 +1482,7 @@
 			<CustomBehavior File="InteractWith" MobState="Alive" MobId="72362" X="1093.778" Y="94.46354" Z="15.73744" TerminateWhen="IsQuestCompleted(33039)" />
 		</While>
 
-		<!-- <While Condition="!IsQuestCompleted(33061)" >  Amaukwa - Flying mob, need ranged logic to pull. 
+		<!-- <While Condition="!IsQuestCompleted(33061)" >  Amaukwa - Flying mob, need ranged logic to pull.
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.PowderBlue, &quot;[Profile Notification]: Moving to kill Amaukwa.&quot;);" />
 		</While>-->
 
@@ -1487,7 +1494,7 @@
 			<CustomBehavior File="InteractWith" MobState="Alive" MobId="86689" WaitTime="2500" X="708.4045" Y="426.9688" Z="103.1004" TerminateWhen="IsQuestCompleted(36880)" />
 		</While>
 
-		<!--<While Condition="!IsQuestCompleted(37358)" >  Soul-twister Torek 
+		<!--<While Condition="!IsQuestCompleted(37358)" >  Soul-twister Torek
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.PowderBlue, &quot;[Profile Notification]: Moving to kill Soul-twister Torek.&quot;);" />
 			<MoveTo DestName="Soul-twister Torek" X="635.7997" Y="258.093" Z="124.6252" />
 			<CustomBehavior File="InteractWith" MobState="Alive" MobId="224780" WaitTime="2500" X="634.2656" Y="259.6389" Z="124.6479" />
@@ -1533,6 +1540,10 @@
 			<EnableBehavior Name="Pull" />
 			<!-- Need to stay at X="854.1543" Y="-597.248" Z="-17.00483" />, add me if issues occur. -->
 			<CustomBehavior File="InteractWith" ProactiveCombatStrategy="ClearMobsThatWillAggro" MobState="Alive" MobId="75434" X="856.653" Y="-602.4022" Z="-15.82008" TerminateWhen="IsQuestCompleted(33038)" />
+			<CustomBehavior File="WaitTimer" WaitTime="5000" />
+			<CustomBehavior File="InteractWith" MobState="Alive" MobId="74741" X="857.3004" Y="-602.9636" Z="-15.66054" />
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<CustomBehavior File="Misc\RunLua" Lua="QuestFrameCompleteQuestButton:Click();" /> <!-- Get Romuul as follower -->
 		</While>
 
 		<While Condition="!IsQuestCompleted(35558)" > <!-- Hypnocroak -->
@@ -1577,14 +1588,14 @@
 			<MoveTo DestName="Morva Soultwister" X="-511.062" Y="-276.5474" Z="7.80114" />
 			<CustomBehavior File="WaitTimer" WaitTime="65000" TerminateWhen="Unit(82362) != null" />
 
-			 Kills the cultists around Morva.  Only use if needed. 
+			 Kills the cultists around Morva.  Only use if needed.
 			<CustomBehavior File="InteractWith" MobState="Alive" MobId1="82196" MobId2="78033" NumOfTimes="8" WaitForNpcs="false" X="-499.2431" Y="-307.6354" Z="11.42073" />
 
 			<CustomBehavior File="KillUntilComplete" MobId="82362" X="-485.7379" Y="-316.7587" Z="28.18416" TerminateWhen="IsQuestCompleted(35523)" />
-			^Need to use a ranged spell to pull her. 
+			^Need to use a ranged spell to pull her.
 		</While> -->
 
-		<!-- Consider going after level 100 rares here: 
+		<!-- Consider going after level 100 rares here:
 				Voidreaver Urnae, Malgosh Shadowkeeper -->
 
 		<While Condition="!IsQuestCompleted(35448)" > <!-- Darkmaster Go'vid -->
@@ -1604,7 +1615,7 @@
 		<!-- Consider going after level 100 rares here.  Up on mountain to the south then to the isolated island further south -->
 
 		<!--<While Condition="!IsQuestCompleted(33389)" >  Yggdrel ::
-		Another perfect example of how Blizzard easily overlooks things.  
+		Another perfect example of how Blizzard easily overlooks things.
 		This mob is impossible to solo even at 100 unless you're a Hunter or geared.  Perhaps we should use this guy to solo Gul'dan.
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.PowderBlue, &quot;[Profile Notification]: Moving to kill Yggdrel.&quot;);" />
 			<DisableBehavior Name="Pull" />
@@ -1615,7 +1626,7 @@
 			<If Condition="HasItem(113570)" ><CustomBehavior File="DeleteItems" Ids="113570" /></If>
 		</While> -->
 
-		<!--  <While Condition="!IsQuestCompleted(35732)" > Shinri - Not suitable to be killed. Mob flees at an increased speed - players must chase and kill 
+		<!--  <While Condition="!IsQuestCompleted(35732)" > Shinri - Not suitable to be killed. Mob flees at an increased speed - players must chase and kill
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.PowderBlue, &quot;[Profile Notification]: Moving to kill Shinri.&quot;);" />
 			<DisableBehavior Name="Pull" />
 			<MoveTo DestName="Shinri" X="199.1048" Y="-1688.035" Z="27.83029" />
