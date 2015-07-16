@@ -414,20 +414,20 @@
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.PowderBlue, &quot;[Profile Notification]: Moving to kill Jehil the Climber.&quot;);" />
 			<DisableBehavior Name="Pull" />
 			<MoveTo DestName="Jehil the Climber" X="7167.851" Y="3711.447" Z="125.7841" />
-			<MoveTo DestName="Jehil the Climber" X="7187.288" Y="3707.954" Z="125.9632" />
+			<MoveTo DestName="Jehil the Climber" X="7185.803" Y="3707.112" Z="126.0207" />
 			<EnableBehavior Name="Pull" />
 			<CustomBehavior File="ForcedMount" />
-			<CustomBehavior File="MyCTM" X="7211.677" Y="3722.945" Z="129.5811" />
+			<CustomBehavior File="MyCTM" X="7200.422" Y="3714.553" Z="126.502" />
 			<CustomBehavior File="MyCTM" X="7228.606" Y="3743.766" Z="130.3459" />
 			<CustomBehavior File="MyCTM" X="7216.225" Y="3751.718" Z="138.2897" />
 			<CustomBehavior File="Misc\RunLua" Lua="MoveForwardStart();" />
 			<CustomBehavior File="WaitTimer" WaitTime="100" />
 			<CustomBehavior File="Misc\RunLua" Lua="JumpOrAscendStart(); MoveForwardStop();" />
-			<CustomBehavior File="MyCTM" X="7199.088" Y="3760.007" Z="152.4703" />
+			<CustomBehavior File="MyCTM" X="7198.135" Y="3759.633" Z="152.8498" />
 			<CustomBehavior File="RunCode" Code="Me.SetFacing(55);" />
 			<CustomBehavior File="WaitTimer" WaitTime="350" />
 			<CustomBehavior File="Misc\RunLua" Lua="MoveForwardStart();" />
-			<CustomBehavior File="WaitTimer" WaitTime="100" />
+			<CustomBehavior File="WaitTimer" WaitTime="70" />
 			<CustomBehavior File="Misc\RunLua" Lua="JumpOrAscendStart(); MoveForwardStop();" />
 			<CustomBehavior File="MyCTM" X="7199.437" Y="3744.278" Z="154.0333" />
 			<CustomBehavior File="InteractWith" MobState="Alive" MobId="79678" X="7190.413" Y="3729.827" Z="156.1619" TerminateWhen="IsQuestCompleted(34708)" />
@@ -443,15 +443,16 @@
 			<CustomBehavior File="InteractWith" MobState="Alive" MobId="74613" X="7030.438" Y="3455.29" Z="86.82584" TerminateWhen="IsQuestCompleted(33843)" />
 		</While>
 
-		<While Condition="!IsQuestCompleted(33504)" > <!-- Firefury Giant  :: Warning, may be an issue.  -->
+		<!--<While Condition="!IsQuestCompleted(33504)" >  Firefury Giant  :: Fight is too problematic given the lava.
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.PowderBlue, &quot;[Profile Notification]: Moving to kill Firefury Giant.&quot;);" />
 			<DisableBehavior Name="Pull" />
 			<MoveTo DestName="Firefury Giant" X="6338.621" Y="3165.719" Z="216.1997" />
 			<EnableBehavior Name="Pull" />
 			<CustomBehavior File="InteractWith" MobId="224620" X="6345.057" Y="3164.669" Z="217.6935" />
+			<DisableBehavior Name="Combat" />
 			<CustomBehavior File="InteractWith" MobState="Alive" MobId="74971" X="6338.438" Y="3165.223" Z="216.1076" TerminateWhen="IsQuestCompleted(33504)" />
 			<MoveTo X="6339.358" Y="3167.69" Z="216.5282" />
-		</While>
+		</While>-->
 		<!-- End Frostfire Ridge -->
 
 
@@ -632,7 +633,7 @@
 			<CustomBehavior File="MyCTM" X="6267.253" Y="-85.80929" Z="-3.103799" />
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.PowderBlue, &quot;[Profile Notification]: Waiting for Sylldross to swim up to us.&quot;);" />
 			<EnableBehavior Name="Pull" />
-			<CustomBehavior File="InteractWith" MobState="Alive" MobId="86410" CollectionDistance="35" MovementBy="ClickToMoveOnly" X="6239.821" Y="-96.48438" Z="-17.87144" TerminateWhen="IsQuestCompleted(36794)" />
+			<CustomBehavior File="InteractWith" MobState="Alive" MobId="86410" Range="1" CollectionDistance="35" InteractByLooting="true" MovementBy="ClickToMoveOnly" X="6239.821" Y="-96.48438" Z="-17.87144" TerminateWhen="IsQuestCompleted(36794)" />
 			<CustomBehavior File="MyCTM" X="6252.231" Y="-83.51987" Z="-23.61739" />
 			<CustomBehavior File="MyCTM" X="6258.374" Y="-39.47982" Z="-1.839986" />
 			<CustomBehavior File="MyCTM" X="6251.598" Y="4.304129" Z="0.6042955" />
@@ -821,12 +822,7 @@
 			<DisableBehavior Name="Pull" />
 			<MoveTo DestName="Tura'aka" X="3425.055" Y="5662.655" Z="38.79667" />
 			<EnableBehavior Name="Pull" />
-			<CustomBehavior File="GetoutOfGroundEffectAndAuras" StartNpcId="83591" EventX="3442.622" EventY="5625.608" EventZ="41.08957" 
-				MoveBehindMobCastingSpellId="163421"
-				MoveOutOfGroundEffectAuraId="161918"
-				EventCompleteWhen="SpecificMobsDead" 
-				EventCompleteDeadMobId="83591"
-				TerminateWhen="IsQuestCompleted(35920)" >
+			<CustomBehavior File="GetoutOfGroundEffectAndAuras" StartNpcId="83591" EventX="3442.622" EventY="5625.608" EventZ="41.08957" MoveBehindMobCastingSpellId="163421" MoveOutOfGroundEffectAuraId="161918" EventCompleteWhen="SpecificMobsDead" EventCompleteDeadMobId="83591" TerminateWhen="IsQuestCompleted(35920)" >
 			 	<Safespots>
 					<Hotspot X="3428.244" Y="5633.127" Z="39.90078" />
 					<Hotspot X="3443.545" Y="5636.51" Z="40.2538" />

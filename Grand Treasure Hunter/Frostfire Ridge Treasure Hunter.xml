@@ -44,6 +44,17 @@
 	<Blacklist>
 		<Mob Name="Marsh Anaconda" Id="87039" />
 	</Blacklist>
+	<AvoidMobs>
+		<Mob Name="Garn Nighthowl" Id="81000"/>
+	</AvoidMobs>
+	<Blackspots>
+		<!-- // Garn Nighthowl locations -->
+		<Blackspot X="6042.299" Y="6642.367" Z="132.2145" Radius="103.1748" />
+		<Blackspot X="6225.735" Y="6698.922" Z="139.8322" Radius="99.31313" />
+		<Blackspot X="6428.014" Y="6739.271" Z="119.724" Radius="47.0079" />
+		<!-- // Garn Nighthowl locations END -->
+	</Blackspots>
+
 	<Vendors>
 		<!--Shadowmoon Valley:-->
 		<!--Exile's Rise-->
@@ -98,8 +109,6 @@
 		<Mailbox X="1923.274" Y="299.2899" Z="88.96642" UsableWhen="Me.IsAlliance" />
 		<Mailbox X="5580.682" Y="4570.392" Z="136.558" UsableWhen="Me.IsHorde" />
 	</Mailboxes>
-
-
 
 	<QuestOrder>		
 
@@ -203,6 +212,21 @@
 			</If>
 		</While>
 
+		<!-- <While Condition="true" >  Not sure if this is a treasure - couldn't capture the quest ID.
+			<MoveTo DestName="Mor'dul Tower" X="6212.458" Y="5651.792" Z="166.0124" />
+			<CustomBehavior File="InteractWith" MobIds="74575" WaitForNpcs="false" ProactiveCombatStrategy="ClearMobsThatWillAggro" MovementBy="NavigatorOnly" X="6213.819" Y="5650.893" Z="166.8227" /> Ogre #1
+			<MoveTo X="6185.57" Y="5645.106" Z="188.9169" />
+			<CustomBehavior File="MyCTM" X="6205.108" Y="5644.162" Z="185.9468" />
+			<CustomBehavior File="InteractWith" MobIds="74924" Range="6" IgnoreLoSToTarget="true"  WaitForNpcs="false" ProactiveCombatStrategy="ClearMobsThatWillAggro" X="6203.619" Y="5639.04" Z="187.173" /> Ogre #2
+			<CustomBehavior File="MyCTM" X="6192.477" Y="5645.476" Z="187.0065" />
+			<CustomBehavior File="MyCTM" X="6188.473" Y="5644.512" Z="187.1204" />
+			<CustomBehavior File="Misc\RunLua" Lua="MoveForwardStart();" WaitTime="250" />
+			<CustomBehavior File="Misc\RunLua" Lua="JumpOrAscendStart(); MoveForwardStop();" WaitTime="100" />
+			<MoveTo X="6189.391" Y="5648.265" Z="210.6444" />
+			<CustomBehavior File="InteractWith" MobIds="74574" ProactiveCombatStrategy="ClearMobsThatWillAggro" MovementBy="NavigatorOnly" X="6187.114" Y="5651.429" Z="210.5068" TerminateWhen="IsQuestCompleted(34507)" /> Ogre #3, Treasure Trigger
+			<CustomBehavior File="WaitTimer" WaitTime="60000" TerminateWhen="true" />
+		</While> -->
+
 		<While Condition="!IsQuestCompleted(34507)" >
 			<MoveTo DestName="Frozen Frostwolf Axe" X="6293.714" Y="6027.578" Z="90.80666" />
 			<CustomBehavior File="InteractWith" MobIds="229640" ProactiveCombatStrategy="ClearMobsThatWillAggro" MovementBy="NavigatorOnly" TerminateWhen="IsQuestCompleted(34507)" >
@@ -246,7 +270,7 @@
 			<CustomBehavior File="MyCTM" X="6242.666" Y="6501.138" Z="190.5161" TerminateWhen="Me.Z &lt;= 191" />
 		</While>
 
-		<If Condition="!IsQuestCompleted(34641)" >
+		<!-- <If Condition="!IsQuestCompleted(34641)" >
 			<MoveTo DestName="Sealed Jug" X="6426.817" Y="6905.155" Z="-0.2596911" />
 			<CustomBehavior File="InteractWith" MobIds="230401" ProactiveCombatStrategy="ClearMobsThatWillAggro" MovementBy="NavigatorOnly" >
 				<HuntingGrounds>
@@ -254,26 +278,18 @@
 				</HuntingGrounds>
 			</CustomBehavior>
 			<If Condition="HasItem(111407)" ><CustomBehavior File="DeleteItems" Ids="111407" /></If>
-		</If>
+		</If> -->
 
 		<If Condition="Me.IsHorde" >
 			<If Condition="IsQuestCompleted(12345)" >
 				<MoveTo DestName="Doorog's Secret Stash" X="6665.021" Y="5879.452" Z="319.4511" />
-				<CustomBehavior File="InteractWith" MobIds="232218" ProactiveCombatStrategy="ClearMobsThatWillAggro" MovementBy="NavigatorOnly" >
-					<HuntingGrounds>
-						<Hotspot Name="Doorog's Secret Stash" X="6665.021" Y="5879.452" Z="319.4511" />
-					</HuntingGrounds>
-				</CustomBehavior>
+				<CustomBehavior File="InteractWith" MobIds="232218" ProactiveCombatStrategy="ClearMobsThatWillAggro" MovementBy="NavigatorOnly" X="6665.021" Y="5879.452" Z="319.4511" />
 			</If>
 
 
 			<!--<While Condition="!IsQuestCompleted(12345)" >  Has a very strange bug.  Bot loots an un-interatable object.   Object also doesn't have a ID and seems to not exist in the actual game - I'm going to assume it's a Blizzard bug. 
 				<MoveTo DestName="Bounty of Bladespire" X="6796.262" Y="5853.185" Z="260.0322" />
-				<CustomBehavior File="InteractWith" MobIds="231977" ProactiveCombatStrategy="ClearMobsThatWillAggro" MovementBy="NavigatorOnly" >
-					<HuntingGrounds>
-						<Hotspot Name="Bounty of Bladespire" X="6796.262" Y="5853.185" Z="260.0322" />
-					</HuntingGrounds>
-				</CustomBehavior>
+				<CustomBehavior File="InteractWith" MobIds="231977" ProactiveCombatStrategy="ClearMobsThatWillAggro" MovementBy="NavigatorOnly" X="6796.262" Y="5853.185" Z="260.0322" />
 			</While>-->
 		</If>
 
@@ -329,20 +345,12 @@
 
 		<If Condition="!IsQuestCompleted(34642)" >
 			<MoveTo DestName="Lucky Coin" X="7785.124" Y="6331.755" Z="47.88202" />
-			<CustomBehavior File="InteractWith" MobIds="230402" ProactiveCombatStrategy="ClearMobsThatWillAggro" MovementBy="NavigatorOnly" >
-				<HuntingGrounds>
-					<Hotspot Name="Lucky Coin" X="7785.124" Y="6331.755" Z="47.88202" />
-				</HuntingGrounds>
-			</CustomBehavior>
+			<CustomBehavior File="InteractWith" MobIds="230402" ProactiveCombatStrategy="ClearMobsThatWillAggro" MovementBy="NavigatorOnly" X="7785.124" Y="6331.755" Z="47.88202" />
 		</If>
 
 		<If Condition="!IsQuestCompleted(34647)" >
 			<MoveTo DestName="Snow-Covered Strongbox" X="7748.58" Y="6040.359" Z="33.27089" />
-			<CustomBehavior File="InteractWith" MobIds="230424" ProactiveCombatStrategy="ClearMobsThatWillAggro" MovementBy="NavigatorOnly" >
-				<HuntingGrounds>
-					<Hotspot Name="Snow-Covered Strongbox" X="7748.58" Y="6040.359" Z="33.27089" />
-				</HuntingGrounds>
-			</CustomBehavior>
+			<CustomBehavior File="InteractWith" MobIds="230424" ProactiveCombatStrategy="ClearMobsThatWillAggro" MovementBy="NavigatorOnly" X="7748.58" Y="6040.359" Z="33.27089" />
 		</If>
 
 		<While Condition="!IsQuestCompleted(32803)" >
@@ -362,7 +370,7 @@
 		<If Condition="!IsQuestCompleted(34473)" >
 			<MoveTo DestName="Envoy's Satchel" X="7455.094" Y="5003.669" Z="121.4185" />
 			<CustomBehavior File="ForcedDismount" />
-			<CustomBehavior File="InteractWith" WaitTime="1000" ProactiveCombatStrategy="ClearMobsTargetingUs" Name="Envoy's Satchel" MobId="229328" X="7453.99" Y="5003.601" Z="121.4245" />
+			<CustomBehavior File="InteractWith" WaitTime="1000" ProactiveCombatStrategy="ClearMobsTargetingUs" Name="Envoy's Satchel" MobId="229328" X="7453.99" Y="5003.601" Z="121.4245" TerminateWhen="IsQuestCompleted(34473)" />
 		</If>
 
 		<If Condition="!IsQuestCompleted(34520)" >
@@ -372,43 +380,37 @@
 			<CustomBehavior File="ForcedMount" />
 			<MoveTo DestName="Burning Pearl" X="7486.194" Y="4927.379" Z="139.4438" />
 			<CustomBehavior File="ForcedDismount" />
-			<CustomBehavior File="InteractWith" WaitTime="1000" ProactiveCombatStrategy="ClearMobsTargetingUs" Name="Burning Pearl" MobId="230252" X="7488.032" Y="4928.077" Z="138.8341" />
+			<CustomBehavior File="InteractWith" WaitTime="1000" ProactiveCombatStrategy="ClearMobsTargetingUs" Name="Burning Pearl" MobId="230252" X="7488.032" Y="4928.077" Z="138.8341" TerminateWhen="IsQuestCompleted(34520)" />
 		</If>
 
-	<!-- I don't believe these are treasures, they aren't showing up on WoWhead's treasure page and they don't have a quest flag.  -Echo
-		<If Condition="Me.Level &gt;= 100 &amp;&amp; !IsQuestCompleted(34520)" >
-			!- Can't find quest id -
-			<MoveTo DestName="Cragmaul Cache" X="7579.97" Y="5077.422" Z="135.115" />
-			<CustomBehavior File="InteractWith" MobIds="224713" ProactiveCombatStrategy="ClearMobsThatWillAggro" WaitTime="1500" >
-				<HuntingGrounds>
-					<Hotspot Name="Cragmaul Cache" X="7574.577" Y="5080.94" Z="135.0731" />
-				</HuntingGrounds>
-			</CustomBehavior>
+		<If Condition="Me.Level &gt;= 100" >
+			<If Condition="!IsQuestCompleted(33532)" >
+				<MoveTo DestName="Cragmaul Cache" X="7579.97" Y="5077.422" Z="135.115" />
+				<CustomBehavior File="InteractWith" MobIds="224713" ProactiveCombatStrategy="ClearMobsThatWillAggro" WaitTime="1500" X="7574.577" Y="5080.94" Z="135.0731" TerminateWhen="IsQuestCompleted(33532)" />
+			</If>
 
+			<If Condition="!IsQuestCompleted(33531)" >
+				<MoveTo DestName="Clumsy Cragmaul Brute" X="7510.589" Y="4437.027" Z="126.9394" />
+				<CustomBehavior File="InteractWith" MobIds="75120" ProactiveCombatStrategy="ClearMobsThatWillAggro" WaitTime="1500" X="7512.659" Y="4439.047" Z="126.4282" TerminateWhen="IsQuestCompleted(33531)" />
+			</If>
+		</If>
 
-			!- Can't find quest id -
-			<CustomBehavior File="InteractWith" MobIds="75120" ProactiveCombatStrategy="ClearMobsThatWillAggro"  >
-				<HuntingGrounds>
-					Name="Clumsy Cragmaul Brute" Entry="75120" X="7512.659" Y="4439.047" Z="126.4282" />
-					<Hotspot Name="Clumsy Cragmaul Brute" Entry="75120" X="7512.659" Y="4439.047" Z="126.4282" />
-				</HuntingGrounds>
-			</CustomBehavior>
+		<If Condition="!IsQuestCompleted(33525) &amp;&amp; !HasItem(107272)" >
+			<MoveTo DestName="Young Orc Woman" X="7667.789" Y="3633.24" Z="129.0918" />
+			<CustomBehavior File="InteractWith" MobIds="75081" ProactiveCombatStrategy="ClearMobsThatWillAggro" X="7675.647" Y="3629.538" Z="129.7265" />
+			<CustomBehavior File="Misc\RunLua" Lua="GossipTitleButton1:Click();" /> <!-- Using Lua instead of IW's solution to be safe. -->
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<CustomBehavior File="UseItem" ItemId="107271" />
+		</If>
 
-			!- Can't find quest id -
-			<CustomBehavior File="InteractWith" MobIds="75081" ProactiveCombatStrategy="ClearMobsThatWillAggro" GossipOptions="1" >
-				<HuntingGrounds>
-					<Hotspot Name="Young Orc Woman" X="7675.647" Y="3629.538" Z="129.7265" />
-				</HuntingGrounds>
-			</CustomBehavior>
-
-			<MoveTo DestName="Burning Pearl" X="7488.032" Y="4928.077" Z="138.8341" />
+			<!-- <MoveTo DestName="Burning Pearl" X="7488.032" Y="4928.077" Z="138.8341" />
 			<CustomBehavior File="InteractWith" MobIds="230252" ProactiveCombatStrategy="ClearMobsThatWillAggro" WaitTime="1500" TerminateWhen="Object(230252) == null" >
 				<HuntingGrounds>
 					<Hotspot Name="Burning Pearl" X="7488.032" Y="4928.077" Z="138.8341" />
 				</HuntingGrounds>
 			</CustomBehavior>
-		</If>
-	-->
+		</If>-->
+
 
 		<If Condition="Me.Level &gt;= 100 &amp;&amp; !IsQuestCompleted(33948)" >
 			<MoveTo DestName="Goren Leftovers" X="7253.048" Y="3411.344" Z="272.5801" />
@@ -433,17 +435,16 @@
 			<CustomBehavior File="WaitTimer" WaitTime="60000" TerminateWhen="IsQuestCompleted(33946)" /> 
 		</While>
 
-		<!--
 		<If Condition="!IsQuestCompleted(33525)" >
-			 Can't find quest id 
-			<MoveTo DestName="Young Orc Traveler" X="6835.011" Y="4118.459" Z="92.14944" />
-			<CustomBehavior File="InteractWith" MobIds="75072" ProactiveCombatStrategy="ClearMobsThatWillAggro" GossipOptions="1" >
-				<HuntingGrounds>
-					<Hotspot Name="Young Orc Traveler" X="6829.731" Y="4152.84" Z="91.98309" />
-				</HuntingGrounds>
-			</CustomBehavior>
+			<MoveTo DestName="Young Orc Traveler" X="6830.887" Y="4154.485" Z="92.05109" />
+			<CustomBehavior File="InteractWith" MobIds="75072" ProactiveCombatStrategy="ClearMobsThatWillAggro" X="6829.731" Y="4152.84" Z="91.98309" />
+			<CustomBehavior File="Misc\RunLua" Lua="GossipTitleButton1:Click();" /> <!-- Using Lua instead of IW's solution to be safe. -->
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<CustomBehavior File="UseItem" ItemId="107270" />
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<CustomBehavior File="UseItem" ItemId="107273" />
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
 		</If>
-		-->
 
 		<If Condition="!IsQuestCompleted(33947)" >
 			<MoveTo DestName="Grimfrost Treasure" X="6405.215" Y="3340.942" Z="216.897" />

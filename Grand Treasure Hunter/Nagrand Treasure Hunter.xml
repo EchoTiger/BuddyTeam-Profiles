@@ -2,7 +2,6 @@
 	Notes:
 		- All Treasures requiring a Glider is skipped, but is commented for future edits.
 		- <MoveTo may cause suicide runs into huge packs of Humanoid mobs, causing the player to die.
-		- Vendor and Repair needs to be filled out.
 		- Abu'gar's Vitality (35711) is bugged on Blizzard's end.  Game isn't flagging item as obtained. This section is commented out until fixed.
 
 	Test 1:
