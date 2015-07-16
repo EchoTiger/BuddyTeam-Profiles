@@ -1,7 +1,0 @@
-<HBProfile>
-<QuestOrder>
-			<If Condition="IsAchievementCompleted(9728)" >
-				<CustomBehavior File="Message" Text="True" />
-			</If>
-</QuestOrder>
-</HBProfile>
