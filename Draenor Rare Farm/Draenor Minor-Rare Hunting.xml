@@ -528,12 +528,12 @@
 			<If Condition="HasItem(114227)" ><CustomBehavior File="DeleteItems" Ids="114227" /></If>
 		</While>
 
-		<While Condition="!IsAchievementCompleted(9400, 1)" > <!-- Crater Lord Igneous -->
+		<While Condition="!IsAchievementCompleted(9400, 3)" > <!-- Crater Lord Igneous -->
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.PowderBlue, &quot;[Profile Notification]: Moving to kill Crater Lord Igneous.&quot;);" />
 			<DisableBehavior Name="Pull" />
 			<MoveTo DestName="Crater Lord Igneous" X="6284.889" Y="1505.747" Z="40.06474" />
 			<EnableBehavior Name="Pull" />
-			<CustomBehavior File="InteractWith" MobState="Alive" MobId="81528" X="6343.745" Y="1516.251" Z="37.29232" TerminateWhen="IsAchievementCompleted(9400, 1)" />
+			<CustomBehavior File="InteractWith" MobState="Alive" MobId="81528" X="6343.745" Y="1516.251" Z="37.29232" TerminateWhen="IsAchievementCompleted(9400, 3)" />
 		</While>
 
 		<While Condition="!IsQuestCompleted(36204)" > <!-- Glut -->
@@ -552,12 +552,12 @@
 			<CustomBehavior File="InteractWith" MobState="Alive" MobId="84406" X="6684.11" Y="910.0989" Z="72.14663" TerminateWhen="IsQuestCompleted(36178)" />
 		</While>
 
-		<While Condition="!IsAchievementCompleted(9400, 5)" > <!-- Dessicus of the Dead Pools -->
+		<While Condition="!IsAchievementCompleted(9400, 4)" > <!-- Dessicus of the Dead Pools -->
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.PowderBlue, &quot;[Profile Notification]: Moving to kill Dessicus of the Dead Pools.&quot;);" />
 			<DisableBehavior Name="Pull" />
 			<MoveTo DestName="Dessicus of the Dead Pools" X="6769.531" Y="1794.429" Z="49.38127" />
 			<EnableBehavior Name="Pull" />
-			<CustomBehavior File="InteractWith" MobState="Alive" MobId="81529" X="6802.541" Y="1888.813" Z="45.24227" TerminateWhen="IsAchievementCompleted(9400, 5)" />
+			<CustomBehavior File="InteractWith" MobState="Alive" MobId="81529" X="6802.541" Y="1888.813" Z="45.24227" TerminateWhen="IsAchievementCompleted(9400, 4)" />
 		</While>
 
 		<While Condition="!IsQuestCompleted(36391)" > <!-- Gelgor of the Blue Flame -->
@@ -618,12 +618,12 @@
 			<CustomBehavior File="InteractWith" MobState="Alive" MobId="82311" InteractByLooting="true" X="7160.011" Y="726.5324" Z="87.78108" TerminateWhen="IsQuestCompleted(35503)" />
 		</While>
 
-		<While Condition="!IsAchievementCompleted(9400, 0)" > <!-- Biolante -->
+		<While Condition="!IsAchievementCompleted(9400, 1)" > <!-- Biolante -->
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.PowderBlue, &quot;[Profile Notification]: Moving to kill Biolante.&quot;);" />
 			<DisableBehavior Name="Pull" />
 			<MoveTo DestName="Biolante" X="6752.816" Y="35.58868" Z="74.53899" />
 			<EnableBehavior Name="Pull" />
-			<CustomBehavior File="InteractWith" MobState="Alive" MobId="75207" X="6728.479" Y="18.36365" Z="74.7672" TerminateWhen="IsAchievementCompleted(9400, 0)" />
+			<CustomBehavior File="InteractWith" MobState="Alive" MobId="75207" X="6728.479" Y="18.36365" Z="74.7672" TerminateWhen="IsAchievementCompleted(9400, 1)" />
 		</While>
 
 		<While Condition="!IsQuestCompleted(36794)" > <!-- Sylldross -->
@@ -649,12 +649,12 @@
 			<CustomBehavior File="InteractWith" MobState="Alive" MobId="80785" X="6119.803" Y="326.1629" Z="0.2679466" TerminateWhen="IsAchievementCompleted(9400, 8)" />
 		</While>
 
-		<While Condition="!IsAchievementCompleted(9400, 3)" > <!-- Khargax the Devourer -->
+		<While Condition="!IsAchievementCompleted(9400, 5)" > <!-- Khargax the Devourer -->
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.PowderBlue, &quot;[Profile Notification]: Moving to kill Khargax the Devourer.&quot;);" />
 			<DisableBehavior Name="Pull" />
 			<MoveTo DestName="Khargax the Devourer" X="6009.828" Y="678.4492" Z="45.45791" />
 			<EnableBehavior Name="Pull" />
-			<CustomBehavior File="InteractWith" MobState="Alive" MobId="81537" X="5975.988" Y="763.4658" Z="44.34132" TerminateWhen="IsAchievementCompleted(9400, 3)" />
+			<CustomBehavior File="InteractWith" MobState="Alive" MobId="81537" X="5975.988" Y="763.4658" Z="44.34132" TerminateWhen="IsAchievementCompleted(9400, 5)" />
 		</While>
 
 		<!-- Skip Roardan the Sky Terror since he flies around.. -->

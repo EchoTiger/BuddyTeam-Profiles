@@ -175,7 +175,7 @@
 			<CustomBehavior File="WaitTimer" WaitTime="500" />
 			<CustomBehavior File="RunCode" Code="Me.SetFacing(15);" />
 			<CustomBehavior File="WaitTimer" WaitTime="500" />
-			<CustomBehavior File="ForcedMount" />-
+			<CustomBehavior File="ForcedMount" />
 			<CustomBehavior File="Misc\RunLua" Lua="MoveForwardStart();" WaitTime="125" />
 			<CustomBehavior File="Misc\RunLua" Lua="JumpOrAscendStart();" WaitTime="15" />
 			<CustomBehavior File="Misc\RunLua" Lua="MoveForwardStop(); AscendStop();" WaitTime="300" />
