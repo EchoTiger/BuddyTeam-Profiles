@@ -99,10 +99,10 @@
 		<!-- DO Randomized Daily from Tanaan Battle Plan -->
 			<While Condition="HasQuest(37891) &amp;&amp; !IsQuestCompleted(37891)" > <!-- Assault on Ironhold Harbor -->
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Assault on Ironhold Harbor.&quot;);" />
-				<If Condition="!HasQuest(37865)" >
+				<If Condition="!HasQuest(37866)" >
 					<DisableBehavior Name="Pull" />
 					<MoveTo DestName="Ironhold Harbor" X="4583.305" Y="-399.9979" Z="10.69125" />
-					<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(37865)" />
+					<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(37866)" />
 					<EnableBehavior Name="Pull" />
 				</If>
 				<CustomBehavior File="InteractWith" QuestId="37891" ProactiveCombatStrategy="ClearMobsThatWillAggro" IgnoreMobsInBlackspots="true" NumOfTimes="1000" MobIds="239839, 90433" >

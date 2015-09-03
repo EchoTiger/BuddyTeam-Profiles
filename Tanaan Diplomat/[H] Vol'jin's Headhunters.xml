@@ -99,10 +99,10 @@
 		<!-- DO Randomized Daily from Tanaan Battle Plan -->
 			<While Condition="HasQuest(37940) &amp;&amp; !IsQuestCompleted(37940)" > <!-- Assault on Ironhold Harbor -->
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Assault on Ironhold Harbor.&quot;);" />
-				<If Condition="!HasQuest(37866)" >
+				<If Condition="!HasQuest(37865)" >
 					<DisableBehavior Name="Pull" />
 					<MoveTo DestName="Ironhold Harbor" X="4583.305" Y="-399.9979" Z="10.69125" />
-					<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(37866)" />
+					<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(37865)" />
 					<EnableBehavior Name="Pull" />
 				</If>
 				<CustomBehavior File="InteractWith" QuestId="37940" ProactiveCombatStrategy="ClearMobsThatWillAggro" IgnoreMobsInBlackspots="true" NumOfTimes="1000" MobIds="239839, 90433" >
@@ -118,7 +118,7 @@
 			</While>
 			<If Condition="HasQuest(37940) &amp;&amp; IsQuestCompleted(37940)" >
 				<DisableBehavior Name="Pull" />
-				<TurnIn Nav="Fly" QuestName="Assault on Ironhold Harbor" QuestId="37940" TurnInName="Draka" TurnInId="90309" />
+				<TurnIn Nav="Fly" QuestName="Assault on Ironhold Harbor" QuestId="37940" TurnInName="Draka" TurnInId="90481" />
 				<EnableBehavior Name="Pull" />
 			</If>
 
@@ -144,7 +144,7 @@
 			</While>
 			<If Condition="HasQuest(38449) &amp;&amp; IsQuestCompleted(38449)" >
 				<DisableBehavior Name="Pull" />
-				<TurnIn Nav="Fly" QuestName="Assault on the Temple of Sha'naar" QuestId="38449" TurnInName="Draka" TurnInId="90309" />
+				<TurnIn Nav="Fly" QuestName="Assault on the Temple of Sha'naar" QuestId="38449" TurnInName="Draka" TurnInId="90481" />
 				<EnableBehavior Name="Pull" />
 			</If>
 
@@ -169,7 +169,7 @@
 			</While>
 			<If Condition="HasQuest(38047) &amp;&amp; IsQuestCompleted(38047)" >
 				<DisableBehavior Name="Pull" />
-				<TurnIn Nav="Fly" QuestName="Battle At The Iron Front" QuestId="38047" TurnInName="Draka" TurnInId="90309" />
+				<TurnIn Nav="Fly" QuestName="Battle At The Iron Front" QuestId="38047" TurnInName="Draka" TurnInId="90481" />
 				<EnableBehavior Name="Pull" />
 			</If>
 
@@ -194,7 +194,7 @@
 			</While>
 			<If Condition="HasQuest(38044) &amp;&amp; IsQuestCompleted(38044)" >
 				<DisableBehavior Name="Pull" />
-				<TurnIn Nav="Fly" QuestName="Bleeding the Bleeding Hollow" QuestId="38044" TurnInName="Draka" TurnInId="90309" />
+				<TurnIn Nav="Fly" QuestName="Bleeding the Bleeding Hollow" QuestId="38044" TurnInName="Draka" TurnInId="90481" />
 				<EnableBehavior Name="Pull" />
 			</If>
 
@@ -219,7 +219,7 @@
 			</While>
 			<If Condition="HasQuest(38252) &amp;&amp; IsQuestCompleted(38252)" >
 				<DisableBehavior Name="Pull" />
-				<TurnIn Nav="Fly" QuestName="Assault on the Ruins of Kra'nak" QuestId="38252" TurnInName="Draka" TurnInId="90309" />
+				<TurnIn Nav="Fly" QuestName="Assault on the Ruins of Kra'nak" QuestId="38252" TurnInName="Draka" TurnInId="90481" />
 				<EnableBehavior Name="Pull" />
 			</If>
 
@@ -247,7 +247,7 @@
 			</While>
 			<If Condition="HasQuest(38441) &amp;&amp; IsQuestCompleted(38441)" >
 				<DisableBehavior Name="Pull" />
-				<TurnIn Nav="Fly" QuestName="Assault on The Fel Forge" QuestId="38441" TurnInName="Draka" TurnInId="90309" />
+				<TurnIn Nav="Fly" QuestName="Assault on The Fel Forge" QuestId="38441" TurnInName="Draka" TurnInId="90481" />
 				<EnableBehavior Name="Pull" />
 			</If>
 
@@ -266,8 +266,8 @@
 		<!-- Randomized Daily from Shadow Hunter Denjai -->
 			<If Condition="!(HasQuest(39573) || HasQuest(39571) || HasQuest(39570) || HasQuest(39569) || HasQuest(39568) || HasQuest(39567)) &amp;&amp; !(IsQuestCompleted(39573) || IsQuestCompleted(39571) || IsQuestCompleted(39570) || IsQuestCompleted(39569) || IsQuestCompleted(39568) || IsQuestCompleted(39567))" >
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Checking Shadow Hunter Denjai.&quot;);" />
-				<MoveTo DestName="Tanaan Planning Map" X="3822.575" Y="-1360.395" Z="94.93047" />
-				<CustomBehavior File="InteractWith" MobId="90974" WaitTime="1000" X="3816.47" Y="-1359.184" Z="94.92278" />
+				<MoveTo DestName="Shadow Hunter Denjai" X="4334.545" Y="-1528.443" Z="88.27927" />
+				<CustomBehavior File="InteractWith" MobId="96014" WaitTime="1000" X="4334.67" Y="-1529.712" Z="88.28157" />
 				<If Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return GossipFrameGreetingPanel:IsVisible();&quot;, 0)" >
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Choosing quest from Shadow Hunter Denjai.&quot;);" />
 					<CustomBehavior File="Misc\RunLua" Lua="GossipTitleButton1:Click();" />
