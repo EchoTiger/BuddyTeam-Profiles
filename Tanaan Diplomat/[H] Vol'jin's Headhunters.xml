@@ -1,5 +1,5 @@
 <HBProfile>
-	<Name>Hand of the Prophet Dailies</Name>
+	<Name>Vol'jin's Headhunters Dailies</Name>
 	
 	
 	<MinDurability>0.2</MinDurability>
@@ -32,61 +32,61 @@
 	</Mailboxes>
 
 	<QuestOrder>
-		<If Condition="!Me.IsAlliance" > <!-- Not using Me.IsHorde to make it more future proof. :P -->
-			<CustomBehavior File="UserDialog" AllowBotStop="true" SoundCue="Exclamation" SoundCueInterval="1" Text="This profile is Alliance only." />
+		<If Condition="!Me.IsHorde" > <!-- Not using Me.IsAlliance to make it more future proof. :P -->
+			<CustomBehavior File="UserDialog" AllowBotStop="true" SoundCue="Exclamation" SoundCueInterval="1" Text="This profile is Horde only." />
 		</If>
 
-		<!-- Insert Navigation to get to Lion's Watch -->
+		<!-- Insert Navigation to get to Vol'mar -->
 
 		<!-- Introductory Quests -->
-			<If Condition="!IsQuestCompleted(38446)" >
-				<PickUp Nav="Fly" QuestName="The Battle for the West" QuestId="38581" GiverName="Exarch Yrel" GiverId="90309" />
-				<If Condition="HasQuest(38581) &amp;&amp; (!IsObjectiveComplete(1, 38581) || Unit(90960) != null)" >
-					<MoveTo DestName="Skyguard Thann" X="3874.379" Y="-1312.062" Z="90.48894" />
-					<CustomBehavior File="InteractWith" MobId="90960" InteractByGossipOptions="2" X="3876.641" Y="-1310.991" Z="90.41825" />
+			<If Condition="!IsQuestCompleted(38001)" >
+				<PickUp Nav="Fly" QuestName="The Battle for the West" QuestId="38577" GiverName="Draka" GiverId="90481" />
+				<If Condition="HasQuest(38577) &amp;&amp; (!IsObjectiveComplete(1, 38577) || Unit(90550) != null)" >
+					<MoveTo DestName="Skyguard Thann" X="4308.627" Y="-1465.863" Z="78.92319" />
+					<CustomBehavior File="InteractWith" MobId="90550" InteractByGossipOptions="1" X="4308.067" Y="-1463.92" Z="79.05212" />
 				</If>
-				<TurnIn Nav="Fly" QuestName="The Battle for the West" QuestId="38581" TurnInName="Exarch Maladaar" TurnInId="91935" />
-				<PickUp Nav="Fly" QuestName="Commander in the Field!" QuestId="38446" GiverName="Exarch Maladaar" GiverId="91935" />
+				<TurnIn Nav="Fly" QuestName="The Battle for the West" QuestId="38577" TurnInName="Durotan" TurnInId="90553" />
+				<PickUp Nav="Fly" QuestName="Commander in the Field!" QuestId="38001" GiverName="Durotan" GiverId="90553" />
 				<DisableBehavior Name="Pull" />
-				<CustomBehavior File="InteractWith" QuestId="38446" QuestObjectiveIndex="1" MobId="91942" X="3729.331" Y="151.75" Z="56.25351" />
-				<CustomBehavior File="InteractWith" QuestId="38446" QuestObjectiveIndex="2" MobId="91945" X="4574.01" Y="345.125" Z="221.041" />
-				<CustomBehavior File="InteractWith" QuestId="38446" QuestObjectiveIndex="3" MobId="91968" X="4460.054" Y="-565.7136" Z="50.30359" />
-				<TurnIn Nav="Fly" QuestName="Commander in the Field!" QuestId="38446" TurnInName="Exarch Yrel" TurnInId="90309" />
+				<CustomBehavior File="InteractWith" QuestId="38001" QuestObjectiveIndex="2" MobId="90563" X="4574.147" Y="345.8663" Z="221.0324" />
+				<CustomBehavior File="InteractWith" QuestId="38001" QuestObjectiveIndex="1" MobId="90581" X="3727.438" Y="164.6736" Z="55.83973" />
+				<CustomBehavior File="InteractWith" QuestId="38001" QuestObjectiveIndex="3" MobId="90548" X="4449.394" Y="-584.4705" Z="50.25083" />
+				<TurnIn Nav="Fly" QuestName="Commander in the Field!" QuestId="38001" TurnInName="Draka" TurnInId="90481" />
 				<EnableBehavior Name="Pull" />
 			</If>
 		<!-- END Introductory Quests -->
 
-		<!-- Randomized Daily from Parvink -->
-			<If Condition="!(HasQuest(39586) || HasQuest(39581)) &amp;&amp; !(IsQuestCompleted(39586) || IsQuestCompleted(39581))" >
-				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Checking Parvink for dailies.&quot;);" />
-				<MoveTo DestName="Parvink" X="3842.831" Y="-1328.245" Z="92.13056" />
-				<CustomBehavior File="InteractWith" MobId="96147" Range="5" WaitTime="1000" X="3840.701" Y="-1327.689" Z="94.02097" />
+		<!-- Randomized Daily from Nimi Brightcastle -->
+			<If Condition="!(HasQuest(39532) || HasQuest(39519)) &amp;&amp; !(IsQuestCompleted(39532) || IsQuestCompleted(39519))" >
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Checking Nimi Brightcastle for dailies.&quot;);" />
+				<MoveTo DestName="Nimi Brightcastle" X="4326.101" Y="-1425.438" Z="69.44341" />
+				<CustomBehavior File="InteractWith" MobId="93396" Range="5" WaitTime="1000" X="4326.101" Y="-1425.438" Z="69.44341" />
 				<If Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return QuestFrameDetailPanel:IsVisible();&quot;, 0)" >
-					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Choosing quest from Parvink.&quot;);" />
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Choosing quest from Nimi Brightcastle.&quot;);" />
 					<CustomBehavior File="Misc\RunLua" Lua="QuestFrameAcceptButton:Click();" />
 					<CustomBehavior File="WaitTimer" WaitTime="1000" />
 					<Else>
-						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Parvink doesn't seem to be offering a quest at the moment.&quot;);" />
+						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Nimi Brightcastle doesn't seem to be offering a quest at the moment.&quot;);" />
 					</Else>
 				</If>
 			</If>
-		<!-- END Randomized Daily from Parvink -->
+		<!-- END Randomized Daily from Nimi Brightcastle -->
 
 		<!-- Randomized Daily from Tanaan Battle Plan -->
-			<While Condition="!(HasQuest(37891) || HasQuest(37968) || HasQuest(38046) || HasQuest(38045) || HasQuest(38250) || HasQuest(38440)) &amp;&amp; !(IsQuestCompleted(37891) || IsQuestCompleted(37968) || IsQuestCompleted(38046) || IsQuestCompleted(38045) || IsQuestCompleted(38250) || IsQuestCompleted(38440))" >
+			<While Condition="!(HasQuest(37940) || HasQuest(38449) || HasQuest(38047) || HasQuest(38044) || HasQuest(38252) || HasQuest(38441)) &amp;&amp; !(IsQuestCompleted(37940) || IsQuestCompleted(38449) || IsQuestCompleted(38047) || IsQuestCompleted(38044) || IsQuestCompleted(38252) || IsQuestCompleted(38441))" >
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Checking Tanaan Planning map.&quot;);" />
-				<MoveTo DestName="Tanaan Planning Map" X="3822.575" Y="-1360.395" Z="94.93047" />
-				<CustomBehavior File="InteractWith" MobId="239902" NonCompeteDistance="0" Range="5" WaitTime="1000" X="3817.707" Y="-1363.149" Z="95.86454" />
+				<MoveTo DestName="Tanaan Planning Map" X="4327.29" Y="-1517.717" Z="88.02447" />
+				<CustomBehavior File="InteractWith" MobId="241725" NonCompeteDistance="0" Range="5" WaitTime="1000" X="4327.646" Y="-1520.481" Z="88.02522" />
 				<If Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return QuestChoiceFrame:IsVisible();&quot;, 0)" >
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Choosing quest from Tanaan Planning Map.&quot;);" />
 					<CustomBehavior File="Misc\RunLua" Lua="QuestChoiceFrameOption1.OptionButton:Click();" />
 					<CustomBehavior File="WaitTimer" WaitTime="1000" />
 				</If>
-				<If Condition="HasQuest(38585)" > <!-- If we pick up a group quest. -->
+				<If Condition="HasQuest(38586)" > <!-- If we pick up a group quest. -->
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Picked up a group quest, abandoning it to choose a solo quest.&quot;);" />
-					<CustomBehavior File="AbandonQuest" QuestId="38585" />
+					<CustomBehavior File="AbandonQuest" QuestId="38586" />
 					<CustomBehavior File="WaitTimer" WaitTime="500" />
-					<CustomBehavior File="InteractWith" MobId="239902" NonCompeteDistance="0" Range="5" WaitTime="1000" X="3817.707" Y="-1363.149" Z="95.86454" />
+					<CustomBehavior File="InteractWith" MobId="241725" NonCompeteDistance="0" Range="5" WaitTime="1000" X="4327.646" Y="-1520.481" Z="88.02522" />
 					<If Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return QuestChoiceFrame:IsVisible();&quot;, 0)" >
 						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Choosing quest from Tanaan Planning Map.&quot;);" />
 						<CustomBehavior File="Misc\RunLua" Lua="QuestChoiceFrameOption2.OptionButton:Click();" />
@@ -97,15 +97,15 @@
 		<!-- END Randomized Daily from Tanaan Battle Plan -->
 
 		<!-- DO Randomized Daily from Tanaan Battle Plan -->
-			<While Condition="HasQuest(37891) &amp;&amp; !IsQuestCompleted(37891)" > <!-- Assault on Ironhold Harbor -->
+			<While Condition="HasQuest(37940) &amp;&amp; !IsQuestCompleted(37940)" > <!-- Assault on Ironhold Harbor -->
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Assault on Ironhold Harbor.&quot;);" />
-				<If Condition="!HasQuest(37865)" >
+				<If Condition="!HasQuest(37866)" >
 					<DisableBehavior Name="Pull" />
 					<MoveTo DestName="Ironhold Harbor" X="4583.305" Y="-399.9979" Z="10.69125" />
-					<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(37865)" />
+					<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(37866)" />
 					<EnableBehavior Name="Pull" />
 				</If>
-				<CustomBehavior File="InteractWith" QuestId="37891" ProactiveCombatStrategy="ClearMobsThatWillAggro" IgnoreMobsInBlackspots="true" NumOfTimes="1000" MobIds="239839, 90433" >
+				<CustomBehavior File="InteractWith" QuestId="37940" ProactiveCombatStrategy="ClearMobsThatWillAggro" IgnoreMobsInBlackspots="true" NumOfTimes="1000" MobIds="239839, 90433" >
 					<HuntingGrounds> <!-- 90069, True Iron Bomb.  Need to click on a tank after picking it up.  Could also just have it click the player's location. -->
 						<Hotspot X="4583.305" Y="-399.9979" Z="10.69125" />
 						<Hotspot X="4592.449" Y="-238.1564" Z="10.7333" />
@@ -116,21 +116,21 @@
 					</HuntingGrounds>
 				</CustomBehavior>
 			</While>
-			<If Condition="HasQuest(37891) &amp;&amp; IsQuestCompleted(37891)" >
+			<If Condition="HasQuest(37940) &amp;&amp; IsQuestCompleted(37940)" >
 				<DisableBehavior Name="Pull" />
-				<TurnIn Nav="Fly" QuestName="Assault on Ironhold Harbor" QuestId="37891" TurnInName="Exarch Yrel" TurnInId="90309" />
+				<TurnIn Nav="Fly" QuestName="Assault on Ironhold Harbor" QuestId="37940" TurnInName="Draka" TurnInId="90309" />
 				<EnableBehavior Name="Pull" />
 			</If>
 
-			<While Condition="HasQuest(37968) &amp;&amp; !IsQuestCompleted(37968)" > <!-- Assault on the Temple of Sha'naar -->
+			<While Condition="HasQuest(38449) &amp;&amp; !IsQuestCompleted(38449)" > <!-- Assault on the Temple of Sha'naar -->
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Assault on Assault on the Temple of Sha'naar.&quot;);" />
-				<If Condition="!HasQuest(37966)" >
+				<If Condition="!HasQuest(38020)" >
 					<DisableBehavior Name="Pull" />
 					<MoveTo DestName="Temple of Sha'naar" X="3612.619" Y="183.9686" Z="129.547" />
-					<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(37966)" />
+					<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38020)" />
 					<EnableBehavior Name="Pull" />
 				</If>
-				<CustomBehavior File="InteractWith" QuestId="37968" ProactiveCombatStrategy="ClearMobsThatWillAggro" NumOfTimes="1000" MobIds="240165, 240173, 90501, 90302, 90703, 92597" >
+				<CustomBehavior File="InteractWith" QuestId="38449" ProactiveCombatStrategy="ClearMobsThatWillAggro" NumOfTimes="1000" MobIds="240165, 240173, 90501, 90302, 90703, 92597" >
 					<HuntingGrounds>
 						<Hotspot X="3542.274" Y="208.3379" Z="139.7317" />
 						<Hotspot X="3477.852" Y="148.2731" Z="149.7003" />
@@ -142,21 +142,21 @@
 					</HuntingGrounds>
 				</CustomBehavior>
 			</While>
-			<If Condition="HasQuest(37968) &amp;&amp; IsQuestCompleted(37968)" >
+			<If Condition="HasQuest(38449) &amp;&amp; IsQuestCompleted(38449)" >
 				<DisableBehavior Name="Pull" />
-				<TurnIn Nav="Fly" QuestName="Assault on the Temple of Sha'naar" QuestId="37968" TurnInName="Exarch Yrel" TurnInId="90309" />
+				<TurnIn Nav="Fly" QuestName="Assault on the Temple of Sha'naar" QuestId="38449" TurnInName="Draka" TurnInId="90309" />
 				<EnableBehavior Name="Pull" />
 			</If>
 
-			<While Condition="HasQuest(38046) &amp;&amp; !IsQuestCompleted(38046)" > <!-- Battle At The Iron Front -->
+			<While Condition="HasQuest(38047) &amp;&amp; !IsQuestCompleted(38047)" > <!-- Battle At The Iron Front -->
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Battle At The Iron Front.&quot;);" />
-				<If Condition="!HasQuest(38051)" >
+				<If Condition="!HasQuest(38054)" >
 					<DisableBehavior Name="Pull" />
 					<MoveTo DestName="The Iron Front" X="3893.965" Y="842.2295" Z="152.6835" />
-					<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38051)" />
+					<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38054)" />
 					<EnableBehavior Name="Pull" />
 				</If>
-				<CustomBehavior File="InteractWith" QuestId="38046" ProactiveCombatStrategy="ClearMobsThatWillAggro" NumOfTimes="1000" MobIds="90794, 90300, 90706, 90795, 90790, 90792, 90791" >
+				<CustomBehavior File="InteractWith" QuestId="38047" ProactiveCombatStrategy="ClearMobsThatWillAggro" NumOfTimes="1000" MobIds="90794, 90300, 90706, 90795, 90790, 90792, 90791" >
 					<HuntingGrounds>
 						<Hotspot X="4560.763" Y="443.0881" Z="229.8193" />
 						<Hotspot X="4526.892" Y="518.3264" Z="229.262" />
@@ -167,21 +167,21 @@
 					</HuntingGrounds>
 				</CustomBehavior>
 			</While>
-			<If Condition="HasQuest(38046) &amp;&amp; IsQuestCompleted(38046)" >
+			<If Condition="HasQuest(38047) &amp;&amp; IsQuestCompleted(38047)" >
 				<DisableBehavior Name="Pull" />
-				<TurnIn Nav="Fly" QuestName="Battle At The Iron Front" QuestId="38046" TurnInName="Exarch Yrel" TurnInId="90309" />
+				<TurnIn Nav="Fly" QuestName="Battle At The Iron Front" QuestId="38047" TurnInName="Draka" TurnInId="90309" />
 				<EnableBehavior Name="Pull" />
 			</If>
 
-			<While Condition="HasQuest(38045) &amp;&amp; !IsQuestCompleted(38045)" > <!-- Bleeding the Bleeding Hollow -->
+			<While Condition="HasQuest(38044) &amp;&amp; !IsQuestCompleted(38044)" > <!-- Bleeding the Bleeding Hollow -->
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Bleeding the Bleeding Hollow.&quot;);" />
-				<If Condition="!HasQuest(38043)" > <!-- Check ID, higher than Horde, but I think I got this number from DevTools -->
+				<If Condition="!HasQuest(38040)" > <!-- Check ID, lower than Alliance, but I think I got this number from DevTools -->
 					<DisableBehavior Name="Pull" />
 					<MoveTo DestName="Zeth'gol" X="4245.792" Y="390.4549" Z="153.8195" />
-					<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38043)" />
+					<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38040)" />
 					<EnableBehavior Name="Pull" />
 				</If>
-				<CustomBehavior File="InteractWith" QuestId="38045" ProactiveCombatStrategy="ClearMobsThatWillAggro" NumOfTimes="1000" MobIds="90704" >
+				<CustomBehavior File="InteractWith" QuestId="38044" ProactiveCombatStrategy="ClearMobsThatWillAggro" NumOfTimes="1000" MobIds="90704" >
 					<!--  90781 goes with InteractWith, but requires to be used after interacting. -->
 					<HuntingGrounds>
 						<Hotspot X="4310.75" Y="431.8437" Z="175.2454" />
@@ -192,21 +192,21 @@
 					</HuntingGrounds>
 				</CustomBehavior>
 			</While>
-			<If Condition="HasQuest(38045) &amp;&amp; IsQuestCompleted(38045)" >
+			<If Condition="HasQuest(38044) &amp;&amp; IsQuestCompleted(38044)" >
 				<DisableBehavior Name="Pull" />
-				<TurnIn Nav="Fly" QuestName="Bleeding the Bleeding Hollow" QuestId="38045" TurnInName="Exarch Yrel" TurnInId="90309" />
+				<TurnIn Nav="Fly" QuestName="Bleeding the Bleeding Hollow" QuestId="38044" TurnInName="Draka" TurnInId="90309" />
 				<EnableBehavior Name="Pull" />
 			</If>
 
-			<While Condition="HasQuest(38250) &amp;&amp; !IsQuestCompleted(38250)" > <!-- Assault on the Ruins of Kra'nak -->
+			<While Condition="HasQuest(38252) &amp;&amp; !IsQuestCompleted(38252)" > <!-- Assault on the Ruins of Kra'nak -->
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Assault on the Ruins of Kra'nak.&quot;);" />
-				<If Condition="!HasQuest(37938)" >
+				<If Condition="!HasQuest(38009)" >
 					<DisableBehavior Name="Pull" />
 					<MoveTo DestName="Ruins of Kra'nak" X="4546.603" Y="484.6314" Z="226.6398" />
-					<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(37938)" />
+					<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38009)" />
 					<EnableBehavior Name="Pull" />
 				</If>
-				<CustomBehavior File="InteractWith" QuestId="38250" ProactiveCombatStrategy="ClearMobsThatWillAggro" NumOfTimes="1000" MobIds="90794, 90300, 90706, 90795, 90790, 90792, 90791, 90796" >
+				<CustomBehavior File="InteractWith" QuestId="38252" ProactiveCombatStrategy="ClearMobsThatWillAggro" NumOfTimes="1000" MobIds="90794, 90300, 90706, 90795, 90790, 90792, 90791, 90796" >
 					<HuntingGrounds>
 						<Hotspot X="4560.763" Y="443.0881" Z="229.8193" />
 						<Hotspot X="4526.892" Y="518.3264" Z="229.262" />
@@ -217,21 +217,21 @@
 					</HuntingGrounds>
 				</CustomBehavior>
 			</While>
-			<If Condition="HasQuest(38250) &amp;&amp; IsQuestCompleted(38250)" >
+			<If Condition="HasQuest(38252) &amp;&amp; IsQuestCompleted(38252)" >
 				<DisableBehavior Name="Pull" />
-				<TurnIn Nav="Fly" QuestName="Assault on the Ruins of Kra'nak" QuestId="38250" TurnInName="Exarch Yrel" TurnInId="90309" />
+				<TurnIn Nav="Fly" QuestName="Assault on the Ruins of Kra'nak" QuestId="38252" TurnInName="Draka" TurnInId="90309" />
 				<EnableBehavior Name="Pull" />
 			</If>
 
-			<While Condition="HasQuest(38440) &amp;&amp; !IsQuestCompleted(38440)" > <!-- Assault on The Fel Forge -->
+			<While Condition="HasQuest(38441) &amp;&amp; !IsQuestCompleted(38441)" > <!-- Assault on The Fel Forge -->
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Assault on The Fel Forge.&quot;);" />
-				<If Condition="!HasQuest(37970)" > <!-- Assault on the Fel Forge -->
+				<If Condition="!HasQuest(38439)" > <!-- Assault on the Fel Forge -->
 					<DisableBehavior Name="Pull" />
 					<MoveTo DestName="The Fel Forge" X="3612.619" Y="183.9686" Z="129.547" />
-					<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(37970)" />
+					<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38439)" />
 					<EnableBehavior Name="Pull" />
 				</If>
-				<CustomBehavior File="InteractWith" MobIds="241669" QuestId="38440" NumOfTimes="1000" >
+				<CustomBehavior File="InteractWith" MobIds="241669" QuestId="38441" NumOfTimes="1000" >
 					<!--Objects 91901, 92741 - Gives ExtraActionButton to player to cast ability, can't loot anymore until cast.  Have InteractWith terminate and cast spell.
 						ExtraActionButton spell:  Hellfire Shot (183813)
 						Goes away after a while. -->
@@ -245,40 +245,40 @@
 					</HuntingGrounds>
 				</CustomBehavior>
 			</While>
-			<If Condition="HasQuest(38440) &amp;&amp; IsQuestCompleted(38440)" >
+			<If Condition="HasQuest(38441) &amp;&amp; IsQuestCompleted(38441)" >
 				<DisableBehavior Name="Pull" />
-				<TurnIn Nav="Fly" QuestName="Assault on The Fel Forge" QuestId="38440" TurnInName="Exarch Yrel" TurnInId="90309" />
+				<TurnIn Nav="Fly" QuestName="Assault on The Fel Forge" QuestId="38441" TurnInName="Draka" TurnInId="90309" />
 				<EnableBehavior Name="Pull" />
 			</If>
 
-			<!-- <While Condition="HasQuest(38585) &amp;&amp; !IsQuestCompleted(38585)" > [GROUP] Assault on the Throne of Kil'jaeden 
+			<!-- <While Condition="HasQuest(38586) &amp;&amp; !IsQuestCompleted(38586)" > [GROUP] Assault on the Throne of Kil'jaeden 
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Assault on the Throne of Kil'jaeden.&quot;);" />
 				<CustomBehavior File="Abandon"
 			</While>-->
 		<!-- END DO Randomized Daily from Tanaan Battle Plan -->
 
-		<!-- Daily from Vindicator Krethos -->
-			<If Condition="!HasQuest(39574) &amp;&amp; !IsQuestCompleted(39574)" >
-				<PickUp Nav="Fly" QuestName="Pressing the Attack" QuestId="39574" GiverName="Vindicator Krethos" GiverId="90974" /> 
+		<!-- Daily from Shadow Hunter Denjai -->
+			<If Condition="!HasQuest(39526) &amp;&amp; !IsQuestCompleted(39526)" >
+				<PickUp Nav="Fly" QuestName="Pressing the Attack" QuestId="39526" GiverName="Shadow Hunter Denjai" GiverId="96014" /> 
 			</If>
-		<!-- END Daily from Vindicator Krethos -->
+		<!-- END Daily from Shadow Hunter Denjai -->
 
-		<!-- Randomized Daily from Vindicator Krethos -->
+		<!-- Randomized Daily from Shadow Hunter Denjai -->
 			<If Condition="!(HasQuest(39573) || HasQuest(39571) || HasQuest(39570) || HasQuest(39569) || HasQuest(39568) || HasQuest(39567)) &amp;&amp; !(IsQuestCompleted(39573) || IsQuestCompleted(39571) || IsQuestCompleted(39570) || IsQuestCompleted(39569) || IsQuestCompleted(39568) || IsQuestCompleted(39567))" >
-				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Checking Vindicator Krethos.&quot;);" />
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Checking Shadow Hunter Denjai.&quot;);" />
 				<MoveTo DestName="Tanaan Planning Map" X="3822.575" Y="-1360.395" Z="94.93047" />
 				<CustomBehavior File="InteractWith" MobId="90974" WaitTime="1000" X="3816.47" Y="-1359.184" Z="94.92278" />
 				<If Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return GossipFrameGreetingPanel:IsVisible();&quot;, 0)" >
-					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Choosing quest from Vindicator Krethos.&quot;);" />
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Choosing quest from Shadow Hunter Denjai.&quot;);" />
 					<CustomBehavior File="Misc\RunLua" Lua="GossipTitleButton1:Click();" />
 					<CustomBehavior File="WaitTimer" WaitTime="1000" />
 					<CustomBehavior File="Misc\RunLua" Lua="QuestFrameAcceptButton:Click();" />
 					<CustomBehavior File="WaitTimer" WaitTime="1000" />
 				</If>
 			</If>
-		<!-- END Randomized Daily from Vindicator Krethos -->
+		<!-- END Randomized Daily from Shadow Hunter Denjai -->
 
-		<!-- DO Randomized Daily from Vindicator Krethos -->
+		<!-- DO Randomized Daily from Shadow Hunter Denjai -->
 			<While Condition="HasQuest(39573) &amp;&amp; !IsQuestCompleted(39573)" > <!-- [GROUP] Harnessing Their Power -->
 				<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="2" ExpiryTime="45" Text="[WARNING]\n\nThe daily we picked up is a group quest.\n\nIf you continue, the bot will attempt to finish it however you may get into a death loop if you are undergeared or a caster class." />
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Harnessing Their Power.&quot;);" />
@@ -293,7 +293,7 @@
 			</While>
 			<If Condition="HasQuest(39573) &amp;&amp; IsQuestCompleted(39573)" >
 				<DisableBehavior Name="Pull" />
-				<TurnIn Nav="Fly" QuestName="Harnessing Their Power" QuestId="39573" TurnInName="Vindicator Krethos" TurnInId="90974" />
+				<TurnIn Nav="Fly" QuestName="Harnessing Their Power" QuestId="39573" TurnInName="Shadow Hunter Denjai" TurnInId="90974" />
 				<EnableBehavior Name="Pull" />
 			</If>
 
@@ -313,7 +313,7 @@
 			</While>
 			<If Condition="HasQuest(39571) &amp;&amp; IsQuestCompleted(39571)" >
 				<DisableBehavior Name="Pull" />
-				<TurnIn Nav="Fly" QuestName="Disarming Sha'naar" QuestId="39571" TurnInName="Vindicator Krethos" TurnInId="90974" />
+				<TurnIn Nav="Fly" QuestName="Disarming Sha'naar" QuestId="39571" TurnInName="Shadow Hunter Denjai" TurnInId="90974" />
 				<EnableBehavior Name="Pull" />
 			</If>
 
@@ -332,9 +332,9 @@
 			</While>
 			<!-- Could wedge Pavkin's second quest here -->
 
-			<While Condition="HasQuest(39586) &amp;&amp; !IsQuestCompleted(39586)" > <!-- [Pavnik] Bringing Down the Iron Horde -->
+			<While Condition="HasQuest(39532) &amp;&amp; !IsQuestCompleted(39532)" > <!-- [Nimi Brightcastle] Bringing Down the Iron Horde -->
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Bringing Down the Iron Horde.&quot;);" />
-				<CustomBehavior File="KillUntilComplete" MobIds="90066, 91760, 91764, 91721, 89754, 93370" QuestId="39586" >
+				<CustomBehavior File="KillUntilComplete" MobIds="90066, 91760, 91764, 91721, 89754, 93370" QuestId="39532" >
 					<HuntingGrounds>
 						<Hotspot X="4314.433" Y="-1025.236" Z="21.86001" />
 						<Hotspot X="4378.459" Y="-914.2455" Z="34.72607" />
@@ -354,14 +354,14 @@
 					</HuntingGrounds>
 				</CustomBehavior>
 			</While>
-			<If Condition="HasQuest(39586) &amp;&amp; IsQuestCompleted(39586)" > <!-- [Pavnik] -->
+			<If Condition="HasQuest(39532) &amp;&amp; IsQuestCompleted(39532)" > <!-- [Nimi Brightcastle] -->
 				<DisableBehavior Name="Pull" />
-				<TurnIn Nav="Fly" QuestName="Bringing Down the Iron Horde" QuestId="39586" TurnInName="Parvink" TurnInId="96147" />
+				<TurnIn Nav="Fly" QuestName="Bringing Down the Iron Horde" QuestId="39532" TurnInName="Nimi Brightcastle" TurnInId="93396" />
 				<EnableBehavior Name="Pull" />
 			</If>
 			<If Condition="HasQuest(39569) &amp;&amp; IsQuestCompleted(39569)" >
 				<DisableBehavior Name="Pull" />
-				<TurnIn Nav="Fly" QuestName="Breaking Their Fel Bonds" QuestId="39569" TurnInName="Vindicator Krethos" TurnInId="90974" />
+				<TurnIn Nav="Fly" QuestName="Breaking Their Fel Bonds" QuestId="39569" TurnInName="Shadow Hunter Denjai" TurnInId="90974" />
 				<EnableBehavior Name="Pull" />
 			</If>
 
@@ -372,20 +372,20 @@
 			<While Condition="HasQuest(39567) &amp;&amp; !IsQuestCompleted(39567)" > <!-- Bloodied Blades of Zeth'Gol -->
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Bloodied Blades of Zeth'Gol.&quot;);" />
 			</While>
-		<!-- END DO Randomized Daily from Vindicator Krethos -->
+		<!-- END DO Randomized Daily from Shadow Hunter Denjai -->
 
 		<!-- Finish up Bonus Objectives for Pressing the Attack -->
-			<If Condition="HasQuest(39574) &amp;&amp; !IsQuestCompleted(39574)" >
+			<If Condition="HasQuest(39526) &amp;&amp; !IsQuestCompleted(39526)" >
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Doing unfinished bonus objectives for Pressing the Attack.&quot;);" />
-				<If Condition="!IsQuestCompleted(39447) &amp;&amp; !IsQuestCompleted(38250) &amp;&amp; !IsQuestCompleted(39574)" > <!-- Assault on the Ruins of Kra'nak -->
+				<If Condition="!IsQuestCompleted(39448) &amp;&amp; !IsQuestCompleted(38252) &amp;&amp; !IsQuestCompleted(39526)" > <!-- Assault on the Ruins of Kra'nak -->
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Completing Assault on the Ruins of Kra'nak.&quot;);" />
-					<If Condition="!HasQuest(39447)" >
+					<If Condition="!HasQuest(39448)" >
 						<DisableBehavior Name="Pull" />
 						<MoveTo DestName="Ruins of Kra'nak" X="4546.603" Y="484.6314" Z="226.6398" />
-						<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39447)" />
+						<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39448)" />
 						<EnableBehavior Name="Pull" />
 					</If>
-					<CustomBehavior File="InteractWith" QuestId="39447" ProactiveCombatStrategy="ClearMobsThatWillAggro" NumOfTimes="1000" MobIds="90794, 90300, 90706, 90795, 90790, 90792, 90791, 90786" >
+					<CustomBehavior File="InteractWith" QuestId="39448" ProactiveCombatStrategy="ClearMobsThatWillAggro" NumOfTimes="1000" MobIds="90794, 90300, 90706, 90795, 90790, 90792, 90791, 90786" >
 						<HuntingGrounds>
 							<Hotspot X="4560.763" Y="443.0881" Z="229.8193" />
 							<Hotspot X="4526.892" Y="518.3264" Z="229.262" />
@@ -396,15 +396,15 @@
 						</HuntingGrounds>
 					</CustomBehavior>
 				</If>
-				<If Condition="!IsQuestCompleted(39449) &amp;&amp; !IsQuestCompleted(37968) &amp;&amp; !IsQuestCompleted(39574)" > <!-- Assault on the Temple of Sha'naar -->
+				<If Condition="!IsQuestCompleted(39450) &amp;&amp; !IsQuestCompleted(38449) &amp;&amp; !IsQuestCompleted(39526)" > <!-- Assault on the Temple of Sha'naar -->
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Completing Assault on the Temple of Sha'naar.&quot;);" />
-					<If Condition="!HasQuest(39449)" > <!-- Assault on the Temple of Sha'naar -->
+					<If Condition="!HasQuest(39450)" > <!-- Assault on the Temple of Sha'naar -->
 						<DisableBehavior Name="Pull" />
 						<MoveTo DestName="Temple of Sha'naar" X="3612.619" Y="183.9686" Z="129.547" />
-						<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39449)" />
+						<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39450)" />
 						<EnableBehavior Name="Pull" />
 					</If>
-					<CustomBehavior File="InteractWith" QuestId="39449" ProactiveCombatStrategy="ClearMobsThatWillAggro" NumOfTimes="1000" MobIds="240165, 240173, 90501, 90302, 90703, 92597" >
+					<CustomBehavior File="InteractWith" QuestId="39450" ProactiveCombatStrategy="ClearMobsThatWillAggro" NumOfTimes="1000" MobIds="240165, 240173, 90501, 90302, 90703, 92597" >
 						<HuntingGrounds>
 							<Hotspot X="3542.274" Y="208.3379" Z="139.7317" />
 							<Hotspot X="3477.852" Y="148.2731" Z="149.7003" />
@@ -416,14 +416,14 @@
 						</HuntingGrounds>
 					</CustomBehavior>
 				</If>
-				<If Condition="!IsQuestCompleted(39451) &amp;&amp; !IsQuestCompleted(37891) &amp;&amp; !IsQuestCompleted(39574)" > <!-- Assault on Ironhold Harbor -->
-					<If Condition="!HasQuest(39451)" >
+				<If Condition="!IsQuestCompleted(39452) &amp;&amp; !IsQuestCompleted(37940) &amp;&amp; !IsQuestCompleted(39526)" > <!-- Assault on Ironhold Harbor -->
+					<If Condition="!HasQuest(39452)" >
 						<DisableBehavior Name="Pull" />
 						<MoveTo DestName="Ironhold Harbor" X="4583.305" Y="-399.9979" Z="10.69125" />
-						<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39451)" />
+						<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39452)" />
 						<EnableBehavior Name="Pull" />
 					</If>
-					<CustomBehavior File="InteractWith" QuestId="39451" ProactiveCombatStrategy="ClearMobsThatWillAggro" IgnoreMobsInBlackspots="true" NumOfTimes="1000" MobIds="239839, 90433" >
+					<CustomBehavior File="InteractWith" QuestId="39452" ProactiveCombatStrategy="ClearMobsThatWillAggro" IgnoreMobsInBlackspots="true" NumOfTimes="1000" MobIds="239839, 90433" >
 						<HuntingGrounds> <!-- 90069, True Iron Bomb.  Need to click on a tank after picking it up.  Could also just have it click the player's location. -->
 							<Hotspot X="4583.305" Y="-399.9979" Z="10.69125" />
 							<Hotspot X="4592.449" Y="-238.1564" Z="10.7333" />
@@ -437,10 +437,10 @@
 			</If>
 		<!-- END Finish up Bonus Objectives for Pressing the Attack -->
 
-		<!-- DO Random Daily from Parvink, other daily is included above. -->
-			<While Condition="HasQuest(39581) &amp;&amp; !IsQuestCompleted(39581)" > <!-- [Pavnik] Demonslayer of Tanaan -->
+		<!-- DO Random Daily from Nimi Brightcastle, other daily is included above. -->
+			<While Condition="HasQuest(39519) &amp;&amp; !IsQuestCompleted(39519)" > <!-- [Nimi Brightcastle] Demonslayer of Tanaan -->
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Demonslayer of Tanaan.&quot;);" />
-				<CustomBehavior File="KillUntilComplete" MobIds="93024, 90517" QuestId="39581" >
+				<CustomBehavior File="KillUntilComplete" MobIds="93024, 90517" QuestId="39519" >
 					<HuntingGrounds>
 						<Hotspot X="4483.101" Y="-1200.358" Z="30.22227" />
 						<Hotspot X="4433.078" Y="-1165.501" Z="29.08888" />
@@ -450,21 +450,21 @@
 					</HuntingGrounds>
 				</CustomBehavior>
 			</While>
-			<If Condition="HasQuest(39581) &amp;&amp; IsQuestCompleted(39581)" >
+			<If Condition="HasQuest(39519) &amp;&amp; IsQuestCompleted(39519)" >
 				<DisableBehavior Name="Pull" />
-				<TurnIn Nav="Fly" QuestName="Demonslayer of Tanaan" QuestId="39581" TurnInName="Parvink" TurnInId="96147" />
+				<TurnIn Nav="Fly" QuestName="Demonslayer of Tanaan" QuestId="39519" TurnInName="Nimi Brightcastle" TurnInId="93396" />
 				<EnableBehavior Name="Pull" />
 			</If>
-		<!-- END DO Random Daily from Parvink -->
+		<!-- END DO Random Daily from Nimi Brightcastle -->
 
 		<!-- Turn in Pressing the Attack if we're done with it. -->
-		<If Condition="HasQuest(39574) &amp;&amp; IsQuestCompleted(39574)" >
+		<If Condition="HasQuest(39526) &amp;&amp; IsQuestCompleted(39526)" >
 			<DisableBehavior Name="Pull" />
-			<TurnIn Nav="Fly" QuestName="Pressing the Attack" QuestId="39574" TurnInName="Vindicator Krethos" TurnInId="90974" />
+			<TurnIn Nav="Fly" QuestName="Pressing the Attack" QuestId="39526" TurnInName="Shadow Hunter Denjai" TurnInId="96014" />
 			<EnableBehavior Name="Pull" />
 		</If>
 
-		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Hand of the Prophet dailies are complete for today.&quot;);" />
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Vol'jin's Headhunters dailies are complete for today.&quot;);" />
 
 	</QuestOrder>
 </HBProfile>
