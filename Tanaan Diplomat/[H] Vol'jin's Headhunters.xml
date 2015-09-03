@@ -264,7 +264,7 @@
 		<!-- END Daily from Shadow Hunter Denjai -->
 
 		<!-- Randomized Daily from Shadow Hunter Denjai -->
-			<If Condition="!(HasQuest(39573) || HasQuest(39571) || HasQuest(39570) || HasQuest(39569) || HasQuest(39568) || HasQuest(39567)) &amp;&amp; !(IsQuestCompleted(39573) || IsQuestCompleted(39571) || IsQuestCompleted(39570) || IsQuestCompleted(39569) || IsQuestCompleted(39568) || IsQuestCompleted(39567))" >
+			<If Condition="!(HasQuest(39514) || HasQuest(39513) || HasQuest(39512) || HasQuest(39511) || HasQuest(39510) || HasQuest(39509)) &amp;&amp; !(IsQuestCompleted(39514) || IsQuestCompleted(39513) || IsQuestCompleted(39512) || IsQuestCompleted(39511) || IsQuestCompleted(39510) || IsQuestCompleted(39509))" >
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Checking Shadow Hunter Denjai.&quot;);" />
 				<MoveTo DestName="Shadow Hunter Denjai" X="4334.545" Y="-1528.443" Z="88.27927" />
 				<CustomBehavior File="InteractWith" MobId="96014" WaitTime="1000" X="4334.67" Y="-1529.712" Z="88.28157" />
@@ -279,11 +279,11 @@
 		<!-- END Randomized Daily from Shadow Hunter Denjai -->
 
 		<!-- DO Randomized Daily from Shadow Hunter Denjai -->
-			<While Condition="HasQuest(39573) &amp;&amp; !IsQuestCompleted(39573)" > <!-- [GROUP] Harnessing Their Power -->
+			<While Condition="HasQuest(39514) &amp;&amp; !IsQuestCompleted(39514)" > <!-- [GROUP] Harnessing Their Power -->
 				<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="2" ExpiryTime="45" Text="[WARNING]\n\nThe daily we picked up is a group quest.\n\nIf you continue, the bot will attempt to finish it however you may get into a death loop if you are undergeared or a caster class." />
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Harnessing Their Power.&quot;);" />
 				<MoveTo DestName="The Iron Front" X="4025.265" Y="1064.812" Z="167.5833" />
-				<CustomBehavior File="KillUntilComplete" QuestId="39573" MobId="90585" >
+				<CustomBehavior File="KillUntilComplete" QuestId="39514" MobId="90585" >
 					<HuntingGrounds>
 						<Hotspot X="3970.267" Y="1030.804" Z="163.2329" />
 						<Hotspot X="3959.172" Y="859.4688" Z="152.6836" />
@@ -291,15 +291,15 @@
 					</HuntingGrounds>
 				</CustomBehavior>
 			</While>
-			<If Condition="HasQuest(39573) &amp;&amp; IsQuestCompleted(39573)" >
+			<If Condition="HasQuest(39514) &amp;&amp; IsQuestCompleted(39514)" >
 				<DisableBehavior Name="Pull" />
-				<TurnIn Nav="Fly" QuestName="Harnessing Their Power" QuestId="39573" TurnInName="Shadow Hunter Denjai" TurnInId="90974" />
+				<TurnIn Nav="Fly" QuestName="Harnessing Their Power" QuestId="39514" TurnInName="Shadow Hunter Denjai" TurnInId="96014" />
 				<EnableBehavior Name="Pull" />
 			</If>
 
-			<While Condition="HasQuest(39571) &amp;&amp; !IsQuestCompleted(39571)" > <!-- Disarming Sha'naar -->
+			<While Condition="HasQuest(39513) &amp;&amp; !IsQuestCompleted(39513)" > <!-- Disarming Sha'naar -->
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Assault on Disarming Sha'naar.&quot;);" />
-				<CustomBehavior File="InteractWith" QuestId="39571" ProactiveCombatStrategy="ClearMobsThatWillAggro" NumOfTimes="1000" MobIds="243794" >
+				<CustomBehavior File="InteractWith" QuestId="39513" ProactiveCombatStrategy="ClearMobsThatWillAggro" NumOfTimes="1000" MobIds="243794" >
 					<HuntingGrounds>
 						<Hotspot X="3542.274" Y="208.3379" Z="139.7317" />
 						<Hotspot X="3477.852" Y="148.2731" Z="149.7003" />
@@ -311,15 +311,15 @@
 					</HuntingGrounds>
 				</CustomBehavior>
 			</While>
-			<If Condition="HasQuest(39571) &amp;&amp; IsQuestCompleted(39571)" >
+			<If Condition="HasQuest(39513) &amp;&amp; IsQuestCompleted(39513)" >
 				<DisableBehavior Name="Pull" />
-				<TurnIn Nav="Fly" QuestName="Disarming Sha'naar" QuestId="39571" TurnInName="Shadow Hunter Denjai" TurnInId="90974" />
+				<TurnIn Nav="Fly" QuestName="Disarming Sha'naar" QuestId="39513" TurnInName="Shadow Hunter Denjai" TurnInId="96014" />
 				<EnableBehavior Name="Pull" />
 			</If>
 
-			<While Condition="HasQuest(39570) &amp;&amp; !IsQuestCompleted(39570)" > <!-- Secrets of the Shadow Council -->
+			<While Condition="HasQuest(39512) &amp;&amp; !IsQuestCompleted(39512)" > <!-- Secrets of the Shadow Council -->
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Secrets of the Shadow Council.&quot;);" />
-				<CustomBehavior File="KillUntilComplete" QuestId="39570" MobIds="90649, 90607, 90312, 90654, 89748" >
+				<CustomBehavior File="KillUntilComplete" QuestId="39512" MobIds="90649, 90607, 90312, 90654, 89748" >
 					<HuntingGrounds>
 						<Hotspot X="4560.763" Y="443.0881" Z="229.8193" />
 						<Hotspot X="4526.892" Y="518.3264" Z="229.262" />
@@ -343,9 +343,9 @@
 					</HuntingGrounds>
 				</CustomBehavior>
 			</While>
-			<While Condition="HasQuest(39569) &amp;&amp; !IsQuestCompleted(39569)" > <!-- Breaking Their Fel Bonds -->
-				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Breaking Their Fel Bonds.&quot;);" />
-				<CustomBehavior File="KillUntilComplete" MobIds="90066, 91760, 91721, 89754, 93370" QuestId="39569" >
+			<While Condition="HasQuest(39511) &amp;&amp; !IsQuestCompleted(39511)" > <!-- Blood of Fallen Brothers -->
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Blood of Fallen Brothers.&quot;);" />
+				<CustomBehavior File="KillUntilComplete" MobIds="90066, 91760, 91721, 89754, 93370" QuestId="39511" >
 					<HuntingGrounds>
 						<Hotspot X="4314.433" Y="-1025.236" Z="21.86001" />
 						<Hotspot X="4378.459" Y="-914.2455" Z="34.72607" />
@@ -359,17 +359,17 @@
 				<TurnIn Nav="Fly" QuestName="Bringing Down the Iron Horde" QuestId="39532" TurnInName="Nimi Brightcastle" TurnInId="93396" />
 				<EnableBehavior Name="Pull" />
 			</If>
-			<If Condition="HasQuest(39569) &amp;&amp; IsQuestCompleted(39569)" >
+			<If Condition="HasQuest(39511) &amp;&amp; IsQuestCompleted(39511)" >
 				<DisableBehavior Name="Pull" />
-				<TurnIn Nav="Fly" QuestName="Breaking Their Fel Bonds" QuestId="39569" TurnInName="Shadow Hunter Denjai" TurnInId="90974" />
+				<TurnIn Nav="Fly" QuestName="Blood of Fallen Brothers" QuestId="39511" TurnInName="Shadow Hunter Denjai" TurnInId="96014" />
 				<EnableBehavior Name="Pull" />
 			</If>
 
-			<While Condition="HasQuest(39568) &amp;&amp; !IsQuestCompleted(39568)" > <!-- A Little Wetwork -->
+			<While Condition="HasQuest(39510) &amp;&amp; !IsQuestCompleted(39510)" > <!-- A Little Wetwork -->
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - A Little Wetwork.&quot;);" />
 			</While>
 
-			<While Condition="HasQuest(39567) &amp;&amp; !IsQuestCompleted(39567)" > <!-- Bloodied Blades of Zeth'Gol -->
+			<While Condition="HasQuest(39509) &amp;&amp; !IsQuestCompleted(39509)" > <!-- Bloodied Blades of Zeth'Gol -->
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Bloodied Blades of Zeth'Gol.&quot;);" />
 			</While>
 		<!-- END DO Randomized Daily from Shadow Hunter Denjai -->
