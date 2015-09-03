@@ -330,6 +330,11 @@
 					</HuntingGrounds>
 				</CustomBehavior>
 			</While>
+			<If Condition="HasQuest(39570) &amp;&amp; IsQuestCompleted(39570)" >
+				<DisableBehavior Name="Pull" />
+				<TurnIn Nav="Fly" QuestName="Secrets of the Shadow Council" QuestId="39570" TurnInName="Vindicator Krethos" TurnInId="90974" />
+				<EnableBehavior Name="Pull" />
+			</If>
 			<!-- Could wedge Pavkin's second quest here -->
 
 			<While Condition="HasQuest(39586) &amp;&amp; !IsQuestCompleted(39586)" > <!-- [Pavnik] Bringing Down the Iron Horde -->
@@ -367,11 +372,41 @@
 
 			<While Condition="HasQuest(39568) &amp;&amp; !IsQuestCompleted(39568)" > <!-- A Little Wetwork -->
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - A Little Wetwork.&quot;);" />
+				<CustomBehavior File="KillUntilComplete" QuestId="39568" MobIds="89857, 90136, 89777, 89810, 89935, 89936, 91832" >
+					<HuntingGrounds>
+						<Hotspot X="4583.305" Y="-399.9979" Z="10.69125" />
+						<Hotspot X="4592.449" Y="-238.1564" Z="10.7333" />
+						<Hotspot X="4770.981" Y="-244.9629" Z="4.211271" />
+						<Hotspot X="4786.581" Y="-386.6306" Z="4.258256" />
+						<Hotspot X="4644.233" Y="-483.5012" Z="21.41648" />
+						<Hotspot X="4581.786" Y="-506.2161" Z="21.41869" />
+					</HuntingGrounds>
+				</CustomBehavior>
 			</While>
+			<If Condition="HasQuest(39568) &amp;&amp; IsQuestCompleted(39568)" >
+				<DisableBehavior Name="Pull" />
+				<TurnIn Nav="Fly" QuestName="A Little Wetwork" QuestId="39568" TurnInName="Vindicator Krethos" TurnInId="90974" />
+				<EnableBehavior Name="Pull" />
+			</If>
 
 			<While Condition="HasQuest(39567) &amp;&amp; !IsQuestCompleted(39567)" > <!-- Bloodied Blades of Zeth'Gol -->
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Bloodied Blades of Zeth'Gol.&quot;);" />
+				<CustomBehavior File="KillUntilComplete" QuestId="39567" MobIds="90851, 89699, 89703, 89705" >
+					<!--  90781 goes with InteractWith, but requires to be used after interacting. -->
+					<HuntingGrounds>
+						<Hotspot X="4310.75" Y="431.8437" Z="175.2454" />
+						<Hotspot X="4318.75" Y="372.2255" Z="176.6174" />
+						<Hotspot X="4223.525" Y="552.8775" Z="173.4002" />
+						<Hotspot X="4152.482" Y="654.0584" Z="162.6546" />
+						<Hotspot X="4117.844" Y="594.8691" Z="162.812" />
+					</HuntingGrounds>
+				</CustomBehavior>
 			</While>
+			<If Condition="HasQuest(39567) &amp;&amp; IsQuestCompleted(39567)" >
+				<DisableBehavior Name="Pull" />
+				<TurnIn Nav="Fly" QuestName="Bloodied Blades of Zeth'Gol" QuestId="39567" TurnInName="Vindicator Krethos" TurnInId="90974" />
+				<EnableBehavior Name="Pull" />
+			</If>
 		<!-- END DO Randomized Daily from Vindicator Krethos -->
 
 		<!-- Finish up Bonus Objectives for Pressing the Attack -->
