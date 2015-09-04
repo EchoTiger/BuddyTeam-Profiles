@@ -1,0 +1,57 @@
+<HBProfile>
+	<Name>The Saberstalkers Grind</Name>
+	
+	
+	<MinDurability>0.2</MinDurability>
+	<MinFreeBagSlots>2</MinFreeBagSlots>
+
+	<MailGrey>false</MailGrey>
+	<MailWhite>false</MailWhite>
+	<MailGreen>false</MailGreen>
+	<MailBlue>true</MailBlue>
+	<MailPurple>true</MailPurple>
+
+	<SellGrey>true</SellGrey>
+	<SellWhite>true</SellWhite>
+	<SellGreen>true</SellGreen>
+	<SellBlue>false</SellBlue>
+	<SellPurple>false</SellPurple>
+
+	<Blackspots>
+		<Blackspot X="4809.82" Y="-214.9371" Z="3.513144" Radius="10.45735" /> <!-- Iron Horde Banner up on elevated location -->
+	</Blackspots>
+
+	<Vendors>
+		<Vendor Name="Forika the Seer" Entry="93178" Type="Repair" Nav="Fly" X="4567.845" Y="360.5729" Z="221.1745" /> <!-- Neutral -->
+		<Vendor Name="Veetra the Tender" Entry="92069" Type="Repair" Nav="Fly" X="3527.068" Y="-763.809" Z="40.33412" /> <!-- Neutral -->
+		<Vendor Name="Thaesus" Entry="90977" Type="Repair" Nav="Fly" X="3823.288" Y="-1371.474" Z="95.44617" UsableWhen="Me.IsAlliance" /> <!-- Lion's Watch -->
+		<Vendor Name="Rett Blasterhose" Entry="90994" Type="Repair" Nav="Fly" X="4326.587" Y="-1405.056" Z="71.38323" UsableWhen="Me.IsHorde" /> <!-- Vol'mar -->
+		<Vendor Name="Shadow Hunter Denjai" Entry="96014" Type="Repair" Nav="Fly" X="4334.67" Y="-1529.712" Z="88.28191" UsableWhen="Me.IsHorde" /> <!-- Vol'mar -->
+	</Vendors>
+
+	<Mailboxes>
+		<Mailbox X="3843.123" Y="-1341.004" Z="93.79218" UsableWhen="Me.IsAlliance" /> <!-- Lion's Watch -->
+		<Mailbox X="4296.142" Y="-1482.004" Z="79.62183" UsableWhen="Me.IsHorde" /> <!-- Vol'mar -->
+	</Mailboxes>
+
+	<QuestOrder>
+		<!-- Insert Navigation to get to Lion's Watch or Vol'mar -->
+
+		<!-- Not doing this because if the quest isn't offered, then the player would go back to town everytime the profile starts. -->
+			<If Condition="(!HasQuest(39582) &amp;&amp; !IsQuestCompleted(39582) &amp;&amp; Me.IsAlliance) || (!HasQuest(39529) &amp;&amp; !IsQuestCompleted(39529) &amp;&amp; Me.IsHorde)" >
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Red, &quot;[Notification]: You may want to pick up Tooth and Claw before letting this grind commence.&quot;);" />
+			</If>
+
+			<While Condition="Me.GetReputationLevelWith(1850) &lt; WoWUnitReaction.Revered" >
+				<CustomBehavior File="KillUntilComplete" MobIds="89746, 89747" TerminateWhen="false" >
+					<HuntingGrounds>
+						<Hotspot X="3183.188" Y="-1126.587" Z="20.79069" />
+						<Hotspot X="3169.365" Y="-1036.586" Z="35.2627" />
+					</HuntingGrounds>
+				</CustomBehavior>
+			</While>
+
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: The Saberstalkers grind is complete.&quot;);" />
+
+	</QuestOrder>
+</HBProfile>
