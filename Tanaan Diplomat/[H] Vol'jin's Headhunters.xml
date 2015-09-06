@@ -58,14 +58,21 @@
 		<!-- END Introductory Quests -->
 
 		<!-- Randomized Daily from Nimi Brightcastle -->
-			<If Condition="!(HasQuest(39532) || HasQuest(39519)) &amp;&amp; !(IsQuestCompleted(39532) || IsQuestCompleted(39519))" >
+			<If Condition="!(HasQuest(39532) || HasQuest(39519) || HasQuest(39529)) &amp;&amp; !(IsQuestCompleted(39532) || IsQuestCompleted(39519) || IsQuestCompleted(39529))" >
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Checking Nimi Brightcastle for dailies.&quot;);" />
 				<MoveTo DestName="Nimi Brightcastle" X="4326.101" Y="-1425.438" Z="69.44341" />
-				<CustomBehavior File="InteractWith" MobId="93396" Range="5" WaitTime="1000" X="4326.101" Y="-1425.438" Z="69.44341" />
+				<CustomBehavior File="InteractWith" MobId="93396" Range="5" WaitTime="500" X="4326.101" Y="-1425.438" Z="69.44341" />
 				<If Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return QuestFrameDetailPanel:IsVisible();&quot;, 0)" >
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Choosing quest from Nimi Brightcastle.&quot;);" />
 					<CustomBehavior File="Misc\RunLua" Lua="QuestFrameAcceptButton:Click();" />
-					<CustomBehavior File="WaitTimer" WaitTime="1000" />
+					<CustomBehavior File="WaitTimer" WaitTime="500" />
+					<ElseIf Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return QuestTitleButton2:IsVisible();&quot;, 0)" > <!-- If player has quest from previous day -->
+						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Choosing second quest from Parvink.&quot;);" />
+						<CustomBehavior File="Misc\RunLua" Lua="QuestTitleButton2:Click();" />
+						<CustomBehavior File="WaitTimer" WaitTime="500" />
+						<CustomBehavior File="Misc\RunLua" Lua="QuestFrameAcceptButton:Click();" />
+						<CustomBehavior File="WaitTimer" WaitTime="500" />
+					</ElseIf>
 					<Else>
 						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Nimi Brightcastle doesn't seem to be offering a quest at the moment.&quot;);" />
 					</Else>
@@ -77,21 +84,21 @@
 			<While Condition="!(HasQuest(37940) || HasQuest(38449) || HasQuest(38047) || HasQuest(38044) || HasQuest(38252) || HasQuest(38441)) &amp;&amp; !(IsQuestCompleted(37940) || IsQuestCompleted(38449) || IsQuestCompleted(38047) || IsQuestCompleted(38044) || IsQuestCompleted(38252) || IsQuestCompleted(38441))" >
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Checking Tanaan Planning map.&quot;);" />
 				<MoveTo DestName="Tanaan Planning Map" X="4327.29" Y="-1517.717" Z="88.02447" />
-				<CustomBehavior File="InteractWith" MobId="241725" NonCompeteDistance="0" Range="5" WaitTime="1000" X="4327.646" Y="-1520.481" Z="88.02522" />
+				<CustomBehavior File="InteractWith" MobId="241725" NonCompeteDistance="0" Range="5" WaitTime="500" X="4327.646" Y="-1520.481" Z="88.02522" />
 				<If Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return QuestChoiceFrame:IsVisible();&quot;, 0)" >
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Choosing quest from Tanaan Planning Map.&quot;);" />
 					<CustomBehavior File="Misc\RunLua" Lua="QuestChoiceFrameOption1.OptionButton:Click();" />
-					<CustomBehavior File="WaitTimer" WaitTime="1000" />
+					<CustomBehavior File="WaitTimer" WaitTime="500" />
 				</If>
 				<If Condition="HasQuest(38586)" > <!-- If we pick up a group quest. -->
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Picked up a group quest, abandoning it to choose a solo quest.&quot;);" />
 					<CustomBehavior File="AbandonQuest" QuestId="38586" />
 					<CustomBehavior File="WaitTimer" WaitTime="500" />
-					<CustomBehavior File="InteractWith" MobId="241725" NonCompeteDistance="0" Range="5" WaitTime="1000" X="4327.646" Y="-1520.481" Z="88.02522" />
+					<CustomBehavior File="InteractWith" MobId="241725" NonCompeteDistance="0" Range="5" WaitTime="500" X="4327.646" Y="-1520.481" Z="88.02522" />
 					<If Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return QuestChoiceFrame:IsVisible();&quot;, 0)" >
 						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Choosing quest from Tanaan Planning Map.&quot;);" />
 						<CustomBehavior File="Misc\RunLua" Lua="QuestChoiceFrameOption2.OptionButton:Click();" />
-						<CustomBehavior File="WaitTimer" WaitTime="1000" />
+						<CustomBehavior File="WaitTimer" WaitTime="500" />
 					</If>
 				</If>
 			</While>
@@ -124,7 +131,7 @@
 			</If>
 
 			<While Condition="HasQuest(38449) &amp;&amp; !IsQuestCompleted(38449)" > <!-- Assault on the Temple of Sha'naar -->
-				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Assault on Assault on the Temple of Sha'naar.&quot;);" />
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Assault on the Temple of Sha'naar.&quot;);" />
 				<If Condition="!HasQuest(38020)" >
 					<DisableBehavior Name="Pull" />
 					<MoveTo DestName="Temple of Sha'naar" X="3612.619" Y="183.9686" Z="129.547" />
@@ -268,13 +275,13 @@
 			<If Condition="!(HasQuest(39514) || HasQuest(39513) || HasQuest(39512) || HasQuest(39511) || HasQuest(39510) || HasQuest(39509)) &amp;&amp; !(IsQuestCompleted(39514) || IsQuestCompleted(39513) || IsQuestCompleted(39512) || IsQuestCompleted(39511) || IsQuestCompleted(39510) || IsQuestCompleted(39509))" >
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Checking Shadow Hunter Denjai.&quot;);" />
 				<MoveTo DestName="Shadow Hunter Denjai" X="4334.545" Y="-1528.443" Z="88.27927" />
-				<CustomBehavior File="InteractWith" MobId="96014" WaitTime="1000" X="4334.67" Y="-1529.712" Z="88.28157" />
+				<CustomBehavior File="InteractWith" MobId="96014" WaitTime="500" X="4334.67" Y="-1529.712" Z="88.28157" />
 				<If Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return GossipFrameGreetingPanel:IsVisible();&quot;, 0)" >
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Choosing quest from Shadow Hunter Denjai.&quot;);" />
 					<CustomBehavior File="Misc\RunLua" Lua="GossipTitleButton1:Click();" />
-					<CustomBehavior File="WaitTimer" WaitTime="1000" />
+					<CustomBehavior File="WaitTimer" WaitTime="500" />
 					<CustomBehavior File="Misc\RunLua" Lua="QuestFrameAcceptButton:Click();" />
-					<CustomBehavior File="WaitTimer" WaitTime="1000" />
+					<CustomBehavior File="WaitTimer" WaitTime="500" />
 				</If>
 			</If>
 		<!-- END Randomized Daily from Shadow Hunter Denjai -->
