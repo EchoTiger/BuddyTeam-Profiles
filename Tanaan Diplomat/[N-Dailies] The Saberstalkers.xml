@@ -90,7 +90,7 @@
 				</CustomBehavior>
 			</If>
 
-			<If Condition="HasQuest(39565) &amp;&amp; !IsQuestCompleted(39565) &amp;&amp; ((HasItem(124093) &amp;&amp; !IsQuestCompleted || HasItem(124094) || HasItem(124095))" >
+			<If Condition="HasQuest(39565) &amp;&amp; !IsQuestCompleted(39565) &amp;&amp; (HasItem(124093) || HasItem(124094) || HasItem(124095))" >
 				<MoveTo X="3317.219" Y="-1189.886" Z="57.94663" />
 				<CustomBehavior File="InteractWith" MobId="92805" WaitTime="500" X="3317.757" Y="-1194.224" Z="57.9488" />
 				<CustomBehavior File="Misc\RunLua" Lua="GossipTitleButton3:Click();" />
@@ -136,12 +136,14 @@
 				</CustomBehavior>
 			</If>
 
+			<DisableBehavior Name="Pull" />
 			<If Condition="HasQuest(39565) &amp;&amp; IsQuestCompleted(39565)" >
 				<TurnIn Nav="Fly" QuestName="Rumble in the Jungle" QuestId="39565" TurnInName="Z'tenga the Walker" TurnInId="92805" />
 			</If>
 			<If Condition="HasQuest(39582) &amp;&amp; IsQuestCompleted(39582)" >
 				<TurnIn Nav="Fly" QuestName="Tooth and Claw" QuestId="39582" TurnInName="Parvink" TurnInId="96147" />
 			</If>
+			<EnableBehavior Name="Pull" />
 
 		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: The Saberstalkers dailies/weeklies are complete for today.&quot;);" />
 
