@@ -1,0 +1,149 @@
+<HBProfile>
+	<Name>The Saberstalkers Dailies</Name>
+	
+	<MinDurability>0.2</MinDurability>
+	<MinFreeBagSlots>2</MinFreeBagSlots>
+
+	<MailGrey>false</MailGrey>
+	<MailWhite>false</MailWhite>
+	<MailGreen>false</MailGreen>
+	<MailBlue>true</MailBlue>
+	<MailPurple>true</MailPurple>
+
+	<SellGrey>true</SellGrey>
+	<SellWhite>true</SellWhite>
+	<SellGreen>true</SellGreen>
+	<SellBlue>false</SellBlue>
+	<SellPurple>false</SellPurple>
+
+	<Blackspots>
+		<Blackspot X="4809.82" Y="-214.9371" Z="3.513144" Radius="10.45735" /> <!-- Iron Horde Banner up on elevated location -->
+	</Blackspots>
+
+	<Vendors>
+		<Vendor Name="Forika the Seer" Entry="93178" Type="Repair" Nav="Fly" X="4567.845" Y="360.5729" Z="221.1745" /> <!-- Neutral -->
+		<Vendor Name="Veetra the Tender" Entry="92069" Type="Repair" Nav="Fly" X="3527.068" Y="-763.809" Z="40.33412" /> <!-- Neutral -->
+		<Vendor Name="Thaesus" Entry="90977" Type="Repair" Nav="Fly" X="3823.288" Y="-1371.474" Z="95.44617" UsableWhen="Me.IsAlliance" /> <!-- Lion's Watch -->
+		<Vendor Name="Rett Blasterhose" Entry="90994" Type="Repair" Nav="Fly" X="4326.587" Y="-1405.056" Z="71.38323" UsableWhen="Me.IsHorde" /> <!-- Vol'mar -->
+		<Vendor Name="Shadow Hunter Denjai" Entry="96014" Type="Repair" Nav="Fly" X="4334.67" Y="-1529.712" Z="88.28191" UsableWhen="Me.IsHorde" /> <!-- Vol'mar -->
+	</Vendors>
+
+	<Mailboxes>
+		<Mailbox X="3843.123" Y="-1341.004" Z="93.79218" UsableWhen="Me.IsAlliance" /> <!-- Lion's Watch -->
+		<Mailbox X="4296.142" Y="-1482.004" Z="79.62183" UsableWhen="Me.IsHorde" /> <!-- Vol'mar -->
+	</Mailboxes>
+
+	<QuestOrder>
+		<!-- Insert Navigation to get to Lion's Watch or Vol'mar -->
+			<!-- Tooth and Claw pickup attempt -->
+			<If Condition="!HasQuest(39582) &amp;&amp; !IsQuestCompleted(39582) &amp;&amp; Me.IsAlliance" >
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Checking Parvink for dailies.&quot;);" />
+				<MoveTo DestName="Parvink" X="3842.831" Y="-1328.245" Z="92.13056" />
+				<CustomBehavior File="InteractWith" MobId="96147" Range="5" WaitTime="500" X="3840.701" Y="-1327.689" Z="94.02097" />
+				<If Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return QuestFrameDetailPanel:IsVisible();&quot;, 0)" >
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Choosing quest from Parvink.&quot;);" />
+					<CustomBehavior File="Misc\RunLua" Lua="QuestFrameAcceptButton:Click();" />
+					<CustomBehavior File="WaitTimer" WaitTime="500" />
+					<ElseIf Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return QuestTitleButton2:IsVisible();&quot;, 0)" > <!-- If player has quest from previous day -->
+						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Choosing second quest from Parvink.&quot;);" />
+						<CustomBehavior File="Misc\RunLua" Lua="QuestTitleButton2:Click();" />
+						<CustomBehavior File="WaitTimer" WaitTime="500" />
+						<CustomBehavior File="Misc\RunLua" Lua="QuestFrameAcceptButton:Click();" />
+						<CustomBehavior File="WaitTimer" WaitTime="500" />
+					</ElseIf>
+					<Else>
+						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Parvink doesn't seem to be offering a quest at the moment.&quot;);" />
+					</Else>
+				</If>
+			</If>
+			<If Condition="!HasQuest(39529) &amp;&amp; !IsQuestCompleted(39529) &amp;&amp; Me.IsHorde" >
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Checking Nimi Brightcastle for dailies.&quot;);" />
+				<MoveTo DestName="Nimi Brightcastle" X="4326.101" Y="-1425.438" Z="69.44341" />
+				<CustomBehavior File="InteractWith" MobId="93396" Range="5" WaitTime="500" X="4326.101" Y="-1425.438" Z="69.44341" />
+				<If Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return QuestFrameDetailPanel:IsVisible();&quot;, 0)" >
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Choosing quest from Nimi Brightcastle.&quot;);" />
+					<CustomBehavior File="Misc\RunLua" Lua="QuestFrameAcceptButton:Click();" />
+					<CustomBehavior File="WaitTimer" WaitTime="500" />
+					<ElseIf Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return QuestTitleButton2:IsVisible();&quot;, 0)" > <!-- If player has quest from previous day -->
+						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Choosing second quest from Parvink.&quot;);" />
+						<CustomBehavior File="Misc\RunLua" Lua="QuestTitleButton2:Click();" />
+						<CustomBehavior File="WaitTimer" WaitTime="500" />
+						<CustomBehavior File="Misc\RunLua" Lua="QuestFrameAcceptButton:Click();" />
+						<CustomBehavior File="WaitTimer" WaitTime="500" />
+					</ElseIf>
+					<Else>
+						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Nimi Brightcastle doesn't seem to be offering a quest at the moment.&quot;);" />
+					</Else>
+				</If>
+			</If>
+			<!-- END Tooth and Claw pickup attempt -->
+
+			<PickUp Nav="Fly" QuestName="Rumble in the Jungle" QuestId="39565" GiverName="Z'tenga the Walker" GiverId="92805" />
+
+			<If Condition="HasQuest(39565) &amp;&amp; !IsQuestCompleted(39565) &amp;&amp; ((GetItemCount(124099) &lt; 5 &amp;&amp; !HasItem(124093) &amp;&amp; !IsObjectiveComplete(1,39565)) || (GetItemCount(124099) &lt; 10 &amp;&amp; !HasItem(124094) &amp;&amp; !IsObjectiveComplete(2,39565)) || (GetItemCount(124099) &lt; 25 &amp;&amp; !HasItem(124095) &amp;&amp; !IsObjectiveComplete(3,39565)))" >
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Farming enough teeth to buy the totems.&quot;);" />
+				<CustomBehavior File="KillUntilComplete" MobIds="89746, 89747" TerminateWhen="(GetItemCount(124099) &gt;= 15 &amp;&amp; HasItem(124095)) || (GetItemCount(124099) &gt;= 30 &amp;&amp; HasItem(124094)) || (GetItemCount(124099) &gt;= 35 &amp;&amp; HasItem(124093)) || GetItemCount(124099) &gt;= 40" >
+					<HuntingGrounds>
+						<Hotspot X="3183.188" Y="-1126.587" Z="20.79069" />
+						<Hotspot X="3169.365" Y="-1036.586" Z="35.2627" />
+					</HuntingGrounds>
+				</CustomBehavior>
+			</If>
+
+			<If Condition="HasQuest(39565) &amp;&amp; !IsQuestCompleted(39565) &amp;&amp; ((HasItem(124093) &amp;&amp; !IsQuestCompleted || HasItem(124094) || HasItem(124095))" >
+				<MoveTo X="3317.219" Y="-1189.886" Z="57.94663" />
+				<CustomBehavior File="InteractWith" MobId="92805" WaitTime="500" X="3317.757" Y="-1194.224" Z="57.9488" />
+				<CustomBehavior File="Misc\RunLua" Lua="GossipTitleButton3:Click();" />
+				<CustomBehavior File="WaitTimer" WaitTime="500" VariantTime="1000" />
+				<If Condition="!HasItem(124093) &amp;&amp; !IsObjectiveComplete(1,39565)" >
+					<CustomBehavior File="Misc\RunLua" Lua="BuyMerchantItem(3);" />
+				</If>
+				<If Condition="!HasItem(124094) &amp;&amp; !IsObjectiveComplete(2,39565)" >
+					<CustomBehavior File="Misc\RunLua" Lua="BuyMerchantItem(2);" />
+				</If>
+				<If Condition="!HasItem(124095) &amp;&amp; !IsObjectiveComplete(3,39565)" >
+					<CustomBehavior File="Misc\RunLua" Lua="BuyMerchantItem(1);" />
+				</If>
+				<CustomBehavior File="WaitTimer" WaitTime="100" VariantTime="250" />
+			</If>
+
+			<While Condition="(HasItem(124093) &amp;&amp; !IsObjectiveComplete(1,39565)) &amp;&amp; (HasItem(124094) &amp;&amp; !IsObjectiveComplete(2,39565)) &amp;&amp; (HasItem(124095) &amp;&amp; !IsObjectiveComplete(3,39565))" >
+				<MoveTo X="3102.604" Y="-1139.251" Z="51.03778" />
+				<If Condition="HasItem(124093) &amp;&amp; !IsObjectiveComplete(1,39565)" >
+					<CustomBehavior File="UseItem" ItemId="124093" />
+				</If>
+				<If Condition="HasItem(124094) &amp;&amp; !IsObjectiveComplete(2,39565)" >
+					<CustomBehavior File="UseItem" ItemId="124094" />
+				</If>
+				<If Condition="HasItem(124095) &amp;&amp; !IsObjectiveComplete(3,39565)" >
+					<CustomBehavior File="UseItem" ItemId="124095" />
+				</If>
+				<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="Me.Combat" />
+			</While>
+
+			<If Condition="(HasQuest(39582) &amp;&amp; !IsQuestCompleted(39582) &amp;&amp; Me.IsAlliance) || (HasQuest(39529) &amp;&amp; !IsQuestCompleted(39529) &amp;&amp; Me.IsHorde)" >
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Finishing Tooth and Claw.&quot;);" />
+				<CustomBehavior File="KillUntilComplete" MobIds="92607, 89745, 89744" TerminateWhen="IsQuestCompleted(39582) || IsQuestCompleted(39529)" >
+					<HuntingGrounds>
+						<Hotspot X="3170.341" Y="-416.2042" Z="19.38113" />
+						<Hotspot X="3172.141" Y="-340.1751" Z="18.97363" />
+						<Hotspot X="3208.539" Y="-310.6026" Z="24.16525" />
+						<Hotspot X="3267.495" Y="-323.6526" Z="19.98916" />
+						<Hotspot X="3321.127" Y="-311.4194" Z="28.35455" />
+						<Hotspot X="3411.395" Y="-266.2389" Z="20.16372" />
+						<Hotspot X="3256.086" Y="-603.1852" Z="21.14106" />
+					</HuntingGrounds>
+				</CustomBehavior>
+			</If>
+
+			<If Condition="HasQuest(39565) &amp;&amp; IsQuestCompleted(39565)" >
+				<TurnIn Nav="Fly" QuestName="Rumble in the Jungle" QuestId="39565" TurnInName="Z'tenga the Walker" TurnInId="92805" />
+			</If>
+			<If Condition="HasQuest(39582) &amp;&amp; IsQuestCompleted(39582)" >
+				<TurnIn Nav="Fly" QuestName="Tooth and Claw" QuestId="39582" TurnInName="Parvink" TurnInId="96147" />
+			</If>
+
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: The Saberstalkers dailies/weeklies are complete for today.&quot;);" />
+
+	</QuestOrder>
+</HBProfile>
