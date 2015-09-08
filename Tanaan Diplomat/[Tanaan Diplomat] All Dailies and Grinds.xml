@@ -36,22 +36,6 @@
 
 <QuestOrder>
 
-	<!-- Store variables for stats! -->
-		<CustomBehavior File="RunCode" Type="Definition" Code="
-			uint ApexisStart = WoWCurrency.GetCurrencyByType(WoWCurrencyType.ApexisCrystal).Amount;
-			uint GarrStart = WoWCurrency.GetCurrencyByType(WoWCurrencyType.GarrisonResources).Amount;
-			///uint OilStart = WoWCurrency.GetCurrencyByType(WoWCurrencyType.Oil).Amount" />
-		<CustomBehavior File="Hooks\DoWhen" ActivityName="RunStats" UseAtInterval="60000" >
-			<CustomBehavior File="RunCode" Type="Definition" Code="
-				uint ApexisCurr = WoWCurrency.GetCurrencyByType(WoWCurrencyType.ApexisCrystal).Amount;
-				uint GarrCurr = WoWCurrency.GetCurrencyByType(WoWCurrencyType.GarrisonResources).Amount;
-				///uint OilCurr = WoWCurrency.GetCurrencyByType(WoWCurrencyType.Oil).Amount - OilStart
-				uint ApexisCalc = ApexisCurr - ApexisStart;
-				uint GarrCalc = GarrCurr - GarrStart;
-				Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Current Stats]\n    Apexis Crystals Looted: {0}\n    Garrison Resources Looted: {1}\n-------------------------------------&quot;, ApexisCalc, GarrCalc);" />
-		</CustomBehavior>
-	<!-- END Store variables for stats! -->
-
 	<!-- [Alliance] Daily Quests Pickups -->
 		<If Condition="Me.IsAlliance" >
 			<!-- [Hand of the Prophet] Complete Introductory Quests -->
