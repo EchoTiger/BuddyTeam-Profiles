@@ -36,6 +36,22 @@
 
 <QuestOrder>
 
+	<!-- Store variables for stats! -->
+		<CustomBehavior File="RunCode" Type="Definition" Code="
+			uint ApexisStart = WoWCurrency.GetCurrencyByType(WoWCurrencyType.ApexisCrystal).Amount;
+			uint GarrStart = WoWCurrency.GetCurrencyByType(WoWCurrencyType.GarrisonResources).Amount;
+			///uint OilStart = WoWCurrency.GetCurrencyByType(WoWCurrencyType.Oil).Amount" />
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="RunStats" UseAtInterval="60000" >
+			<CustomBehavior File="RunCode" Type="Definition" Code="
+				uint ApexisCurr = WoWCurrency.GetCurrencyByType(WoWCurrencyType.ApexisCrystal).Amount;
+				uint GarrCurr = WoWCurrency.GetCurrencyByType(WoWCurrencyType.GarrisonResources).Amount;
+				///uint OilCurr = WoWCurrency.GetCurrencyByType(WoWCurrencyType.Oil).Amount - OilStart
+				uint ApexisCalc = ApexisCurr - ApexisStart;
+				uint GarrCalc = GarrCurr - GarrStart;
+				Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Current Stats]\n    Apexis Crystals Looted: {0}\n    Garrison Resources Looted: {1}\n-------------------------------------&quot;, ApexisCalc, GarrCalc);" />
+		</CustomBehavior>
+	<!-- END Store variables for stats! -->
+
 	<!-- [Alliance] Daily Quests Pickups -->
 		<If Condition="Me.IsAlliance" >
 			<!-- [Hand of the Prophet] Complete Introductory Quests -->
@@ -232,7 +248,7 @@
 			<!-- END [Order of the Awakened] Pickup Introductory Quests -->
 
 			<!-- [Order of the Awakened] Pickup Daily Quests -->
-				<If Condition="!HasQuest(39433) &amp;&amp; !IsQuestCompleted(39433)" >
+				<If Condition="!HasQuest(39433) &amp;&amp; !IsQuestCompleted(39433) &amp;&amp; IsQuestCompleted(39432)" >
 					<MoveTo Nav="Fly" X="4298.418" Y="-1463.4" Z="79.44233" />
 					<PickUp Nav="Fly" QuestName="Unseen Influence" QuestId="39433" GiverName="Dawn-Seeker Krisek" GiverId="95424" />
 				</If>
@@ -727,7 +743,7 @@
 				</If>
 				<DisableBehavior Name="Pull" />
 				<While Condition="!CanFly() &amp;&amp; HasQuest(39433) &amp;&amp; !IsQuestCompleted(39433)" >
-					<CustomBehavior File="InteractWith" MobId="243796" NumOfTimes="1000" TerminateWhen="IsQuestCompleted(39433) || IsQuestCompleted(39433)" >
+					<CustomBehavior File="InteractWith" MobId="243796" NumOfTimes="1000" TerminateWhen="IsQuestCompleted(39433)" >
 						<HuntingGrounds>
 							<Hotspot X="3591.789" Y="-1243.014" Z="30.88335" />
 							<Hotspot X="3519.98" Y="-1232.265" Z="32.66261" />
