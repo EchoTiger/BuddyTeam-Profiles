@@ -38,7 +38,7 @@
 			<!-- Tooth and Claw pickup attempt -->
 			<If Condition="!HasQuest(39582) &amp;&amp; !IsQuestCompleted(39582) &amp;&amp; Me.IsAlliance" >
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Checking Parvink for dailies.&quot;);" />
-				<MoveTo DestName="Parvink" X="3842.831" Y="-1328.245" Z="92.13056" />
+				<MoveTo Nav="Fly" DestName="Parvink" X="3842.831" Y="-1328.245" Z="92.13056" />
 				<CustomBehavior File="InteractWith" MobId="96147" Range="5" WaitTime="500" X="3840.701" Y="-1327.689" Z="94.02097" />
 				<If Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return QuestFrameDetailPanel:IsVisible();&quot;, 0)" >
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Choosing quest from Parvink.&quot;);" />
@@ -58,7 +58,7 @@
 			</If>
 			<If Condition="!HasQuest(39529) &amp;&amp; !IsQuestCompleted(39529) &amp;&amp; Me.IsHorde" >
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Checking Nimi Brightcastle for dailies.&quot;);" />
-				<MoveTo DestName="Nimi Brightcastle" X="4326.101" Y="-1425.438" Z="69.44341" />
+				<MoveTo Nav="Fly" DestName="Nimi Brightcastle" X="4326.101" Y="-1425.438" Z="69.44341" />
 				<CustomBehavior File="InteractWith" MobId="93396" Range="5" WaitTime="500" X="4326.101" Y="-1425.438" Z="69.44341" />
 				<If Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return QuestFrameDetailPanel:IsVisible();&quot;, 0)" >
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Choosing quest from Nimi Brightcastle.&quot;);" />
@@ -91,7 +91,7 @@
 			</If>
 
 			<If Condition="HasQuest(39565) &amp;&amp; !IsQuestCompleted(39565) &amp;&amp; (HasItem(124093) || HasItem(124094) || HasItem(124095))" >
-				<MoveTo X="3317.219" Y="-1189.886" Z="57.94663" />
+				<MoveTo Nav="Fly" X="3317.219" Y="-1189.886" Z="57.94663" />
 				<CustomBehavior File="InteractWith" MobId="92805" WaitTime="500" X="3317.757" Y="-1194.224" Z="57.9488" />
 				<CustomBehavior File="Misc\RunLua" Lua="GossipTitleButton3:Click();" />
 				<CustomBehavior File="WaitTimer" WaitTime="500" VariantTime="1000" />
@@ -108,7 +108,7 @@
 			</If>
 
 			<While Condition="(HasItem(124093) &amp;&amp; !IsObjectiveComplete(1,39565)) &amp;&amp; (HasItem(124094) &amp;&amp; !IsObjectiveComplete(2,39565)) &amp;&amp; (HasItem(124095) &amp;&amp; !IsObjectiveComplete(3,39565))" >
-				<MoveTo X="3102.604" Y="-1139.251" Z="51.03778" />
+				<MoveTo Nav="Fly" X="3102.604" Y="-1139.251" Z="51.03778" />
 				<If Condition="HasItem(124093) &amp;&amp; !IsObjectiveComplete(1,39565)" >
 					<CustomBehavior File="UseItem" ItemId="124093" />
 				</If>

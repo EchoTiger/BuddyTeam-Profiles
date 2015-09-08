@@ -42,7 +42,7 @@
 			<If Condition="!IsQuestCompleted(38446)" >
 				<PickUp Nav="Fly" QuestName="The Battle for the West" QuestId="38581" GiverName="Exarch Yrel" GiverId="90309" />
 				<If Condition="HasQuest(38581) &amp;&amp; (!IsObjectiveComplete(1, 38581) || Unit(90960) != null)" >
-					<MoveTo DestName="Skyguard Thann" X="3874.379" Y="-1312.062" Z="90.48894" />
+					<MoveTo Nav="Fly" DestName="Skyguard Thann" X="3874.379" Y="-1312.062" Z="90.48894" />
 					<CustomBehavior File="InteractWith" MobId="90960" InteractByGossipOptions="2" X="3876.641" Y="-1310.991" Z="90.41825" />
 				</If>
 				<TurnIn Nav="Fly" QuestName="The Battle for the West" QuestId="38581" TurnInName="Exarch Maladaar" TurnInId="91935" />
@@ -59,7 +59,7 @@
 		<!-- Randomized Daily from Parvink -->
 			<If Condition="!(HasQuest(39582) || HasQuest(39581) || HasQuest(39586)) &amp;&amp; !(IsQuestCompleted(39582) || IsQuestCompleted(39581) || IsQuestCompleted(39586))" >
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Checking Parvink for dailies.&quot;);" />
-				<MoveTo DestName="Parvink" X="3842.831" Y="-1328.245" Z="92.13056" />
+				<MoveTo Nav="Fly" DestName="Parvink" X="3842.831" Y="-1328.245" Z="92.13056" />
 				<CustomBehavior File="InteractWith" MobId="96147" Range="5" WaitTime="500" X="3840.701" Y="-1327.689" Z="94.02097" />
 				<If Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return QuestFrameDetailPanel:IsVisible();&quot;, 0)" >
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Choosing quest from Parvink.&quot;);" />
@@ -82,7 +82,7 @@
 		<!-- Randomized Daily from Tanaan Battle Plan -->
 			<While Condition="!(HasQuest(37891) || HasQuest(37968) || HasQuest(38046) || HasQuest(38045) || HasQuest(38250) || HasQuest(38440)) &amp;&amp; !(IsQuestCompleted(37891) || IsQuestCompleted(37968) || IsQuestCompleted(38046) || IsQuestCompleted(38045) || IsQuestCompleted(38250) || IsQuestCompleted(38440))" >
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Checking Tanaan Planning map.&quot;);" />
-				<MoveTo DestName="Tanaan Planning Map" X="3822.575" Y="-1360.395" Z="94.93047" />
+				<MoveTo Nav="Fly" DestName="Tanaan Planning Map" X="3822.575" Y="-1360.395" Z="94.93047" />
 				<CustomBehavior File="InteractWith" MobId="239902" NonCompeteDistance="0" Range="5" WaitTime="500" X="3817.707" Y="-1363.149" Z="95.86454" />
 				<If Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return QuestChoiceFrame:IsVisible();&quot;, 0)" >
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Choosing quest from Tanaan Planning Map.&quot;);" />
@@ -108,7 +108,7 @@
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Assault on Ironhold Harbor.&quot;);" />
 				<If Condition="!HasQuest(37866)" >
 					<DisableBehavior Name="Pull" />
-					<MoveTo DestName="Ironhold Harbor" X="4583.305" Y="-399.9979" Z="10.69125" />
+					<MoveTo Nav="Fly" DestName="Ironhold Harbor" X="4583.305" Y="-399.9979" Z="10.69125" />
 					<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(37866)" />
 					<EnableBehavior Name="Pull" />
 				</If>
@@ -133,7 +133,7 @@
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Assault on the Temple of Sha'naar.&quot;);" />
 				<If Condition="!HasQuest(37966)" >
 					<DisableBehavior Name="Pull" />
-					<MoveTo DestName="Temple of Sha'naar" X="3612.619" Y="183.9686" Z="129.547" />
+					<MoveTo Nav="Fly" DestName="Temple of Sha'naar" X="3612.619" Y="183.9686" Z="129.547" />
 					<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(37966)" />
 					<EnableBehavior Name="Pull" />
 				</If>
@@ -159,7 +159,7 @@
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Battle At The Iron Front.&quot;);" />
 				<If Condition="!HasQuest(38051)" >
 					<DisableBehavior Name="Pull" />
-					<MoveTo DestName="The Iron Front" X="3893.965" Y="842.2295" Z="152.6835" />
+					<MoveTo Nav="Fly" DestName="The Iron Front" X="3893.965" Y="842.2295" Z="152.6835" />
 					<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38051)" />
 					<EnableBehavior Name="Pull" />
 				</If>
@@ -184,7 +184,7 @@
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Bleeding the Bleeding Hollow.&quot;);" />
 				<If Condition="!HasQuest(38043)" > <!-- Check ID, higher than Horde, but I think I got this number from DevTools -->
 					<DisableBehavior Name="Pull" />
-					<MoveTo DestName="Zeth'gol" X="4245.792" Y="390.4549" Z="153.8195" />
+					<MoveTo Nav="Fly" DestName="Zeth'gol" X="4245.792" Y="390.4549" Z="153.8195" />
 					<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38043)" />
 					<EnableBehavior Name="Pull" />
 				</If>
@@ -209,7 +209,7 @@
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Assault on the Ruins of Kra'nak.&quot;);" />
 				<If Condition="!HasQuest(37938)" >
 					<DisableBehavior Name="Pull" />
-					<MoveTo DestName="Ruins of Kra'nak" X="4546.603" Y="484.6314" Z="226.6398" />
+					<MoveTo Nav="Fly" DestName="Ruins of Kra'nak" X="4546.603" Y="484.6314" Z="226.6398" />
 					<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(37938)" />
 					<EnableBehavior Name="Pull" />
 				</If>
@@ -234,7 +234,7 @@
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Assault on The Fel Forge.&quot;);" />
 				<If Condition="!HasQuest(37970)" > <!-- Assault on the Fel Forge -->
 					<DisableBehavior Name="Pull" />
-					<MoveTo DestName="The Fel Forge" X="3612.619" Y="183.9686" Z="129.547" />
+					<MoveTo Nav="Fly" DestName="The Fel Forge" X="3612.619" Y="183.9686" Z="129.547" />
 					<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(37970)" />
 					<EnableBehavior Name="Pull" />
 				</If>
@@ -273,7 +273,7 @@
 		<!-- Randomized Daily from Vindicator Krethos -->
 			<If Condition="!(HasQuest(39573) || HasQuest(39571) || HasQuest(39570) || HasQuest(39569) || HasQuest(39568) || HasQuest(39567)) &amp;&amp; !(IsQuestCompleted(39573) || IsQuestCompleted(39571) || IsQuestCompleted(39570) || IsQuestCompleted(39569) || IsQuestCompleted(39568) || IsQuestCompleted(39567))" >
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Checking Vindicator Krethos.&quot;);" />
-				<MoveTo DestName="Tanaan Planning Map" X="3822.575" Y="-1360.395" Z="94.93047" />
+				<MoveTo Nav="Fly" DestName="Tanaan Planning Map" X="3822.575" Y="-1360.395" Z="94.93047" />
 				<CustomBehavior File="InteractWith" MobId="90974" WaitTime="500" X="3816.47" Y="-1359.184" Z="94.92278" />
 				<If Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return GossipFrameGreetingPanel:IsVisible();&quot;, 0)" >
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Choosing quest from Vindicator Krethos.&quot;);" />
@@ -289,7 +289,7 @@
 			<While Condition="HasQuest(39573) &amp;&amp; !IsQuestCompleted(39573)" > <!-- [GROUP] Harnessing Their Power -->
 				<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="2" ExpiryTime="45" Text="[WARNING]\n\nThe daily we picked up is a group quest.\n\nIf you continue, the bot will attempt to finish it however you may get into a death loop if you are undergeared or a caster class." />
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Harnessing Their Power.&quot;);" />
-				<MoveTo DestName="The Iron Front" X="4025.265" Y="1064.812" Z="167.5833" />
+				<MoveTo Nav="Fly" DestName="The Iron Front" X="4025.265" Y="1064.812" Z="167.5833" />
 				<CustomBehavior File="KillUntilComplete" QuestId="39573" MobId="90585" >
 					<HuntingGrounds>
 						<Hotspot X="3970.267" Y="1030.804" Z="163.2329" />
@@ -423,7 +423,7 @@
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Completing Assault on the Ruins of Kra'nak.&quot;);" />
 					<If Condition="!HasQuest(39447)" >
 						<DisableBehavior Name="Pull" />
-						<MoveTo DestName="Ruins of Kra'nak" X="4546.603" Y="484.6314" Z="226.6398" />
+						<MoveTo Nav="Fly" DestName="Ruins of Kra'nak" X="4546.603" Y="484.6314" Z="226.6398" />
 						<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39447)" />
 						<EnableBehavior Name="Pull" />
 					</If>
@@ -442,7 +442,7 @@
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Completing Assault on the Temple of Sha'naar.&quot;);" />
 					<If Condition="!HasQuest(39449)" > <!-- Assault on the Temple of Sha'naar -->
 						<DisableBehavior Name="Pull" />
-						<MoveTo DestName="Temple of Sha'naar" X="3612.619" Y="183.9686" Z="129.547" />
+						<MoveTo Nav="Fly" DestName="Temple of Sha'naar" X="3612.619" Y="183.9686" Z="129.547" />
 						<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39449)" />
 						<EnableBehavior Name="Pull" />
 					</If>
@@ -461,7 +461,7 @@
 				<If Condition="!IsQuestCompleted(39451) &amp;&amp; !IsQuestCompleted(37891) &amp;&amp; !IsQuestCompleted(39574)" > <!-- Assault on Ironhold Harbor -->
 					<If Condition="!HasQuest(39451)" >
 						<DisableBehavior Name="Pull" />
-						<MoveTo DestName="Ironhold Harbor" X="4583.305" Y="-399.9979" Z="10.69125" />
+						<MoveTo Nav="Fly" DestName="Ironhold Harbor" X="4583.305" Y="-399.9979" Z="10.69125" />
 						<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39451)" />
 						<EnableBehavior Name="Pull" />
 					</If>
