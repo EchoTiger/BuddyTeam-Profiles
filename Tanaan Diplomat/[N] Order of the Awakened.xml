@@ -60,7 +60,7 @@
 			</If>
 
 			<DisableBehavior Name="Pull" />
-			<While Condition="!CanFly() &amp;&amp; ((HasQuest(39432) &amp;&amp; !IsQuestCompleted(39432)) || (HasQuest(39432) &amp;&amp; !IsQuestCompleted(39432) &amp;&amp; Me.IsHorde)) " >
+			<While Condition="!CanFly() &amp;&amp; HasQuest(39432) &amp;&amp; !IsQuestCompleted(39432) " >
 				<CustomBehavior File="InteractWith" QuestId="39432" MobId="243796" >
 					<HuntingGrounds>
 						<Hotspot X="3591.789" Y="-1243.014" Z="30.88335" />
