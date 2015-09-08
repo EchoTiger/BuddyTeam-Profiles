@@ -43,9 +43,12 @@
 
 			<CustomBehavior File="KillUntilComplete" MobIds="89746, 89747, 89695, 89695, 92466" TerminateWhen="Me.GetReputationLevelWith(1850) &gt;= WoWUnitReaction.Revered" >
 				<HuntingGrounds>
-					<Hotspot X="3216.176" Y="-1174.768" Z="38.30007" />
-					<Hotspot X="3183.188" Y="-1126.587" Z="20.79069" />
-					<Hotspot X="3169.365" Y="-1036.586" Z="35.2627" />
+					<Hotspot X="3214.202" Y="-1176.236" Z="38.20932" />
+					<Hotspot X="3223.522" Y="-1096.341" Z="15.67206" />
+					<Hotspot X="3264.671" Y="-1073.653" Z="24.47884" />
+					<Hotspot X="3275.426" Y="-997.3123" Z="61.89376" />
+					<Hotspot X="3207.052" Y="-982.5129" Z="56.06119" />
+					<Hotspot X="3243.372" Y="-916.5643" Z="77.88932" />
 				</HuntingGrounds>
 			</CustomBehavior>
 
