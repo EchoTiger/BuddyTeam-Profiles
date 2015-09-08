@@ -41,7 +41,7 @@
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Red, &quot;[Notification]: You may want to pick up Tooth and Claw before letting this grind commence.&quot;);" />
 			</If>
 
-			<CustomBehavior File="KillUntilComplete" MobIds="89746, 89747" TerminateWhen="Me.GetReputationLevelWith(1850) &lt; WoWUnitReaction.Revered" >
+			<CustomBehavior File="KillUntilComplete" MobIds="89746, 89747" TerminateWhen="Me.GetReputationLevelWith(1850) &gt;= WoWUnitReaction.Revered" >
 				<HuntingGrounds>
 					<Hotspot X="3183.188" Y="-1126.587" Z="20.79069" />
 					<Hotspot X="3169.365" Y="-1036.586" Z="35.2627" />

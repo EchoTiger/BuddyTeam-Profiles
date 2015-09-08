@@ -136,7 +136,7 @@
 					</HuntingGrounds>
 				</CustomBehavior>
 			</While>
-			<While Condition="!CanFly() &amp;&amp; (HasQuest(39433) &amp;&amp; !IsQuestCompleted(39433)" >
+			<While Condition="CanFly() &amp;&amp; (HasQuest(39433) &amp;&amp; !IsQuestCompleted(39433)" >
 				<CustomBehavior File="FlyTo" X="3591.789" Y="-1243.014" Z="30.88335" TerminateWhen="IsQuestCompleted(39432)" />
 				<CustomBehavior File="FlyTo" X="3519.98" Y="-1232.265" Z="32.66261" TerminateWhen="IsQuestCompleted(39432)" />
 				<CustomBehavior File="FlyTo" X="3583.065" Y="-978.1451" Z="2.743094" TerminateWhen="IsQuestCompleted(39432)" />
