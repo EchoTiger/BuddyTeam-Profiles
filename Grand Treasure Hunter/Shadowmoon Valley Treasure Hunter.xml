@@ -442,7 +442,7 @@
 		</If>
 		
 		<!-- Too risky for Horde. 
-		<If Condition="!IsQuestCompleted(36500)" >
+		<If Condition="!IsQuestCompleted(35600)" >
 			<MoveTo DestName="Strange Spore" X="1774.314" Y="-1472.426" Z="-0.2070858" />
 			<CustomBehavior File="InteractWith" WaitTime="2500" ProactiveCombatStrategy="ClearMobsTargetingUs" Name="Strange Spore" MobIds="232621" X="1768.549" Y="-1471.252" Z="53.97643" />
 		</If>

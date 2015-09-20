@@ -135,7 +135,7 @@
 		<!-- Forgotten Shard of the Cipher :: Requires Tanaan campaign #6 to complete.
 		Complete me! -->
 
-		<!-- <If Condition="!IsQuestCompleted(38701)" > May be too hard
+		<!-- <If Condition="!IsQuestCompleted(38679)" > May be too hard
 			<MoveTo DestName="Jewel of the Fallen Star" X="5046.242" Y="-1362.2" Z="295.1825" />
 			<CustomBehavior File="ForcedDismount" />
 			<CustomBehavior File="InteractWith" ProactiveCombatStrategy="ClearAll" PreInteractMountStrategy="Dismount" 

@@ -349,15 +349,12 @@
 			<CustomBehavior File="ForcedDismount" />
 			<CustomBehavior File="InteractWith" WaitTime="9000" ProactiveCombatStrategy="ClearMobsTargetingUs" PreInteractMountStrategy="Dismount" 
 				Name="Elixir of Shadow Sight" MobIds="234703" X="775.5469" Y="2020.028" Z="176.5349" />
-		</If>
-
-
-
-		<If Condition="!IsQuestCompleted(36377)" > <!-- Didn't count toward the achievement. -->
-			<MoveTo DestName="Rukhmar's Image"  X="893.642" Y="1992.949" Z="192.66" />
-			<CustomBehavior File="ForcedDismount" />
-			<CustomBehavior File="InteractWith" WaitTime="9000" ProactiveCombatStrategy="ClearMobsTargetingUs" PreInteractMountStrategy="Dismount" 
-				Name="Rukhmar's Image" MobIds="85206" X="897.0382" Y="1994.392" Z="193.7118" />
+			<If Condition="!IsQuestCompleted(36377)" > <!-- ID Correct, but quest didn't complete, bug on Blizzard's end? -->
+				<MoveTo DestName="Rukhmar's Image"  X="893.642" Y="1992.949" Z="192.66" />
+				<CustomBehavior File="ForcedDismount" />
+				<CustomBehavior File="InteractWith" WaitTime="9000" ProactiveCombatStrategy="ClearMobsTargetingUs" PreInteractMountStrategy="Dismount" 
+					Name="Rukhmar's Image" MobIds="85206" X="897.0382" Y="1994.392" Z="193.7118" />
+			</If>
 		</If>
 
 		<If Condition="!IsQuestCompleted(34255)" >
