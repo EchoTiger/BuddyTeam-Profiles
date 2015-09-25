@@ -200,10 +200,9 @@
 
 			<!-- Hook Treasures and Rare Detection -->
 				<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-					<While Condition="(HasQuest(39432) &amp;&amp; !IsQuestCompleted(39432)) || (HasQuest(39433) &amp;&amp; !IsQuestCompleted(39433))" >
+					<If Condition="(HasQuest(39432) &amp;&amp; !IsQuestCompleted(39432)) || (HasQuest(39433) &amp;&amp; !IsQuestCompleted(39433))" >
 						<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" ActivityName="Kill Rares" UseWhen="Me.IsAlive &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; new[]{92552, 90884, 90936, 92429, 93264, 93076, 90434, 90519, 89675, 90887, 93028, 90888, 91727, 92647, 93125, 92941, 91695, 90094, 90777, 90429, 90437, 93279, 90438, 93002, 90442, 91374, 92194, 90885, 90024, 93236, 92887, 92606, 92694, 92977, 92574, 91087, 90122}.Contains((int)u.Entry) &amp;&amp; Navigator.CanNavigateFully(Me.Location, u.Location) &amp;&amp; Navigator.PathDistance(Me.Location, u.Location) &lt;= 50 &amp;&amp; u.IsAlive).OrderBy(u =&gt; Navigator.PathDistance(Me.Location, u.Location)).FirstOrDefault() != null" >
 							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Killing a rare.&quot;);" />
-							<!-- Need to use KillUntilComplete, but it bugs out the InteractWiths used within the profile. -->
 							<CustomBehavior File="InteractWith" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" WaitForNpcs="false" ProactiveCombatStrategy="ClearMobsThatWillAggro" MobState="Alive" InteractByLooting="true" CollectionDistance="500"
 										MobIds="92552, 90884, 90936, 92429, 93264, 93076, 90434, 90519, 89675, 90887, 93028, 90888, 91727, 92647, 93125, 92941, 91695, 90094, 90777, 90429, 90437, 93279, 90438, 93002, 90442, 91374, 92194, 90885, 90024, 93236, 92887, 92606, 92694, 92977, 92574, 91087, 90122" />
 						</CustomBehavior>
@@ -213,7 +212,7 @@
 							<CustomBehavior File="InteractWith" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" WaitForNpcs="false" Range="7" IgnoreLoSToTarget="true" CollectionDistance="500"  WaitTime="250"
 										MobIds="241599, 241847, 241848, 241433, 241656, 240003, 241742, 241563, 241745, 242649, 241561, 242249, 241760, 240577, 243852, 241605, 241657, 241522, 241692, 243796, 241533, 241565, 241521, 241560, 241671, 243860, 241504, 241699, 240543, 241713, 240289, 241775, 243693, 241673, 241566, 243690, 241764, 241449, 241835, 240580, 241674, 241841, 241450, 241601, 241600, 241602" />
 						</CustomBehavior>
-					</While>
+					</If>
 				</If>
 			<!-- END Hook Treasures and Rare Detection -->
 		</If>
@@ -306,10 +305,9 @@
 
 			<!-- Hook Treasures and Rare Detection -->
 				<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-					<While Condition="(HasQuest(39432) &amp;&amp; !IsQuestCompleted(39432)) || (HasQuest(39433) &amp;&amp; !IsQuestCompleted(39433))" >
+					<If Condition="(HasQuest(39432) &amp;&amp; !IsQuestCompleted(39432)) || (HasQuest(39433) &amp;&amp; !IsQuestCompleted(39433))" >
 						<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" ActivityName="Kill Rares" UseWhen="Me.IsAlive &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; new[]{92552, 90884, 90936, 92429, 93264, 93076, 90434, 90519, 89675, 90887, 93028, 90888, 91727, 92647, 93125, 92941, 91695, 90094, 90777, 90429, 90437, 93279, 90438, 93002, 90442, 91374, 92194, 90885, 90024, 93236, 92887, 92606, 92694, 92977, 92574, 91087, 90122}.Contains((int)u.Entry) &amp;&amp; Navigator.CanNavigateFully(Me.Location, u.Location) &amp;&amp; Navigator.PathDistance(Me.Location, u.Location) &lt;= 50 &amp;&amp; u.IsAlive).OrderBy(u =&gt; Navigator.PathDistance(Me.Location, u.Location)).FirstOrDefault() != null" >
 							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Killing a rare.&quot;);" />
-							<!-- Need to use KillUntilComplete, but it bugs out the InteractWiths used within the profile. -->
 							<CustomBehavior File="InteractWith" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" WaitForNpcs="false" ProactiveCombatStrategy="ClearMobsThatWillAggro" MobState="Alive" InteractByLooting="true" CollectionDistance="500"
 										MobIds="92552, 90884, 90936, 92429, 93264, 93076, 90434, 90519, 89675, 90887, 93028, 90888, 91727, 92647, 93125, 92941, 91695, 90094, 90777, 90429, 90437, 93279, 90438, 93002, 90442, 91374, 92194, 90885, 90024, 93236, 92887, 92606, 92694, 92977, 92574, 91087, 90122" />
 						</CustomBehavior>
@@ -319,7 +317,7 @@
 							<CustomBehavior File="InteractWith" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" WaitForNpcs="false" Range="7" IgnoreLoSToTarget="true" CollectionDistance="500"  WaitTime="250"
 										MobIds="241599, 241847, 241848, 241433, 241656, 240003, 241742, 241563, 241745, 242649, 241561, 242249, 241760, 240577, 243852, 241605, 241657, 241522, 241692, 243796, 241533, 241565, 241521, 241560, 241671, 243860, 241504, 241699, 240543, 241713, 240289, 241775, 243693, 241673, 241566, 243690, 241764, 241449, 241835, 240580, 241674, 241841, 241450, 241601, 241600, 241602" />
 						</CustomBehavior>
-					</While>
+					</If>
 				</If>
 			<!-- END Hook Treasures and Rare Detection -->
 		</If>
@@ -330,9 +328,9 @@
 			<!-- DO Randomized Daily from Tanaan Battle Plan -->
 				<While Condition="HasQuest(37891) &amp;&amp; !IsQuestCompleted(37891)" > <!-- Assault on Ironhold Harbor -->
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Assault on Ironhold Harbor.&quot;);" />
-					<CustomBehavior File="Hooks\DoWhen" ActivityName="Use_TrueIronBomb" UseWhen="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0) &amp;&amp; ((ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget) || ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 15).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null || (Unit(90074) != null &amp;&amp; !Me.Combat))" >
+					<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="true" ActivityName="Use_TrueIronBomb" UseWhen="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0) &amp;&amp; ((ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget) || ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 15).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null || (Unit(90074) != null &amp;&amp; !Me.Combat))" >
 						<!-- Use on units attacking us. -->  <!-- TEST ME!! Should use if 1 or more mob is fighting us. -->
-						<While Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget" >
+						<If Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget" >
 							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Using True Iron Bomb on mobs attacking us.&quot;);" />
 							<CustomBehavior File="RunCode">
 							<![CDATA[
@@ -341,9 +339,9 @@
 								SpellManager.ClickRemoteLocation(Me.CurrentTarget.Location); 
 							]]>
 							</CustomBehavior>
-						</While>
+						</If>
 						<!-- Dispose if another nearby. -->
-						<While Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 15).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null" >
+						<If Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 15).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null" >
 							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Disposing of Razor Net Trap to loot another.&quot;);" />
 							<CustomBehavior File="RunCode">
 							<![CDATA[ 
@@ -352,11 +350,11 @@
 								SpellManager.ClickRemoteLocation(Me.Location); 
 							]]>
 							</CustomBehavior>
-						</While>
+						</If>
 						<!-- Use in combat -->
-						<While Condition="Me.Combat &amp;&amp; Me.CurrentTarget.Distance &lt;= 25" >
+						<If Condition="Me.Combat &amp;&amp; Me.CurrentTarget.Distance &lt;= 25" >
 							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Using True Iron Bomb on nearby enemy.&quot;);" />                
-							<While Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" >
+							<If Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" >
 								<CustomBehavior File="ForcedDismount" />
 								<CustomBehavior File="RunCode">
 								<![CDATA[ 
@@ -365,14 +363,14 @@
 									SpellManager.ClickRemoteLocation(Me.CurrentTarget.Location);
 								]]>
 								</CustomBehavior>
-							</While>
-						</While>
+							</If>
+						</If>
 						<!-- Use on nearby tank. -->
-						<While Condition="Unit(90074) != null &amp;&amp; !Me.Combat" >
+						<If Condition="Unit(90074) != null &amp;&amp; !Me.Combat" >
 							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Using True Iron Bomb on nearby tank.&quot;);" />
 							<CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting to leave combat: {TimeRemaining}" TerminateWhen="!Me.Combat" /> <!-- We need to be out of combat first. -->
 							<CustomBehavior File="TargetAndMoveToMob" MobId="90074" WaitForNpcs="false" MoveWithinMaxRangeOfMob="25" TerminateWhen="!Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" />
-							<While Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" >
+							<If Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" >
 								<CustomBehavior File="ForcedDismount" />
 								<CustomBehavior File="RunCode">
 									<![CDATA[ 
@@ -381,12 +379,12 @@
 										SpellManager.ClickRemoteLocation(Me.CurrentTarget.Location);
 									]]>
 								</CustomBehavior>
-							</While>
-						</While>
+							</If>
+						</If>
 					</CustomBehavior>
 					<!-- Hard Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-							<While Condition="!HasQuest(37866)" >
+							<While Condition="!HasQuest(37866) &amp;&amp; !IsQuestCompleted(37866)" >
 								<DisableBehavior Name="Pull" />
 								<MoveTo Nav="Fly" DestName="Ironhold Harbor" X="4583.305" Y="-399.9979" Z="10.69125" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(37866)" />
@@ -406,7 +404,7 @@
 					<!-- END Hard Pulls -->
 					<!-- Easy Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-							<While Condition="!HasQuest(37866)" >
+							<While Condition="!HasQuest(37866)  &amp;&amp; !IsQuestCompleted(37866)" >
 								<DisableBehavior Name="Pull" />
 								<MoveTo Nav="Fly" DestName="Ironhold Harbor" X="4633.494" Y="-578.2945" Z="44.38635" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(37866)" />
@@ -422,7 +420,7 @@
 							</CustomBehavior>
 						</If>
 					<!-- END Easy Pulls -->
-					<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" ActivityName="Use_TrueIronBomb" Command="Remove" />
+					<CustomBehavior File="Hooks\DoWhen" ActivityName="Use_TrueIronBomb" Command="Remove" />
 				</While>
 				<While Condition="HasQuest(37891) &amp;&amp; IsQuestCompleted(37891)" >
 					<DisableBehavior Name="Pull" />
@@ -434,7 +432,7 @@
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Assault on the Temple of Sha'naar.&quot;);" />
 					<!-- Hard Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-							<While Condition="!HasQuest(37966)" >
+							<While Condition="!HasQuest(37966)  &amp;&amp; !IsQuestCompleted(37966)" >
 								<DisableBehavior Name="Pull" />
 								<MoveTo Nav="Fly" DestName="Temple of Sha'naar" X="3612.619" Y="183.9686" Z="129.547" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(37966)" />
@@ -455,7 +453,7 @@
 					<!-- END Hard Pulls -->
 					<!-- Easy Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-							<While Condition="!HasQuest(37966)" >
+							<While Condition="!HasQuest(37966)  &amp;&amp; !IsQuestCompleted(37866)" >
 								<DisableBehavior Name="Pull" />
 								<While Condition="!CanFly()" >
 									<MoveTo X="3663.508" Y="105.9724" Z="83.52634" />
@@ -487,7 +485,7 @@
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Battle At The Iron Front.&quot;);" />
 					<!-- Hard Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-							<While Condition="!HasQuest(38051)" >
+							<While Condition="!HasQuest(38051) &amp;&amp; !IsQuestCompleted(38051)" >
 								<DisableBehavior Name="Pull" />
 								<MoveTo Nav="Fly" DestName="The Iron Front" X="3893.965" Y="842.2295" Z="152.6835" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38051)" />
@@ -507,7 +505,7 @@
 					<!-- END Hard Pulls -->
 					<!-- Easy Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-							<While Condition="!HasQuest(38051)" >
+							<While Condition="!HasQuest(38051) &amp;&amp; !IsQuestCompleted(38051)" >
 								<DisableBehavior Name="Pull" />
 								<MoveTo Nav="Fly" DestName="The Iron Front" X="3992.573" Y="805.0379" Z="151.8674" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38051)" />
@@ -533,7 +531,7 @@
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Bleeding the Bleeding Hollow.&quot;);" />
 					<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="true" ActivityName="Use_RazornetTrap" UseWhen="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0) &amp;&amp; ((ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget) || (ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90781}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 15).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null &amp;&amp; !Me.Combat))" >
 						<!-- Dispose if another nearby. -->
-						<While Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90781}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 15).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null &amp;&amp; !Me.Combat" >
+						<If Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90781}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 15).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null &amp;&amp; !Me.Combat" >
 							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Disposing of Hellfire Shot to loot another.&quot;);" />
 							<CustomBehavior File="RunCode" TerminateWhen="Me.Combat">
 							<![CDATA[ 
@@ -542,9 +540,9 @@
 								SpellManager.ClickRemoteLocation(Me.Location); 
 							]]>
 							</CustomBehavior>
-						</While>
+						</If>
 					    <!-- Use on units attacking us. -->  <!-- TEST ME!! Should use if 1 or more mob is fighting us. -->
-						<While Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget" >
+						<If Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget" >
 							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Using Hellfire Shot on mobs attacking us.&quot;);" />
 							<CustomBehavior File="RunCode">
 							<![CDATA[
@@ -554,9 +552,9 @@
 								SpellManager.ClickRemoteLocation(Me.CurrentTarget.Location); 
 							]]>
 							</CustomBehavior>
-						</While>
+						</If>
 					</CustomBehavior>
-					<While Condition="!HasQuest(38043)" > <!-- Check ID, higher than Horde, but I think I got this number from DevTools -->
+					<While Condition="!HasQuest(38043) &amp;&amp; !IsQuestCompleted(38043)" > <!-- Check ID, higher than Horde, but I think I got this number from DevTools -->
 						<DisableBehavior Name="Pull" />
 						<MoveTo Nav="Fly" DestName="Zeth'gol" X="4245.792" Y="390.4549" Z="153.8195" />
 						<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38043)" />
@@ -572,7 +570,7 @@
 							<Hotspot X="4117.844" Y="594.8691" Z="162.812" />
 						</HuntingGrounds>
 					</CustomBehavior>
-					<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" ActivityName="Use_RazornetTrap" Command="Remove" />
+					<CustomBehavior File="Hooks\DoWhen" ActivityName="Use_RazornetTrap" Command="Remove" />
 				</While>
 				<While Condition="HasQuest(38045) &amp;&amp; IsQuestCompleted(38045)" >
 					<DisableBehavior Name="Pull" />
@@ -586,7 +584,7 @@
 					<CustomBehavior File="Hooks\Avoid" AvoidName="Fel Pool" Command="Add" ObjectType="AreaTrigger" ObjectId="8757" Radius="5" />
 					<!-- Hard Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-							<While Condition="!HasQuest(37938)" >
+							<While Condition="!HasQuest(37938) &amp;&amp; !IsQuestCompleted(37938)" >
 								<DisableBehavior Name="Pull" />
 								<MoveTo Nav="Fly" DestName="Ruins of Kra'nak" X="4546.603" Y="484.6314" Z="226.6398" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(37938)" />
@@ -606,7 +604,7 @@
 					<!-- END Hard Pulls -->
 					<!-- Easy Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-							<While Condition="!HasQuest(37938)" >
+							<While Condition="!HasQuest(37938) &amp;&amp; !IsQuestCompleted(37938)" >
 								<DisableBehavior Name="Pull" />
 								<MoveTo Nav="Fly" DestName="Ruins of Kra'nak" X="4539.619" Y="424.5465" Z="229.3716" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(37938)" />
@@ -624,10 +622,10 @@
 							</CustomBehavior>
 						</If>
 					<!-- END Easy Pulls -->
-					<While Condition="!HasQuest(37938)" >
+					<If Condition="!HasQuest(37938)" >
 						<CustomBehavior File="Hooks\Avoid" AvoidName="Shadow Zone" Command="Remove" />
 						<CustomBehavior File="Hooks\Avoid" AvoidName="Fel Pool" Command="Remove" />
-					</While>
+					</If>
 				</While>
 				<While Condition="HasQuest(38250) &amp;&amp; IsQuestCompleted(38250)" >
 					<DisableBehavior Name="Pull" />
@@ -637,9 +635,9 @@
 
 				<While Condition="HasQuest(38440) &amp;&amp; !IsQuestCompleted(38440)" > <!-- Assault on The Fel Forge -->
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Assault on The Fel Forge.&quot;);" />
-					<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" ActivityName="Use_HellfireShot" UseWhen="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0) &amp;&amp; ((ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget) || ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{91901, 92741}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 25).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null || (Unit(92616) != null &amp;&amp; !Me.Combat))" >
+					<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="true" ActivityName="Use_HellfireShot" UseWhen="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0) &amp;&amp; ((ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget) || ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{91901, 92741}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 25).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null || (Unit(92616) != null &amp;&amp; !Me.Combat))" >
 					    <!-- Use on units attacking us. -->  <!-- TEST ME!! Should use if 1 or more mob is fighting us. -->
-						<While Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget" >
+						<If Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget" >
 							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Using Hellfire Shot on mobs attacking us.&quot;);" />
 							<CustomBehavior File="RunCode">
 							<![CDATA[
@@ -648,9 +646,9 @@
 								SpellManager.ClickRemoteLocation(Me.CurrentTarget.Location); 
 							]]>
 							</CustomBehavior>
-						</While>
+						</If>
 						<!-- Dispose if another nearby. -->
-						<While Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{91901, 92741}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 25).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null" >
+						<If Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{91901, 92741}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 25).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null" >
 							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Disposing of Hellfire Shot to loot another.&quot;);" />
 							<CustomBehavior File="RunCode">
 							<![CDATA[ 
@@ -659,13 +657,13 @@
 								SpellManager.ClickRemoteLocation(Me.Location); 
 							]]>
 							</CustomBehavior>
-						</While>
+						</If>
 						<!-- Use on nearby tank. -->
-						<While Condition="Unit(92616) != null &amp;&amp; !Me.Combat" >
+						<If Condition="Unit(92616) != null &amp;&amp; !Me.Combat" >
 							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Using Hellfire Shot on nearby tank.&quot;);" />
 							<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="!Me.Combat" /> <!-- We need to be out of combat first. -->
 							<CustomBehavior File="TargetAndMoveToMob" MobId="92616" WaitForNpcs="false" MoveWithinMaxRangeOfMob="25" TerminateWhen="!Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" />
-							<While Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" >
+							<If Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" >
 								<CustomBehavior File="RunCode">
 								<![CDATA[ 
 									Lua.DoString("ExtraActionButton1:Click();");
@@ -673,18 +671,18 @@
 									SpellManager.ClickRemoteLocation(Me.CurrentTarget.Location); 
 								]]>
 								</CustomBehavior>
-							</While>
-						</While>
+							</If>
+						</If>
 					</CustomBehavior>
 					<!-- Hard Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-							<While Condition="!HasQuest(37970)" > <!-- Assault on the Fel Forge -->
+							<While Condition="!HasQuest(37970) &amp;&amp; !IsQuestCompleted(37970)" > <!-- Assault on the Fel Forge -->
 								<DisableBehavior Name="Pull" />
 								<MoveTo Nav="Fly" DestName="The Fel Forge" X="4472.133" Y="-697.1107" Z="33.81255" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38439)" />
 								<EnableBehavior Name="Pull" />
 							</While>
-							<CustomBehavior File="InteractWith" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" MobIds="241669" QuestId="38440" NumOfTimes="1000" >
+							<CustomBehavior File="InteractWith" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" MobIds="241669, 91901, 92741" QuestId="38440" NumOfTimes="1000" >
 								<HuntingGrounds>
 									<Hotspot X="4421.958" Y="-871.004" Z="43.66127" />
 									<Hotspot X="4233.836" Y="-831.981" Z="25.86019" />
@@ -698,13 +696,13 @@
 					<!-- END Hard Pulls -->
 					<!-- Easy Pulls  :: Same as hard, make edits if too hard. -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-							<While Condition="!HasQuest(37970)" > <!-- Assault on the Fel Forge -->
+							<While Condition="!HasQuest(37970) &amp;&amp; !IsQuestCompleted(37970)" > <!-- Assault on the Fel Forge -->
 								<DisableBehavior Name="Pull" />
 								<MoveTo Nav="Fly" DestName="The Fel Forge" X="4472.133" Y="-697.1107" Z="33.81255" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38439)" />
 								<EnableBehavior Name="Pull" />
 							</While>
-							<CustomBehavior File="InteractWith" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" MobIds="241669" QuestId="38440" NumOfTimes="1000" >
+							<CustomBehavior File="InteractWith" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" MobIds="241669, 91901, 92741" QuestId="38440" NumOfTimes="1000" >
 								<HuntingGrounds>
 									<Hotspot X="4421.958" Y="-871.004" Z="43.66127" />
 									<Hotspot X="4233.836" Y="-831.981" Z="25.86019" />
@@ -716,7 +714,7 @@
 							</CustomBehavior>
 						</If>
 					<!-- END Easy Pulls -->
-					<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" ActivityName="Use_HellfireShot" Command="Remove" />
+					<CustomBehavior File="Hooks\DoWhen" ActivityName="Use_HellfireShot" Command="Remove" />
 				</While>
 				<While Condition="HasQuest(38440) &amp;&amp; IsQuestCompleted(38440)" >
 					<DisableBehavior Name="Pull" />
@@ -767,18 +765,22 @@
 
 			<!-- DO Randomized Daily from Vindicator Krethos -->
 				<!-- No easy pull version of this.  It's a group quest, so we may have to force the bot to avoid it. -->
-				<While Condition="HasQuest(39573) &amp;&amp; !IsQuestCompleted(39573)" > <!-- [GROUP] Harnessing Their Power -->
+				<!-- <While Condition="HasQuest(39573) &amp;&amp; !IsQuestCompleted(39573)" >  [GROUP] Harnessing Their Power 
 					<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="2" ExpiryTime="45" Text="[WARNING]\n\nThe daily we picked up is a group quest.\n\nIf you continue, the bot will attempt to finish it however you may get into a death loop if you are undergeared or a caster class." />
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Harnessing Their Power.&quot;);" />
 					<MoveTo Nav="Fly" DestName="The Iron Front" X="4025.265" Y="1064.812" Z="167.5833" />
-					<CustomBehavior File="KillUntilComplete" QuestId="39573" MobId="90585" >
-						<HuntingGrounds>
-							<Hotspot X="3970.267" Y="1030.804" Z="163.2329" />
-							<Hotspot X="3959.172" Y="859.4688" Z="152.6836" />
-							<Hotspot X="3916.792" Y="875.9639" Z="152.6842" />
-						</HuntingGrounds>
-					</CustomBehavior>
-				</While>
+					<SetGrindArea>
+						<GrindArea>
+							<MobIds>90585</MobIds>
+							<Hotspots>
+								<Hotspot Name="Iron Front 0" X="3997.606" Y="870.8727" Z="152.6829" />
+								<Hotspot Name="Iron Front 1" X="3954.224" Y="782.0494" Z="153.6769" />
+								<Hotspot Name="Iron Front 2" X="3979.948" Y="986.4142" Z="158.6335" />
+							</Hotspots>
+						</GrindArea>
+					</SetGrindArea>
+					<GrindUntil Condition="IsQuestCompleted(39573)" GoalText="Harnessing Their Power"/>
+				</While> -->
 				<While Condition="HasQuest(39573) &amp;&amp; IsQuestCompleted(39573)" >
 					<DisableBehavior Name="Pull" />
 					<TurnIn Nav="Fly" QuestName="Harnessing Their Power" QuestId="39573" TurnInName="Vindicator Krethos" TurnInId="90974" />
@@ -826,29 +828,37 @@
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Secrets of the Shadow Council.&quot;);" />
 					<!-- Hard Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-							<CustomBehavior File="KillUntilComplete" QuestId="39570" MobIds="90649, 90607, 90312, 90654, 89748" >
-								<HuntingGrounds>
-									<Hotspot X="4560.763" Y="443.0881" Z="229.8193" />
-									<Hotspot X="4526.892" Y="518.3264" Z="229.262" />
-									<Hotspot X="4475.299" Y="649.1726" Z="191.4169" />
-									<Hotspot X="4496.495" Y="744.3486" Z="181.2569" />
-									<Hotspot X="4477.998" Y="792.3724" Z="181.1873" />
-									<Hotspot X="4368.549" Y="871.2369" Z="175.4837" />
-								</HuntingGrounds>
-							</CustomBehavior>
+							<SetGrindArea>
+								<GrindArea>
+									<MobIds>90649, 90607, 90312, 90654, 89748</MobIds>
+									<Hotspots>
+										<Hotspot X="4560.763" Y="443.0881" Z="229.8193" />
+										<Hotspot X="4526.892" Y="518.3264" Z="229.262" />
+										<Hotspot X="4475.299" Y="649.1726" Z="191.4169" />
+										<Hotspot X="4496.495" Y="744.3486" Z="181.2569" />
+										<Hotspot X="4477.998" Y="792.3724" Z="181.1873" />
+										<Hotspot X="4368.549" Y="871.2369" Z="175.4837" />
+									</Hotspots>
+								</GrindArea>
+							</SetGrindArea>
+							<GrindUntil Condition="IsQuestCompleted(39570)" />
 						</If>
 					<!-- END Hard Pulls -->
 					<!-- Easy Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-							<CustomBehavior File="KillUntilComplete" QuestId="39570" MobIds="90649, 90607, 90312, 90654, 89748" >
-								<HuntingGrounds>
-									<Hotspot X="4513.263" Y="472.1714" Z="228.9365" />
-									<Hotspot X="4577.068" Y="478.2981" Z="229.146" />
-									<Hotspot X="4550.217" Y="544.4664" Z="229.3091" />
-									<Hotspot X="4472.96" Y="650.1429" Z="192.0173" />
-									<Hotspot X="4624.967" Y="590.0174" Z="203.0758" />
-								</HuntingGrounds>
-							</CustomBehavior>
+							<SetGrindArea>
+								<GrindArea>
+									<MobIds>90649, 90607, 90312, 90654, 89748</MobIds>
+									<Hotspots>
+										<Hotspot X="4513.263" Y="472.1714" Z="228.9365" />
+										<Hotspot X="4577.068" Y="478.2981" Z="229.146" />
+										<Hotspot X="4550.217" Y="544.4664" Z="229.3091" />
+										<Hotspot X="4472.96" Y="650.1429" Z="192.0173" />
+										<Hotspot X="4624.967" Y="590.0174" Z="203.0758" />
+									</Hotspots>
+								</GrindArea>
+							</SetGrindArea>
+							<GrindUntil Condition="IsQuestCompleted(39570)" />
 						</If>
 					<!-- END Easy Pulls -->
 				</While>
@@ -863,26 +873,34 @@
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Bringing Down the Iron Horde.&quot;);" />
 					<!-- Hard Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-							<CustomBehavior File="KillUntilComplete" MobIds="90066, 91760, 91764, 91721, 89754, 93370" QuestId="39586" >
-								<HuntingGrounds>
-									<Hotspot X="4314.433" Y="-1025.236" Z="21.86001" />
-									<Hotspot X="4378.459" Y="-914.2455" Z="34.72607" />
-									<Hotspot X="4478.62" Y="-985.8022" Z="38.02435" />
-									<Hotspot X="4668.208" Y="-878.8555" Z="99.33451" />
-								</HuntingGrounds>
-							</CustomBehavior>
+							<SetGrindArea>
+								<GrindArea>
+									<MobIds>90066, 91760, 91764, 91721, 89754, 93370</MobIds>
+									<Hotspots>
+										<Hotspot X="4314.433" Y="-1025.236" Z="21.86001" />
+										<Hotspot X="4378.459" Y="-914.2455" Z="34.72607" />
+										<Hotspot X="4478.62" Y="-985.8022" Z="38.02435" />
+										<Hotspot X="4668.208" Y="-878.8555" Z="99.33451" />
+									</Hotspots>
+								</GrindArea>
+							</SetGrindArea>
+							<GrindUntil Condition="IsQuestCompleted(39586)" />
 						</If>
 					<!-- END Hard Pulls -->
 					<!-- Easy Pulls :: Same as hard, make edits if too hard. -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-							<CustomBehavior File="KillUntilComplete" PreInteractMountStrategy="Dismount" MobIds="90066, 91760, 91764, 91721, 89754, 93370" QuestId="39586" >
-								<HuntingGrounds>
-									<Hotspot X="4314.433" Y="-1025.236" Z="21.86001" />
-									<Hotspot X="4378.459" Y="-914.2455" Z="34.72607" />
-									<Hotspot X="4478.62" Y="-985.8022" Z="38.02435" />
-									<Hotspot X="4668.208" Y="-878.8555" Z="99.33451" />
-								</HuntingGrounds>
-							</CustomBehavior>
+							<SetGrindArea>
+								<GrindArea>
+									<MobIds>90066, 91760, 91764, 91721, 89754, 93370</MobIds>
+									<Hotspots>
+										<Hotspot X="4314.433" Y="-1025.236" Z="21.86001" />
+										<Hotspot X="4378.459" Y="-914.2455" Z="34.72607" />
+										<Hotspot X="4478.62" Y="-985.8022" Z="38.02435" />
+										<Hotspot X="4668.208" Y="-878.8555" Z="99.33451" />
+									</Hotspots>
+								</GrindArea>
+							</SetGrindArea>
+							<GrindUntil Condition="IsQuestCompleted(39586)" />
 						</If>
 					<!-- END Easy Pulls -->
 				</While>
@@ -928,28 +946,36 @@
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - A Little Wetwork.&quot;);" />
 					<!-- Hard Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-							<CustomBehavior File="KillUntilComplete" QuestId="39568" MobIds="89857, 90136, 89777, 89810, 89935, 89936, 91832" >
-								<HuntingGrounds>
-									<Hotspot X="4583.305" Y="-399.9979" Z="10.69125" />
-									<Hotspot X="4592.449" Y="-238.1564" Z="10.7333" />
-									<Hotspot X="4770.981" Y="-244.9629" Z="4.211271" />
-									<Hotspot X="4786.581" Y="-386.6306" Z="4.258256" />
-									<Hotspot X="4644.233" Y="-483.5012" Z="21.41648" />
-									<Hotspot X="4581.786" Y="-506.2161" Z="21.41869" />
-								</HuntingGrounds>
-							</CustomBehavior>
+							<SetGrindArea>
+								<GrindArea>
+									<MobIds>89857, 90136, 89777, 89810, 89935, 89936, 91832</MobIds>
+									<Hotspots>
+										<Hotspot X="4583.305" Y="-399.9979" Z="10.69125" />
+										<Hotspot X="4592.449" Y="-238.1564" Z="10.7333" />
+										<Hotspot X="4770.981" Y="-244.9629" Z="4.211271" />
+										<Hotspot X="4786.581" Y="-386.6306" Z="4.258256" />
+										<Hotspot X="4644.233" Y="-483.5012" Z="21.41648" />
+										<Hotspot X="4581.786" Y="-506.2161" Z="21.41869" />
+									</Hotspots>
+								</GrindArea>
+							</SetGrindArea>
+							<GrindUntil Condition="IsQuestCompleted(39568)" />
 						</If>
 					<!-- END Hard Pulls -->
 					<!-- Easy Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-							<CustomBehavior File="KillUntilComplete" QuestId="39568" MobIds="89857, 90136, 89777, 89810, 89935, 89936, 91832" >
-								<HuntingGrounds>
-									<Hotspot X="4658.131" Y="-552.9175" Z="36.25991" />
-									<Hotspot X="4634.374" Y="-493.1973" Z="21.42153" />
-									<Hotspot X="4693.737" Y="-519.6089" Z="47.37726" />
-									<Hotspot X="4760.93" Y="-479.2505" Z="37.17424" />
-								</HuntingGrounds>
-							</CustomBehavior>
+							<SetGrindArea>
+								<GrindArea>
+									<MobIds>89857, 90136, 89777, 89810, 89935, 89936, 91832</MobIds>
+									<Hotspots>
+										<Hotspot X="4658.131" Y="-552.9175" Z="36.25991" />
+										<Hotspot X="4634.374" Y="-493.1973" Z="21.42153" />
+										<Hotspot X="4693.737" Y="-519.6089" Z="47.37726" />
+										<Hotspot X="4760.93" Y="-479.2505" Z="37.17424" />
+									</Hotspots>
+								</GrindArea>
+							</SetGrindArea>
+							<GrindUntil Condition="IsQuestCompleted(39568)" />
 						</If>
 					<!-- END Easy Pulls -->
 				</While>
@@ -963,26 +989,34 @@
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Bloodied Blades of Zeth'Gol.&quot;);" />
 					<!-- Hard Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-							<CustomBehavior File="KillUntilComplete" QuestId="39567" MobIds="90851, 89699, 89703, 89705" >
-								<HuntingGrounds>
-									<Hotspot X="4310.75" Y="431.8437" Z="175.2454" />
-									<Hotspot X="4318.75" Y="372.2255" Z="176.6174" />
-									<Hotspot X="4223.525" Y="552.8775" Z="173.4002" />
-									<Hotspot X="4152.482" Y="654.0584" Z="162.6546" />
-									<Hotspot X="4117.844" Y="594.8691" Z="162.812" />
-								</HuntingGrounds>
-							</CustomBehavior>
+							<SetGrindArea>
+								<GrindArea>
+									<MobIds>90851, 89699, 89703, 89705</MobIds>
+									<Hotspots>
+										<Hotspot X="4310.75" Y="431.8437" Z="175.2454" />
+										<Hotspot X="4318.75" Y="372.2255" Z="176.6174" />
+										<Hotspot X="4223.525" Y="552.8775" Z="173.4002" />
+										<Hotspot X="4152.482" Y="654.0584" Z="162.6546" />
+										<Hotspot X="4117.844" Y="594.8691" Z="162.812" />
+									</Hotspots>
+								</GrindArea>
+							</SetGrindArea>
+							<GrindUntil Condition="IsQuestCompleted(39567)" />
 						</If>
 					<!-- END Hard Pulls -->
 					<!-- Easy Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-							<CustomBehavior File="KillUntilComplete" QuestId="39567" MobIds="90851, 89699, 89703, 89705" >
-								<HuntingGrounds>
-									<Hotspot X="4031.807" Y="513.1544" Z="142.0807" />
-									<Hotspot X="4083.947" Y="439.1315" Z="140.3514" />
-									<Hotspot X="4090.982" Y="508.5185" Z="141.1908" />
-								</HuntingGrounds>
-							</CustomBehavior>
+							<SetGrindArea>
+								<GrindArea>
+									<MobIds>90851, 89699, 89703, 89705</MobIds>
+									<Hotspots>
+										<Hotspot X="4031.807" Y="513.1544" Z="142.0807" />
+										<Hotspot X="4083.947" Y="439.1315" Z="140.3514" />
+										<Hotspot X="4090.982" Y="508.5185" Z="141.1908" />
+									</Hotspots>
+								</GrindArea>
+							</SetGrindArea>
+							<GrindUntil Condition="IsQuestCompleted(39567)" />
 						</If>
 					<!-- END Easy Pulls -->
 				</While>
@@ -1017,7 +1051,7 @@
 						<CustomBehavior File="Hooks\Avoid" AvoidName="Fel Pool" Command="Add" ObjectType="AreaTrigger" ObjectId="8757" Radius="5" />
 						<!-- Hard Pulls -->
 							<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-								<While Condition="!HasQuest(39447)" >
+								<While Condition="!HasQuest(39447) &amp;&amp; !IsQuestCompleted(39447)" >
 									<DisableBehavior Name="Pull" />
 									<MoveTo Nav="Fly" DestName="Ruins of Kra'nak" X="4546.603" Y="484.6314" Z="226.6398" />
 									<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39447)" />
@@ -1037,7 +1071,7 @@
 						<!-- END Hard Pulls -->
 						<!-- Easy Pulls -->
 							<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-								<While Condition="!HasQuest(39447)" >
+								<While Condition="!HasQuest(39447) &amp;&amp; !IsQuestCompleted(39447)" >
 									<DisableBehavior Name="Pull" />
 									<MoveTo Nav="Fly" DestName="Ruins of Kra'nak" X="4539.619" Y="424.5465" Z="229.3716" />
 									<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39447)" />
@@ -1055,17 +1089,17 @@
 								</CustomBehavior>
 							</If>
 						<!-- END Easy Pulls -->
-						<While Condition="!HasQuest(39447)" >
+						<If Condition="!HasQuest(39447)" >
 							<CustomBehavior File="Hooks\Avoid" AvoidName="Shadow Zone" Command="Remove" />
 							<CustomBehavior File="Hooks\Avoid" AvoidName="Fel Pool" Command="Remove" />
-						</While>
+						</If>
 					</While>
 
 					<While Condition="!IsQuestCompleted(39449) &amp;&amp; !IsQuestCompleted(37968) &amp;&amp; !IsQuestCompleted(39574)" > <!-- Assault on the Temple of Sha'naar -->
 						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Completing Assault on the Temple of Sha'naar.&quot;);" />
 						<!-- Hard Pulls -->
 							<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-								<While Condition="!HasQuest(39449)" > <!-- Assault on the Temple of Sha'naar -->
+								<While Condition="!HasQuest(39449) &amp;&amp; !IsQuestCompleted(39449)" > <!-- Assault on the Temple of Sha'naar -->
 									<DisableBehavior Name="Pull" />
 									<MoveTo Nav="Fly" DestName="Temple of Sha'naar" X="3612.619" Y="183.9686" Z="129.547" />
 									<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39449)" />
@@ -1086,7 +1120,7 @@
 						<!-- END Hard Pulls -->
 						<!-- Easy Pulls -->
 							<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-								<While Condition="!HasQuest(39449)" > <!-- Assault on the Temple of Sha'naar -->
+								<While Condition="!HasQuest(39449) &amp;&amp; !IsQuestCompleted(39449)" > <!-- Assault on the Temple of Sha'naar -->
 									<DisableBehavior Name="Pull" />
 									<While Condition="!CanFly()" >
 										<MoveTo X="3663.508" Y="105.9724" Z="83.52634" />
@@ -1112,9 +1146,9 @@
 					</While>
 
 					<While Condition="!IsQuestCompleted(39451) &amp;&amp; !IsQuestCompleted(37891) &amp;&amp; !IsQuestCompleted(39574)" > <!-- Assault on Ironhold Harbor -->
-						<CustomBehavior File="Hooks\DoWhen" ActivityName="Use_TrueIronBomb" UseWhen="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0) &amp;&amp; ((ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget) || ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 35).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null || (Unit(90074) != null &amp;&amp; !Me.Combat))" >
+						<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="true" ActivityName="Use_TrueIronBomb" UseWhen="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0) &amp;&amp; ((ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget) || ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 35).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null || (Unit(90074) != null &amp;&amp; !Me.Combat))" >
 							<!-- Use on units attacking us. -->  <!-- TEST ME!! Should use if 1 or more mob is fighting us. -->
-							<While Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget" >
+							<If Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget" >
 								<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Using True Iron Bomb on mobs attacking us.&quot;);" />
 								<CustomBehavior File="RunCode">
 								<![CDATA[
@@ -1123,9 +1157,9 @@
 									SpellManager.ClickRemoteLocation(Me.CurrentTarget.Location); 
 								]]>
 								</CustomBehavior>
-							</While>
+							</If>
 							<!-- Dispose if another nearby. -->
-							<While Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 35).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null" >
+							<If Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 35).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null" >
 								<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Disposing of Razor Net Trap to loot another.&quot;);" />
 								<CustomBehavior File="RunCode">
 								<![CDATA[ 
@@ -1134,11 +1168,11 @@
 									SpellManager.ClickRemoteLocation(Me.Location); 
 								]]>
 								</CustomBehavior>
-							</While>
+							</If>
 							<!-- Use in combat -->
-							<While Condition="Me.Combat &amp;&amp; Me.CurrentTarget.Distance &lt;= 25" >
+							<If Condition="Me.Combat &amp;&amp; Me.CurrentTarget.Distance &lt;= 25" >
 								<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Using True Iron Bomb on nearby enemy.&quot;);" />                
-								<While Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" >
+								<If Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" >
 									<CustomBehavior File="ForcedDismount" />
 									<CustomBehavior File="RunCode">
 									<![CDATA[ 
@@ -1147,14 +1181,14 @@
 										SpellManager.ClickRemoteLocation(Me.CurrentTarget.Location);
 									]]>
 									</CustomBehavior>
-								</While>
-							</While>
+								</If>
+							</If>
 							<!-- Use on nearby tank. -->
-							<While Condition="Unit(90074) != null &amp;&amp; !Me.Combat" >
+							<If Condition="Unit(90074) != null &amp;&amp; !Me.Combat" >
 								<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Using True Iron Bomb on nearby tank.&quot;);" />
 								<CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting to leave combat: {TimeRemaining}" TerminateWhen="!Me.Combat" /> <!-- We need to be out of combat first. -->
 								<CustomBehavior File="TargetAndMoveToMob" MobId="90074" WaitForNpcs="false" MoveWithinMaxRangeOfMob="25" TerminateWhen="!Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" />
-								<While Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" >
+								<If Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" >
 									<CustomBehavior File="ForcedDismount" />
 									<CustomBehavior File="RunCode">
 										<![CDATA[ 
@@ -1163,12 +1197,12 @@
 											SpellManager.ClickRemoteLocation(Me.CurrentTarget.Location);
 										]]>
 									</CustomBehavior>
-								</While>
-							</While>
+								</If>
+							</If>
 						</CustomBehavior>
 						<!-- Hard Pulls -->
 							<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-								<While Condition="!HasQuest(39451)" >
+								<While Condition="!HasQuest(39451) &amp;&amp; !IsQuestCompleted(39451)" >
 									<DisableBehavior Name="Pull" />
 									<MoveTo Nav="Fly" DestName="Ironhold Harbor" X="4583.305" Y="-399.9979" Z="10.69125" />
 									<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39451)" />
@@ -1188,7 +1222,7 @@
 						<!-- END Hard Pulls -->
 						<!-- Easy Pulls -->
 							<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-								<While Condition="!HasQuest(39451)" >
+								<While Condition="!HasQuest(39451) &amp;&amp; !IsQuestCompleted(39451)" >
 									<DisableBehavior Name="Pull" />
 									<MoveTo Nav="Fly" DestName="Ironhold Harbor" X="4633.494" Y="-578.2945" Z="44.38635" />
 									<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39451)" />
@@ -1204,7 +1238,7 @@
 								</CustomBehavior>
 							</If>
 						<!-- END Easy Pulls -->
-						<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" ActivityName="Use_TrueIronBomb" Command="Remove" />
+						<CustomBehavior File="Hooks\DoWhen" ActivityName="Use_TrueIronBomb" Command="Remove" />
 					</While>
 				</While>
 			<!-- END Finish up Bonus Objectives for Pressing the Attack -->
@@ -1214,28 +1248,36 @@
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Demonslayer of Tanaan.&quot;);" />
 					<!-- Hard Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-							<CustomBehavior File="KillUntilComplete" MobIds="93024, 90517" QuestId="39581" >
-								<HuntingGrounds>
-									<Hotspot X="4483.101" Y="-1200.358" Z="30.22227" />
-									<Hotspot X="4433.078" Y="-1165.501" Z="29.08888" />
-									<Hotspot X="4316.121" Y="-1133.61" Z="25.08726" />
-									<Hotspot X="4710.229" Y="-1540.281" Z="41.94264" />
-									<Hotspot X="4615.164" Y="-1490.89" Z="34.76215" />
-								</HuntingGrounds>
-							</CustomBehavior>
+							<SetGrindArea>
+								<GrindArea>
+									<MobIds>93024, 90517</MobIds>
+									<Hotspots>
+										<Hotspot X="4483.101" Y="-1200.358" Z="30.22227" />
+										<Hotspot X="4433.078" Y="-1165.501" Z="29.08888" />
+										<Hotspot X="4316.121" Y="-1133.61" Z="25.08726" />
+										<Hotspot X="4710.229" Y="-1540.281" Z="41.94264" />
+										<Hotspot X="4615.164" Y="-1490.89" Z="34.76215" />
+									</Hotspots>
+								</GrindArea>
+							</SetGrindArea>
+							<GrindUntil Condition="IsQuestCompleted(39581)" />
 						</If>
 					<!-- END Hard Pulls -->
 					<!-- Easy Pulls :: Same as hard, make edits if too hard. -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-							<CustomBehavior File="KillUntilComplete" MobIds="93024, 90517" QuestId="39581" >
-								<HuntingGrounds>
-									<Hotspot X="4483.101" Y="-1200.358" Z="30.22227" />
-									<Hotspot X="4433.078" Y="-1165.501" Z="29.08888" />
-									<Hotspot X="4316.121" Y="-1133.61" Z="25.08726" />
-									<Hotspot X="4710.229" Y="-1540.281" Z="41.94264" />
-									<Hotspot X="4615.164" Y="-1490.89" Z="34.76215" />
-								</HuntingGrounds>
-							</CustomBehavior>
+							<SetGrindArea>
+								<GrindArea>
+									<MobIds>93024, 90517</MobIds>
+									<Hotspots>
+										<Hotspot X="4483.101" Y="-1200.358" Z="30.22227" />
+										<Hotspot X="4433.078" Y="-1165.501" Z="29.08888" />
+										<Hotspot X="4316.121" Y="-1133.61" Z="25.08726" />
+										<Hotspot X="4710.229" Y="-1540.281" Z="41.94264" />
+										<Hotspot X="4615.164" Y="-1490.89" Z="34.76215" />
+									</Hotspots>
+								</GrindArea>
+							</SetGrindArea>
+							<GrindUntil Condition="IsQuestCompleted(39581)" />
 						</If>
 					<!-- END Easy Pulls -->
 				</While>
@@ -1261,9 +1303,9 @@
 			<!-- DO Randomized Daily from Tanaan Battle Plan -->
 				<While Condition="HasQuest(37940) &amp;&amp; !IsQuestCompleted(37940)" > <!-- Assault on Ironhold Harbor -->
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Assault on Ironhold Harbor.&quot;);" />
-					<CustomBehavior File="Hooks\DoWhen" ActivityName="Use_TrueIronBomb" UseWhen="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0) &amp;&amp; ((ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget) || ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 35).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null || (Unit(90074) != null &amp;&amp; !Me.Combat))" >
+					<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="true" ActivityName="Use_TrueIronBomb" UseWhen="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0) &amp;&amp; ((ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget) || ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 35).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null || (Unit(90074) != null &amp;&amp; !Me.Combat))" >
 						<!-- Use on units attacking us. -->  <!-- TEST ME!! Should use if 1 or more mob is fighting us. -->
-						<While Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget" >
+						<If Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget" >
 							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Using True Iron Bomb on mobs attacking us.&quot;);" />
 							<CustomBehavior File="RunCode">
 							<![CDATA[
@@ -1272,9 +1314,9 @@
 								SpellManager.ClickRemoteLocation(Me.CurrentTarget.Location); 
 							]]>
 							</CustomBehavior>
-						</While>
+						</If>
 						<!-- Dispose if another nearby. -->
-						<While Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 35).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null" >
+						<If Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 35).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null" >
 							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Disposing of Razor Net Trap to loot another.&quot;);" />
 							<CustomBehavior File="RunCode">
 							<![CDATA[ 
@@ -1283,11 +1325,11 @@
 								SpellManager.ClickRemoteLocation(Me.Location); 
 							]]>
 							</CustomBehavior>
-						</While>
+						</If>
 						<!-- Use in combat -->
-						<While Condition="Me.Combat &amp;&amp; Me.CurrentTarget.Distance &lt;= 25" >
+						<If Condition="Me.Combat &amp;&amp; Me.CurrentTarget.Distance &lt;= 25" >
 							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Using True Iron Bomb on nearby enemy.&quot;);" />                
-							<While Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" >
+							<If Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" >
 								<CustomBehavior File="ForcedDismount" />
 								<CustomBehavior File="RunCode">
 								<![CDATA[ 
@@ -1296,14 +1338,14 @@
 									SpellManager.ClickRemoteLocation(Me.CurrentTarget.Location);
 								]]>
 								</CustomBehavior>
-							</While>
-						</While>
+							</If>
+						</If>
 						<!-- Use on nearby tank. -->
-						<While Condition="Unit(90074) != null &amp;&amp; !Me.Combat" >
+						<If Condition="Unit(90074) != null &amp;&amp; !Me.Combat" >
 							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Using True Iron Bomb on nearby tank.&quot;);" />
 							<CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting to leave combat: {TimeRemaining}" TerminateWhen="!Me.Combat" /> <!-- We need to be out of combat first. -->
 							<CustomBehavior File="TargetAndMoveToMob" MobId="90074" WaitForNpcs="false" MoveWithinMaxRangeOfMob="25" TerminateWhen="!Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" />
-							<While Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" >
+							<If Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" >
 								<CustomBehavior File="ForcedDismount" />
 								<CustomBehavior File="RunCode">
 									<![CDATA[ 
@@ -1312,12 +1354,12 @@
 										SpellManager.ClickRemoteLocation(Me.CurrentTarget.Location);
 									]]>
 								</CustomBehavior>
-							</While>
-						</While>
+							</If>
+						</If>
 					</CustomBehavior>
 					<!-- Hard Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-							<While Condition="!HasQuest(37865)" >
+							<While Condition="!HasQuest(37865) &amp;&amp; !IsQuestCompleted(37865)" >
 								<DisableBehavior Name="Pull" />
 								<MoveTo Nav="Fly" DestName="Ironhold Harbor" X="4583.305" Y="-399.9979" Z="10.69125" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(37865)" />
@@ -1337,7 +1379,7 @@
 					<!-- END Hard Pulls -->
 					<!-- Easy Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-							<While Condition="!HasQuest(37865)" >
+							<While Condition="!HasQuest(37865) &amp;&amp; !IsQuestCompleted(37865)" >
 								<DisableBehavior Name="Pull" />
 								<MoveTo Nav="Fly" DestName="Ironhold Harbor" X="4633.494" Y="-578.2945" Z="44.38635" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(37865)" />
@@ -1353,7 +1395,7 @@
 							</CustomBehavior>
 						</If>
 					<!-- END Easy Pulls -->
-					<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" ActivityName="Use_TrueIronBomb" Command="Remove" />
+					<CustomBehavior File="Hooks\DoWhen" ActivityName="Use_TrueIronBomb" Command="Remove" />
 				</While>
 				<While Condition="HasQuest(37940) &amp;&amp; IsQuestCompleted(37940)" >
 					<DisableBehavior Name="Pull" />
@@ -1365,7 +1407,7 @@
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Assault on the Temple of Sha'naar.&quot;);" />
 					<!-- Hard Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-							<While Condition="!HasQuest(38020)" >
+							<While Condition="!HasQuest(38020) &amp;&amp; !IsQuestCompleted(38020)" >
 								<DisableBehavior Name="Pull" />
 								<MoveTo Nav="Fly" DestName="Temple of Sha'naar" X="3612.619" Y="183.9686" Z="129.547" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38020)" />
@@ -1386,7 +1428,7 @@
 					<!-- END Hard Pulls -->
 					<!-- Easy Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-							<While Condition="!HasQuest(38020)" >
+							<While Condition="!HasQuest(38020) &amp;&amp; !IsQuestCompleted(38020)" >
 								<DisableBehavior Name="Pull" />
 								<While Condition="!CanFly()" >
 									<MoveTo X="3663.508" Y="105.9724" Z="83.52634" />
@@ -1418,7 +1460,7 @@
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Battle At The Iron Front.&quot;);" />
 					<!-- Hard Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-							<While Condition="!HasQuest(38054)" >
+							<While Condition="!HasQuest(38054) &amp;&amp; !IsQuestCompleted(38054)" >
 								<DisableBehavior Name="Pull" />
 								<MoveTo Nav="Fly" DestName="The Iron Front" X="3893.965" Y="842.2295" Z="152.6835" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38054)" />
@@ -1438,7 +1480,7 @@
 					<!-- END Hard Pulls -->
 					<!-- Easy Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-							<While Condition="!HasQuest(38054)" >
+							<While Condition="!HasQuest(38054) &amp;&amp; !IsQuestCompleted(38054)" >
 								<DisableBehavior Name="Pull" />
 								<MoveTo Nav="Fly" DestName="The Iron Front" X="3992.573" Y="805.0379" Z="151.8674" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38054)" />
@@ -1464,7 +1506,7 @@
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Bleeding the Bleeding Hollow.&quot;);" />
 					<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="true" ActivityName="Use_RazornetTrap" UseWhen="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0) &amp;&amp; ((ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget) || (ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90781}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 15).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null &amp;&amp; !Me.Combat))" >
 						<!-- Dispose if another nearby. -->
-						<While Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90781}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 15).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null &amp;&amp; !Me.Combat" >
+						<If Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90781}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 15).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null &amp;&amp; !Me.Combat" >
 							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Disposing of Hellfire Shot to loot another.&quot;);" />
 							<CustomBehavior File="RunCode" TerminateWhen="Me.Combat">
 							<![CDATA[ 
@@ -1473,9 +1515,9 @@
 								SpellManager.ClickRemoteLocation(Me.Location); 
 							]]>
 							</CustomBehavior>
-						</While>
+						</If>
 					    <!-- Use on units attacking us. -->  <!-- TEST ME!! Should use if 1 or more mob is fighting us. -->
-						<While Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget" >
+						<If Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget" >
 							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Using Hellfire Shot on mobs attacking us.&quot;);" />
 							<CustomBehavior File="RunCode">
 							<![CDATA[
@@ -1485,11 +1527,11 @@
 								SpellManager.ClickRemoteLocation(Me.CurrentTarget.Location); 
 							]]>
 							</CustomBehavior>
-						</While>
+						</If>
 					</CustomBehavior>
 					<!-- Hard Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-							<While Condition="!HasQuest(38040)" >
+							<While Condition="!HasQuest(38040) &amp;&amp; !IsQuestCompleted(38040)" >
 								<DisableBehavior Name="Pull" />
 								<MoveTo Nav="Fly" DestName="Zeth'gol" X="4245.792" Y="390.4549" Z="153.8195" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38040)" />
@@ -1508,7 +1550,7 @@
 					<!-- END Hard Pulls -->
 					<!-- Easy Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-							<While Condition="!HasQuest(38040)" >
+							<While Condition="!HasQuest(38040) &amp;&amp; !IsQuestCompleted(38040)" >
 								<DisableBehavior Name="Pull" />
 								<MoveTo Nav="Fly" DestName="Zeth'gol" X="4245.792" Y="390.4549" Z="153.8195" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38040)" />
@@ -1524,7 +1566,7 @@
 							</CustomBehavior>
 						</If>
 					<!-- END Easy Pulls -->
-					<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" ActivityName="Use_RazornetTrap" Command="Remove" />
+					<CustomBehavior File="Hooks\DoWhen" ActivityName="Use_RazornetTrap" Command="Remove" />
 				</While>
 				<While Condition="HasQuest(38044) &amp;&amp; IsQuestCompleted(38044)" >
 					<DisableBehavior Name="Pull" />
@@ -1538,7 +1580,7 @@
 					<CustomBehavior File="Hooks\Avoid" AvoidName="Fel Pool" Command="Add" ObjectType="AreaTrigger" ObjectId="8757" Radius="5" />
 					<!-- Hard Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-							<While Condition="!HasQuest(38009)" >
+							<While Condition="!HasQuest(38009) &amp;&amp; !IsQuestCompleted(38009)" >
 								<DisableBehavior Name="Pull" />
 								<MoveTo Nav="Fly" DestName="Ruins of Kra'nak" X="4546.603" Y="484.6314" Z="226.6398" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38009)" />
@@ -1558,7 +1600,7 @@
 					<!-- END Hard Pulls -->
 					<!-- Easy Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-							<While Condition="!HasQuest(38009)" >
+							<While Condition="!HasQuest(38009) &amp;&amp; !IsQuestCompleted(38009)" >
 								<DisableBehavior Name="Pull" />
 								<MoveTo Nav="Fly" DestName="Ruins of Kra'nak" X="4539.619" Y="424.5465" Z="229.3716" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38009)" />
@@ -1576,10 +1618,10 @@
 							</CustomBehavior>
 						</If>
 					<!-- END Easy Pulls -->
-					<While Condition="!HasQuest(38009)" >
+					<If Condition="!HasQuest(38009)" >
 						<CustomBehavior File="Hooks\Avoid" AvoidName="Shadow Zone" Command="Remove" />
 						<CustomBehavior File="Hooks\Avoid" AvoidName="Fel Pool" Command="Remove" />
-					</While>
+					</If>
 				</While>
 				<While Condition="HasQuest(38252) &amp;&amp; IsQuestCompleted(38252)" >
 					<DisableBehavior Name="Pull" />
@@ -1589,9 +1631,9 @@
 
 				<While Condition="HasQuest(38441) &amp;&amp; !IsQuestCompleted(38441)" > <!-- Assault on The Fel Forge -->
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Assault on The Fel Forge.&quot;);" />
-					<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" ActivityName="Use_HellfireShot" UseWhen="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0) &amp;&amp; ((ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget) || ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{91901, 92741}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 25).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null || (Unit(92616) != null &amp;&amp; !Me.Combat))" >
+					<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="true" ActivityName="Use_HellfireShot" UseWhen="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0) &amp;&amp; ((ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget) || ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{91901, 92741}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 25).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null || (Unit(92616) != null &amp;&amp; !Me.Combat))" >
 					    <!-- Use on units attacking us. -->  <!-- TEST ME!! Should use if 1 or more mob is fighting us. -->
-						<While Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget" >
+						<If Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget" >
 							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Using Hellfire Shot on mobs attacking us.&quot;);" />
 							<CustomBehavior File="RunCode">
 							<![CDATA[
@@ -1600,9 +1642,9 @@
 								SpellManager.ClickRemoteLocation(Me.CurrentTarget.Location); 
 							]]>
 							</CustomBehavior>
-						</While>
+						</If>
 						<!-- Dispose if another nearby. -->
-						<While Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{91901, 92741}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 25).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null" >
+						<If Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{91901, 92741}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 25).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null" >
 							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Disposing of Hellfire Shot to loot another.&quot;);" />
 							<CustomBehavior File="RunCode">
 							<![CDATA[ 
@@ -1611,13 +1653,13 @@
 								SpellManager.ClickRemoteLocation(Me.Location); 
 							]]>
 							</CustomBehavior>
-						</While>
+						</If>
 						<!-- Use on nearby tank. -->
-						<While Condition="Unit(92616) != null &amp;&amp; !Me.Combat" >
+						<If Condition="Unit(92616) != null &amp;&amp; !Me.Combat" >
 							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Using Hellfire Shot on nearby tank.&quot;);" />
 							<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="!Me.Combat" /> <!-- We need to be out of combat first. -->
 							<CustomBehavior File="TargetAndMoveToMob" MobId="92616" WaitForNpcs="false" MoveWithinMaxRangeOfMob="25" TerminateWhen="!Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" />
-							<While Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" >
+							<If Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" >
 								<CustomBehavior File="RunCode">
 								<![CDATA[ 
 									Lua.DoString("ExtraActionButton1:Click();");
@@ -1625,18 +1667,18 @@
 									SpellManager.ClickRemoteLocation(Me.CurrentTarget.Location); 
 								]]>
 								</CustomBehavior>
-							</While>
-						</While>
+							</If>
+						</If>
 					</CustomBehavior>
 					<!-- Hard Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-							<While Condition="!HasQuest(38439)" > <!-- Assault on the Fel Forge -->
+							<While Condition="!HasQuest(38439) &amp;&amp; !IsQuestCompleted(38439)" > <!-- Assault on the Fel Forge -->
 								<DisableBehavior Name="Pull" />
 								<MoveTo Nav="Fly" DestName="The Fel Forge" X="4472.133" Y="-697.1107" Z="33.81255" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38439)" />
 								<EnableBehavior Name="Pull" />
 							</While>
-							<CustomBehavior File="InteractWith" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" MobIds="241669" QuestId="38441" NumOfTimes="1000" >
+							<CustomBehavior File="InteractWith" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" MobIds="241669, 91901, 92741" QuestId="38441" NumOfTimes="1000" >
 								<HuntingGrounds>
 									<Hotspot X="4421.958" Y="-871.004" Z="43.66127" />
 									<Hotspot X="4233.836" Y="-831.981" Z="25.86019" />
@@ -1650,13 +1692,13 @@
 					<!-- END Hard Pulls -->
 					<!-- Easy Pulls :: Same as hard, make edits if too hard. -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-							<While Condition="!HasQuest(38439)" > <!-- Assault on the Fel Forge -->
+							<While Condition="!HasQuest(38439) &amp;&amp; !IsQuestCompleted(38439)" > <!-- Assault on the Fel Forge -->
 								<DisableBehavior Name="Pull" />
 								<MoveTo Nav="Fly" DestName="The Fel Forge" X="4472.133" Y="-697.1107" Z="33.81255" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38439)" />
 								<EnableBehavior Name="Pull" />
 							</While>
-							<CustomBehavior File="InteractWith" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" MobIds="241669" QuestId="38441" NumOfTimes="1000" >
+							<CustomBehavior File="InteractWith" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" MobIds="241669, 91901, 92741" QuestId="38441" NumOfTimes="1000" >
 								<HuntingGrounds>
 									<Hotspot X="4421.958" Y="-871.004" Z="43.66127" />
 									<Hotspot X="4233.836" Y="-831.981" Z="25.86019" />
@@ -1668,7 +1710,7 @@
 							</CustomBehavior>
 						</If>
 					<!-- END Easy Pulls -->
-					<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" ActivityName="Use_HellfireShot" Command="Remove" />
+					<CustomBehavior File="Hooks\DoWhen" ActivityName="Use_HellfireShot" Command="Remove" />
 				</While>
 				<While Condition="HasQuest(38440) &amp;&amp; IsQuestCompleted(38440)" >
 					<DisableBehavior Name="Pull" />
@@ -1719,18 +1761,22 @@
 
 			<!-- DO Randomized Daily from Shadow Hunter Denjai -->
 				<!-- No easy pull version of this.  It's a group quest, so we may have to force the bot to avoid it. -->
-				<While Condition="HasQuest(39514) &amp;&amp; !IsQuestCompleted(39514)" > <!-- [GROUP] Harnessing Their Power -->
+				<!-- <While Condition="HasQuest(39514) &amp;&amp; !IsQuestCompleted(39514)" > [GROUP] Harnessing Their Power 
 					<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="2" ExpiryTime="45" Text="[WARNING]\n\nThe daily we picked up is a group quest.\n\nIf you continue, the bot will attempt to finish it however you may get into a death loop if you are undergeared or a caster class." />
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Harnessing Their Power.&quot;);" />
 					<MoveTo Nav="Fly" DestName="The Iron Front" X="4025.265" Y="1064.812" Z="167.5833" />
-					<CustomBehavior File="KillUntilComplete" QuestId="39514" MobId="90585" >
-						<HuntingGrounds>
-							<Hotspot X="3970.267" Y="1030.804" Z="163.2329" />
-							<Hotspot X="3959.172" Y="859.4688" Z="152.6836" />
-							<Hotspot X="3916.792" Y="875.9639" Z="152.6842" />
-						</HuntingGrounds>
-					</CustomBehavior>
-				</While>
+					<SetGrindArea>
+						<GrindArea>
+							<MobIds>90585</MobIds>
+							<Hotspots>
+								<Hotspot Name="Iron Front 0" X="3997.606" Y="870.8727" Z="152.6829" />
+								<Hotspot Name="Iron Front 1" X="3954.224" Y="782.0494" Z="153.6769" />
+								<Hotspot Name="Iron Front 2" X="3979.948" Y="986.4142" Z="158.6335" />
+							</Hotspots>
+						</GrindArea>
+					</SetGrindArea>
+					<GrindUntil Condition="IsQuestCompleted(39514)" GoalText="Harnessing Their Power"/>
+				</While> -->
 				<While Condition="HasQuest(39514) &amp;&amp; IsQuestCompleted(39514)" >
 					<DisableBehavior Name="Pull" />
 					<TurnIn Nav="Fly" QuestName="Harnessing Their Power" QuestId="39514" TurnInName="Shadow Hunter Denjai" TurnInId="96014" />
@@ -1778,29 +1824,37 @@
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Secrets of the Shadow Council.&quot;);" />
 					<!-- Hard Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-							<CustomBehavior File="KillUntilComplete" QuestId="39512" MobIds="90649, 90607, 90312, 90654, 89748" >
-								<HuntingGrounds>
-									<Hotspot X="4560.763" Y="443.0881" Z="229.8193" />
-									<Hotspot X="4526.892" Y="518.3264" Z="229.262" />
-									<Hotspot X="4475.299" Y="649.1726" Z="191.4169" />
-									<Hotspot X="4496.495" Y="744.3486" Z="181.2569" />
-									<Hotspot X="4477.998" Y="792.3724" Z="181.1873" />
-									<Hotspot X="4368.549" Y="871.2369" Z="175.4837" />
-								</HuntingGrounds>
-							</CustomBehavior>
+							<SetGrindArea>
+								<GrindArea>
+									<MobIds>90649, 90607, 90312, 90654, 89748</MobIds>
+									<Hotspots>
+										<Hotspot X="4560.763" Y="443.0881" Z="229.8193" />
+										<Hotspot X="4526.892" Y="518.3264" Z="229.262" />
+										<Hotspot X="4475.299" Y="649.1726" Z="191.4169" />
+										<Hotspot X="4496.495" Y="744.3486" Z="181.2569" />
+										<Hotspot X="4477.998" Y="792.3724" Z="181.1873" />
+										<Hotspot X="4368.549" Y="871.2369" Z="175.4837" />
+									</Hotspots>
+								</GrindArea>
+							</SetGrindArea>
+							<GrindUntil Condition="IsQuestCompleted(39512)" />
 						</If>
 					<!-- END Hard Pulls -->
 					<!-- Easy Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-							<CustomBehavior File="KillUntilComplete" QuestId="39512" MobIds="90649, 90607, 90312, 90654, 89748" >
-								<HuntingGrounds>
-									<Hotspot X="4513.263" Y="472.1714" Z="228.9365" />
-									<Hotspot X="4577.068" Y="478.2981" Z="229.146" />
-									<Hotspot X="4550.217" Y="544.4664" Z="229.3091" />
-									<Hotspot X="4472.96" Y="650.1429" Z="192.0173" />
-									<Hotspot X="4624.967" Y="590.0174" Z="203.0758" />
-								</HuntingGrounds>
-							</CustomBehavior>
+							<SetGrindArea>
+								<GrindArea>
+									<MobIds>90649, 90607, 90312, 90654, 89748</MobIds>
+									<Hotspots>
+										<Hotspot X="4513.263" Y="472.1714" Z="228.9365" />
+										<Hotspot X="4577.068" Y="478.2981" Z="229.146" />
+										<Hotspot X="4550.217" Y="544.4664" Z="229.3091" />
+										<Hotspot X="4472.96" Y="650.1429" Z="192.0173" />
+										<Hotspot X="4624.967" Y="590.0174" Z="203.0758" />
+									</Hotspots>
+								</GrindArea>
+							</SetGrindArea>
+							<GrindUntil Condition="IsQuestCompleted(39512)" />
 						</If>
 					<!-- END Easy Pulls -->
 				</While>
@@ -1813,14 +1867,18 @@
 				<!-- There's no easy pull version of this quest. -->
 				<While Condition="HasQuest(39532) &amp;&amp; !IsQuestCompleted(39532)" > <!-- [Nimi Brightcastle] Bringing Down the Iron Horde -->
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Bringing Down the Iron Horde.&quot;);" />
-					<CustomBehavior File="KillUntilComplete" MobIds="90066, 91760, 91764, 91721, 89754, 93370" QuestId="39532" >
-						<HuntingGrounds>
-							<Hotspot X="4314.433" Y="-1025.236" Z="21.86001" />
-							<Hotspot X="4378.459" Y="-914.2455" Z="34.72607" />
-							<Hotspot X="4478.62" Y="-985.8022" Z="38.02435" />
-							<Hotspot X="4668.208" Y="-878.8555" Z="99.33451" />
-						</HuntingGrounds>
-					</CustomBehavior>
+					<SetGrindArea>
+						<GrindArea>
+							<MobIds>90066, 91760, 91764, 91721, 89754, 93370</MobIds>
+							<Hotspots>
+								<Hotspot X="4314.433" Y="-1025.236" Z="21.86001" />
+								<Hotspot X="4378.459" Y="-914.2455" Z="34.72607" />
+								<Hotspot X="4478.62" Y="-985.8022" Z="38.02435" />
+								<Hotspot X="4668.208" Y="-878.8555" Z="99.33451" />
+							</Hotspots>
+						</GrindArea>
+					</SetGrindArea>
+					<GrindUntil Condition="IsQuestCompleted(39532)" />
 				</While>
 				<!-- There's no easy pull version of this quest. -->
 				<While Condition="HasQuest(39511) &amp;&amp; !IsQuestCompleted(39511)" > <!-- Blood of Fallen Brothers -->
@@ -1849,28 +1907,36 @@
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - A Little Wetwork.&quot;);" />
 					<!-- Hard Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-							<CustomBehavior File="KillUntilComplete" QuestId="39510" MobIds="89857, 90136, 89777, 89810, 89935, 89936, 91832" >
-								<HuntingGrounds>
-									<Hotspot X="4583.305" Y="-399.9979" Z="10.69125" />
-									<Hotspot X="4592.449" Y="-238.1564" Z="10.7333" />
-									<Hotspot X="4770.981" Y="-244.9629" Z="4.211271" />
-									<Hotspot X="4786.581" Y="-386.6306" Z="4.258256" />
-									<Hotspot X="4644.233" Y="-483.5012" Z="21.41648" />
-									<Hotspot X="4581.786" Y="-506.2161" Z="21.41869" />
-								</HuntingGrounds>
-							</CustomBehavior>
+							<SetGrindArea>
+								<GrindArea>
+									<MobIds>89857, 90136, 89777, 89810, 89935, 89936, 91832</MobIds>
+									<Hotspots>
+										<Hotspot X="4583.305" Y="-399.9979" Z="10.69125" />
+										<Hotspot X="4592.449" Y="-238.1564" Z="10.7333" />
+										<Hotspot X="4770.981" Y="-244.9629" Z="4.211271" />
+										<Hotspot X="4786.581" Y="-386.6306" Z="4.258256" />
+										<Hotspot X="4644.233" Y="-483.5012" Z="21.41648" />
+										<Hotspot X="4581.786" Y="-506.2161" Z="21.41869" />
+									</Hotspots>
+								</GrindArea>
+							</SetGrindArea>
+							<GrindUntil Condition="IsQuestCompleted(39510)" />
 						</If>
 					<!-- END Hard Pulls -->
 					<!-- Easy Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-							<CustomBehavior File="KillUntilComplete" QuestId="39510" MobIds="89857, 90136, 89777, 89810, 89935, 89936, 91832" >
-								<HuntingGrounds>
-									<Hotspot X="4658.131" Y="-552.9175" Z="36.25991" />
-									<Hotspot X="4634.374" Y="-493.1973" Z="21.42153" />
-									<Hotspot X="4693.737" Y="-519.6089" Z="47.37726" />
-									<Hotspot X="4760.93" Y="-479.2505" Z="37.17424" />
-								</HuntingGrounds>
-							</CustomBehavior>
+							<SetGrindArea>
+								<GrindArea>
+									<MobIds>89857, 90136, 89777, 89810, 89935, 89936, 91832</MobIds>
+									<Hotspots>
+										<Hotspot X="4658.131" Y="-552.9175" Z="36.25991" />
+										<Hotspot X="4634.374" Y="-493.1973" Z="21.42153" />
+										<Hotspot X="4693.737" Y="-519.6089" Z="47.37726" />
+										<Hotspot X="4760.93" Y="-479.2505" Z="37.17424" />
+									</Hotspots>
+								</GrindArea>
+							</SetGrindArea>
+							<GrindUntil Condition="IsQuestCompleted(39510)" />
 						</If>
 					<!-- END Easy Pulls -->
 				</While>
@@ -1884,26 +1950,34 @@
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Bloodied Blades of Zeth'Gol.&quot;);" />
 					<!-- Hard Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-							<CustomBehavior File="KillUntilComplete" QuestId="39509" MobIds="90851, 89699, 89703, 89705" >
-								<HuntingGrounds>
-									<Hotspot X="4310.75" Y="431.8437" Z="175.2454" />
-									<Hotspot X="4318.75" Y="372.2255" Z="176.6174" />
-									<Hotspot X="4223.525" Y="552.8775" Z="173.4002" />
-									<Hotspot X="4152.482" Y="654.0584" Z="162.6546" />
-									<Hotspot X="4117.844" Y="594.8691" Z="162.812" />
-								</HuntingGrounds>
-							</CustomBehavior>
+							<SetGrindArea>
+								<GrindArea>
+									<MobIds>90851, 89699, 89703, 89705</MobIds>
+									<Hotspots>
+										<Hotspot X="4310.75" Y="431.8437" Z="175.2454" />
+										<Hotspot X="4318.75" Y="372.2255" Z="176.6174" />
+										<Hotspot X="4223.525" Y="552.8775" Z="173.4002" />
+										<Hotspot X="4152.482" Y="654.0584" Z="162.6546" />
+										<Hotspot X="4117.844" Y="594.8691" Z="162.812" />
+									</Hotspots>
+								</GrindArea>
+							</SetGrindArea>
+							<GrindUntil Condition="IsQuestCompleted(39509)" />
 						</If>
 					<!-- END Hard Pulls -->
 					<!-- Easy Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-							<CustomBehavior File="KillUntilComplete" QuestId="39509" MobIds="90851, 89699, 89703, 89705" >
-								<HuntingGrounds>
-									<Hotspot X="4031.807" Y="513.1544" Z="142.0807" />
-									<Hotspot X="4083.947" Y="439.1315" Z="140.3514" />
-									<Hotspot X="4090.982" Y="508.5185" Z="141.1908" />
-								</HuntingGrounds>
-							</CustomBehavior>
+							<SetGrindArea>
+								<GrindArea>
+									<MobIds>90851, 89699, 89703, 89705</MobIds>
+									<Hotspots>
+										<Hotspot X="4031.807" Y="513.1544" Z="142.0807" />
+										<Hotspot X="4083.947" Y="439.1315" Z="140.3514" />
+										<Hotspot X="4090.982" Y="508.5185" Z="141.1908" />
+									</Hotspots>
+								</GrindArea>
+							</SetGrindArea>
+							<GrindUntil Condition="IsQuestCompleted(39509)" />
 						</If>
 					<!-- END Easy Pulls -->
 				</While>
@@ -1937,7 +2011,7 @@
 						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Completing Assault on the Ruins of Kra'nak.&quot;);" />
 						<!-- Hard Pulls -->
 							<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-								<While Condition="!HasQuest(39448)" >
+								<While Condition="!HasQuest(39448) &amp;&amp; !IsQuestCompleted(39448)" >
 									<DisableBehavior Name="Pull" />
 									<MoveTo Nav="Fly" DestName="Ruins of Kra'nak" X="4546.603" Y="484.6314" Z="226.6398" />
 									<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39448)" />
@@ -1957,7 +2031,7 @@
 						<!-- END Hard Pulls -->
 						<!-- Easy Pulls -->
 							<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-								<While Condition="!HasQuest(39448)" >
+								<While Condition="!HasQuest(39448) &amp;&amp; !IsQuestCompleted(39448)" >
 									<DisableBehavior Name="Pull" />
 									<MoveTo Nav="Fly" DestName="Ruins of Kra'nak" X="4539.619" Y="424.5465" Z="229.3716" />
 									<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39448)" />
@@ -1975,16 +2049,16 @@
 								</CustomBehavior>
 							</If>
 						<!-- END Easy Pulls -->
-						<While Condition="!HasQuest(39448)" >
+						<If Condition="!HasQuest(39448)" >
 							<CustomBehavior File="Hooks\Avoid" AvoidName="Shadow Zone" Command="Remove" />
 							<CustomBehavior File="Hooks\Avoid" AvoidName="Fel Pool" Command="Remove" />
-						</While>
+						</If>
 					</While>
 					<While Condition="!IsQuestCompleted(39450) &amp;&amp; !IsQuestCompleted(38449) &amp;&amp; !IsQuestCompleted(39526)" > <!-- Assault on the Temple of Sha'naar -->
 						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Completing Assault on the Temple of Sha'naar.&quot;);" />
 						<!-- Hard Pulls -->
 							<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-								<While Condition="!HasQuest(39450)" > <!-- Assault on the Temple of Sha'naar -->
+								<While Condition="!HasQuest(39450) &amp;&amp; !IsQuestCompleted(39450)" > <!-- Assault on the Temple of Sha'naar -->
 									<DisableBehavior Name="Pull" />
 									<MoveTo Nav="Fly" DestName="Temple of Sha'naar" X="3612.619" Y="183.9686" Z="129.547" />
 									<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39450)" />
@@ -2005,7 +2079,7 @@
 						<!-- END Hard Pulls -->
 						<!-- Easy Pulls -->
 							<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-								<While Condition="!HasQuest(39450)" > <!-- Assault on the Temple of Sha'naar -->
+								<While Condition="!HasQuest(39450) &amp;&amp; !IsQuestCompleted(39450)" > <!-- Assault on the Temple of Sha'naar -->
 									<DisableBehavior Name="Pull" />
 									<While Condition="!CanFly()" >
 										<MoveTo X="3663.508" Y="105.9724" Z="83.52634" />
@@ -2027,9 +2101,9 @@
 						<!-- END Easy Pulls -->
 					</While>
 					<While Condition="!IsQuestCompleted(39452) &amp;&amp; !IsQuestCompleted(37940) &amp;&amp; !IsQuestCompleted(39526)" > <!-- Assault on Ironhold Harbor -->
-						<CustomBehavior File="Hooks\DoWhen" ActivityName="Use_TrueIronBomb" UseWhen="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0) &amp;&amp; ((ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget) || ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 35).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null || (Unit(90074) != null &amp;&amp; !Me.Combat))" >
+						<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="true" ActivityName="Use_TrueIronBomb" UseWhen="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0) &amp;&amp; ((ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget) || ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 35).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null || (Unit(90074) != null &amp;&amp; !Me.Combat))" >
 							<!-- Use on units attacking us. -->  <!-- TEST ME!! Should use if 1 or more mob is fighting us. -->
-							<While Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget" >
+							<If Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget" >
 								<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Using True Iron Bomb on mobs attacking us.&quot;);" />
 								<CustomBehavior File="RunCode">
 								<![CDATA[
@@ -2038,9 +2112,9 @@
 									SpellManager.ClickRemoteLocation(Me.CurrentTarget.Location); 
 								]]>
 								</CustomBehavior>
-							</While>
+							</If>
 							<!-- Dispose if another nearby. -->
-							<While Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 35).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null" >
+							<If Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 35).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null" >
 								<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Disposing of Razor Net Trap to loot another.&quot;);" />
 								<CustomBehavior File="RunCode">
 								<![CDATA[ 
@@ -2049,11 +2123,11 @@
 									SpellManager.ClickRemoteLocation(Me.Location); 
 								]]>
 								</CustomBehavior>
-							</While>
+							</If>
 							<!-- Use in combat -->
-							<While Condition="Me.Combat &amp;&amp; Me.CurrentTarget.Distance &lt;= 25" >
+							<If Condition="Me.Combat &amp;&amp; Me.CurrentTarget.Distance &lt;= 25" >
 								<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Using True Iron Bomb on nearby enemy.&quot;);" />                
-								<While Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" >
+								<If Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" >
 									<CustomBehavior File="ForcedDismount" />
 									<CustomBehavior File="RunCode">
 									<![CDATA[ 
@@ -2062,14 +2136,14 @@
 										SpellManager.ClickRemoteLocation(Me.CurrentTarget.Location);
 									]]>
 									</CustomBehavior>
-								</While>
-							</While>
+								</If>
+							</If>
 							<!-- Use on nearby tank. -->
-							<While Condition="Unit(90074) != null &amp;&amp; !Me.Combat" >
+							<If Condition="Unit(90074) != null &amp;&amp; !Me.Combat" >
 								<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Using True Iron Bomb on nearby tank.&quot;);" />
 								<CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting to leave combat: {TimeRemaining}" TerminateWhen="!Me.Combat" /> <!-- We need to be out of combat first. -->
 								<CustomBehavior File="TargetAndMoveToMob" MobId="90074" WaitForNpcs="false" MoveWithinMaxRangeOfMob="25" TerminateWhen="!Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" />
-								<While Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" >
+								<If Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" >
 									<CustomBehavior File="ForcedDismount" />
 									<CustomBehavior File="RunCode">
 										<![CDATA[ 
@@ -2078,12 +2152,12 @@
 											SpellManager.ClickRemoteLocation(Me.CurrentTarget.Location);
 										]]>
 									</CustomBehavior>
-								</While>
-							</While>
+								</If>
+							</If>
 						</CustomBehavior>
 						<!-- Hard Pulls -->
 							<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-								<While Condition="!HasQuest(39452)" >
+								<While Condition="!HasQuest(39452) &amp;&amp; !IsQuestCompleted(39452)" >
 									<DisableBehavior Name="Pull" />
 									<MoveTo Nav="Fly" DestName="Ironhold Harbor" X="4583.305" Y="-399.9979" Z="10.69125" />
 									<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39452)" />
@@ -2103,7 +2177,7 @@
 						<!-- END Hard Pulls -->
 						<!-- Easy Pulls -->
 							<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-								<While Condition="!HasQuest(39452)" >
+								<While Condition="!HasQuest(39452) &amp;&amp; !IsQuestCompleted(39452)" >
 									<DisableBehavior Name="Pull" />
 									<MoveTo Nav="Fly" DestName="Ironhold Harbor" X="4633.494" Y="-578.2945" Z="44.38635" />
 									<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39452)" />
@@ -2119,7 +2193,7 @@
 								</CustomBehavior>
 							</If>
 						<!-- END Easy Pulls -->
-						<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" ActivityName="Use_TrueIronBomb" Command="Remove" />
+						<CustomBehavior File="Hooks\DoWhen" ActivityName="Use_TrueIronBomb" Command="Remove" />
 					</While>
 				</While>
 			<!-- END Finish up Bonus Objectives for Pressing the Attack -->
@@ -2128,15 +2202,19 @@
 				<!-- There's no easy version of this -->
 				<While Condition="HasQuest(39519) &amp;&amp; !IsQuestCompleted(39519)" > <!-- [Nimi Brightcastle] Demonslayer of Tanaan -->
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Demonslayer of Tanaan.&quot;);" />
-					<CustomBehavior File="KillUntilComplete" MobIds="93024, 90517" QuestId="39519" >
-						<HuntingGrounds>
-							<Hotspot X="4483.101" Y="-1200.358" Z="30.22227" />
-							<Hotspot X="4433.078" Y="-1165.501" Z="29.08888" />
-							<Hotspot X="4316.121" Y="-1133.61" Z="25.08726" />
-							<Hotspot X="4710.229" Y="-1540.281" Z="41.94264" />
-							<Hotspot X="4615.164" Y="-1490.89" Z="34.76215" />
-						</HuntingGrounds>
-					</CustomBehavior>
+					<SetGrindArea>
+						<GrindArea>
+							<MobIds>93024, 90517</MobIds>
+							<Hotspots>
+								<Hotspot X="4483.101" Y="-1200.358" Z="30.22227" />
+								<Hotspot X="4433.078" Y="-1165.501" Z="29.08888" />
+								<Hotspot X="4316.121" Y="-1133.61" Z="25.08726" />
+								<Hotspot X="4710.229" Y="-1540.281" Z="41.94264" />
+								<Hotspot X="4615.164" Y="-1490.89" Z="34.76215" />
+							</Hotspots>
+						</GrindArea>
+					</SetGrindArea>
+					<GrindUntil Condition="IsQuestCompleted(39519)" />
 				</While>
 				<While Condition="HasQuest(39519) &amp;&amp; IsQuestCompleted(39519)" >
 					<DisableBehavior Name="Pull" />
@@ -2159,24 +2237,31 @@
 		<!-- There's no easy version of this -->
 		<While Condition="(HasQuest(39582) &amp;&amp; !IsQuestCompleted(39582) &amp;&amp; Me.IsAlliance) || (HasQuest(39529) &amp;&amp; !IsQuestCompleted(39529) &amp;&amp; Me.IsHorde)" >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Finishing Tooth and Claw daily.&quot;);" />
-			<CustomBehavior File="InteractWith" MobState="AliveNotInCombat" InteractByLooting="true" NumOfTimes="1000" ProactiveCombatStrategy="ClearAll" PreInteractMountStrategy="Dismount" MobIds="92607, 89745, 89744" TerminateWhen="IsQuestCompleted(39582) || IsQuestCompleted(39529)" >
-				<HuntingGrounds>
-					<Hotspot X="3170.341" Y="-416.2042" Z="19.38113" />
-					<Hotspot X="3172.141" Y="-340.1751" Z="18.97363" />
-					<Hotspot X="3208.539" Y="-310.6026" Z="24.16525" />
-					<Hotspot X="3267.495" Y="-323.6526" Z="19.98916" />
-					<Hotspot X="3321.127" Y="-311.4194" Z="28.35455" />
-					<Hotspot X="3411.395" Y="-266.2389" Z="20.16372" />
-					<Hotspot X="3256.086" Y="-603.1852" Z="21.14106" />
-				</HuntingGrounds>
-			</CustomBehavior>
-			<DisableBehavior Name="Pull" />
+			<SetGrindArea>
+				<GrindArea>
+					<MobIds>89745, 89744, 89697, 89742, 243796, 243852, 243860</MobIds>
+					<Hotspots>
+						<Hotspot Name="Tooth and Claw 0" X="3192.545" Y="-480.9305" Z="14.19551" />
+						<Hotspot Name="Tooth and Claw 1" X="3170.341" Y="-416.2042" Z="19.38113" />
+						<Hotspot Name="Tooth and Claw 2" X="3172.141" Y="-340.1751" Z="18.97363" />
+						<Hotspot Name="Tooth and Claw 3" X="3208.539" Y="-310.6026" Z="24.16525" />
+						<Hotspot Name="Tooth and Claw 4" X="3267.495" Y="-323.6526" Z="19.98916" />
+						<Hotspot Name="Tooth and Claw 5" X="3321.127" Y="-311.4194" Z="28.35455" />
+						<Hotspot Name="Tooth and Claw 6" X="3411.395" Y="-266.2389" Z="20.16372" />
+						<Hotspot Name="Tooth and Claw 7" X="3256.086" Y="-603.1852" Z="21.14106" />
+						<Hotspot Name="Tooth and Claw 8" X="3483.176" Y="-635.4194" Z="15.88454" />
+					</Hotspots>
+				</GrindArea>
+			</SetGrindArea>
+			<GrindUntil Condition="(IsQuestCompleted(39582) &amp;&amp; Me.IsAlliance) || (IsQuestCompleted(39529) &amp;&amp; Me.IsHorde)" GoalText="Saberstalker Tooth and Claw"/>
 		</While>
 		<While Condition="HasQuest(39565) &amp;&amp; IsQuestCompleted(39565)" >
+			<DisableBehavior Name="Pull" />
 			<TurnIn Nav="Fly" QuestName="Rumble in the Jungle" QuestId="39565" TurnInName="Z'tenga the Walker" TurnInId="92805" />
 			<EnableBehavior Name="Pull" />
 		</While>
 		<While Condition="HasQuest(39582) &amp;&amp; IsQuestCompleted(39582)" >
+			<DisableBehavior Name="Pull" />
 			<TurnIn Nav="Fly" QuestName="Tooth and Claw" QuestId="39582" TurnInName="Parvink" TurnInId="96147" />
 			<EnableBehavior Name="Pull" />
 		</While>
@@ -2190,9 +2275,9 @@
 		<If Condition="Me.IsAlliance" >
 			<While Condition="!IsQuestCompleted(39445) &amp;&amp; !IsQuestCompleted(38440)" > <!-- Assault on the Fel Forge -->
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Completing Assault on the Fel Forge.&quot;);" />
-				<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" ActivityName="Use_HellfireShot" UseWhen="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0) &amp;&amp; ((ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget) || ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{91901, 92741}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 25).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null || (Unit(92616) != null &amp;&amp; !Me.Combat))" >
+				<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="true" ActivityName="Use_HellfireShot" UseWhen="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0) &amp;&amp; ((ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget) || ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{91901, 92741}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 25).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null || (Unit(92616) != null &amp;&amp; !Me.Combat))" >
 				    <!-- Use on units attacking us. -->  <!-- TEST ME!! Should use if 1 or more mob is fighting us. -->
-					<While Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget" >
+					<If Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget" >
 						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Using Hellfire Shot on mobs attacking us.&quot;);" />
 						<CustomBehavior File="RunCode">
 						<![CDATA[
@@ -2201,9 +2286,9 @@
 							SpellManager.ClickRemoteLocation(Me.CurrentTarget.Location); 
 						]]>
 						</CustomBehavior>
-					</While>
+					</If>
 					<!-- Dispose if another nearby. -->
-					<While Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{91901, 92741}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 25).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null" >
+					<If Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{91901, 92741}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 25).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null" >
 						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Disposing of Hellfire Shot to loot another.&quot;);" />
 						<CustomBehavior File="RunCode">
 						<![CDATA[ 
@@ -2212,13 +2297,13 @@
 							SpellManager.ClickRemoteLocation(Me.Location); 
 						]]>
 						</CustomBehavior>
-					</While>
+					</If>
 					<!-- Use on nearby tank. -->
-					<While Condition="Unit(92616) != null &amp;&amp; !Me.Combat" >
+					<If Condition="Unit(92616) != null &amp;&amp; !Me.Combat" >
 						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Using Hellfire Shot on nearby tank.&quot;);" />
 						<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="!Me.Combat" /> <!-- We need to be out of combat first. -->
 						<CustomBehavior File="TargetAndMoveToMob" MobId="92616" WaitForNpcs="false" MoveWithinMaxRangeOfMob="25" TerminateWhen="!Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" />
-						<While Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" >
+						<If Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" >
 							<CustomBehavior File="RunCode">
 							<![CDATA[ 
 								Lua.DoString("ExtraActionButton1:Click();");
@@ -2226,18 +2311,18 @@
 								SpellManager.ClickRemoteLocation(Me.CurrentTarget.Location); 
 							]]>
 							</CustomBehavior>
-						</While>
-					</While>
+						</If>
+					</If>
 				</CustomBehavior>
 				<!-- Hard Pulls -->
 					<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-						<While Condition="!HasQuest(39445)" > <!-- Assault on the Fel Forge -->
+						<While Condition="!HasQuest(39445) &amp;&amp; !IsQuestCompleted(39445)" > <!-- Assault on the Fel Forge -->
 							<DisableBehavior Name="Pull" />
 							<MoveTo Nav="Fly" DestName="The Fel Forge" X="4472.133" Y="-697.1107" Z="33.81255" />
 							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39445)" />
 							<EnableBehavior Name="Pull" />
 						</While>
-						<CustomBehavior File="InteractWith" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" MobIds="241669" QuestId="39445" NumOfTimes="1000" >
+						<CustomBehavior File="InteractWith" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" MobIds="241669, 91901, 92741" QuestId="39445" NumOfTimes="1000" >
 							<HuntingGrounds>
 								<Hotspot X="4421.958" Y="-871.004" Z="43.66127" />
 								<Hotspot X="4233.836" Y="-831.981" Z="25.86019" />
@@ -2251,13 +2336,13 @@
 				<!-- END Hard Pulls -->
 				<!-- Easy Pulls :: Same as hard, make edits if too hard. -->
 					<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-						<While Condition="!HasQuest(39445)" > <!-- Assault on the Fel Forge -->
+						<While Condition="!HasQuest(39445) &amp;&amp; !IsQuestCompleted(39445)" > <!-- Assault on the Fel Forge -->
 							<DisableBehavior Name="Pull" />
 							<MoveTo Nav="Fly" DestName="The Fel Forge" X="4472.133" Y="-697.1107" Z="33.81255" />
 							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39445)" />
 							<EnableBehavior Name="Pull" />
 						</While>
-						<CustomBehavior File="InteractWith" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" MobIds="241669" QuestId="39445" NumOfTimes="1000" >
+						<CustomBehavior File="InteractWith" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" MobIds="241669, 91901, 92741" QuestId="39445" NumOfTimes="1000" >
 							<HuntingGrounds>
 								<Hotspot X="4421.958" Y="-871.004" Z="43.66127" />
 								<Hotspot X="4233.836" Y="-831.981" Z="25.86019" />
@@ -2269,14 +2354,14 @@
 						</CustomBehavior>
 					</If>
 				<!-- END Easy Pulls -->
-				<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" ActivityName="Use_HellfireShot" Command="Remove" />
+				<CustomBehavior File="Hooks\DoWhen" ActivityName="Use_HellfireShot" Command="Remove" />
 			</While>
 
 			<While Condition="!IsQuestCompleted(39451) &amp;&amp; !IsQuestCompleted(37891)" > <!-- Assault on Ironhold Harbor -->
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Completing Assault on Ironhold Harbor.&quot;);" />
-				<CustomBehavior File="Hooks\DoWhen" ActivityName="Use_TrueIronBomb" UseWhen="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0) &amp;&amp; ((ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget) || ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 35).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null || (Unit(90074) != null &amp;&amp; !Me.Combat))" >
+				<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="true" ActivityName="Use_TrueIronBomb" UseWhen="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0) &amp;&amp; ((ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget) || ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 35).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null || (Unit(90074) != null &amp;&amp; !Me.Combat))" >
 					<!-- Use on units attacking us. -->  <!-- TEST ME!! Should use if 1 or more mob is fighting us. -->
-					<While Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget" >
+					<If Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget" >
 						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Using True Iron Bomb on mobs attacking us.&quot;);" />
 						<CustomBehavior File="RunCode">
 						<![CDATA[
@@ -2285,9 +2370,9 @@
 							SpellManager.ClickRemoteLocation(Me.CurrentTarget.Location); 
 						]]>
 						</CustomBehavior>
-					</While>
+					</If>
 					<!-- Dispose if another nearby. -->
-					<While Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 35).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null" >
+					<If Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 35).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null" >
 						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Disposing of Razor Net Trap to loot another.&quot;);" />
 						<CustomBehavior File="RunCode">
 						<![CDATA[ 
@@ -2296,11 +2381,11 @@
 							SpellManager.ClickRemoteLocation(Me.Location); 
 						]]>
 						</CustomBehavior>
-					</While>
+					</If>
 					<!-- Use in combat -->
-					<While Condition="Me.Combat &amp;&amp; Me.CurrentTarget.Distance &lt;= 25" >
+					<If Condition="Me.Combat &amp;&amp; Me.CurrentTarget.Distance &lt;= 25" >
 						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Using True Iron Bomb on nearby enemy.&quot;);" />                
-						<While Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" >
+						<If Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" >
 							<CustomBehavior File="ForcedDismount" />
 							<CustomBehavior File="RunCode">
 							<![CDATA[ 
@@ -2309,14 +2394,14 @@
 								SpellManager.ClickRemoteLocation(Me.CurrentTarget.Location);
 							]]>
 							</CustomBehavior>
-						</While>
-					</While>
+						</If>
+					</If>
 					<!-- Use on nearby tank. -->
-					<While Condition="Unit(90074) != null &amp;&amp; !Me.Combat" >
+					<If Condition="Unit(90074) != null &amp;&amp; !Me.Combat" >
 						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Using True Iron Bomb on nearby tank.&quot;);" />
 						<CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting to leave combat: {TimeRemaining}" TerminateWhen="!Me.Combat" /> <!-- We need to be out of combat first. -->
 						<CustomBehavior File="TargetAndMoveToMob" MobId="90074" WaitForNpcs="false" MoveWithinMaxRangeOfMob="25" TerminateWhen="!Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" />
-						<While Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" >
+						<If Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" >
 							<CustomBehavior File="ForcedDismount" />
 							<CustomBehavior File="RunCode">
 								<![CDATA[ 
@@ -2325,12 +2410,12 @@
 									SpellManager.ClickRemoteLocation(Me.CurrentTarget.Location);
 								]]>
 							</CustomBehavior>
-						</While>
-					</While>
+						</If>
+					</If>
 				</CustomBehavior>
 				<!-- Hard Pulls -->
 					<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-						<While Condition="!HasQuest(39451)" >
+						<While Condition="!HasQuest(39451) &amp;&amp; !IsQuestCompleted(39451)" >
 							<DisableBehavior Name="Pull" />
 							<MoveTo Nav="Fly" DestName="Ironhold Harbor" X="4583.305" Y="-399.9979" Z="10.69125" />
 							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39451)" />
@@ -2350,7 +2435,7 @@
 				<!-- END Hard Pulls -->
 				<!-- Easy Pulls -->
 					<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-						<While Condition="!HasQuest(39451)" >
+						<While Condition="!HasQuest(39451) &amp;&amp; !IsQuestCompleted(39451)" >
 							<DisableBehavior Name="Pull" />
 							<MoveTo Nav="Fly" DestName="Ironhold Harbor" X="4633.494" Y="-578.2945" Z="44.38635" />
 							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39451)" />
@@ -2366,7 +2451,7 @@
 						</CustomBehavior>
 					</If>
 				<!-- END Easy Pulls -->
-				<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" ActivityName="Use_TrueIronBomb" Command="Remove" />
+				<CustomBehavior File="Hooks\DoWhen" ActivityName="Use_TrueIronBomb" Command="Remove" />
 			</While>
 
 			<While Condition="!IsQuestCompleted(39447) &amp;&amp; !IsQuestCompleted(38250)" > <!-- Assault on the Ruins of Kra'nak -->
@@ -2375,7 +2460,7 @@
 				<CustomBehavior File="Hooks\Avoid" AvoidName="Fel Pool" Command="Add" ObjectType="AreaTrigger" ObjectId="8757" Radius="5" />
 				<!-- Hard Pulls -->
 					<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-						<While Condition="!HasQuest(39447)" >
+						<While Condition="!HasQuest(39447) &amp;&amp; !IsQuestCompleted(39447)" >
 							<DisableBehavior Name="Pull" />
 							<MoveTo Nav="Fly" DestName="Ruins of Kra'nak" X="4546.603" Y="484.6314" Z="226.6398" />
 							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39447)" />
@@ -2395,7 +2480,7 @@
 				<!-- END Hard Pulls -->
 				<!-- Easy Pulls -->
 					<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-						<While Condition="!HasQuest(39447)" >
+						<While Condition="!HasQuest(39447) &amp;&amp; !IsQuestCompleted(39447)" >
 							<DisableBehavior Name="Pull" />
 							<MoveTo Nav="Fly" DestName="Ruins of Kra'nak" X="4539.619" Y="424.5465" Z="229.3716" />
 							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39447)" />
@@ -2413,17 +2498,17 @@
 						</CustomBehavior>
 					</If>
 				<!-- END Easy Pulls -->
-				<While Condition="!HasQuest(39447)" >
+				<If Condition="!HasQuest(39447)" >
 					<CustomBehavior File="Hooks\Avoid" AvoidName="Shadow Zone" Command="Remove" />
 					<CustomBehavior File="Hooks\Avoid" AvoidName="Fel Pool" Command="Remove" />
-				</While>
+				</If>
 			</While>
 
 			<While Condition="!IsQuestCompleted(39441) &amp;&amp; !IsQuestCompleted(38045)" > <!-- Assault on Zeth'Gol -->
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Completing Assault on Zeth'Gol.&quot;);" />
 				<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="true" ActivityName="Use_RazornetTrap" UseWhen="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0) &amp;&amp; ((ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget) || (ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90781}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 15).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null &amp;&amp; !Me.Combat))" >
 					<!-- Dispose if another nearby. -->
-					<While Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90781}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 15).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null &amp;&amp; !Me.Combat" >
+					<If Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90781}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 15).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null &amp;&amp; !Me.Combat" >
 						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Disposing of Razornet Trap to loot another.&quot;);" />
 						<CustomBehavior File="RunCode" TerminateWhen="Me.Combat">
 						<![CDATA[ 
@@ -2432,9 +2517,9 @@
 							SpellManager.ClickRemoteLocation(Me.Location); 
 						]]>
 						</CustomBehavior>
-					</While>
+					</If>
 				    <!-- Use on units attacking us. -->  <!-- TEST ME!! Should use if 1 or more mob is fighting us. -->
-					<While Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget" >
+					<If Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget" >
 						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Using Razornet Trap on mobs attacking us.&quot;);" />
 						<CustomBehavior File="RunCode">
 						<![CDATA[
@@ -2444,9 +2529,9 @@
 							SpellManager.ClickRemoteLocation(Me.CurrentTarget.Location); 
 						]]>
 						</CustomBehavior>
-					</While>
+					</If>
 				</CustomBehavior>
-				<While Condition="!HasQuest(39441)" > <!-- Check ID, may be 39442 -->
+				<While Condition="!HasQuest(39441) &amp;&amp; !IsQuestCompleted(39441)" > <!-- Check ID, may be 39442 -->
 					<DisableBehavior Name="Pull" />
 					<MoveTo Nav="Fly" DestName="Zeth'gol" X="4245.792" Y="390.4549" Z="153.8195" />
 					<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39441)" />
@@ -2461,14 +2546,14 @@
 						<Hotspot X="4117.844" Y="594.8691" Z="162.812" />
 					</HuntingGrounds>
 				</CustomBehavior>
-				<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" ActivityName="Use_RazornetTrap" Command="Remove" />
+				<CustomBehavior File="Hooks\DoWhen" ActivityName="Use_RazornetTrap" Command="Remove" />
 			</While>
 
 			<While Condition="!IsQuestCompleted(38866) &amp;&amp; !IsQuestCompleted(38046)" > <!-- Assault on Iron Front : Intro Version -->
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Completing Assault on the Iron Front.&quot;);" />
 				<!-- Hard Pulls -->
 					<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-						<While Condition="!HasQuest(38866)" >
+						<While Condition="!HasQuest(38866) &amp;&amp; !IsQuestCompleted(38866)" >
 							<DisableBehavior Name="Pull" />
 							<MoveTo Nav="Fly" DestName="The Iron Front" X="3893.965" Y="842.2295" Z="152.6835" />
 							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38866)" />
@@ -2488,7 +2573,7 @@
 				<!-- END Hard Pulls -->
 				<!-- Easy Pulls -->
 					<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-						<While Condition="!HasQuest(38866)" >
+						<While Condition="!HasQuest(38866) &amp;&amp; !IsQuestCompleted(38866)" >
 							<DisableBehavior Name="Pull" />
 							<MoveTo Nav="Fly" DestName="The Iron Front" X="3992.573" Y="805.0379" Z="151.8674" />
 							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38866)" />
@@ -2508,7 +2593,7 @@
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Completing Assault on the Iron Front.&quot;);" />
 				<!-- Hard Pulls -->
 					<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-						<While Condition="!HasQuest(39443)" >
+						<While Condition="!HasQuest(39443) &amp;&amp; !IsQuestCompleted(39443)" >
 							<DisableBehavior Name="Pull" />
 							<MoveTo Nav="Fly" DestName="The Iron Front" X="3893.965" Y="842.2295" Z="152.6835" />
 							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39443)" />
@@ -2528,7 +2613,7 @@
 				<!-- END Hard Pulls -->
 				<!-- Easy Pulls -->
 					<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-						<While Condition="!HasQuest(39443)" >
+						<While Condition="!HasQuest(39443) &amp;&amp; !IsQuestCompleted(39443)" >
 							<DisableBehavior Name="Pull" />
 							<MoveTo Nav="Fly" DestName="The Iron Front" X="3992.573" Y="805.0379" Z="151.8674" />
 							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39443)" />
@@ -2549,7 +2634,7 @@
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Completing Assault on the Temple of Sha'naar.&quot;);" />
 				<!-- Hard Pulls -->
 					<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-						<While Condition="!HasQuest(39449)" > <!-- Assault on the Temple of Sha'naar -->
+						<While Condition="!HasQuest(39449) &amp;&amp; !IsQuestCompleted(39449)" > <!-- Assault on the Temple of Sha'naar -->
 							<DisableBehavior Name="Pull" />
 							<MoveTo Nav="Fly" DestName="Temple of Sha'naar" X="3612.619" Y="183.9686" Z="129.547" />
 							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39449)" />
@@ -2570,7 +2655,7 @@
 				<!-- END Hard Pulls -->
 				<!-- Easy Pulls -->
 					<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-						<While Condition="!HasQuest(39449)" > <!-- Assault on the Temple of Sha'naar -->
+						<While Condition="!HasQuest(39449) &amp;&amp; !IsQuestCompleted(39449)" > <!-- Assault on the Temple of Sha'naar -->
 							<DisableBehavior Name="Pull" />
 							<While Condition="!CanFly()" >
 								<MoveTo X="3663.508" Y="105.9724" Z="83.52634" />
@@ -2601,9 +2686,9 @@
 		<If Condition="Me.IsHorde" >
 			<While Condition="!IsQuestCompleted(39446) &amp;&amp; !IsQuestCompleted(38441)" > <!-- Assault on Fel Forge -->
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Completing Assault Fel Forge.&quot;);" />
-				<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" ActivityName="Use_HellfireShot" UseWhen="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0) &amp;&amp; ((ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget) || ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{91901, 92741}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 25).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null || (Unit(92616) != null &amp;&amp; !Me.Combat))" >
+				<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="true" ActivityName="Use_HellfireShot" UseWhen="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0) &amp;&amp; ((ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget) || ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{91901, 92741}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 25).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null || (Unit(92616) != null &amp;&amp; !Me.Combat))" >
 				    <!-- Use on units attacking us. -->  <!-- TEST ME!! Should use if 1 or more mob is fighting us. -->
-					<While Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget" >
+					<If Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget" >
 						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Using Hellfire Shot on mobs attacking us.&quot;);" />
 						<CustomBehavior File="RunCode">
 						<![CDATA[
@@ -2612,9 +2697,9 @@
 							SpellManager.ClickRemoteLocation(Me.CurrentTarget.Location); 
 						]]>
 						</CustomBehavior>
-					</While>
+					</If>
 					<!-- Dispose if another nearby. -->
-					<While Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{91901, 92741}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 25).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null" >
+					<If Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{91901, 92741}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 25).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null" >
 						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Disposing of Hellfire Shot to loot another.&quot;);" />
 						<CustomBehavior File="RunCode">
 						<![CDATA[ 
@@ -2623,13 +2708,13 @@
 							SpellManager.ClickRemoteLocation(Me.Location); 
 						]]>
 						</CustomBehavior>
-					</While>
+					</If>
 					<!-- Use on nearby tank. -->
-					<While Condition="Unit(92616) != null &amp;&amp; !Me.Combat" >
+					<If Condition="Unit(92616) != null &amp;&amp; !Me.Combat" >
 						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Using Hellfire Shot on nearby tank.&quot;);" />
 						<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="!Me.Combat" /> <!-- We need to be out of combat first. -->
 						<CustomBehavior File="TargetAndMoveToMob" MobId="92616" WaitForNpcs="false" MoveWithinMaxRangeOfMob="25" TerminateWhen="!Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" />
-						<While Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" >
+						<If Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" >
 							<CustomBehavior File="RunCode">
 							<![CDATA[ 
 								Lua.DoString("ExtraActionButton1:Click();");
@@ -2637,18 +2722,18 @@
 								SpellManager.ClickRemoteLocation(Me.CurrentTarget.Location); 
 							]]>
 							</CustomBehavior>
-						</While>
-					</While>
+						</If>
+					</If>
 				</CustomBehavior>
 				<!-- Hard Pulls -->
 					<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-						<While Condition="!HasQuest(39446)" > <!-- Assault on the Fel Forge -->
+						<While Condition="!HasQuest(39446) &amp;&amp; !IsQuestCompleted(39446)" > <!-- Assault on the Fel Forge -->
 							<DisableBehavior Name="Pull" />
 							<MoveTo Nav="Fly" DestName="The Fel Forge" X="4472.133" Y="-697.1107" Z="33.81255" />
 							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39446)" />
 							<EnableBehavior Name="Pull" />
 						</While>
-						<CustomBehavior File="InteractWith" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" MobIds="241669" QuestId="39446" NumOfTimes="1000" >
+						<CustomBehavior File="InteractWith" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" MobIds="241669, 91901, 92741" QuestId="39446" NumOfTimes="1000" >
 							<HuntingGrounds>
 								<Hotspot X="4421.958" Y="-871.004" Z="43.66127" />
 								<Hotspot X="4233.836" Y="-831.981" Z="25.86019" />
@@ -2662,13 +2747,13 @@
 				<!-- END Hard Pulls -->
 				<!-- Easy Pulls :: Same as hard, make edits if too hard. -->
 					<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-						<While Condition="!HasQuest(39446)" > <!-- Assault on the Fel Forge -->
+						<While Condition="!HasQuest(39446) &amp;&amp; !IsQuestCompleted(39446)" > <!-- Assault on the Fel Forge -->
 							<DisableBehavior Name="Pull" />
 							<MoveTo Nav="Fly" DestName="The Fel Forge" X="4472.133" Y="-697.1107" Z="33.81255" />
 							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39446)" />
 							<EnableBehavior Name="Pull" />
 						</While>
-						<CustomBehavior File="InteractWith" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" MobIds="241669" QuestId="39446" NumOfTimes="1000" >
+						<CustomBehavior File="InteractWith" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" MobIds="241669, 91901, 92741" QuestId="39446" NumOfTimes="1000" >
 							<HuntingGrounds>
 								<Hotspot X="4421.958" Y="-871.004" Z="43.66127" />
 								<Hotspot X="4233.836" Y="-831.981" Z="25.86019" />
@@ -2680,14 +2765,14 @@
 						</CustomBehavior>
 					</If>
 				<!-- END Easy Pulls -->
-				<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" ActivityName="Use_HellfireShot" Command="Remove" />
+				<CustomBehavior File="Hooks\DoWhen" ActivityName="Use_HellfireShot" Command="Remove" />
 			</While>
 
 			<While Condition="!IsQuestCompleted(39452) &amp;&amp; !IsQuestCompleted(37940)" > <!-- Assault on Ironhold Harbor -->
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Completing Assault on Ironhold Harbor.&quot;);" />
-				<CustomBehavior File="Hooks\DoWhen" ActivityName="Use_TrueIronBomb" UseWhen="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0) &amp;&amp; ((ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget) || ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 35).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null || (Unit(90074) != null &amp;&amp; !Me.Combat))" >
+				<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="true" ActivityName="Use_TrueIronBomb" UseWhen="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0) &amp;&amp; ((ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget) || ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 35).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null || (Unit(90074) != null &amp;&amp; !Me.Combat))" >
 					<!-- Use on units attacking us. -->  <!-- TEST ME!! Should use if 1 or more mob is fighting us. -->
-					<While Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget" >
+					<If Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget" >
 						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Using True Iron Bomb on mobs attacking us.&quot;);" />
 						<CustomBehavior File="RunCode">
 						<![CDATA[
@@ -2696,9 +2781,9 @@
 							SpellManager.ClickRemoteLocation(Me.CurrentTarget.Location); 
 						]]>
 						</CustomBehavior>
-					</While>
+					</If>
 					<!-- Dispose if another nearby. -->
-					<While Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 35).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null" >
+					<If Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 35).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null" >
 						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Disposing of Razor Net Trap to loot another.&quot;);" />
 						<CustomBehavior File="RunCode">
 						<![CDATA[ 
@@ -2707,11 +2792,11 @@
 							SpellManager.ClickRemoteLocation(Me.Location); 
 						]]>
 						</CustomBehavior>
-					</While>
+					</If>
 					<!-- Use in combat -->
-					<While Condition="Me.Combat &amp;&amp; Me.CurrentTarget.Distance &lt;= 25" >
+					<If Condition="Me.Combat &amp;&amp; Me.CurrentTarget.Distance &lt;= 25" >
 						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Using True Iron Bomb on nearby enemy.&quot;);" />                
-						<While Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" >
+						<If Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" >
 							<CustomBehavior File="ForcedDismount" />
 							<CustomBehavior File="RunCode">
 							<![CDATA[ 
@@ -2720,14 +2805,14 @@
 								SpellManager.ClickRemoteLocation(Me.CurrentTarget.Location);
 							]]>
 							</CustomBehavior>
-						</While>
-					</While>
+						</If>
+					</If>
 					<!-- Use on nearby tank. -->
-					<While Condition="Unit(90074) != null &amp;&amp; !Me.Combat" >
+					<If Condition="Unit(90074) != null &amp;&amp; !Me.Combat" >
 						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Using True Iron Bomb on nearby tank.&quot;);" />
 						<CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting to leave combat: {TimeRemaining}" TerminateWhen="!Me.Combat" /> <!-- We need to be out of combat first. -->
 						<CustomBehavior File="TargetAndMoveToMob" MobId="90074" WaitForNpcs="false" MoveWithinMaxRangeOfMob="25" TerminateWhen="!Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" />
-						<While Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" >
+						<If Condition="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0)" >
 							<CustomBehavior File="ForcedDismount" />
 							<CustomBehavior File="RunCode">
 								<![CDATA[ 
@@ -2736,12 +2821,12 @@
 									SpellManager.ClickRemoteLocation(Me.CurrentTarget.Location);
 								]]>
 							</CustomBehavior>
-						</While>
-					</While>
+						</If>
+					</If>
 				</CustomBehavior>
 				<!-- Hard Pulls -->
 					<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-						<While Condition="!HasQuest(39452)" >
+						<While Condition="!HasQuest(39452) &amp;&amp; !IsQuestCompleted(39452)" >
 							<DisableBehavior Name="Pull" />
 							<MoveTo Nav="Fly" DestName="Ironhold Harbor" X="4583.305" Y="-399.9979" Z="10.69125" />
 							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39452)" />
@@ -2761,7 +2846,7 @@
 				<!-- END Hard Pulls -->
 				<!-- Easy Pulls -->
 					<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-						<While Condition="!HasQuest(39452)" >
+						<While Condition="!HasQuest(39452) &amp;&amp; !IsQuestCompleted(39452)" >
 							<DisableBehavior Name="Pull" />
 							<MoveTo Nav="Fly" DestName="Ironhold Harbor" X="4633.494" Y="-578.2945" Z="44.38635" />
 							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39452)" />
@@ -2777,7 +2862,7 @@
 						</CustomBehavior>
 					</If>
 				<!-- END Easy Pulls -->
-				<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" ActivityName="Use_TrueIronBomb" Command="Remove" />
+				<CustomBehavior File="Hooks\DoWhen" ActivityName="Use_TrueIronBomb" Command="Remove" />
 			</While>
 
 			<While Condition="!IsQuestCompleted(39448) &amp;&amp; !IsQuestCompleted(38252)" > <!-- Assault on the Ruins of Kra'nak -->
@@ -2786,7 +2871,7 @@
 					<CustomBehavior File="Hooks\Avoid" AvoidName="Fel Pool" Command="Add" ObjectType="AreaTrigger" ObjectId="8757" Radius="5" />
 					<!-- Hard Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-							<While Condition="!HasQuest(39448)" >
+							<While Condition="!HasQuest(39448) &amp;&amp; !IsQuestCompleted(39448)" >
 								<DisableBehavior Name="Pull" />
 								<MoveTo Nav="Fly" DestName="Ruins of Kra'nak" X="4546.603" Y="484.6314" Z="226.6398" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39448)" />
@@ -2806,7 +2891,7 @@
 					<!-- END Hard Pulls -->
 					<!-- Easy Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-							<While Condition="!HasQuest(39448)" >
+							<While Condition="!HasQuest(39448) &amp;&amp; !IsQuestCompleted(39448)" >
 								<DisableBehavior Name="Pull" />
 								<MoveTo Nav="Fly" DestName="Ruins of Kra'nak" X="4539.619" Y="424.5465" Z="229.3716" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39448)" />
@@ -2824,17 +2909,17 @@
 							</CustomBehavior>
 						</If>
 					<!-- END Easy Pulls -->
-					<While Condition="!HasQuest(39448)" >
+					<If Condition="!HasQuest(39448)" >
 						<CustomBehavior File="Hooks\Avoid" AvoidName="Shadow Zone" Command="Remove" />
 						<CustomBehavior File="Hooks\Avoid" AvoidName="Fel Pool" Command="Remove" />
-					</While>
+					</If>
 			</While>
 
 			<While Condition="!IsQuestCompleted(39442) &amp;&amp; !IsQuestCompleted(38044)" > <!-- Assault on Zeth'Gol -->
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Completing Assault on Zeth'Gol.&quot;);" />
 				<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="true" ActivityName="Use_RazornetTrap" UseWhen="Lua.GetReturnVal&lt;bool&gt;(&quot;return ExtraActionButton1:IsVisible();&quot;,0) &amp;&amp; ((ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget) || (ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90781}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 15).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null &amp;&amp; !Me.Combat))" >
 					<!-- Dispose if another nearby. -->
-					<While Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90781}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 15).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null &amp;&amp; !Me.Combat" >
+					<If Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90781}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 15).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null &amp;&amp; !Me.Combat" >
 						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Disposing of Razornet Trap to loot another.&quot;);" />
 						<CustomBehavior File="RunCode" TerminateWhen="Me.Combat">
 						<![CDATA[ 
@@ -2843,9 +2928,9 @@
 							SpellManager.ClickRemoteLocation(Me.Location); 
 						]]>
 						</CustomBehavior>
-					</While>
+					</If>
 				    <!-- Use on units attacking us. -->  <!-- TEST ME!! Should use if 1 or more mob is fighting us. -->
-					<While Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget" >
+					<If Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget" >
 						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Using Razornet Trap on mobs attacking us.&quot;);" />
 						<CustomBehavior File="RunCode">
 						<![CDATA[
@@ -2855,9 +2940,9 @@
 							SpellManager.ClickRemoteLocation(Me.CurrentTarget.Location); 
 						]]>
 						</CustomBehavior>
-					</While>
+					</If>
 				</CustomBehavior>
-				<While Condition="!HasQuest(39442)" > <!-- Check ID, may be 39441 -->
+				<While Condition="!HasQuest(39442) &amp;&amp; !IsQuestCompleted(39442)" > <!-- Check ID, may be 39441 -->
 					<DisableBehavior Name="Pull" />
 					<MoveTo Nav="Fly" DestName="Zeth'gol" X="4245.792" Y="390.4549" Z="153.8195" />
 					<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39442)" />
@@ -2872,14 +2957,14 @@
 						<Hotspot X="4117.844" Y="594.8691" Z="162.812" />
 					</HuntingGrounds>
 				</CustomBehavior>
-				<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" ActivityName="Use_RazornetTrap" Command="Remove" />
+				<CustomBehavior File="Hooks\DoWhen" ActivityName="Use_RazornetTrap" Command="Remove" />
 			</While>
 
 			<While Condition="!IsQuestCompleted(38865) &amp;&amp; !IsQuestCompleted(38047)" > <!-- Assault on Iron Front : Intro Version -->
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Completing Assault on the Iron Front.&quot;);" />
 				<!-- Hard Pulls -->
 					<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-						<While Condition="!HasQuest(38865)" >
+						<While Condition="!HasQuest(38865) &amp;&amp; !IsQuestCompleted(38865)" >
 							<DisableBehavior Name="Pull" />
 							<MoveTo Nav="Fly" DestName="The Iron Front" X="3893.965" Y="842.2295" Z="152.6835" />
 							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38865)" />
@@ -2899,7 +2984,7 @@
 				<!-- END Hard Pulls -->
 				<!-- Easy Pulls -->
 					<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-						<While Condition="!HasQuest(38865)" >
+						<While Condition="!HasQuest(38865) &amp;&amp; !IsQuestCompleted(38865)" >
 							<DisableBehavior Name="Pull" />
 							<MoveTo Nav="Fly" DestName="The Iron Front" X="3992.573" Y="805.0379" Z="151.8674" />
 							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38865)" />
@@ -2919,7 +3004,7 @@
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Completing Assault on the Iron Front.&quot;);" />
 				<!-- Hard Pulls -->
 					<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-						<While Condition="!HasQuest(39444)" >
+						<While Condition="!HasQuest(39444) &amp;&amp; !IsQuestCompleted(39444)" >
 							<DisableBehavior Name="Pull" />
 							<MoveTo Nav="Fly" DestName="The Iron Front" X="3893.965" Y="842.2295" Z="152.6835" />
 							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39444)" />
@@ -2939,7 +3024,7 @@
 				<!-- END Hard Pulls -->
 				<!-- Easy Pulls -->
 					<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-						<While Condition="!HasQuest(39444)" >
+						<While Condition="!HasQuest(39444) &amp;&amp; !IsQuestCompleted(39444)" >
 							<DisableBehavior Name="Pull" />
 							<MoveTo Nav="Fly" DestName="The Iron Front" X="3992.573" Y="805.0379" Z="151.8674" />
 							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39444)" />
@@ -2960,7 +3045,7 @@
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Completing Assault on the Temple of Sha'naar.&quot;);" />
 					<!-- Hard Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-							<While Condition="!HasQuest(39450)" > <!-- Assault on the Temple of Sha'naar -->
+							<While Condition="!HasQuest(39450) &amp;&amp; !IsQuestCompleted(39450)" > <!-- Assault on the Temple of Sha'naar -->
 								<DisableBehavior Name="Pull" />
 								<MoveTo Nav="Fly" DestName="Temple of Sha'naar" X="3612.619" Y="183.9686" Z="129.547" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39450)" />
@@ -2981,7 +3066,7 @@
 					<!-- END Hard Pulls -->
 					<!-- Easy Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-							<While Condition="!HasQuest(39450)" > <!-- Assault on the Temple of Sha'naar -->
+							<While Condition="!HasQuest(39450) &amp;&amp; !IsQuestCompleted(39450)" > <!-- Assault on the Temple of Sha'naar -->
 								<DisableBehavior Name="Pull" />
 								<While Condition="!CanFly()" >
 									<MoveTo X="3663.508" Y="105.9724" Z="83.52634" />
@@ -3154,19 +3239,23 @@
 	<!-- Saberstalker Grind -->
 		<While Condition="Me.GetReputationLevelWith(1850) &lt; WoWUnitReaction.Revered &amp;&amp; Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 670" >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Going to grind Saberstalker reputation until we're revered or until you stop the bot.&quot;);" />
-			<While Condition="(!HasQuest(39582) &amp;&amp; !IsQuestCompleted(39582) &amp;&amp; Me.IsAlliance) || (!HasQuest(39529) &amp;&amp; !IsQuestCompleted(39529) &amp;&amp; Me.IsHorde)" >
+			<If Condition="(!HasQuest(39582) &amp;&amp; !IsQuestCompleted(39582) &amp;&amp; Me.IsAlliance) || (!HasQuest(39529) &amp;&amp; !IsQuestCompleted(39529) &amp;&amp; Me.IsHorde)" >
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Red, &quot;[Notification]: You may want to pick up Tooth and Claw before letting this grind commence.&quot;);" />
-			</While>
-			<CustomBehavior File="KillUntilComplete" MobIds="89746, 89747, 89695, 89695, 92466" TerminateWhen="Me.GetReputationLevelWith(1850) &gt;= WoWUnitReaction.Revered" >
-				<HuntingGrounds>
-					<Hotspot X="3214.202" Y="-1176.236" Z="38.20932" />
-					<Hotspot X="3223.522" Y="-1096.341" Z="15.67206" />
-					<Hotspot X="3264.671" Y="-1073.653" Z="24.47884" />
-					<Hotspot X="3275.426" Y="-997.3123" Z="61.89376" />
-					<Hotspot X="3207.052" Y="-982.5129" Z="56.06119" />
-					<Hotspot X="3243.372" Y="-916.5643" Z="77.88932" />
-				</HuntingGrounds>
-			</CustomBehavior>
+			</If>
+			<SetGrindArea>
+				<GrindArea>
+					<MobIds>89746, 89747, 89695, 89695, 92466</MobIds>
+					<Hotspots>
+						<Hotspot X="3214.202" Y="-1176.236" Z="38.20932" />
+						<Hotspot X="3223.522" Y="-1096.341" Z="15.67206" />
+						<Hotspot X="3264.671" Y="-1073.653" Z="24.47884" />
+						<Hotspot X="3275.426" Y="-997.3123" Z="61.89376" />
+						<Hotspot X="3207.052" Y="-982.5129" Z="56.06119" />
+						<Hotspot X="3243.372" Y="-916.5643" Z="77.88932" />
+					</Hotspots>
+				</GrindArea>
+			</SetGrindArea>
+			<GrindUntil Condition="Me.GetReputationLevelWith(1850) &gt;= WoWUnitReaction.Revered" />
 		</While>
 	<!-- END Saberstalker Grind -->
 
