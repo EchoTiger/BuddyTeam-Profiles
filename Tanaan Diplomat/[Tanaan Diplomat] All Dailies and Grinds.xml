@@ -342,7 +342,7 @@
 						</If>
 						<!-- Dispose if another nearby. -->
 						<If Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 35).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null" >
-							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Disposing of Razor Net Trap to loot another.&quot;);" />
+							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Disposing of True Iron Bomb to loot another.&quot;);" />
 							<CustomBehavior File="RunCode">
 							<![CDATA[ 
 								Lua.DoString("ExtraActionButton1:Click();");
@@ -1160,7 +1160,7 @@
 							</If>
 							<!-- Dispose if another nearby. -->
 							<If Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 35).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null" >
-								<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Disposing of Razor Net Trap to loot another.&quot;);" />
+								<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Disposing of True Iron Bomb to loot another.&quot;);" />
 								<CustomBehavior File="RunCode">
 								<![CDATA[ 
 									Lua.DoString("ExtraActionButton1:Click();");
@@ -1385,7 +1385,7 @@
 						</If>
 						<!-- Dispose if another nearby. -->
 						<If Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 35).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null" >
-							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Disposing of Razor Net Trap to loot another.&quot;);" />
+							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Disposing of True Iron Bomb to loot another.&quot;);" />
 							<CustomBehavior File="RunCode">
 							<![CDATA[ 
 								Lua.DoString("ExtraActionButton1:Click();");
@@ -2183,7 +2183,7 @@
 							</If>
 							<!-- Dispose if another nearby. -->
 							<If Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 35).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null" >
-								<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Disposing of Razor Net Trap to loot another.&quot;);" />
+								<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Disposing of True Iron Bomb to loot another.&quot;);" />
 								<CustomBehavior File="RunCode">
 								<![CDATA[ 
 									Lua.DoString("ExtraActionButton1:Click();");
