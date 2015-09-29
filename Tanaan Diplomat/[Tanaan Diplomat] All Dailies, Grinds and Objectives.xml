@@ -22,7 +22,6 @@
 		<Blackspot X="3389.877" Y="74.16195" Z="161.9778" Radius="9.28465" /> <!-- Glowing chest in Temple of Sha'nar near elites. -->
 		<Blackspot X="3458.094" Y="42.21206" Z="161.3759" Radius="31.56551" /> <!-- Two Demonic Focus objects around tons of elites. -->
 		<Blackspot X="3376.689" Y="37.228" Z="164.2126" Radius="87.25522" /> <!-- Upper terrace of Sha'naar -->
-		<Blackspot X="3811.012" Y="-1343.867" Z="95.31873" Radius="12.62405" /> <!-- Scaffolding to the right side of the Lion's Den. -->
 	</Blackspots>
 
 	<Vendors>
@@ -125,16 +124,21 @@
 	<!-- END Item Level Technicals -->
 
 	<!-- Install Hooks -->
-		<CustomBehavior File="Hooks\Avoid" AvoidName="Wargronn_NPC" Command="Add" ObjectType="Npc" ObjectId="90585" Radius="10" AvoidWhen="!UNIT.IsTargetingMeOrPet" />
-		<CustomBehavior File="Hooks\Avoid" AvoidName="Pollen_Cloud" Command="Add" ObjectType="Npc" ObjectId="92700" Radius="9" />
+		<CustomBehavior File="Hooks\Avoid" AvoidName="Wargronn_NPC" Command="Add" ObjectType="Npc" ObjectId="90585" Radius="10" AvoidWhen="!UNIT.IsTargetingMeOrPet &amp;&amp; UNIT.IsAlive" />
+		<CustomBehavior File="Hooks\Avoid" AvoidName="Pollen_Cloud" Command="Add" ObjectType="Npc" ObjectId="92700" Radius="9" AvoidWhen="Me.Combat" />
 		<CustomBehavior File="Hooks\Avoid" AvoidName="ClusterBombs" Command="Add" ObjectType="Npc" ObjectId="78427" Radius="5" />
 		<CustomBehavior File="Hooks\Avoid" AvoidName="Wargronn_Smash" Command="Add" ObjectId="150793" Radius="5" AvoidLocationProducer="UNIT.Location.RayCast(UNIT.Rotation, 8)" />
 		<CustomBehavior File="Hooks\Avoid" AvoidName="Shadow_Zone" Command="Add" ObjectType="Missile" ObjectId="183165" Radius="5" />
 		<CustomBehavior File="Hooks\Avoid" AvoidName="Fel_Pool" Command="Add" ObjectType="AreaTrigger" ObjectId="8757" Radius="5" />
-		<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="true" ActivityName="Use_ObjectiveItems" UseWhen="Styx.CommonBot.Bars.ActionBar.Extra.IsActive &amp;&amp; ((ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget) || ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069, 90781, 91901, 92741}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 15).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null || (Unit(90074) != null &amp;&amp; !Me.Combat) || (Unit(92616) != null &amp;&amp; !Me.Combat))" >
+		<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="true" ActivityName="Use_ObjectiveItems" UseWhen="Styx.CommonBot.Bars.ActionBar.Extra.IsActive &amp;&amp; ((Me.Combat &amp;&amp; Me.GotTarget) || (ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069, 90781, 91901, 92741}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 15).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null &amp;&amp; !ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Any(u =&gt; u.IsHostile &amp;&amp; u.Distance &lt;= 15 &amp;&amp; u.IsAlive)) || (Unit(90074, u =&gt; u.Distance &lt;= 50 &amp;&amp; u.IsAlive) != null &amp;&amp; !Me.Combat) || (Unit(92616, u =&gt; u.Distance &lt;= 50 &amp;&amp; u.IsAlive) != null &amp;&amp; !Me.Combat))" >
 			<While Condition="Styx.CommonBot.Bars.ActionBar.Extra.IsActive" >
-				<!-- Use on units attacking us. -->  <!-- TEST ME!! Should use if 1 or more mob is fighting us. -->
-				<If Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 &amp;&amp; Me.GotTarget" >
+				<If Condition="Me.Combat &amp;&amp; !Me.GotTarget" >
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Lagging hook until we get a target.&quot;);" />
+					<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="Me.GotTarget || !Me.Combat" />
+				</If>
+				<!-- Use on units attacking us. -->
+				<If Condition="Me.Combat &amp;&amp; Me.GotTarget" >
+					<!-- ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1  Use this if issues occur. -->
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Using True Iron Bomb on mobs attacking us.&quot;);" />
 					<DisableBehavior Name="Combat" />
 					<CustomBehavior File="RunCode">
@@ -147,24 +151,12 @@
 					</CustomBehavior>
 					<EnableBehavior Name="Combat" />
 				</If>
-				<!-- Dispose if another nearby. -->
-				<If Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069, 90781, 91901, 92741}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 15).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null" >
-					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Disposing of Objective Item to loot another.&quot;);" />
-					<CustomBehavior File="RunCode">
-					<![CDATA[ 
-						Lua.DoString("ExtraActionButton1:Click();");
-						await Coroutine.Sleep(500);
-						SpellManager.ClickRemoteLocation(Me.Location); 
-						await Coroutine.Sleep(1500);
-					]]>
-					</CustomBehavior>
-				</If>
 				<!-- Use on nearby tank. -->
-				<If Condition="!Me.Combat &amp;&amp; (Unit(92616) != null || Unit(90074) != null)" >
+				<If Condition="!Me.Combat &amp;&amp; (Unit(92616, u =&gt; u.IsAlive) != null || Unit(90074, u =&gt; u.IsAlive) != null)" >
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Using Objective Item on nearby tank.&quot;);" />
 					<CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting to leave combat: {TimeRemaining}" TerminateWhen="!Me.Combat" /> <!-- We need to be out of combat first. -->
-					<CustomBehavior File="TargetAndMoveToMob" MobId1="90074" MobId2="92616" WaitForNpcs="false" MoveWithinMaxRangeOfMob="25" TerminateWhen="!Styx.CommonBot.Bars.ActionBar.Extra.IsActive" />
-					<If Condition="Styx.CommonBot.Bars.ActionBar.Extra.IsActive" >
+					<CustomBehavior File="TargetAndMoveToMob" MobId1="90074" MobId2="92616" WaitForNpcs="false" MoveWithinMaxRangeOfMob="25" TerminateWhen="!Styx.CommonBot.Bars.ActionBar.Extra.IsActive || Me.Combat" />
+					<If Condition="Styx.CommonBot.Bars.ActionBar.Extra.IsActive &amp;&amp; !Me.Combat &amp;&amp; Me.GotTarget" >
 						<CustomBehavior File="ForcedDismount" />
 						<CustomBehavior File="RunCode">
 							<![CDATA[ 
@@ -175,6 +167,18 @@
 							]]>
 						</CustomBehavior>
 					</If>
+				</If>
+				<!-- Dispose if another nearby. -->
+				<If Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069, 90781, 91901, 92741}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 15).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null &amp;&amp; !ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Any(u =&gt; u.IsHostile &amp;&amp; u.Distance &lt;= 15 &amp;&amp; u.IsAlive)" >
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Disposing of Objective Item to loot another.&quot;);" />
+					<CustomBehavior File="RunCode">
+					<![CDATA[ 
+						Lua.DoString("ExtraActionButton1:Click();");
+						await Coroutine.Sleep(500);
+						SpellManager.ClickRemoteLocation(Me.Location); 
+						await Coroutine.Sleep(1500);
+					]]>
+					</CustomBehavior>
 				</If>
 			</While>
 		</CustomBehavior>
@@ -268,29 +272,29 @@
 			<!-- END [Order of the Awakened] Pickup Daily Quest --> 
 
 			<!-- Hook Treasures and Rare Detection -->
-			<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-				<If Condition="(HasQuest(39432) &amp;&amp; !IsQuestCompleted(39432)) || (HasQuest(39433) &amp;&amp; !IsQuestCompleted(39433))" >
-					<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" ActivityName="Kill Rares" UseWhen="Me.IsAlive &amp;&amp; ((HasQuest(39432) &amp;&amp; !IsQuestCompleted(39432)) || (HasQuest(39433) &amp;&amp; !IsQuestCompleted(39433))) &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; new[]{92552, 90884, 90936, 92429, 93264, 93076, 90434, 90519, 89675, 90887, 93028, 90888, 91727, 92647, 93125, 92941, 91695, 90094, 90777, 90429, 90437, 93279, 90438, 93002, 90442, 91374, 92194, 90885, 90024, 93236, 92887, 92606, 92694, 92977, 92574, 91087, 90122}.Contains((int)u.Entry) &amp;&amp; Navigator.CanNavigateFully(Me.Location, u.Location) &amp;&amp; Navigator.PathDistance(Me.Location, u.Location) &lt;= 50 &amp;&amp; u.IsAlive).OrderBy(u =&gt; Navigator.PathDistance(Me.Location, u.Location)).FirstOrDefault() != null" >
-						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Killing a rare.&quot;);" />
-						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" WaitForNpcs="false" ProactiveCombatStrategy="ClearMobsTargetingUs" MobState="Alive" InteractByLooting="true" CollectionDistance="500"
-						MobIds="92552, 90884, 90936, 92429, 93264, 93076, 90434, 90519, 89675, 90887, 93028, 90888, 91727, 92647, 93125, 92941, 91695, 90094, 90777, 90429, 90437, 93279, 90438, 93002, 90442, 91374, 92194, 90885, 90024, 93236, 92887, 92606, 92694, 92977, 92574, 91087, 90122" />
-					</CustomBehavior>
+				<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
+					<If Condition="(HasQuest(39432) &amp;&amp; !IsQuestCompleted(39432)) || (HasQuest(39433) &amp;&amp; !IsQuestCompleted(39433))" >
+						<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" ActivityName="Kill Rares" UseWhen="Me.IsAlive &amp;&amp; ((HasQuest(39432) &amp;&amp; !IsQuestCompleted(39432)) || (HasQuest(39433) &amp;&amp; !IsQuestCompleted(39433))) &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; new[]{92552, 90884, 90936, 92429, 93264, 93076, 90434, 90519, 89675, 90887, 93028, 90888, 91727, 92647, 93125, 92941, 91695, 90094, 90777, 90429, 90437, 93279, 90438, 93002, 90442, 91374, 92194, 90885, 90024, 93236, 92887, 92606, 92694, 92977, 92574, 91087, 90122}.Contains((int)u.Entry) &amp;&amp; Navigator.CanNavigateFully(Me.Location, u.Location) &amp;&amp; Navigator.PathDistance(Me.Location, u.Location) &lt;= 50 &amp;&amp; u.IsAlive).OrderBy(u =&gt; Navigator.PathDistance(Me.Location, u.Location)).FirstOrDefault() != null" >
+							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Killing a rare.&quot;);" />
+							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" WaitForNpcs="false" ProactiveCombatStrategy="ClearMobsTargetingUs" MobState="Alive" InteractByLooting="true" CollectionDistance="500"
+							MobIds="92552, 90884, 90936, 92429, 93264, 93076, 90434, 90519, 89675, 90887, 93028, 90888, 91727, 92647, 93125, 92941, 91695, 90094, 90777, 90429, 90437, 93279, 90438, 93002, 90442, 91374, 92194, 90885, 90024, 93236, 92887, 92606, 92694, 92977, 92574, 91087, 90122" TerminateWhen="Me.IsDead" />
+						</CustomBehavior>
 
-					<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" ActivityName="Grab Treasures" UseWhen="Me.IsAlive &amp;&amp; ((HasQuest(39432) &amp;&amp; !IsQuestCompleted(39432)) || (HasQuest(39433) &amp;&amp; !IsQuestCompleted(39433))) &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().Where(o =&gt; new[]{241599, 241847, 241848, 241433, 241656, 240003, 241742, 241563, 241745, 242649, 241561, 242249, 241760, 240577, 243852, 241605, 241657, 241522, 241692, 243796, 241533, 241565, 241521, 241560, 241671, 243860, 241504, 241699, 240543, 241713, 240289, 241775, 243693, 241673, 241566, 243690, 241764, 241449, 241835, 240580, 241674, 241841, 241450, 241601, 241600, 241602}.Contains((int)o.Entry) &amp;&amp; Navigator.CanNavigateFully(Me.Location, o.Location) &amp;&amp; Navigator.PathDistance(Me.Location, o.Location) &lt; 75).OrderBy(o =&gt; Navigator.PathDistance(Me.Location, o.Location)).FirstOrDefault() != null" > <!-- 241666, object behind progress barrier -->
+						<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" ActivityName="Grab Treasures" UseWhen="Me.IsAlive &amp;&amp; ((HasQuest(39432) &amp;&amp; !IsQuestCompleted(39432)) || (HasQuest(39433) &amp;&amp; !IsQuestCompleted(39433))) &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().Where(o =&gt; new[]{241599, 241847, 241848, 241433, 241656, 240003, 241742, 241563, 241745, 242649, 241561, 242249, 241760, 240577, 243852, 241605, 241657, 241522, 241692, 243796, 241533, 241565, 241521, 241560, 241671, 243860, 241504, 241699, 240543, 241713, 240289, 241775, 243693, 241673, 241566, 243690, 241764, 241449, 241835, 240580, 241674, 241841, 241450, 241601, 241600, 241602}.Contains((int)o.Entry) &amp;&amp; Navigator.CanNavigateFully(Me.Location, o.Location) &amp;&amp; Navigator.PathDistance(Me.Location, o.Location) &lt; 75).OrderBy(o =&gt; Navigator.PathDistance(Me.Location, o.Location)).FirstOrDefault() != null" > <!-- 241666, object behind progress barrier -->
+							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Grabbing a treasure.&quot;);" />
+							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" WaitForNpcs="false" Range="5" IgnoreLoSToTarget="true" CollectionDistance="500" WaitTime="2500" NumOfTimes="2"
+						MobIds="241599, 241847, 241848, 241433, 241656, 240003, 241742, 241563, 241745, 242649, 241561, 242249, 241760, 240577, 243852, 241605, 241657, 241522, 241692, 243796, 241533, 241565, 241521, 241560, 241671, 243860, 241504, 241699, 240543, 241713, 240289, 241775, 243693, 241673, 241566, 243690, 241764, 241449, 241835, 240580, 241674, 241841, 241450, 241601, 241600, 241602" TerminateWhen="Me.IsDead" />
+						</CustomBehavior>
+					</If>
+					<Else>
+						<CustomBehavior File="Hooks\DoWhen" ActivityName="Grab Treasures" UseWhen="Me.IsAlive &amp;&amp; ((HasQuest(39432) &amp;&amp; !IsQuestCompleted(39432)) || (HasQuest(39433) &amp;&amp; !IsQuestCompleted(39433))) &amp;&amp; 
+						ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().Where(o =&gt; new[]{243796, 243852, 243860}.Contains((int)o.Entry) &amp;&amp; Navigator.PathDistance(Me.Location, o.Location) &lt; 75 &amp;&amp;	Navigator.CanNavigateFully(Me.Location, o.Location)).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null" > 
 						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Grabbing a treasure.&quot;);" />
-						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" WaitForNpcs="false" Range="7" IgnoreLoSToTarget="true" CollectionDistance="500" WaitTime="2500" NumOfTimes="2"
-					MobIds="241599, 241847, 241848, 241433, 241656, 240003, 241742, 241563, 241745, 242649, 241561, 242249, 241760, 240577, 243852, 241605, 241657, 241522, 241692, 243796, 241533, 241565, 241521, 241560, 241671, 243860, 241504, 241699, 240543, 241713, 240289, 241775, 243693, 241673, 241566, 243690, 241764, 241449, 241835, 240580, 241674, 241841, 241450, 241601, 241600, 241602" />
-					</CustomBehavior>
-				</If>
-				<Else>
-					<CustomBehavior File="Hooks\DoWhen" ActivityName="Grab Treasures" UseWhen="Me.IsAlive &amp;&amp; ((HasQuest(39432) &amp;&amp; !IsQuestCompleted(39432)) || (HasQuest(39433) &amp;&amp; !IsQuestCompleted(39433))) &amp;&amp; 
-					ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().Where(o =&gt; new[]{243796, 243852, 243860}.Contains((int)o.Entry) &amp;&amp; Navigator.PathDistance(Me.Location, o.Location) &lt; 75 &amp;&amp;	Navigator.CanNavigateFully(Me.Location, o.Location)).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null" > 
-					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Grabbing a treasure.&quot;);" />
 
-					<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" WaitForNpcs="false" IgnoreLoSToTarget="true" CollectionDistance="150" WaitTime="2500" NumOfTimes="2" MobIds="243796, 243852, 243860"  />
-					</CustomBehavior>
-				</Else>
-			</If>
+						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" WaitForNpcs="false" IgnoreLoSToTarget="true" CollectionDistance="150" WaitTime="2500" NumOfTimes="2" MobIds="243796, 243852, 243860"  />
+						</CustomBehavior>
+					</Else>
+				</If>
 			<!-- END Hook Treasures and Rare Detection -->
 		</If>
 	<!-- END [Alliance] Daily Quests Pickups -->
@@ -384,13 +388,13 @@
 					<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" ActivityName="Kill Rares" UseWhen="Me.IsAlive &amp;&amp; ((HasQuest(39432) &amp;&amp; !IsQuestCompleted(39432)) || (HasQuest(39433) &amp;&amp; !IsQuestCompleted(39433))) &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; new[]{92552, 90884, 90936, 92429, 93264, 93076, 90434, 90519, 89675, 90887, 93028, 90888, 91727, 92647, 93125, 92941, 91695, 90094, 90777, 90429, 90437, 93279, 90438, 93002, 90442, 91374, 92194, 90885, 90024, 93236, 92887, 92606, 92694, 92977, 92574, 91087, 90122}.Contains((int)u.Entry) &amp;&amp; Navigator.CanNavigateFully(Me.Location, u.Location) &amp;&amp; Navigator.PathDistance(Me.Location, u.Location) &lt;= 50 &amp;&amp; u.IsAlive).OrderBy(u =&gt; Navigator.PathDistance(Me.Location, u.Location)).FirstOrDefault() != null" >
 						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Killing a rare.&quot;);" />
 						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" WaitForNpcs="false" ProactiveCombatStrategy="ClearMobsTargetingUs" MobState="Alive" InteractByLooting="true" CollectionDistance="500"
-						MobIds="92552, 90884, 90936, 92429, 93264, 93076, 90434, 90519, 89675, 90887, 93028, 90888, 91727, 92647, 93125, 92941, 91695, 90094, 90777, 90429, 90437, 93279, 90438, 93002, 90442, 91374, 92194, 90885, 90024, 93236, 92887, 92606, 92694, 92977, 92574, 91087, 90122" />
+						MobIds="92552, 90884, 90936, 92429, 93264, 93076, 90434, 90519, 89675, 90887, 93028, 90888, 91727, 92647, 93125, 92941, 91695, 90094, 90777, 90429, 90437, 93279, 90438, 93002, 90442, 91374, 92194, 90885, 90024, 93236, 92887, 92606, 92694, 92977, 92574, 91087, 90122" TerminateWhen="Me.IsDead" />
 					</CustomBehavior>
 
 					<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" ActivityName="Grab Treasures" UseWhen="Me.IsAlive &amp;&amp; ((HasQuest(39432) &amp;&amp; !IsQuestCompleted(39432)) || (HasQuest(39433) &amp;&amp; !IsQuestCompleted(39433))) &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().Where(o =&gt; new[]{241599, 241847, 241848, 241433, 241656, 240003, 241742, 241563, 241745, 242649, 241561, 242249, 241760, 240577, 243852, 241605, 241657, 241522, 241692, 243796, 241533, 241565, 241521, 241560, 241671, 243860, 241504, 241699, 240543, 241713, 240289, 241775, 243693, 241673, 241566, 243690, 241764, 241449, 241835, 240580, 241674, 241841, 241450, 241601, 241600, 241602}.Contains((int)o.Entry) &amp;&amp; Navigator.CanNavigateFully(Me.Location, o.Location) &amp;&amp; Navigator.PathDistance(Me.Location, o.Location) &lt; 75).OrderBy(o =&gt; Navigator.PathDistance(Me.Location, o.Location)).FirstOrDefault() != null" > <!-- 241666, object behind progress barrier -->
 						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Grabbing a treasure.&quot;);" />
-						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" WaitForNpcs="false" Range="7" IgnoreLoSToTarget="true" CollectionDistance="500"  WaitTime="250"
-					MobIds="241599, 241847, 241848, 241433, 241656, 240003, 241742, 241563, 241745, 242649, 241561, 242249, 241760, 240577, 243852, 241605, 241657, 241522, 241692, 243796, 241533, 241565, 241521, 241560, 241671, 243860, 241504, 241699, 240543, 241713, 240289, 241775, 243693, 241673, 241566, 243690, 241764, 241449, 241835, 240580, 241674, 241841, 241450, 241601, 241600, 241602" />
+						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" WaitForNpcs="false" Range="5" IgnoreLoSToTarget="true" CollectionDistance="500"  WaitTime="250"
+					MobIds="241599, 241847, 241848, 241433, 241656, 240003, 241742, 241563, 241745, 242649, 241561, 242249, 241760, 240577, 243852, 241605, 241657, 241522, 241692, 243796, 241533, 241565, 241521, 241560, 241671, 243860, 241504, 241699, 240543, 241713, 240289, 241775, 243693, 241673, 241566, 243690, 241764, 241449, 241835, 240580, 241674, 241841, 241450, 241601, 241600, 241602" TerminateWhen="Me.IsDead" />
 					</CustomBehavior>
 				</If>
 				<Else>
@@ -431,7 +435,7 @@
 					<!-- END Hard Pulls -->
 					<!-- Easy Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-							<While Condition="!HasQuest(37866)  &amp;&amp; !IsQuestCompleted(37866)" >
+							<While Condition="!HasQuest(37866) &amp;&amp; !IsQuestCompleted(37866)" >
 								<MoveTo Nav="Fly" DestName="Ironhold Harbor" X="4633.494" Y="-578.2945" Z="44.38635" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(37866)" />
 							</While>
@@ -446,15 +450,12 @@
 						</If>
 					<!-- END Easy Pulls -->
 				</While>
-				<While Condition="HasQuest(37891) &amp;&amp; IsQuestCompleted(37891)" >
-					<TurnIn Nav="Fly" QuestName="Assault on Ironhold Harbor" QuestId="37891" TurnInName="Exarch Yrel" TurnInId="90309" />
-				</While>
 
 				<While Condition="HasQuest(37968) &amp;&amp; !IsQuestCompleted(37968)" > <!-- Assault on the Temple of Sha'naar -->
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Assault on the Temple of Sha'naar.&quot;);" />
 					<!-- Hard Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-							<While Condition="!HasQuest(37966)  &amp;&amp; !IsQuestCompleted(37966)" >
+							<While Condition="!HasQuest(37966) &amp;&amp; !IsQuestCompleted(37966)" >
 								<MoveTo Nav="Fly" DestName="Temple of Sha'naar" X="3612.619" Y="183.9686" Z="129.547" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(37966)" />
 							</While>
@@ -469,7 +470,7 @@
 					<!-- END Hard Pulls -->
 					<!-- Easy Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-							<While Condition="!HasQuest(37966)  &amp;&amp; !IsQuestCompleted(37866)" >
+							<While Condition="!HasQuest(37966) &amp;&amp; !IsQuestCompleted(37866)" >
 								<If Condition="!CanFly()" >
 									<MoveTo DestName="Temple of Sha'naar" X="3663.508" Y="105.9724" Z="83.52634" />
 								</If>
@@ -484,9 +485,6 @@
 							</CustomBehavior>
 						</If>
 					<!-- END Easy Pulls -->
-				</While>
-				<While Condition="HasQuest(37968) &amp;&amp; IsQuestCompleted(37968)" >
-					<TurnIn Nav="Fly" QuestName="Assault on the Temple of Sha'naar" QuestId="37968" TurnInName="Exarch Yrel" TurnInId="90309" />
 				</While>
 
 				<While Condition="HasQuest(38046) &amp;&amp; !IsQuestCompleted(38046)" > <!-- Battle At The Iron Front -->
@@ -525,9 +523,6 @@
 						</If>
 					<!-- END Easy Pulls -->
 				</While>
-				<While Condition="HasQuest(38046) &amp;&amp; IsQuestCompleted(38046)" >
-					<TurnIn Nav="Fly" QuestName="Battle At The Iron Front" QuestId="38046" TurnInName="Exarch Yrel" TurnInId="90309" />
-				</While>
 
 				<While Condition="HasQuest(38045) &amp;&amp; !IsQuestCompleted(38045)" > <!-- Bleeding the Bleeding Hollow -->
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Bleeding the Bleeding Hollow.&quot;);" />
@@ -545,9 +540,6 @@
 							<Hotspot X="4117.844" Y="594.8691" Z="162.812" />
 						</HuntingGrounds>
 					</CustomBehavior>
-				</While>
-				<While Condition="HasQuest(38045) &amp;&amp; IsQuestCompleted(38045)" >
-					<TurnIn Nav="Fly" QuestName="Bleeding the Bleeding Hollow" QuestId="38045" TurnInName="Exarch Yrel" TurnInId="90309" />
 				</While>
 
 				<While Condition="HasQuest(38250) &amp;&amp; !IsQuestCompleted(38250)" > <!-- Assault on the Ruins of Kra'nak -->
@@ -589,15 +581,12 @@
 						</If>
 					<!-- END Easy Pulls -->
 				</While>
-				<While Condition="HasQuest(38250) &amp;&amp; IsQuestCompleted(38250)" >
-					<TurnIn Nav="Fly" QuestName="Assault on the Ruins of Kra'nak" QuestId="38250" TurnInName="Exarch Yrel" TurnInId="90309" />
-				</While>
 
 				<While Condition="HasQuest(38440) &amp;&amp; !IsQuestCompleted(38440)" > <!-- Assault on The Fel Forge -->
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Assault on The Fel Forge.&quot;);" />
 					<!-- Hard Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-							<While Condition="!HasQuest(37970) &amp;&amp; !IsQuestCompleted(37970)" > <!-- Assault on the Fel Forge -->
+							<While Condition="!HasQuest(38439) &amp;&amp; !IsQuestCompleted(38439)" > <!-- Assault on the Fel Forge -->
 								<MoveTo Nav="Fly" DestName="The Fel Forge" X="4472.133" Y="-697.1107" Z="33.81255" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38439)" />
 							</While>
@@ -615,7 +604,7 @@
 					<!-- END Hard Pulls -->
 					<!-- Easy Pulls  :: Same as hard, make edits if too hard. -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-							<While Condition="!HasQuest(37970) &amp;&amp; !IsQuestCompleted(37970)" > <!-- Assault on the Fel Forge -->
+							<While Condition="!HasQuest(38439) &amp;&amp; !IsQuestCompleted(38439)" > <!-- Assault on the Fel Forge -->
 								<MoveTo Nav="Fly" DestName="The Fel Forge" X="4472.133" Y="-697.1107" Z="33.81255" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38439)" />
 							</While>
@@ -632,15 +621,37 @@
 						</If>
 					<!-- END Easy Pulls -->
 				</While>
-				<While Condition="HasQuest(38440) &amp;&amp; IsQuestCompleted(38440)" >
-					<TurnIn Nav="Fly" QuestName="Assault on The Fel Forge" QuestId="38440" TurnInName="Exarch Yrel" TurnInId="90309" />
-				</While>
 
 				<!-- <While Condition="HasQuest(38585) &amp;&amp; !IsQuestCompleted(38585)" > [GROUP] Assault on the Throne of Kil'jaeden 
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Assault on the Throne of Kil'jaeden.&quot;);" />
 					<CustomBehavior File="Abandon"
 				</While>-->
 			<!-- END DO Randomized Daily from Tanaan Battle Plan -->
+
+			<!-- Turnin Randomized Daily from Tanaan Battle Plan -->
+				<If Condition="(HasQuest(37891) || HasQuest(37968) || HasQuest(38046) || HasQuest(38045) || HasQuest(38250) || HasQuest(38440)) &amp;&amp; (IsQuestCompleted(37891) || IsQuestCompleted(37968) || IsQuestCompleted(38046) || IsQuestCompleted(38045) || IsQuestCompleted(38250) || IsQuestCompleted(38440))" >
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Turning in Tanaan Battle Plan quest.&quot;);" />
+					<MoveTo Nav="Fly" DestName="Lion's Den" X="3839.977" Y="-1337.494" Z="93.69565" />
+				</If>
+				<While Condition="HasQuest(37891) &amp;&amp; IsQuestCompleted(37891)" >
+					<TurnIn QuestName="Assault on Ironhold Harbor" QuestId="37891" TurnInName="Exarch Yrel" TurnInId="90309" />
+				</While>
+				<While Condition="HasQuest(37968) &amp;&amp; IsQuestCompleted(37968)" >
+					<TurnIn QuestName="Assault on the Temple of Sha'naar" QuestId="37968" TurnInName="Exarch Yrel" TurnInId="90309" />
+				</While>
+				<While Condition="HasQuest(38046) &amp;&amp; IsQuestCompleted(38046)" >
+					<TurnIn QuestName="Battle At The Iron Front" QuestId="38046" TurnInName="Exarch Yrel" TurnInId="90309" />
+				</While>
+				<While Condition="HasQuest(38045) &amp;&amp; IsQuestCompleted(38045)" >
+					<TurnIn QuestName="Bleeding the Bleeding Hollow" QuestId="38045" TurnInName="Exarch Yrel" TurnInId="90309" />
+				</While>
+				<While Condition="HasQuest(38250) &amp;&amp; IsQuestCompleted(38250)" >
+					<TurnIn QuestName="Assault on the Ruins of Kra'nak" QuestId="38250" TurnInName="Exarch Yrel" TurnInId="90309" />
+				</While>
+				<While Condition="HasQuest(38440) &amp;&amp; IsQuestCompleted(38440)" >
+					<TurnIn QuestName="Assault on The Fel Forge" QuestId="38440" TurnInName="Exarch Yrel" TurnInId="90309" />
+				</While>
+			<!-- END Turnin Randomized Daily from Tanaan Battle Plan -->
 
 			<!-- Pickup Daily from Vindicator Krethos -->
 				<While Condition="!HasQuest(39574) &amp;&amp; !IsQuestCompleted(39574)" >
@@ -695,9 +706,6 @@
 					</SetGrindArea>
 					<GrindUntil Condition="IsQuestCompleted(39573)" GoalText="Harnessing Their Power"/>
 				</While> -->
-				<While Condition="HasQuest(39573) &amp;&amp; IsQuestCompleted(39573)" >
-					<TurnIn Nav="Fly" QuestName="Harnessing Their Power" QuestId="39573" TurnInName="Vindicator Krethos" TurnInId="90974" />
-				</While>
 
 				<While Condition="HasQuest(39571) &amp;&amp; !IsQuestCompleted(39571)" > <!-- Disarming Sha'naar -->
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Disarming Sha'naar.&quot;);" />
@@ -722,9 +730,6 @@
 							</CustomBehavior>
 						</If>
 					<!-- END Easy Pulls -->
-				</While>
-				<While Condition="HasQuest(39571) &amp;&amp; IsQuestCompleted(39571)" >
-					<TurnIn Nav="Fly" QuestName="Disarming Sha'naar" QuestId="39571" TurnInName="Vindicator Krethos" TurnInId="90974" />
 				</While>
 
 				<While Condition="HasQuest(39570) &amp;&amp; !IsQuestCompleted(39570)" > <!-- Secrets of the Shadow Council -->
@@ -765,9 +770,6 @@
 						</If>
 					<!-- END Easy Pulls -->
 				</While>
-				<While Condition="HasQuest(39570) &amp;&amp; IsQuestCompleted(39570)" >
-					<TurnIn Nav="Fly" QuestName="Secrets of the Shadow Council" QuestId="39570" TurnInName="Vindicator Krethos" TurnInId="90974" />
-				</While>
 				<!-- Could wedge Pavkin's second quest here -->
 
 				<While Condition="HasQuest(39586) &amp;&amp; !IsQuestCompleted(39586)" > <!-- [Pavnik] Bringing Down the Iron Horde -->
@@ -805,6 +807,7 @@
 						</If>
 					<!-- END Easy Pulls -->
 				</While>
+
 				<While Condition="HasQuest(39569) &amp;&amp; !IsQuestCompleted(39569)" > <!-- Breaking Their Fel Bonds -->
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Breaking Their Fel Bonds.&quot;);" />
 					<!-- Hard Pulls -->
@@ -831,12 +834,6 @@
 							</CustomBehavior>
 						</If>
 					<!-- END Easy Pulls -->
-				</While>
-				<While Condition="HasQuest(39586) &amp;&amp; IsQuestCompleted(39586)" > <!-- [Pavnik] -->
-					<TurnIn Nav="Fly" QuestName="Bringing Down the Iron Horde" QuestId="39586" TurnInName="Parvink" TurnInId="96147" />
-				</While>
-				<While Condition="HasQuest(39569) &amp;&amp; IsQuestCompleted(39569)" >
-					<TurnIn Nav="Fly" QuestName="Breaking Their Fel Bonds" QuestId="39569" TurnInName="Vindicator Krethos" TurnInId="90974" />
 				</While>
 
 				<While Condition="HasQuest(39568) &amp;&amp; !IsQuestCompleted(39568)" > <!-- A Little Wetwork -->
@@ -876,9 +873,6 @@
 						</If>
 					<!-- END Easy Pulls -->
 				</While>
-				<While Condition="HasQuest(39568) &amp;&amp; IsQuestCompleted(39568)" >
-					<TurnIn Nav="Fly" QuestName="A Little Wetwork" QuestId="39568" TurnInName="Vindicator Krethos" TurnInId="90974" />
-				</While>
 
 				<While Condition="HasQuest(39567) &amp;&amp; !IsQuestCompleted(39567)" > <!-- Bloodied Blades of Zeth'Gol -->
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Bloodied Blades of Zeth'Gol.&quot;);" />
@@ -915,10 +909,35 @@
 						</If>
 					<!-- END Easy Pulls -->
 				</While>
-				<While Condition="HasQuest(39567) &amp;&amp; IsQuestCompleted(39567)" >
-					<TurnIn Nav="Fly" QuestName="Bloodied Blades of Zeth'Gol" QuestId="39567" TurnInName="Vindicator Krethos" TurnInId="90974" />
-				</While>
 			<!-- END DO Randomized Daily from Vindicator Krethos -->
+
+			<!-- Turnin Randomized Daily from Vindicator Krethos -->
+				<If Condition="(HasQuest(39573) &amp;&amp; IsQuestCompleted(39573)) || (HasQuest(39571) &amp;&amp; IsQuestCompleted(39571)) || (HasQuest(39570) &amp;&amp; IsQuestCompleted(39570)) || (HasQuest(39569) &amp;&amp; IsQuestCompleted(39569)) || (HasQuest(39568) &amp;&amp; IsQuestCompleted(39568)) || (HasQuest(39567) &amp;&amp; IsQuestCompleted(39567)) || (HasQuest(39586) &amp;&amp; IsQuestCompleted(39586))" >
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Turning in Vindicator Krethos's quest.&quot;);" />
+					<MoveTo Nav="Fly" DestName="Lion's Den" X="3839.431" Y="-1338.118" Z="93.82421" />
+				</If>
+				<While Condition="HasQuest(39573) &amp;&amp; IsQuestCompleted(39573)" >
+					<TurnIn QuestName="Harnessing Their Power" QuestId="39573" TurnInName="Vindicator Krethos" TurnInId="90974" />
+				</While>
+				<While Condition="HasQuest(39571) &amp;&amp; IsQuestCompleted(39571)" >
+					<TurnIn QuestName="Disarming Sha'naar" QuestId="39571" TurnInName="Vindicator Krethos" TurnInId="90974" />
+				</While>
+				<While Condition="HasQuest(39570) &amp;&amp; IsQuestCompleted(39570)" >
+					<TurnIn QuestName="Secrets of the Shadow Council" QuestId="39570" TurnInName="Vindicator Krethos" TurnInId="90974" />
+				</While>
+				<While Condition="HasQuest(39569) &amp;&amp; IsQuestCompleted(39569)" >
+					<TurnIn QuestName="Breaking Their Fel Bonds" QuestId="39569" TurnInName="Vindicator Krethos" TurnInId="90974" />
+				</While>
+				<While Condition="HasQuest(39568) &amp;&amp; IsQuestCompleted(39568)" >
+					<TurnIn QuestName="A Little Wetwork" QuestId="39568" TurnInName="Vindicator Krethos" TurnInId="90974" />
+				</While>
+				<While Condition="HasQuest(39567) &amp;&amp; IsQuestCompleted(39567)" >
+					<TurnIn QuestName="Bloodied Blades of Zeth'Gol" QuestId="39567" TurnInName="Vindicator Krethos" TurnInId="90974" />
+				</While>
+				<While Condition="HasQuest(39586) &amp;&amp; IsQuestCompleted(39586)" > <!-- [Pavnik] -->
+					<TurnIn QuestName="Bringing Down the Iron Horde" QuestId="39586" TurnInName="Parvink" TurnInId="96147" />
+				</While>
+			<!-- END Turnin Randomized Daily from Vindicator Krethos -->
 
 			<!-- [Order of the Awakened] Introductory Quest Complete? Attempt#2 -->
 				<While Condition="HasQuest(39432) &amp;&amp; IsQuestCompleted(39432)" >
@@ -1053,7 +1072,7 @@
 				</While>
 			<!-- END Finish up Bonus Objectives for Pressing the Attack -->
 
-			<!-- DO Random Daily from Parvink, other daily is included above. -->
+			<!-- DO Random Daily from Parvink, other daily Pavnik is included above. -->
 				<While Condition="HasQuest(39581) &amp;&amp; !IsQuestCompleted(39581)" > <!-- [Pavnik] Demonslayer of Tanaan -->
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Demonslayer of Tanaan.&quot;);" />
 					<!-- Hard Pulls -->
@@ -1098,7 +1117,8 @@
 
 			<!-- Turn in Pressing the Attack if we're done with it. -->
 				<While Condition="HasQuest(39574) &amp;&amp; IsQuestCompleted(39574)" >
-					<TurnIn Nav="Fly" QuestName="Pressing the Attack" QuestId="39574" TurnInName="Vindicator Krethos" TurnInId="90974" />
+					<MoveTo Nav="Fly" DestName="Lion's Den" X="3839.431" Y="-1338.118" Z="93.82421" />
+					<TurnIn QuestName="Pressing the Attack" QuestId="39574" TurnInName="Vindicator Krethos" TurnInId="90974" />
 				</While>
 			<!-- END Turn in Pressing the Attack if we're done with it. -->
 		</If>
@@ -1144,9 +1164,6 @@
 						</If>
 					<!-- END Easy Pulls -->
 				</While>
-				<While Condition="HasQuest(37940) &amp;&amp; IsQuestCompleted(37940)" >
-					<TurnIn Nav="Fly" QuestName="Assault on Ironhold Harbor" QuestId="37940" TurnInName="Draka" TurnInId="90481" />
-				</While>
 
 				<While Condition="HasQuest(38449) &amp;&amp; !IsQuestCompleted(38449)" > <!-- Assault on the Temple of Sha'naar -->
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Assault on the Temple of Sha'naar.&quot;);" />
@@ -1182,9 +1199,6 @@
 							</CustomBehavior>
 						</If>
 					<!-- END Easy Pulls -->
-				</While>
-				<While Condition="HasQuest(38449) &amp;&amp; IsQuestCompleted(38449)" >
-					<TurnIn Nav="Fly" QuestName="Assault on the Temple of Sha'naar" QuestId="38449" TurnInName="Draka" TurnInId="90481" />
 				</While>
 
 				<While Condition="HasQuest(38047) &amp;&amp; !IsQuestCompleted(38047)" > <!-- Battle At The Iron Front -->
@@ -1223,9 +1237,6 @@
 						</If>
 					<!-- END Easy Pulls -->
 				</While>
-				<While Condition="HasQuest(38047) &amp;&amp; IsQuestCompleted(38047)" >
-					<TurnIn Nav="Fly" QuestName="Battle At The Iron Front" QuestId="38047" TurnInName="Draka" TurnInId="90481" />
-				</While>
 
 				<While Condition="HasQuest(38044) &amp;&amp; !IsQuestCompleted(38044)" > <!-- Bleeding the Bleeding Hollow -->
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Bleeding the Bleeding Hollow.&quot;);" />
@@ -1262,10 +1273,6 @@
 							</CustomBehavior>
 						</If>
 					<!-- END Easy Pulls -->
-
-				</While>
-				<While Condition="HasQuest(38044) &amp;&amp; IsQuestCompleted(38044)" >
-					<TurnIn Nav="Fly" QuestName="Bleeding the Bleeding Hollow" QuestId="38044" TurnInName="Draka" TurnInId="90481" />
 				</While>
 
 				<While Condition="HasQuest(38252) &amp;&amp; !IsQuestCompleted(38252)" > <!-- Assault on the Ruins of Kra'nak -->
@@ -1307,17 +1314,14 @@
 						</If>
 					<!-- END Easy Pulls -->
 				</While>
-				<While Condition="HasQuest(38252) &amp;&amp; IsQuestCompleted(38252)" >
-					<TurnIn Nav="Fly" QuestName="Assault on the Ruins of Kra'nak" QuestId="38252" TurnInName="Draka" TurnInId="90481" />
-				</While>
 
 				<While Condition="HasQuest(38441) &amp;&amp; !IsQuestCompleted(38441)" > <!-- Assault on The Fel Forge -->
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Assault on The Fel Forge.&quot;);" />
 					<!-- Hard Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-							<While Condition="!HasQuest(38439) &amp;&amp; !IsQuestCompleted(38439)" > <!-- Assault on the Fel Forge -->
+							<While Condition="!HasQuest(37970) &amp;&amp; !IsQuestCompleted(37970)" > <!-- Assault on the Fel Forge -->
 								<MoveTo Nav="Fly" DestName="The Fel Forge" X="4472.133" Y="-697.1107" Z="33.81255" />
-								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38439)" />
+								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(37970)" />
 							</While>
 							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MobState="AliveNotInCombat" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" MobIds="241669, 91721, 91901, 92741" QuestId="38441" NumOfTimes="1000" WaitTime="500" >
 								<HuntingGrounds>
@@ -1333,9 +1337,9 @@
 					<!-- END Hard Pulls -->
 					<!-- Easy Pulls :: Same as hard, make edits if too hard. -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-							<While Condition="!HasQuest(38439) &amp;&amp; !IsQuestCompleted(38439)" > <!-- Assault on the Fel Forge -->
+							<While Condition="!HasQuest(37970) &amp;&amp; !IsQuestCompleted(37970)" > <!-- Assault on the Fel Forge -->
 								<MoveTo Nav="Fly" DestName="The Fel Forge" X="4472.133" Y="-697.1107" Z="33.81255" />
-								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38439)" />
+								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(37970)" />
 							</While>
 							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MobState="AliveNotInCombat" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" MobIds="241669, 91721, 91901, 92741" QuestId="38441" NumOfTimes="1000" WaitTime="500" >
 								<HuntingGrounds>
@@ -1350,15 +1354,37 @@
 						</If>
 					<!-- END Easy Pulls -->
 				</While>
-				<While Condition="HasQuest(38440) &amp;&amp; IsQuestCompleted(38440)" >
-					<TurnIn Nav="Fly" QuestName="Assault on The Fel Forge" QuestId="38440" TurnInName="Draka" TurnInId="90481" />
-				</While>
 
 				<!-- <While Condition="HasQuest(38586) &amp;&amp; !IsQuestCompleted(38586)" > [GROUP] Assault on the Throne of Kil'jaeden 
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Assault on the Throne of Kil'jaeden.&quot;);" />
 					<CustomBehavior File="Abandon"
 				</While>-->
 			<!-- END DO Randomized Daily from Tanaan Battle Plan -->
+
+			<!-- Turnin Randomized Daily from Tanaan Battle Plan -->
+				<If Condition="(HasQuest(37940) || HasQuest(38449) || HasQuest(38047) || HasQuest(38044) || HasQuest(38252) || HasQuest(38441)) &amp;&amp; (IsQuestCompleted(37940) || IsQuestCompleted(38449) || IsQuestCompleted(38047) || IsQuestCompleted(38044) || IsQuestCompleted(38252) || IsQuestCompleted(38441))" >
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Turning in Tanaan Battle Plan quest.&quot;);" />
+					<MoveTo Nav="Fly" DestName="Vol'mar Hold" X="4317.091" Y="-1491.344" Z="83.46479" />
+				</If>
+				<While Condition="HasQuest(37940) &amp;&amp; IsQuestCompleted(37940)" >
+					<TurnIn QuestName="Assault on Ironhold Harbor" QuestId="37940" TurnInName="Draka" TurnInId="90481" />
+				</While>
+				<While Condition="HasQuest(38449) &amp;&amp; IsQuestCompleted(38449)" >
+					<TurnIn QuestName="Assault on the Temple of Sha'naar" QuestId="38449" TurnInName="Draka" TurnInId="90481" />
+				</While>
+				<While Condition="HasQuest(38047) &amp;&amp; IsQuestCompleted(38047)" >
+					<TurnIn QuestName="Battle At The Iron Front" QuestId="38047" TurnInName="Draka" TurnInId="90481" />
+				</While>
+				<While Condition="HasQuest(38044) &amp;&amp; IsQuestCompleted(38044)" >
+					<TurnIn QuestName="Bleeding the Bleeding Hollow" QuestId="38044" TurnInName="Draka" TurnInId="90481" />
+				</While>
+				<While Condition="HasQuest(38252) &amp;&amp; IsQuestCompleted(38252)" >
+					<TurnIn QuestName="Assault on the Ruins of Kra'nak" QuestId="38252" TurnInName="Draka" TurnInId="90481" />
+				</While>
+				<While Condition="HasQuest(38441) &amp;&amp; IsQuestCompleted(38441)" >
+					<TurnIn QuestName="Assault on The Fel Forge" QuestId="38441" TurnInName="Draka" TurnInId="90481" />
+				</While>
+			<!-- END Turnin Randomized Daily from Tanaan Battle Plan -->
 
 			<!-- Pickup Daily from Shadow Hunter Denjai -->
 				<While Condition="!HasQuest(39526) &amp;&amp; !IsQuestCompleted(39526)" >
@@ -1413,9 +1439,6 @@
 					</SetGrindArea>
 					<GrindUntil Condition="IsQuestCompleted(39514)" GoalText="Harnessing Their Power"/>
 				</While> -->
-				<While Condition="HasQuest(39514) &amp;&amp; IsQuestCompleted(39514)" >
-					<TurnIn Nav="Fly" QuestName="Harnessing Their Power" QuestId="39514" TurnInName="Shadow Hunter Denjai" TurnInId="96014" />
-				</While>
 
 				<While Condition="HasQuest(39513) &amp;&amp; !IsQuestCompleted(39513)" > <!-- Disarming Sha'naar -->
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Disarming Sha'naar.&quot;);" />
@@ -1440,9 +1463,6 @@
 							</CustomBehavior>
 						</If>
 					<!-- END Easy Pulls -->
-				</While>
-				<While Condition="HasQuest(39513) &amp;&amp; IsQuestCompleted(39513)" >
-					<TurnIn Nav="Fly" QuestName="Disarming Sha'naar" QuestId="39513" TurnInName="Shadow Hunter Denjai" TurnInId="96014" />
 				</While>
 
 				<While Condition="HasQuest(39512) &amp;&amp; !IsQuestCompleted(39512)" > <!-- Secrets of the Shadow Council -->
@@ -1483,9 +1503,6 @@
 						</If>
 					<!-- END Easy Pulls -->
 				</While>
-				<While Condition="HasQuest(39512) &amp;&amp; IsQuestCompleted(39512)" >
-					<TurnIn Nav="Fly" QuestName="Secrets of the Shadow Council" QuestId="39512" TurnInName="Shadow Hunter Denjai" TurnInId="96014" />
-				</While>
 
 				<!-- There's no easy pull version of this quest. -->
 				<While Condition="HasQuest(39532) &amp;&amp; !IsQuestCompleted(39532)" > <!-- [Nimi Brightcastle] Bringing Down the Iron Horde -->
@@ -1514,12 +1531,6 @@
 							<Hotspot X="4668.208" Y="-878.8555" Z="99.33451" />
 						</HuntingGrounds>
 					</CustomBehavior>
-				</While>
-				<While Condition="HasQuest(39532) &amp;&amp; IsQuestCompleted(39532)" > <!-- [Nimi Brightcastle] -->
-					<TurnIn Nav="Fly" QuestName="Bringing Down the Iron Horde" QuestId="39532" TurnInName="Nimi Brightcastle" TurnInId="93396" />
-				</While>
-				<While Condition="HasQuest(39511) &amp;&amp; IsQuestCompleted(39511)" >
-					<TurnIn Nav="Fly" QuestName="Blood of Fallen Brothers" QuestId="39511" TurnInName="Shadow Hunter Denjai" TurnInId="96014" />
 				</While>
 
 				<While Condition="HasQuest(39510) &amp;&amp; !IsQuestCompleted(39510)" > <!-- A Little Wetwork -->
@@ -1559,9 +1570,6 @@
 						</If>
 					<!-- END Easy Pulls -->
 				</While>
-				<While Condition="HasQuest(39510) &amp;&amp; IsQuestCompleted(39510)" >
-					<TurnIn Nav="Fly" QuestName="A Little Wetwork" QuestId="39510" TurnInName="Shadow Hunter Denjai" TurnInId="96014" />
-				</While>
 
 				<While Condition="HasQuest(39509) &amp;&amp; !IsQuestCompleted(39509)" > <!-- Bloodied Blades of Zeth'Gol -->
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Bloodied Blades of Zeth'Gol.&quot;);" />
@@ -1598,10 +1606,35 @@
 						</If>
 					<!-- END Easy Pulls -->
 				</While>
-				<While Condition="HasQuest(39509) &amp;&amp; IsQuestCompleted(39509)" >
-					<TurnIn Nav="Fly" QuestName="Bloodied Blades of Zeth'Gol" QuestId="39509" TurnInName="Shadow Hunter Denjai" TurnInId="96014" />
-				</While>
 			<!-- END DO Randomized Daily from Shadow Hunter Denjai -->
+
+			<!-- Turnin Randomized Daily from Shadow Hunter Denjai -->
+				<If Condition="(HasQuest(39514) &amp;&amp; IsQuestCompleted(39514)) || (HasQuest(39514) &amp;&amp; IsQuestCompleted(39514)) || (HasQuest(39512) &amp;&amp; IsQuestCompleted(39512)) || (HasQuest(39511) &amp;&amp; IsQuestCompleted(39511)) || (HasQuest(39510) &amp;&amp; IsQuestCompleted(39510)) || (HasQuest(39509) &amp;&amp; IsQuestCompleted(39509)) || (HasQuest(39532) &amp;&amp; IsQuestCompleted(39532))" >
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Turning in Shadow Hunter Denjai's quest.&quot;);" />
+					<MoveTo Nav="Fly" DestName="Vol'mar Hold" X="4317.091" Y="-1491.344" Z="83.46479" />
+				</If>
+				<While Condition="HasQuest(39514) &amp;&amp; IsQuestCompleted(39514)" >
+					<TurnIn QuestName="Harnessing Their Power" QuestId="39514" TurnInName="Shadow Hunter Denjai" TurnInId="96014" />
+				</While>
+				<While Condition="HasQuest(39513) &amp;&amp; IsQuestCompleted(39513)" >
+					<TurnIn QuestName="Disarming Sha'naar" QuestId="39513" TurnInName="Shadow Hunter Denjai" TurnInId="96014" />
+				</While>
+				<While Condition="HasQuest(39512) &amp;&amp; IsQuestCompleted(39512)" >
+					<TurnIn QuestName="Secrets of the Shadow Council" QuestId="39512" TurnInName="Shadow Hunter Denjai" TurnInId="96014" />
+				</While>
+				<While Condition="HasQuest(39511) &amp;&amp; IsQuestCompleted(39511)" >
+					<TurnIn QuestName="Blood of Fallen Brothers" QuestId="39511" TurnInName="Shadow Hunter Denjai" TurnInId="96014" />
+				</While>
+				<While Condition="HasQuest(39510) &amp;&amp; IsQuestCompleted(39510)" >
+					<TurnIn QuestName="A Little Wetwork" QuestId="39510" TurnInName="Shadow Hunter Denjai" TurnInId="96014" />
+				</While>
+				<While Condition="HasQuest(39509) &amp;&amp; IsQuestCompleted(39509)" >
+					<TurnIn QuestName="Bloodied Blades of Zeth'Gol" QuestId="39509" TurnInName="Shadow Hunter Denjai" TurnInId="96014" />
+				</While>
+				<While Condition="HasQuest(39532) &amp;&amp; IsQuestCompleted(39532)" > <!-- [Nimi Brightcastle] -->
+					<TurnIn QuestName="Bringing Down the Iron Horde" QuestId="39532" TurnInName="Nimi Brightcastle" TurnInId="93396" />
+				</While>
+			<!-- END Turnin Randomized Daily from Shadow Hunter Denjai -->
 
 			<!-- [Order of the Awakened] Introductory Quest Complete? Attempt#2 -->
 				<While Condition="HasQuest(39432) &amp;&amp; IsQuestCompleted(39432)" >
@@ -1758,7 +1791,8 @@
 
 			<!-- Turn in Pressing the Attack if we're done with it. -->
 				<While Condition="HasQuest(39526) &amp;&amp; IsQuestCompleted(39526)" >
-					<TurnIn Nav="Fly" QuestName="Pressing the Attack" QuestId="39526" TurnInName="Shadow Hunter Denjai" TurnInId="96014" />
+					<MoveTo Nav="Fly" DestName="Vol'mar Hold" X="4317.091" Y="-1491.344" Z="83.46479" />
+					<TurnIn QuestName="Pressing the Attack" QuestId="39526" TurnInName="Shadow Hunter Denjai" TurnInId="96014" />
 				</While>
 			<!-- END Turn in Pressing the Attack if we're done with it. -->
 		</If>
