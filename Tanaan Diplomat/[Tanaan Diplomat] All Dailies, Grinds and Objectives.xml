@@ -22,6 +22,10 @@
 		<Blackspot X="3389.877" Y="74.16195" Z="161.9778" Radius="9.28465" /> <!-- Glowing chest in Temple of Sha'nar near elites. -->
 		<Blackspot X="3458.094" Y="42.21206" Z="161.3759" Radius="31.56551" /> <!-- Two Demonic Focus objects around tons of elites. -->
 		<Blackspot X="3376.689" Y="37.228" Z="164.2126" Radius="87.25522" /> <!-- Upper terrace of Sha'naar -->
+		<Blackspot X="3969.422" Y="1030.573" Z="160.5733" Radius="16.61105" /> <!-- Objects+Bodies near northern Wargronn in Iron Hold -->
+		<Blackspot X="3890.472" Y="1033.717" Z="161.3772" Radius="17.98249" /> <!-- Objects+Bodies near sourthern Wargronn in Iron Hold. -->
+		<Blackspot X="3930.479" Y="947.4286" Z="158.092" Radius="15.64253" /> <!-- Objects+Bodies near mid-Wargronn in Iron Hold -->
+		<Blackspot X="3887.124" Y="913.0439" Z="155.2094" Radius="16.76551" /> <!-- Objects+Bodies near mid-Wargronn in Iron Hold -->
 	</Blackspots>
 
 	<Vendors>
@@ -55,48 +59,48 @@
 	<!-- Activate Baleful Token Usage -->
 		<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" ActivityName="UseBalefulTokens" UseWhen="(Me.IsAlive &amp;&amp; !Me.Combat) &amp;&amp; (HasItem(124550) || HasItem(124551) || HasItem(124552) || HasItem(124553) || HasItem(124554) || HasItem(124555) || HasItem(124556) || HasItem(124557) || HasItem(124558) || HasItem(124559) || HasItem(124560) || HasItem(124561) || HasItem(124562) || HasItem(128348))" >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Using Baleful tokens.&quot;);" />
-			<While Condition="HasItem(128348)" > <!-- Shoulders -->
-	            <CustomBehavior File="UseItem" ItemId="128348" WaitTime="3100" />
-			</While>
-	        <While Condition="HasItem(124550)" > <!-- Bracers -->
-	            <CustomBehavior File="UseItem" ItemId="124550" WaitTime="3100" />
-	        </While>
-	        <While Condition="HasItem(124551)" > <!-- Tunic -->
-	            <CustomBehavior File="UseItem" ItemId="124551" WaitTime="3100" />
-	        </While>
-	        <While Condition="HasItem(124552)" > <!-- Treads -->
-	            <CustomBehavior File="UseItem" ItemId="124552" WaitTime="3100" />
-	        </While>
-	        <While Condition="HasItem(124553)" > <!-- Gauntlets -->
-	            <CustomBehavior File="UseItem" ItemId="124553" WaitTime="3100" />
-	        </While>
-	        <While Condition="HasItem(124554)" > <!-- Hood -->
-	            <CustomBehavior File="UseItem" ItemId="124554" WaitTime="3100" />
-	        </While>
-	        <While Condition="HasItem(124555)" > <!-- Leggings -->
-	            <CustomBehavior File="UseItem" ItemId="124555" WaitTime="3100" />
-	        </While>
-	        <While Condition="HasItem(124556)" > <!-- Spaulders -->
-	            <CustomBehavior File="UseItem" ItemId="124556" WaitTime="3100" />
-	        </While>
-	        <While Condition="HasItem(124557)" > <!-- Girdle -->
-	            <CustomBehavior File="UseItem" ItemId="124557" WaitTime="3100" />
-	        </While>
-	        <While Condition="HasItem(124558)" > <!-- Ring -->
-	            <CustomBehavior File="UseItem" ItemId="124558" WaitTime="3100" />
-	        </While>
-	        <While Condition="HasItem(124559)" > <!-- Choker -->
-	            <CustomBehavior File="UseItem" ItemId="124559" WaitTime="3100" />
-	        </While>
-	        <While Condition="HasItem(124560)" > <!-- Cloak -->
-	            <CustomBehavior File="UseItem" ItemId="124560" WaitTime="3100" />
-	        </While>
-	        <While Condition="HasItem(124561)" > <!-- Trinket -->
-	            <CustomBehavior File="UseItem" ItemId="124561" WaitTime="3100" />
-	        </While>
-	        <While Condition="HasItem(124562)" > <!-- Armament -->
-	            <CustomBehavior File="UseItem" ItemId="124562" WaitTime="3100" />
-	        </While>
+		<While Condition="HasItem(128348) &amp;&amp; (Me.IsAlive &amp;&amp; !Me.Combat)" > <!-- Shoulders -->
+	      <CustomBehavior File="UseItem" ItemId="128348" WaitTime="3100" />
+		</While>
+	    <While Condition="HasItem(124550) &amp;&amp; (Me.IsAlive &amp;&amp; !Me.Combat)" > <!-- Bracers -->
+	      <CustomBehavior File="UseItem" ItemId="124550" WaitTime="3100" />
+	    </While>
+	    <While Condition="HasItem(124551) &amp;&amp; (Me.IsAlive &amp;&amp; !Me.Combat)" > <!-- Tunic -->
+	      <CustomBehavior File="UseItem" ItemId="124551" WaitTime="3100" />
+	    </While>
+	    <While Condition="HasItem(124552) &amp;&amp; (Me.IsAlive &amp;&amp; !Me.Combat)" > <!-- Treads -->
+	      <CustomBehavior File="UseItem" ItemId="124552" WaitTime="3100" />
+	    </While>
+	    <While Condition="HasItem(124553) &amp;&amp; (Me.IsAlive &amp;&amp; !Me.Combat)" > <!-- Gauntlets -->
+	      <CustomBehavior File="UseItem" ItemId="124553" WaitTime="3100" />
+	    </While>
+	    <While Condition="HasItem(124554) &amp;&amp; (Me.IsAlive &amp;&amp; !Me.Combat)" > <!-- Hood -->
+	      <CustomBehavior File="UseItem" ItemId="124554" WaitTime="3100" />
+	    </While>
+	    <While Condition="HasItem(124555) &amp;&amp; (Me.IsAlive &amp;&amp; !Me.Combat)" > <!-- Leggings -->
+	      <CustomBehavior File="UseItem" ItemId="124555" WaitTime="3100" />
+	    </While>
+	    <While Condition="HasItem(124556) &amp;&amp; (Me.IsAlive &amp;&amp; !Me.Combat)" > <!-- Spaulders -->
+	      <CustomBehavior File="UseItem" ItemId="124556" WaitTime="3100" />
+	    </While>
+	    <While Condition="HasItem(124557) &amp;&amp; (Me.IsAlive &amp;&amp; !Me.Combat)" > <!-- Girdle -->
+	      <CustomBehavior File="UseItem" ItemId="124557" WaitTime="3100" />
+	    </While>
+	    <While Condition="HasItem(124558) &amp;&amp; (Me.IsAlive &amp;&amp; !Me.Combat)" > <!-- Ring -->
+	      <CustomBehavior File="UseItem" ItemId="124558" WaitTime="3100" />
+	    </While>
+	    <While Condition="HasItem(124559) &amp;&amp; (Me.IsAlive &amp;&amp; !Me.Combat)" > <!-- Choker -->
+	      <CustomBehavior File="UseItem" ItemId="124559" WaitTime="3100" />
+	    </While>
+	    <While Condition="HasItem(124560) &amp;&amp; (Me.IsAlive &amp;&amp; !Me.Combat)" > <!-- Cloak -->
+	      <CustomBehavior File="UseItem" ItemId="124560" WaitTime="3100" />
+	    </While>
+	    <While Condition="HasItem(124561) &amp;&amp; (Me.IsAlive &amp;&amp; !Me.Combat)" > <!-- Trinket -->
+	      <CustomBehavior File="UseItem" ItemId="124561" WaitTime="3100" />
+	    </While>
+	    <While Condition="HasItem(124562) &amp;&amp; (Me.IsAlive &amp;&amp; !Me.Combat)" > <!-- Armament -->
+	      <CustomBehavior File="UseItem" ItemId="124562" WaitTime="3100" />
+	    </While>
 		</CustomBehavior>
 	<!-- END Activate Baleful Token Usage -->
 
@@ -124,52 +128,58 @@
 	<!-- END Item Level Technicals -->
 
 	<!-- Install Hooks -->
+		<CustomBehavior File="Hooks\Avoid" AvoidName="Rasthe" Command="Add" ObjectType="Npc" ObjectId="90782" Radius="20" AvoidWhen="!UNIT.IsTargetingMeOrPet &amp;&amp; UNIT.IsAlive" />
 		<CustomBehavior File="Hooks\Avoid" AvoidName="Wargronn_NPC" Command="Add" ObjectType="Npc" ObjectId="90585" Radius="10" AvoidWhen="!UNIT.IsTargetingMeOrPet &amp;&amp; UNIT.IsAlive" />
 		<CustomBehavior File="Hooks\Avoid" AvoidName="Pollen_Cloud" Command="Add" ObjectType="Npc" ObjectId="92700" Radius="9" AvoidWhen="Me.Combat" />
 		<CustomBehavior File="Hooks\Avoid" AvoidName="ClusterBombs" Command="Add" ObjectType="Npc" ObjectId="78427" Radius="5" />
 		<CustomBehavior File="Hooks\Avoid" AvoidName="Wargronn_Smash" Command="Add" ObjectId="150793" Radius="5" AvoidLocationProducer="UNIT.Location.RayCast(UNIT.Rotation, 8)" />
 		<CustomBehavior File="Hooks\Avoid" AvoidName="Shadow_Zone" Command="Add" ObjectType="Missile" ObjectId="183165" Radius="5" />
 		<CustomBehavior File="Hooks\Avoid" AvoidName="Fel_Pool" Command="Add" ObjectType="AreaTrigger" ObjectId="8757" Radius="5" />
-		<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="true" ActivityName="Use_ObjectiveItems" UseWhen="Styx.CommonBot.Bars.ActionBar.Extra.IsActive &amp;&amp; ((Me.Combat &amp;&amp; Me.GotTarget) || (ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069, 90781, 91901, 92741}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 15).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null &amp;&amp; !ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Any(u =&gt; u.IsHostile &amp;&amp; u.Distance &lt;= 15 &amp;&amp; u.IsAlive)) || (Unit(90074, u =&gt; u.Distance &lt;= 50 &amp;&amp; u.IsAlive) != null &amp;&amp; !Me.Combat) || (Unit(92616, u =&gt; u.Distance &lt;= 50 &amp;&amp; u.IsAlive) != null &amp;&amp; !Me.Combat))" >
-			<While Condition="Styx.CommonBot.Bars.ActionBar.Extra.IsActive" >
+		<CustomBehavior File="Hooks\Avoid" AvoidName="IronHordeCannonBombardment" Command="Add" ObjectType="Missile" ObjectId="184281" Radius="5" />
+		<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="true" ActivityName="Use_ObjectiveItems" UseWhen="Styx.CommonBot.Bars.ActionBar.Extra.IsActive &amp;&amp; ((Me.Combat &amp;&amp; Me.GotTarget) || ((ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069, 90781, 91901, 92741}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 15).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null) &amp;&amp; !(ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Any(u =&gt; u.IsHostile &amp;&amp; u.Distance &lt;= 16 &amp;&amp; u.IsAlive))) || (Unit(90074, u =&gt; Navigator.PathDistance(Me.Location, u.Location) &lt;= 50 &amp;&amp; u.IsAlive) != null &amp;&amp; !Me.Combat) || (Unit(92616, u =&gt; Navigator.PathDistance(Me.Location, u.Location) &lt;= 50 &amp;&amp; u.IsAlive) != null &amp;&amp; !Me.Combat))" >
+			<While Condition="Styx.CommonBot.Bars.ActionBar.Extra.IsActive &amp;&amp; ((Me.Combat &amp;&amp; Me.GotTarget) || ((ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069, 90781, 91901, 92741}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 15).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null) &amp;&amp; !(ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Any(u =&gt; u.IsHostile &amp;&amp; u.Distance &lt;= 16 &amp;&amp; u.IsAlive))) || (Unit(90074, u =&gt; Navigator.PathDistance(Me.Location, u.Location) &lt;= 50 &amp;&amp; u.IsAlive) != null &amp;&amp; !Me.Combat) || (Unit(92616, u =&gt; Navigator.PathDistance(Me.Location, u.Location) &lt;= 50 &amp;&amp; u.IsAlive) != null &amp;&amp; !Me.Combat))" >
 				<If Condition="Me.Combat &amp;&amp; !Me.GotTarget" >
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Lagging hook until we get a target.&quot;);" />
-					<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="Me.GotTarget || !Me.Combat" />
+					<CustomBehavior File="WaitTimer" WaitTime="5000" TerminateWhen="Me.GotTarget || !Me.Combat" />
 				</If>
 				<!-- Use on units attacking us. -->
 				<If Condition="Me.Combat &amp;&amp; Me.GotTarget" >
-					<!-- ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1  Use this if issues occur. -->
+					<!-- ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 Use this if issues occur. -->
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Using True Iron Bomb on mobs attacking us.&quot;);" />
 					<DisableBehavior Name="Combat" />
-					<CustomBehavior File="RunCode">
+					<CustomBehavior File="RunCode" > <!-- Instead of using CurrentTarget, perhaps we should use ObjectManager to get the location of the closest hostile -->
 					<![CDATA[
 						Lua.DoString("ExtraActionButton1:Click();");
 						await Coroutine.Sleep(500);
-						SpellManager.ClickRemoteLocation(Me.CurrentTarget.Location); 
-						await Coroutine.Sleep(1500);
+						if (Me.GotTarget) {
+							SpellManager.ClickRemoteLocation(Me.CurrentTarget.Location); 
+							await Coroutine.Sleep(1500);
+						}
 					]]>
 					</CustomBehavior>
 					<EnableBehavior Name="Combat" />
 				</If>
 				<!-- Use on nearby tank. -->
-				<If Condition="!Me.Combat &amp;&amp; (Unit(92616, u =&gt; u.IsAlive) != null || Unit(90074, u =&gt; u.IsAlive) != null)" >
+				<If Condition="!Me.Combat &amp;&amp; (Unit(92616, u =&gt; u.IsAlive &amp;&amp; Navigator.PathDistance(Me.Location, u.Location) &lt;= 50) != null || Unit(90074, u =&gt; u.IsAlive &amp;&amp; Navigator.PathDistance(Me.Location, u.Location) &lt;= 50) != null)" >
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Using Objective Item on nearby tank.&quot;);" />
 					<CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting to leave combat: {TimeRemaining}" TerminateWhen="!Me.Combat" /> <!-- We need to be out of combat first. -->
 					<CustomBehavior File="TargetAndMoveToMob" MobId1="90074" MobId2="92616" WaitForNpcs="false" MoveWithinMaxRangeOfMob="25" TerminateWhen="!Styx.CommonBot.Bars.ActionBar.Extra.IsActive || Me.Combat" />
 					<If Condition="Styx.CommonBot.Bars.ActionBar.Extra.IsActive &amp;&amp; !Me.Combat &amp;&amp; Me.GotTarget" >
 						<CustomBehavior File="ForcedDismount" />
-						<CustomBehavior File="RunCode">
+						<CustomBehavior File="RunCode" > <!-- Instead of using CurrentTarget, perhaps we should use ObjectManager to get the location of the closest hostile -->
 							<![CDATA[ 
 								Lua.DoString("ExtraActionButton1:Click();");
 								await Coroutine.Sleep(500);
-								SpellManager.ClickRemoteLocation(Me.CurrentTarget.Location);
-								await Coroutine.Sleep(1500);
+								if (Me.GotTarget && Me.CurrentTarget.IsAlive) {
+									SpellManager.ClickRemoteLocation(Me.CurrentTarget.Location);
+									await Coroutine.Sleep(1500);
+								}
 							]]>
 						</CustomBehavior>
 					</If>
 				</If>
 				<!-- Dispose if another nearby. -->
-				<If Condition="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069, 90781, 91901, 92741}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 15).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null &amp;&amp; !ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Any(u =&gt; u.IsHostile &amp;&amp; u.Distance &lt;= 15 &amp;&amp; u.IsAlive)" >
+				<If Condition="(ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069, 90781, 91901, 92741}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 15).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null) &amp;&amp; !(ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Any(u =&gt; u.IsHostile &amp;&amp; u.Distance &lt;= 16 &amp;&amp; u.IsAlive))" >
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Disposing of Objective Item to loot another.&quot;);" />
 					<CustomBehavior File="RunCode">
 					<![CDATA[ 
@@ -183,9 +193,33 @@
 			</While>
 		</CustomBehavior>
 		<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="true" ActivityName="Use_HealingObjects" UseWhen="Me.HealthPercent &lt;= 65 &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{240173, 241612}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt;= 30).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null" >
+			<DisableBehavior Name="Combat" />
 			<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MobIds="240173, 241612" Range="5" IgnoreCombat="true" ProactiveCombatStrategy="NoClear" WaitForNpcs="false" CollectionDistance="500" />
+			<EnableBehavior Name="Combat" />
 		</CustomBehavior>
-		<CustomBehavior File="Hooks\Avoid" AvoidName="Wargronn" Command="Add" ObjectType="Npc" ObjectId="90585" Radius="20" />
+		<!-- Hook Treasures and Rare Detection -->
+			<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
+				<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" ActivityName="Kill Rares" UseWhen="Me.IsAlive &amp;&amp; ((HasQuest(39432) &amp;&amp; !IsQuestCompleted(39432)) || (HasQuest(39433) &amp;&amp; !IsQuestCompleted(39433))) &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; new[]{92552, 90884, 90936, 92429, 93264, 93076, 90434, 90519, 89675, 90887, 93028, 90888, 91727, 92647, 93125, 92941, 91695, 90094, 90777, 90429, 90437, 93279, 90438, 93002, 90442, 91374, 92194, 90885, 90024, 93236, 92887, 92606, 92694, 92977, 92574, 91087, 90122}.Contains((int)u.Entry) &amp;&amp; Navigator.CanNavigateFully(Me.Location, u.Location) &amp;&amp; Navigator.PathDistance(Me.Location, u.Location) &lt;= 50 &amp;&amp; u.IsAlive).OrderBy(u =&gt; Navigator.PathDistance(Me.Location, u.Location)).FirstOrDefault() != null" >
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Killing a rare.&quot;);" />
+					<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" WaitForNpcs="false" ProactiveCombatStrategy="ClearMobsTargetingUs" MobState="Alive" InteractByLooting="true" CollectionDistance="500"
+					MobIds="92552, 90884, 90936, 92429, 93264, 93076, 90434, 90519, 89675, 90887, 93028, 90888, 91727, 92647, 93125, 92941, 91695, 90094, 90777, 90429, 90437, 93279, 90438, 93002, 90442, 91374, 92194, 90885, 90024, 93236, 92887, 92606, 92694, 92977, 92574, 91087, 90122" TerminateWhen="Me.IsDead" />
+				</CustomBehavior>
+
+				<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" ActivityName="Grab Treasures" UseWhen="Me.IsAlive &amp;&amp; ((HasQuest(39432) &amp;&amp; !IsQuestCompleted(39432)) || (HasQuest(39433) &amp;&amp; !IsQuestCompleted(39433))) &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().Where(o =&gt; new[]{241599, 241847, 241848, 241433, 241656, 240003, 241742, 241563, 241745, 242649, 241561, 242249, 241760, 240577, 243852, 241605, 241657, 241522, 241692, 243796, 241533, 241565, 241521, 241560, 241671, 243860, 241504, 241699, 240543, 241713, 240289, 241775, 243693, 241673, 241566, 243690, 241764, 241449, 241835, 240580, 241674, 241841, 241450, 241601, 241600, 241602}.Contains((int)o.Entry) &amp;&amp; Navigator.CanNavigateFully(Me.Location, o.Location) &amp;&amp; Navigator.PathDistance(Me.Location, o.Location) &lt; 75).OrderBy(o =&gt; Navigator.PathDistance(Me.Location, o.Location)).FirstOrDefault() != null" > <!-- 241666, object behind progress barrier -->
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Grabbing a treasure.&quot;);" />
+					<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" WaitForNpcs="false" Range="5" IgnoreLoSToTarget="true" CollectionDistance="500" WaitTime="2500" NumOfTimes="2"
+				MobIds="241599, 241847, 241848, 241433, 241656, 240003, 241742, 241563, 241745, 242649, 241561, 242249, 241760, 240577, 243852, 241605, 241657, 241522, 241692, 243796, 241533, 241565, 241521, 241560, 241671, 243860, 241504, 241699, 240543, 241713, 240289, 241775, 243693, 241673, 241566, 243690, 241764, 241449, 241835, 240580, 241674, 241841, 241450, 241601, 241600, 241602" TerminateWhen="Me.IsDead" />
+				</CustomBehavior>
+			</If>
+			<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
+				<CustomBehavior File="Hooks\DoWhen" ActivityName="Grab Treasures" UseWhen="Me.IsAlive &amp;&amp; ((HasQuest(39432) &amp;&amp; !IsQuestCompleted(39432)) || (HasQuest(39433) &amp;&amp; !IsQuestCompleted(39433))) &amp;&amp; 
+				ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().Where(o =&gt; new[]{243796, 243852, 243860}.Contains((int)o.Entry) &amp;&amp; Navigator.PathDistance(Me.Location, o.Location) &lt; 75 &amp;&amp;	Navigator.CanNavigateFully(Me.Location, o.Location)).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null" > 
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Grabbing a treasure.&quot;);" />
+
+				<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" WaitForNpcs="false" IgnoreLoSToTarget="true" CollectionDistance="150" WaitTime="2500" NumOfTimes="2" MobIds="243796, 243852, 243860" />
+				</CustomBehavior>
+			</If>
+		<!-- END Hook Treasures and Rare Detection -->
 	<!-- END Install Hooks -->
 
 	<!-- [Alliance] Daily Quests Pickups -->
@@ -270,32 +304,6 @@
 					<PickUp Nav="Fly" QuestName="Unseen Influence" QuestId="39433" GiverName="Dawn-Seeker Krisek" GiverId="95424" />
 				</While>
 			<!-- END [Order of the Awakened] Pickup Daily Quest --> 
-
-			<!-- Hook Treasures and Rare Detection -->
-				<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-					<If Condition="(HasQuest(39432) &amp;&amp; !IsQuestCompleted(39432)) || (HasQuest(39433) &amp;&amp; !IsQuestCompleted(39433))" >
-						<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" ActivityName="Kill Rares" UseWhen="Me.IsAlive &amp;&amp; ((HasQuest(39432) &amp;&amp; !IsQuestCompleted(39432)) || (HasQuest(39433) &amp;&amp; !IsQuestCompleted(39433))) &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; new[]{92552, 90884, 90936, 92429, 93264, 93076, 90434, 90519, 89675, 90887, 93028, 90888, 91727, 92647, 93125, 92941, 91695, 90094, 90777, 90429, 90437, 93279, 90438, 93002, 90442, 91374, 92194, 90885, 90024, 93236, 92887, 92606, 92694, 92977, 92574, 91087, 90122}.Contains((int)u.Entry) &amp;&amp; Navigator.CanNavigateFully(Me.Location, u.Location) &amp;&amp; Navigator.PathDistance(Me.Location, u.Location) &lt;= 50 &amp;&amp; u.IsAlive).OrderBy(u =&gt; Navigator.PathDistance(Me.Location, u.Location)).FirstOrDefault() != null" >
-							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Killing a rare.&quot;);" />
-							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" WaitForNpcs="false" ProactiveCombatStrategy="ClearMobsTargetingUs" MobState="Alive" InteractByLooting="true" CollectionDistance="500"
-							MobIds="92552, 90884, 90936, 92429, 93264, 93076, 90434, 90519, 89675, 90887, 93028, 90888, 91727, 92647, 93125, 92941, 91695, 90094, 90777, 90429, 90437, 93279, 90438, 93002, 90442, 91374, 92194, 90885, 90024, 93236, 92887, 92606, 92694, 92977, 92574, 91087, 90122" TerminateWhen="Me.IsDead" />
-						</CustomBehavior>
-
-						<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" ActivityName="Grab Treasures" UseWhen="Me.IsAlive &amp;&amp; ((HasQuest(39432) &amp;&amp; !IsQuestCompleted(39432)) || (HasQuest(39433) &amp;&amp; !IsQuestCompleted(39433))) &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().Where(o =&gt; new[]{241599, 241847, 241848, 241433, 241656, 240003, 241742, 241563, 241745, 242649, 241561, 242249, 241760, 240577, 243852, 241605, 241657, 241522, 241692, 243796, 241533, 241565, 241521, 241560, 241671, 243860, 241504, 241699, 240543, 241713, 240289, 241775, 243693, 241673, 241566, 243690, 241764, 241449, 241835, 240580, 241674, 241841, 241450, 241601, 241600, 241602}.Contains((int)o.Entry) &amp;&amp; Navigator.CanNavigateFully(Me.Location, o.Location) &amp;&amp; Navigator.PathDistance(Me.Location, o.Location) &lt; 75).OrderBy(o =&gt; Navigator.PathDistance(Me.Location, o.Location)).FirstOrDefault() != null" > <!-- 241666, object behind progress barrier -->
-							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Grabbing a treasure.&quot;);" />
-							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" WaitForNpcs="false" Range="5" IgnoreLoSToTarget="true" CollectionDistance="500" WaitTime="2500" NumOfTimes="2"
-						MobIds="241599, 241847, 241848, 241433, 241656, 240003, 241742, 241563, 241745, 242649, 241561, 242249, 241760, 240577, 243852, 241605, 241657, 241522, 241692, 243796, 241533, 241565, 241521, 241560, 241671, 243860, 241504, 241699, 240543, 241713, 240289, 241775, 243693, 241673, 241566, 243690, 241764, 241449, 241835, 240580, 241674, 241841, 241450, 241601, 241600, 241602" TerminateWhen="Me.IsDead" />
-						</CustomBehavior>
-					</If>
-					<Else>
-						<CustomBehavior File="Hooks\DoWhen" ActivityName="Grab Treasures" UseWhen="Me.IsAlive &amp;&amp; ((HasQuest(39432) &amp;&amp; !IsQuestCompleted(39432)) || (HasQuest(39433) &amp;&amp; !IsQuestCompleted(39433))) &amp;&amp; 
-						ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().Where(o =&gt; new[]{243796, 243852, 243860}.Contains((int)o.Entry) &amp;&amp; Navigator.PathDistance(Me.Location, o.Location) &lt; 75 &amp;&amp;	Navigator.CanNavigateFully(Me.Location, o.Location)).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null" > 
-						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Grabbing a treasure.&quot;);" />
-
-						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" WaitForNpcs="false" IgnoreLoSToTarget="true" CollectionDistance="150" WaitTime="2500" NumOfTimes="2" MobIds="243796, 243852, 243860"  />
-						</CustomBehavior>
-					</Else>
-				</If>
-			<!-- END Hook Treasures and Rare Detection -->
 		</If>
 	<!-- END [Alliance] Daily Quests Pickups -->
 
@@ -381,32 +389,6 @@
 					<PickUp Nav="Fly" QuestName="Unseen Influence" QuestId="39433" GiverName="Dawn-Seeker Krisek" GiverId="95424" />
 				</While>
 			<!-- END [Order of the Awakened] Pickup Daily Quests -->
-
-			<!-- Hook Treasures and Rare Detection -->
-			<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-				<If Condition="(HasQuest(39432) &amp;&amp; !IsQuestCompleted(39432)) || (HasQuest(39433) &amp;&amp; !IsQuestCompleted(39433))" >
-					<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" ActivityName="Kill Rares" UseWhen="Me.IsAlive &amp;&amp; ((HasQuest(39432) &amp;&amp; !IsQuestCompleted(39432)) || (HasQuest(39433) &amp;&amp; !IsQuestCompleted(39433))) &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; new[]{92552, 90884, 90936, 92429, 93264, 93076, 90434, 90519, 89675, 90887, 93028, 90888, 91727, 92647, 93125, 92941, 91695, 90094, 90777, 90429, 90437, 93279, 90438, 93002, 90442, 91374, 92194, 90885, 90024, 93236, 92887, 92606, 92694, 92977, 92574, 91087, 90122}.Contains((int)u.Entry) &amp;&amp; Navigator.CanNavigateFully(Me.Location, u.Location) &amp;&amp; Navigator.PathDistance(Me.Location, u.Location) &lt;= 50 &amp;&amp; u.IsAlive).OrderBy(u =&gt; Navigator.PathDistance(Me.Location, u.Location)).FirstOrDefault() != null" >
-						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Killing a rare.&quot;);" />
-						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" WaitForNpcs="false" ProactiveCombatStrategy="ClearMobsTargetingUs" MobState="Alive" InteractByLooting="true" CollectionDistance="500"
-						MobIds="92552, 90884, 90936, 92429, 93264, 93076, 90434, 90519, 89675, 90887, 93028, 90888, 91727, 92647, 93125, 92941, 91695, 90094, 90777, 90429, 90437, 93279, 90438, 93002, 90442, 91374, 92194, 90885, 90024, 93236, 92887, 92606, 92694, 92977, 92574, 91087, 90122" TerminateWhen="Me.IsDead" />
-					</CustomBehavior>
-
-					<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" ActivityName="Grab Treasures" UseWhen="Me.IsAlive &amp;&amp; ((HasQuest(39432) &amp;&amp; !IsQuestCompleted(39432)) || (HasQuest(39433) &amp;&amp; !IsQuestCompleted(39433))) &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().Where(o =&gt; new[]{241599, 241847, 241848, 241433, 241656, 240003, 241742, 241563, 241745, 242649, 241561, 242249, 241760, 240577, 243852, 241605, 241657, 241522, 241692, 243796, 241533, 241565, 241521, 241560, 241671, 243860, 241504, 241699, 240543, 241713, 240289, 241775, 243693, 241673, 241566, 243690, 241764, 241449, 241835, 240580, 241674, 241841, 241450, 241601, 241600, 241602}.Contains((int)o.Entry) &amp;&amp; Navigator.CanNavigateFully(Me.Location, o.Location) &amp;&amp; Navigator.PathDistance(Me.Location, o.Location) &lt; 75).OrderBy(o =&gt; Navigator.PathDistance(Me.Location, o.Location)).FirstOrDefault() != null" > <!-- 241666, object behind progress barrier -->
-						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Grabbing a treasure.&quot;);" />
-						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" WaitForNpcs="false" Range="5" IgnoreLoSToTarget="true" CollectionDistance="500"  WaitTime="250"
-					MobIds="241599, 241847, 241848, 241433, 241656, 240003, 241742, 241563, 241745, 242649, 241561, 242249, 241760, 240577, 243852, 241605, 241657, 241522, 241692, 243796, 241533, 241565, 241521, 241560, 241671, 243860, 241504, 241699, 240543, 241713, 240289, 241775, 243693, 241673, 241566, 243690, 241764, 241449, 241835, 240580, 241674, 241841, 241450, 241601, 241600, 241602" TerminateWhen="Me.IsDead" />
-					</CustomBehavior>
-				</If>
-				<Else>
-					<CustomBehavior File="Hooks\DoWhen" ActivityName="Grab Treasures" UseWhen="Me.IsAlive &amp;&amp; ((HasQuest(39432) &amp;&amp; !IsQuestCompleted(39432)) || (HasQuest(39433) &amp;&amp; !IsQuestCompleted(39433))) &amp;&amp; 
-					ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().Where(o =&gt; new[]{243796, 243852, 243860}.Contains((int)o.Entry) &amp;&amp; Navigator.PathDistance(Me.Location, o.Location) &lt; 75 &amp;&amp;	Navigator.CanNavigateFully(Me.Location, o.Location)).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null" > 
-					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Grabbing a treasure.&quot;);" />
-
-					<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" WaitForNpcs="false" IgnoreLoSToTarget="true" CollectionDistance="150"  WaitTime="2500" NumOfTimes="2" MobIds="243796, 243852, 243860"  />
-					</CustomBehavior>
-				</Else>
-			</If>
-			<!-- END Hook Treasures and Rare Detection -->
 		</If>
 	<!-- END [Horde] Daily Quests Pickups -->
 
@@ -421,8 +403,8 @@
 								<MoveTo Nav="Fly" DestName="Ironhold Harbor" X="4583.305" Y="-399.9979" Z="10.69125" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(37866)" />
 							</While>
-							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" QuestId="37891"  NumOfTimes="1000" WaitTime="500" MobIds="239839, 90433, 90069" >
-								<HuntingGrounds> <!-- 90069, True Iron Bomb.  Need to click on a tank after picking it up.  Could also just have it click the player's location. -->
+							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" QuestId="37891" NumOfTimes="1000" WaitTime="500" MobIds="239839, 90433, 90069" >
+								<HuntingGrounds> <!-- 90069, True Iron Bomb. Need to click on a tank after picking it up. Could also just have it click the player's location. -->
 									<Hotspot X="4583.305" Y="-399.9979" Z="10.69125" />
 									<Hotspot X="4592.449" Y="-238.1564" Z="10.7333" />
 									<Hotspot X="4770.981" Y="-244.9629" Z="4.211271" />
@@ -439,8 +421,8 @@
 								<MoveTo Nav="Fly" DestName="Ironhold Harbor" X="4633.494" Y="-578.2945" Z="44.38635" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(37866)" />
 							</While>
-							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" QuestId="37891"  NumOfTimes="1000" WaitTime="500" MobIds="239839, 90433, 90069" >
-								<HuntingGrounds> <!-- 90069, True Iron Bomb.  Need to click on a tank after picking it up.  Could also just have it click the player's location. -->
+							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" QuestId="37891" NumOfTimes="1000" WaitTime="500" MobIds="239839, 90433, 90069" >
+								<HuntingGrounds> <!-- 90069, True Iron Bomb. Need to click on a tank after picking it up. Could also just have it click the player's location. -->
 									<Hotspot X="4658.131" Y="-552.9175" Z="36.25991" />
 									<Hotspot X="4634.374" Y="-493.1973" Z="21.42153" />
 									<Hotspot X="4693.737" Y="-519.6089" Z="47.37726" />
@@ -459,7 +441,7 @@
 								<MoveTo Nav="Fly" DestName="Temple of Sha'naar" X="3612.619" Y="183.9686" Z="129.547" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(37966)" />
 							</While>
-							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="37968"  NumOfTimes="1000" WaitTime="500" MobIds="240165, 90501, 90302, 90703, 92597" >
+							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="37968" NumOfTimes="1000" WaitTime="500" MobIds="240165, 90501, 90302, 90703, 92597" >
 								<HuntingGrounds>
 									<Hotspot Name="Entrace of Sha'naar" X="3620.049" Y="164.0029" Z="124.2737" />
 									<Hotspot Name="Mid Lower Terrace" X="3297.727" Y="287.6227" Z="117.0291" />
@@ -477,7 +459,7 @@
 								<MoveTo Nav="Fly" DestName="Temple of Sha'naar" X="3612.619" Y="183.9686" Z="129.547" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(37966)" />
 							</While>
-							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearAll" QuestId="37968"  NumOfTimes="1000" WaitTime="500" MobIds="240165, 90501, 90302, 90703, 92597" >
+							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearAll" QuestId="37968" NumOfTimes="1000" WaitTime="500" MobIds="240165, 90501, 90302, 90703, 92597" >
 								<HuntingGrounds>
 									<Hotspot Name="Entrace of Sha'naar" X="3620.049" Y="164.0029" Z="124.2737" />
 									<Hotspot Name="Mid Lower Terrace" X="3297.727" Y="287.6227" Z="117.0291" />
@@ -489,20 +471,34 @@
 
 				<While Condition="HasQuest(38046) &amp;&amp; !IsQuestCompleted(38046)" > <!-- Battle At The Iron Front -->
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Battle At The Iron Front.&quot;);" />
+					<!-- Iron Front Healing Bandages -->
+						<CustomBehavior File="Hooks\DoWhen" AllowUseWhileMounted="true" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="false" ActivityName="Use_Bandages" UseWhen="!IsQuestCompleted(38051) &amp;&amp; HasItem(122139) &amp;&amp; ((Me.IsAlliance &amp;&amp; Unit(90443, u =&gt; u.HealthPercent &lt;= 25 &amp;&amp; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null) || (Me.IsHorde &amp;&amp; Unit(90452, u =&gt; u.HealthPercent &lt;= 25 &amp;&amp; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null))" >
+							<While Condition="HasItem(122139) &amp;&amp; (Me.IsAlliance &amp;&amp; Unit(90443, u =&gt; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null)" >
+								<CustomBehavior File="InteractWith" Range="3" MobHpPercentLeft="25" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" MobId="90443" WaitForNpcs="false" />
+								<CustomBehavior File="WaitTimer" WaitTime="1000" />
+							</While>
+							<While Condition="HasItem(122139) &amp;&amp; (Me.IsHorde &amp;&amp; Unit(90452, u =&gt; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null)" >
+								<CustomBehavior File="InteractWith" Range="3" MobHpPercentLeft="25" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" MobId="90452" WaitForNpcs="false" />
+								<CustomBehavior File="WaitTimer" WaitTime="1000" />
+							</While>
+						</CustomBehavior>
+						<CustomBehavior File="Hooks\DoWhen" AllowUseWhileMounted="true" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="false" ActivityName="Obtain_Bandages" UseWhen="!IsQuestCompleted(38051) &amp;&amp; HasItem(122139) &amp;&amp; Object(239971, o =&gt; o.Distance &lt;= 30) != null" >
+							<CustomBehavior File="InteractWith" Range="4" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" MobId="239971" WaitForNpcs="false" />
+						</CustomBehavior>
+					<!-- END Iron Front Healing Bandages -->
 					<!-- Hard Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
 							<While Condition="!HasQuest(38051) &amp;&amp; !IsQuestCompleted(38051)" >
-								<MoveTo Nav="Fly" DestName="The Iron Front" X="3893.965" Y="842.2295" Z="152.6835" />
+								<MoveTo Nav="Fly" DestName="The Iron Front" X="4022.859" Y="1185.233" Z="159.6061" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38051)" />
 							</While>
-							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" QuestId="38046"  NumOfTimes="1000" WaitTime="500" MobIds="90370, 93013" >
+							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" QuestId="38046" NumOfTimes="1000" WaitTime="500" MobIds="90370, 93013" >
 								<HuntingGrounds>
-									<Hotspot X="4560.763" Y="443.0881" Z="229.8193" />
-									<Hotspot X="4526.892" Y="518.3264" Z="229.262" />
-									<Hotspot X="4475.299" Y="649.1726" Z="191.4169" />
-									<Hotspot X="4496.495" Y="744.3486" Z="181.2569" />
-									<Hotspot X="4477.998" Y="792.3724" Z="181.1873" />
-									<Hotspot X="4368.549" Y="871.2369" Z="175.4837" />
+									<Hotspot X="4042.293" Y="1179.808" Z="163.2804" />
+									<Hotspot X="3959.691" Y="1151.575" Z="166.0965" />
+									<Hotspot X="3930.58" Y="1010.384" Z="158.9478" />
+									<Hotspot X="3973.543" Y="969.1004" Z="159.216" />
+									<Hotspot X="4003.456" Y="903.0444" Z="152.7976" />
 								</HuntingGrounds>
 							</CustomBehavior>
 						</If>
@@ -513,15 +509,16 @@
 								<MoveTo Nav="Fly" DestName="The Iron Front" X="3992.573" Y="805.0379" Z="151.8674" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38051)" />
 							</While>
-							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" QuestId="38046"  NumOfTimes="1000" WaitTime="500" MobIds="90370, 93013" >
+							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" QuestId="38046" NumOfTimes="1000" WaitTime="500" MobIds="90370, 93013" >
 								<HuntingGrounds>
-									<Hotspot X="3997.606" Y="870.8727" Z="152.6829" />
-									<Hotspot X="3954.224" Y="782.0494" Z="153.6769" />
-									<Hotspot X="3979.948" Y="986.4142" Z="158.6335" />
+									<Hotspot X="4042.293" Y="1179.808" Z="163.2804" />
+									<Hotspot X="3959.691" Y="1151.575" Z="166.0965" />
 								</HuntingGrounds>
 							</CustomBehavior>
 						</If>
 					<!-- END Easy Pulls -->
+					<CustomBehavior File="Hooks\DoWhen" ActivityName="Use_Bandages" Command="Remove" />
+					<CustomBehavior File="Hooks\DoWhen" ActivityName="Obtain_Bandages" Command="Remove" />
 				</While>
 
 				<While Condition="HasQuest(38045) &amp;&amp; !IsQuestCompleted(38045)" > <!-- Bleeding the Bleeding Hollow -->
@@ -530,8 +527,8 @@
 						<MoveTo Nav="Fly" DestName="Zeth'gol" X="4245.792" Y="390.4549" Z="153.8195" />
 						<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38043)" />
 					</While>
-					<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="38045"  NumOfTimes="1000" WaitTime="500" MobIds="90704, 90781" >
-						<!--  90781 goes with InteractWith, but requires to be used after interacting. -->
+					<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="38045" NumOfTimes="1000" WaitTime="500" MobIds="90704, 90781" >
+						<!-- 90781 goes with InteractWith, but requires to be used after interacting. -->
 						<HuntingGrounds>
 							<Hotspot X="4310.75" Y="431.8437" Z="175.2454" />
 							<Hotspot X="4318.75" Y="372.2255" Z="176.6174" />
@@ -550,7 +547,7 @@
 								<MoveTo Nav="Fly" DestName="Ruins of Kra'nak" X="4546.603" Y="484.6314" Z="226.6398" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(37938)" />
 							</While>
-							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="38250"  NumOfTimes="1000" WaitTime="500" MobIds="90794, 90300, 90706, 90795, 90790, 90792, 90791, 90796" >
+							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="38250" NumOfTimes="1000" WaitTime="500" MobIds="90794, 90300, 90706, 90795, 90790, 90792, 90791, 90796" >
 								<HuntingGrounds>
 									<Hotspot X="4560.763" Y="443.0881" Z="229.8193" />
 									<Hotspot X="4526.892" Y="518.3264" Z="229.262" />
@@ -568,7 +565,7 @@
 								<MoveTo Nav="Fly" DestName="Ruins of Kra'nak" X="4539.619" Y="424.5465" Z="229.3716" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(37938)" />
 							</While>
-							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearAll" QuestId="38250"  NumOfTimes="1000" WaitTime="500" MobIds="90794, 90300, 90706, 90795, 90790, 90792, 90791, 90796" >
+							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearAll" QuestId="38250" NumOfTimes="1000" WaitTime="500" MobIds="90794, 90300, 90706, 90795, 90790, 90792, 90791, 90796" >
 								<HuntingGrounds>
 									<Hotspot X="4513.263" Y="472.1714" Z="228.9365" />
 									<Hotspot X="4577.068" Y="478.2981" Z="229.146" />
@@ -602,7 +599,7 @@
 							</CustomBehavior>
 						</If>
 					<!-- END Hard Pulls -->
-					<!-- Easy Pulls  :: Same as hard, make edits if too hard. -->
+					<!-- Easy Pulls :: Same as hard, make edits if too hard. -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
 							<While Condition="!HasQuest(38439) &amp;&amp; !IsQuestCompleted(38439)" > <!-- Assault on the Fel Forge -->
 								<MoveTo Nav="Fly" DestName="The Fel Forge" X="4472.133" Y="-697.1107" Z="33.81255" />
@@ -689,8 +686,8 @@
 			<!-- END [Order of the Awakened] Pickup Daily Quest Attempt#2 -->
 
 			<!-- DO Randomized Daily from Vindicator Krethos -->
-				<!-- No easy pull version of this.  It's a group quest, so we may have to force the bot to avoid it. -->
-				<!-- <While Condition="HasQuest(39573) &amp;&amp; !IsQuestCompleted(39573)" >  [GROUP] Harnessing Their Power 
+				<!-- No easy pull version of this. It's a group quest, so we may have to force the bot to avoid it. -->
+				<!-- <While Condition="HasQuest(39573) &amp;&amp; !IsQuestCompleted(39573)" > [GROUP] Harnessing Their Power 
 					<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="2" ExpiryTime="45" Text="[WARNING]\n\nThe daily we picked up is a group quest.\n\nIf you continue, the bot will attempt to finish it however you may get into a death loop if you are undergeared or a caster class." />
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Harnessing Their Power.&quot;);" />
 					<MoveTo Nav="Fly" DestName="The Iron Front" X="4025.265" Y="1064.812" Z="167.5833" />
@@ -711,7 +708,7 @@
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Disarming Sha'naar.&quot;);" />
 					<!-- Hard Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="39571"  NumOfTimes="1000" WaitTime="500" MobIds="243794" >
+							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="39571" NumOfTimes="1000" WaitTime="500" MobIds="243794" >
 								<HuntingGrounds>
 									<Hotspot Name="Entrace of Sha'naar" X="3620.049" Y="164.0029" Z="124.2737" />
 									<Hotspot Name="Mid Lower Terrace" X="3297.727" Y="287.6227" Z="117.0291" />
@@ -722,7 +719,7 @@
 					<!-- END Hard Pulls -->
 					<!-- Easy Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearAll" QuestId="39571"  NumOfTimes="1000" WaitTime="500" MobIds="243794" >
+							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearAll" QuestId="39571" NumOfTimes="1000" WaitTime="500" MobIds="243794" >
 								<HuntingGrounds>
 									<Hotspot Name="Entrace of Sha'naar" X="3620.049" Y="164.0029" Z="124.2737" />
 									<Hotspot Name="Mid Lower Terrace" X="3297.727" Y="287.6227" Z="117.0291" />
@@ -840,6 +837,7 @@
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - A Little Wetwork.&quot;);" />
 					<!-- Hard Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
+							<MoveTo Nav="Fly" DestName="Ironhold Harbor" X="4583.305" Y="-399.9979" Z="10.69125" />
 							<SetGrindArea>
 								<GrindArea>
 									<MobIds>89857, 90136, 89777, 89810, 89935, 89936, 91832</MobIds>
@@ -858,6 +856,7 @@
 					<!-- END Hard Pulls -->
 					<!-- Easy Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
+							<MoveTo Nav="Fly" DestName="Ironhold Harbor" X="4633.494" Y="-578.2945" Z="44.38635" />
 							<SetGrindArea>
 								<GrindArea>
 									<MobIds>89857, 90136, 89777, 89810, 89935, 89936, 91832</MobIds>
@@ -913,7 +912,7 @@
 
 			<!-- Turnin Randomized Daily from Vindicator Krethos -->
 				<If Condition="(HasQuest(39573) &amp;&amp; IsQuestCompleted(39573)) || (HasQuest(39571) &amp;&amp; IsQuestCompleted(39571)) || (HasQuest(39570) &amp;&amp; IsQuestCompleted(39570)) || (HasQuest(39569) &amp;&amp; IsQuestCompleted(39569)) || (HasQuest(39568) &amp;&amp; IsQuestCompleted(39568)) || (HasQuest(39567) &amp;&amp; IsQuestCompleted(39567)) || (HasQuest(39586) &amp;&amp; IsQuestCompleted(39586))" >
-					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Turning in Vindicator Krethos's quest.&quot;);" />
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Turning in Vindicator Krethos' quest.&quot;);" />
 					<MoveTo Nav="Fly" DestName="Lion's Den" X="3839.431" Y="-1338.118" Z="93.82421" />
 				</If>
 				<While Condition="HasQuest(39573) &amp;&amp; IsQuestCompleted(39573)" >
@@ -957,6 +956,46 @@
 				<While Condition="HasQuest(39574) &amp;&amp; !IsQuestCompleted(39574)" >
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Doing unfinished bonus objectives for Pressing the Attack.&quot;);" />
 
+					<While Condition="!IsQuestCompleted(38868) &amp;&amp; !IsQuestCompleted(38250) &amp;&amp; !IsQuestCompleted(39574) &amp;&amp; (!HasQuest(39447) &amp;&amp; !IsQuestCompleted(39447))" > <!-- Assault on the Ruins of Kra'nak : Intro Version -->
+						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Completing Assault on the Ruins of Kra'nak.&quot;);" />
+						<!-- Hard Pulls -->
+							<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
+								<While Condition="!HasQuest(38868) &amp;&amp; !IsQuestCompleted(38868) &amp;&amp; (!HasQuest(39447) &amp;&amp; !IsQuestCompleted(39447))" >
+									<MoveTo Nav="Fly" DestName="Ruins of Kra'nak" X="4546.603" Y="484.6314" Z="226.6398" />
+									<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38868) || HasQuest(39447)" />
+								</While>
+								<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="38868" NumOfTimes="1000" WaitTime="500" MobIds="90794, 90300, 90706, 90795, 90790, 90792, 90791, 90786" >
+									<HuntingGrounds>
+										<Hotspot X="4560.763" Y="443.0881" Z="229.8193" />
+										<Hotspot X="4526.892" Y="518.3264" Z="229.262" />
+										<Hotspot X="4475.299" Y="649.1726" Z="191.4169" />
+										<Hotspot X="4496.495" Y="744.3486" Z="181.2569" />
+										<Hotspot X="4477.998" Y="792.3724" Z="181.1873" />
+										<Hotspot X="4368.549" Y="871.2369" Z="175.4837" />
+									</HuntingGrounds>
+								</CustomBehavior>
+							</If>
+						<!-- END Hard Pulls -->
+						<!-- Easy Pulls -->
+							<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
+								<While Condition="!HasQuest(38868) &amp;&amp; !IsQuestCompleted(38868) &amp;&amp; (!HasQuest(39447) &amp;&amp; !IsQuestCompleted(39447))" >
+									<MoveTo Nav="Fly" DestName="Ruins of Kra'nak" X="4539.619" Y="424.5465" Z="229.3716" />
+									<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38868) || HasQuest(39447)" />
+								</While>
+								<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearAll" QuestId="38868" NumOfTimes="1000" WaitTime="500" MobIds="90794, 90300, 90706, 90795, 90790, 90792, 90791, 90796" >
+									<HuntingGrounds>
+										<Hotspot X="4513.263" Y="472.1714" Z="228.9365" />
+										<Hotspot X="4577.068" Y="478.2981" Z="229.146" />
+										<Hotspot X="4550.217" Y="544.4664" Z="229.3091" />
+										<Hotspot X="4472.96" Y="650.1429" Z="192.0173" />
+										<Hotspot X="4624.967" Y="590.0174" Z="203.0758" />
+										<Hotspot X="4631.798" Y="612.7723" Z="203.2114" />
+									</HuntingGrounds>
+								</CustomBehavior>
+							</If>
+						<!-- END Easy Pulls -->
+					</While>
+
 					<While Condition="!IsQuestCompleted(39447) &amp;&amp; !IsQuestCompleted(38250) &amp;&amp; !IsQuestCompleted(39574)" > <!-- Assault on the Ruins of Kra'nak -->
 						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Completing Assault on the Ruins of Kra'nak.&quot;);" />
 						<!-- Hard Pulls -->
@@ -965,7 +1004,7 @@
 									<MoveTo Nav="Fly" DestName="Ruins of Kra'nak" X="4546.603" Y="484.6314" Z="226.6398" />
 									<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39447)" />
 								</While>
-								<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="39447"  NumOfTimes="1000" WaitTime="500" MobIds="90794, 90300, 90706, 90795, 90790, 90792, 90791, 90786" >
+								<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="39447" NumOfTimes="1000" WaitTime="500" MobIds="90794, 90300, 90706, 90795, 90790, 90792, 90791, 90786" >
 									<HuntingGrounds>
 										<Hotspot X="4560.763" Y="443.0881" Z="229.8193" />
 										<Hotspot X="4526.892" Y="518.3264" Z="229.262" />
@@ -983,7 +1022,7 @@
 									<MoveTo Nav="Fly" DestName="Ruins of Kra'nak" X="4539.619" Y="424.5465" Z="229.3716" />
 									<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39447)" />
 								</While>
-								<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearAll" QuestId="39447"  NumOfTimes="1000" WaitTime="500" MobIds="90794, 90300, 90706, 90795, 90790, 90792, 90791, 90796" >
+								<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearAll" QuestId="39447" NumOfTimes="1000" WaitTime="500" MobIds="90794, 90300, 90706, 90795, 90790, 90792, 90791, 90796" >
 									<HuntingGrounds>
 										<Hotspot X="4513.263" Y="472.1714" Z="228.9365" />
 										<Hotspot X="4577.068" Y="478.2981" Z="229.146" />
@@ -1005,7 +1044,7 @@
 									<MoveTo Nav="Fly" DestName="Temple of Sha'naar" X="3612.619" Y="183.9686" Z="129.547" />
 									<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39449)" />
 								</While>
-								<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="39449"  NumOfTimes="1000" WaitTime="500" MobIds="240165, 90501, 90302, 90703, 92597" >
+								<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="39449" NumOfTimes="1000" WaitTime="500" MobIds="240165, 90501, 90302, 90703, 92597" >
 									<HuntingGrounds>
 										<Hotspot Name="Entrace of Sha'naar" X="3620.049" Y="164.0029" Z="124.2737" />
 										<Hotspot Name="Mid Lower Terrace" X="3297.727" Y="287.6227" Z="117.0291" />
@@ -1023,7 +1062,7 @@
 									<MoveTo Nav="Fly" DestName="Temple of Sha'naar" X="3612.619" Y="183.9686" Z="129.547" />
 									<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39449)" />
 								</While>
-								<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearAll" QuestId="39449"  NumOfTimes="1000" WaitTime="500" MobIds="240165, 90501, 90302, 90703, 92597" >
+								<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearAll" QuestId="39449" NumOfTimes="1000" WaitTime="500" MobIds="240165, 90501, 90302, 90703, 92597" >
 									<HuntingGrounds>
 										<Hotspot Name="Entrace of Sha'naar" X="3620.049" Y="164.0029" Z="124.2737" />
 										<Hotspot Name="Mid Lower Terrace" X="3297.727" Y="287.6227" Z="117.0291" />
@@ -1040,7 +1079,7 @@
 									<MoveTo Nav="Fly" DestName="Ironhold Harbor" X="4583.305" Y="-399.9979" Z="10.69125" />
 									<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39451)" />
 								</While>
-								<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" QuestId="39451"  NumOfTimes="1000" WaitTime="500" MobIds="239839, 90433, 90069" >
+								<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" QuestId="39451" NumOfTimes="1000" WaitTime="500" MobIds="239839, 90433, 90069" >
 									<HuntingGrounds>
 										<Hotspot X="4583.305" Y="-399.9979" Z="10.69125" />
 										<Hotspot X="4592.449" Y="-238.1564" Z="10.7333" />
@@ -1058,8 +1097,8 @@
 									<MoveTo Nav="Fly" DestName="Ironhold Harbor" X="4633.494" Y="-578.2945" Z="44.38635" />
 									<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39451)" />
 								</While>
-								<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" QuestId="39451"  NumOfTimes="1000" WaitTime="500" MobIds="239839, 90433, 90069" >
-									<HuntingGrounds> <!-- 90069, True Iron Bomb.  Need to click on a tank after picking it up.  Could also just have it click the player's location. -->
+								<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" QuestId="39451" NumOfTimes="1000" WaitTime="500" MobIds="239839, 90433, 90069" >
+									<HuntingGrounds> <!-- 90069, True Iron Bomb. Need to click on a tank after picking it up. Could also just have it click the player's location. -->
 										<Hotspot X="4658.131" Y="-552.9175" Z="36.25991" />
 										<Hotspot X="4634.374" Y="-493.1973" Z="21.42153" />
 										<Hotspot X="4693.737" Y="-519.6089" Z="47.37726" />
@@ -1135,8 +1174,8 @@
 								<MoveTo Nav="Fly" DestName="Ironhold Harbor" X="4583.305" Y="-399.9979" Z="10.69125" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(37865)" />
 							</While>
-							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" QuestId="37940"  NumOfTimes="1000" WaitTime="500" MobIds="239839, 90433, 90069" >
-								<HuntingGrounds> <!-- 90069, True Iron Bomb.  Need to click on a tank after picking it up.  Could also just have it click the player's location. -->
+							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" QuestId="37940" NumOfTimes="1000" WaitTime="500" MobIds="239839, 90433, 90069" >
+								<HuntingGrounds> <!-- 90069, True Iron Bomb. Need to click on a tank after picking it up. Could also just have it click the player's location. -->
 									<Hotspot X="4583.305" Y="-399.9979" Z="10.69125" />
 									<Hotspot X="4592.449" Y="-238.1564" Z="10.7333" />
 									<Hotspot X="4770.981" Y="-244.9629" Z="4.211271" />
@@ -1153,8 +1192,8 @@
 								<MoveTo Nav="Fly" DestName="Ironhold Harbor" X="4633.494" Y="-578.2945" Z="44.38635" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(37865)" />
 							</While>
-							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" QuestId="37940"  NumOfTimes="1000" WaitTime="500" MobIds="239839, 90433, 90069" >
-								<HuntingGrounds> <!-- 90069, True Iron Bomb.  Need to click on a tank after picking it up.  Could also just have it click the player's location. -->
+							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" QuestId="37940" NumOfTimes="1000" WaitTime="500" MobIds="239839, 90433, 90069" >
+								<HuntingGrounds> <!-- 90069, True Iron Bomb. Need to click on a tank after picking it up. Could also just have it click the player's location. -->
 									<Hotspot X="4658.131" Y="-552.9175" Z="36.25991" />
 									<Hotspot X="4634.374" Y="-493.1973" Z="21.42153" />
 									<Hotspot X="4693.737" Y="-519.6089" Z="47.37726" />
@@ -1173,7 +1212,7 @@
 								<MoveTo Nav="Fly" DestName="Temple of Sha'naar" X="3612.619" Y="183.9686" Z="129.547" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38020)" />
 							</While>
-							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="38449"  NumOfTimes="1000" WaitTime="500" MobIds="240165, 90501, 90302, 90703, 92597" >
+							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="38449" NumOfTimes="1000" WaitTime="500" MobIds="240165, 90501, 90302, 90703, 92597" >
 								<HuntingGrounds>
 									<Hotspot Name="Entrace of Sha'naar" X="3620.049" Y="164.0029" Z="124.2737" />
 									<Hotspot Name="Mid Lower Terrace" X="3297.727" Y="287.6227" Z="117.0291" />
@@ -1191,7 +1230,7 @@
 								<MoveTo Nav="Fly" DestName="Temple of Sha'naar" X="3612.619" Y="183.9686" Z="129.547" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38020)" />
 							</While>
-							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearAll" QuestId="38449"  NumOfTimes="1000" WaitTime="500" MobIds="240165, 90501, 90302, 90703, 92597" >
+							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearAll" QuestId="38449" NumOfTimes="1000" WaitTime="500" MobIds="240165, 90501, 90302, 90703, 92597" >
 								<HuntingGrounds>
 									<Hotspot Name="Entrace of Sha'naar" X="3620.049" Y="164.0029" Z="124.2737" />
 									<Hotspot Name="Mid Lower Terrace" X="3297.727" Y="287.6227" Z="117.0291" />
@@ -1203,20 +1242,34 @@
 
 				<While Condition="HasQuest(38047) &amp;&amp; !IsQuestCompleted(38047)" > <!-- Battle At The Iron Front -->
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Battle At The Iron Front.&quot;);" />
+					<!-- Iron Front Healing Bandages -->
+						<CustomBehavior File="Hooks\DoWhen" AllowUseWhileMounted="true" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="false" ActivityName="Use_Bandages" UseWhen="!IsQuestCompleted(38054) &amp;&amp; HasItem(122139) &amp;&amp; ((Me.IsAlliance &amp;&amp; Unit(90443, u =&gt; u.HealthPercent &lt;= 25 &amp;&amp; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null) || (Me.IsHorde &amp;&amp; Unit(90452, u =&gt; u.HealthPercent &lt;= 25 &amp;&amp; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null))" >
+							<While Condition="HasItem(122139) &amp;&amp; (Me.IsAlliance &amp;&amp; Unit(90443, u =&gt; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null)" >
+								<CustomBehavior File="InteractWith" Range="3" MobHpPercentLeft="25" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" MobId="90443" WaitForNpcs="false" />
+								<CustomBehavior File="WaitTimer" WaitTime="1000" />
+							</While>
+							<While Condition="HasItem(122139) &amp;&amp; (Me.IsHorde &amp;&amp; Unit(90452, u =&gt; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null)" >
+								<CustomBehavior File="InteractWith" Range="3" MobHpPercentLeft="25" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" MobId="90452" WaitForNpcs="false" />
+								<CustomBehavior File="WaitTimer" WaitTime="1000" />
+							</While>
+						</CustomBehavior>
+						<CustomBehavior File="Hooks\DoWhen" AllowUseWhileMounted="true" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="false" ActivityName="Obtain_Bandages" UseWhen="!IsQuestCompleted(38054) &amp;&amp; !HasItem(122139) &amp;&amp; Object(239971, o =&gt; o.Distance &lt;= 40) != null" >
+							<CustomBehavior File="InteractWith" Range="3" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" MobId="239971" WaitForNpcs="false" />
+						</CustomBehavior>
+					<!-- END Iron Front Healing Bandages -->
 					<!-- Hard Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
 							<While Condition="!HasQuest(38054) &amp;&amp; !IsQuestCompleted(38054)" >
-								<MoveTo Nav="Fly" DestName="The Iron Front" X="3893.965" Y="842.2295" Z="152.6835" />
+								<MoveTo Nav="Fly" DestName="The Iron Front" X="4022.859" Y="1185.233" Z="159.6061" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38054)" />
 							</While>
 							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" QuestId="38047" NumOfTimes="1000" WaitTime="500" MobIds="90370, 93013" >
 								<HuntingGrounds>
-									<Hotspot X="4560.763" Y="443.0881" Z="229.8193" />
-									<Hotspot X="4526.892" Y="518.3264" Z="229.262" />
-									<Hotspot X="4475.299" Y="649.1726" Z="191.4169" />
-									<Hotspot X="4496.495" Y="744.3486" Z="181.2569" />
-									<Hotspot X="4477.998" Y="792.3724" Z="181.1873" />
-									<Hotspot X="4368.549" Y="871.2369" Z="175.4837" />
+									<Hotspot X="4042.293" Y="1179.808" Z="163.2804" />
+									<Hotspot X="3959.691" Y="1151.575" Z="166.0965" />
+									<Hotspot X="3930.58" Y="1010.384" Z="158.9478" />
+									<Hotspot X="3973.543" Y="969.1004" Z="159.216" />
+									<Hotspot X="4003.456" Y="903.0444" Z="152.7976" />
 								</HuntingGrounds>
 							</CustomBehavior>
 						</If>
@@ -1229,13 +1282,14 @@
 							</While>
 							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" QuestId="38047" NumOfTimes="1000" WaitTime="500" MobIds="90370, 93013" >
 								<HuntingGrounds>
-									<Hotspot X="3997.606" Y="870.8727" Z="152.6829" />
-									<Hotspot X="3954.224" Y="782.0494" Z="153.6769" />
-									<Hotspot X="3979.948" Y="986.4142" Z="158.6335" />
+									<Hotspot X="4042.293" Y="1179.808" Z="163.2804" />
+									<Hotspot X="3959.691" Y="1151.575" Z="166.0965" />
 								</HuntingGrounds>
 							</CustomBehavior>
 						</If>
 					<!-- END Easy Pulls -->
+					<CustomBehavior File="Hooks\DoWhen" ActivityName="Use_Bandages" Command="Remove" />
+					<CustomBehavior File="Hooks\DoWhen" ActivityName="Obtain_Bandages" Command="Remove" />
 				</While>
 
 				<While Condition="HasQuest(38044) &amp;&amp; !IsQuestCompleted(38044)" > <!-- Bleeding the Bleeding Hollow -->
@@ -1246,7 +1300,7 @@
 								<MoveTo Nav="Fly" DestName="Zeth'gol" X="4245.792" Y="390.4549" Z="153.8195" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38040)" />
 							</While>
-							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="38044"  NumOfTimes="1000" WaitTime="500" MobIds="90704, 90781" >
+							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="38044" NumOfTimes="1000" WaitTime="500" MobIds="90704, 90781" >
 								<HuntingGrounds>
 									<Hotspot X="4310.75" Y="431.8437" Z="175.2454" />
 									<Hotspot X="4318.75" Y="372.2255" Z="176.6174" />
@@ -1263,8 +1317,8 @@
 								<MoveTo Nav="Fly" DestName="Zeth'gol" X="4245.792" Y="390.4549" Z="153.8195" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38040)" />
 							</While>
-							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="38044"  NumOfTimes="1000" WaitTime="500" MobIds="90704" >
-								<!--  90781 goes with InteractWith, but requires to be used after interacting. -->
+							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="38044" NumOfTimes="1000" WaitTime="500" MobIds="90704" >
+								<!-- 90781 goes with InteractWith, but requires to be used after interacting. -->
 								<HuntingGrounds>
 									<Hotspot X="4031.807" Y="513.1544" Z="142.0807" />
 									<Hotspot X="4083.947" Y="439.1315" Z="140.3514" />
@@ -1283,7 +1337,7 @@
 								<MoveTo Nav="Fly" DestName="Ruins of Kra'nak" X="4546.603" Y="484.6314" Z="226.6398" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38009)" />
 							</While>
-							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="38252"  NumOfTimes="1000" WaitTime="500" MobIds="90794, 90300, 90706, 90795, 90790, 90792, 90791, 90796" >
+							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="38252" NumOfTimes="1000" WaitTime="500" MobIds="90794, 90300, 90706, 90795, 90790, 90792, 90791, 90796" >
 								<HuntingGrounds>
 									<Hotspot X="4560.763" Y="443.0881" Z="229.8193" />
 									<Hotspot X="4526.892" Y="518.3264" Z="229.262" />
@@ -1301,7 +1355,7 @@
 								<MoveTo Nav="Fly" DestName="Ruins of Kra'nak" X="4539.619" Y="424.5465" Z="229.3716" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38009)" />
 							</While>
-							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearAll" QuestId="38252"  NumOfTimes="1000" WaitTime="500" MobIds="90794, 90300, 90706, 90795, 90790, 90792, 90791, 90796" >
+							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearAll" QuestId="38252" NumOfTimes="1000" WaitTime="500" MobIds="90794, 90300, 90706, 90795, 90790, 90792, 90791, 90796" >
 								<HuntingGrounds>
 									<Hotspot X="4513.263" Y="472.1714" Z="228.9365" />
 									<Hotspot X="4577.068" Y="478.2981" Z="229.146" />
@@ -1422,7 +1476,7 @@
 			<!-- END [Order of the Awakened] Pickup Daily Quest Attempt#2 -->
 
 			<!-- DO Randomized Daily from Shadow Hunter Denjai -->
-				<!-- No easy pull version of this.  It's a group quest, so we may have to force the bot to avoid it. -->
+				<!-- No easy pull version of this. It's a group quest, so we may have to force the bot to avoid it. -->
 				<!-- <While Condition="HasQuest(39514) &amp;&amp; !IsQuestCompleted(39514)" > [GROUP] Harnessing Their Power 
 					<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="2" ExpiryTime="45" Text="[WARNING]\n\nThe daily we picked up is a group quest.\n\nIf you continue, the bot will attempt to finish it however you may get into a death loop if you are undergeared or a caster class." />
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Harnessing Their Power.&quot;);" />
@@ -1444,7 +1498,7 @@
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Disarming Sha'naar.&quot;);" />
 					<!-- Hard Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="39513"  NumOfTimes="1000" WaitTime="500" MobIds="243794" >
+							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="39513" NumOfTimes="1000" WaitTime="500" MobIds="243794" >
 								<HuntingGrounds>
 									<Hotspot Name="Entrace of Sha'naar" X="3620.049" Y="164.0029" Z="124.2737" />
 									<Hotspot Name="Mid Lower Terrace" X="3297.727" Y="287.6227" Z="117.0291" />
@@ -1455,7 +1509,7 @@
 					<!-- END Hard Pulls -->
 					<!-- Easy Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearAll" QuestId="39513"  NumOfTimes="1000" WaitTime="500" MobIds="243794" >
+							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearAll" QuestId="39513" NumOfTimes="1000" WaitTime="500" MobIds="243794" >
 								<HuntingGrounds>
 									<Hotspot Name="Entrace of Sha'naar" X="3620.049" Y="164.0029" Z="124.2737" />
 									<Hotspot Name="Mid Lower Terrace" X="3297.727" Y="287.6227" Z="117.0291" />
@@ -1537,6 +1591,7 @@
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - A Little Wetwork.&quot;);" />
 					<!-- Hard Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
+							<MoveTo Nav="Fly" DestName="Ironhold Harbor" X="4583.305" Y="-399.9979" Z="10.69125" />
 							<SetGrindArea>
 								<GrindArea>
 									<MobIds>89857, 90136, 89777, 89810, 89935, 89936, 91832</MobIds>
@@ -1555,6 +1610,7 @@
 					<!-- END Hard Pulls -->
 					<!-- Easy Pulls -->
 						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
+							<MoveTo Nav="Fly" DestName="Ironhold Harbor" X="4633.494" Y="-578.2945" Z="44.38635" />
 							<SetGrindArea>
 								<GrindArea>
 									<MobIds>89857, 90136, 89777, 89810, 89935, 89936, 91832</MobIds>
@@ -1609,7 +1665,7 @@
 			<!-- END DO Randomized Daily from Shadow Hunter Denjai -->
 
 			<!-- Turnin Randomized Daily from Shadow Hunter Denjai -->
-				<If Condition="(HasQuest(39514) &amp;&amp; IsQuestCompleted(39514)) || (HasQuest(39514) &amp;&amp; IsQuestCompleted(39514)) || (HasQuest(39512) &amp;&amp; IsQuestCompleted(39512)) || (HasQuest(39511) &amp;&amp; IsQuestCompleted(39511)) || (HasQuest(39510) &amp;&amp; IsQuestCompleted(39510)) || (HasQuest(39509) &amp;&amp; IsQuestCompleted(39509)) || (HasQuest(39532) &amp;&amp; IsQuestCompleted(39532))" >
+				<If Condition="(HasQuest(39514) &amp;&amp; IsQuestCompleted(39514)) || (HasQuest(39513) &amp;&amp; IsQuestCompleted(39513)) || (HasQuest(39512) &amp;&amp; IsQuestCompleted(39512)) || (HasQuest(39511) &amp;&amp; IsQuestCompleted(39511)) || (HasQuest(39510) &amp;&amp; IsQuestCompleted(39510)) || (HasQuest(39509) &amp;&amp; IsQuestCompleted(39509)) || (HasQuest(39532) &amp;&amp; IsQuestCompleted(39532))" >
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Turning in Shadow Hunter Denjai's quest.&quot;);" />
 					<MoveTo Nav="Fly" DestName="Vol'mar Hold" X="4317.091" Y="-1491.344" Z="83.46479" />
 				</If>
@@ -1653,6 +1709,47 @@
 			<!-- Finish up Bonus Objectives for Pressing the Attack -->
 				<While Condition="HasQuest(39526) &amp;&amp; !IsQuestCompleted(39526)" >
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Doing unfinished bonus objectives for Pressing the Attack.&quot;);" />
+
+					<While Condition="!IsQuestCompleted(38869) &amp;&amp; !IsQuestCompleted(38252) &amp;&amp; !IsQuestCompleted(39526) &amp;&amp; (!HasQuest(39448) &amp;&amp; !IsQuestCompleted(39448))" > <!-- Assault on the Ruins of Kra'nak : Intro Version -->
+						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Completing Assault on the Ruins of Kra'nak.&quot;);" />
+						<!-- Hard Pulls -->
+							<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
+								<While Condition="!HasQuest(38869) &amp;&amp; !IsQuestCompleted(38869) &amp;&amp; (!HasQuest(39448) &amp;&amp; !IsQuestCompleted(39448))" >
+									<MoveTo Nav="Fly" DestName="Ruins of Kra'nak" X="4546.603" Y="484.6314" Z="226.6398" />
+									<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38869) || HasQuest(39448)" />
+								</While>
+								<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="38869" NumOfTimes="1000" WaitTime="500" MobIds="90794, 90300, 90706, 90795, 90790, 90792, 90791, 90786" >
+									<HuntingGrounds>
+										<Hotspot X="4560.763" Y="443.0881" Z="229.8193" />
+										<Hotspot X="4526.892" Y="518.3264" Z="229.262" />
+										<Hotspot X="4475.299" Y="649.1726" Z="191.4169" />
+										<Hotspot X="4496.495" Y="744.3486" Z="181.2569" />
+										<Hotspot X="4477.998" Y="792.3724" Z="181.1873" />
+										<Hotspot X="4368.549" Y="871.2369" Z="175.4837" />
+									</HuntingGrounds>
+								</CustomBehavior>
+							</If>
+						<!-- END Hard Pulls -->
+						<!-- Easy Pulls -->
+							<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
+								<While Condition="!HasQuest(38869) &amp;&amp; !IsQuestCompleted(38869) &amp;&amp; (!HasQuest(39448) &amp;&amp; !IsQuestCompleted(39448))" >
+									<MoveTo Nav="Fly" DestName="Ruins of Kra'nak" X="4539.619" Y="424.5465" Z="229.3716" />
+									<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38869) || HasQuest(39448)" />
+								</While>
+								<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearAll" QuestId="38869" NumOfTimes="1000" WaitTime="500" MobIds="90794, 90300, 90706, 90795, 90790, 90792, 90791, 90796" >
+									<HuntingGrounds>
+										<Hotspot X="4513.263" Y="472.1714" Z="228.9365" />
+										<Hotspot X="4577.068" Y="478.2981" Z="229.146" />
+										<Hotspot X="4550.217" Y="544.4664" Z="229.3091" />
+										<Hotspot X="4472.96" Y="650.1429" Z="192.0173" />
+										<Hotspot X="4624.967" Y="590.0174" Z="203.0758" />
+										<Hotspot X="4631.798" Y="612.7723" Z="203.2114" />
+									</HuntingGrounds>
+								</CustomBehavior>
+							</If>
+						<!-- END Easy Pulls -->
+					</While>
+
 					<While Condition="!IsQuestCompleted(39448) &amp;&amp; !IsQuestCompleted(38252) &amp;&amp; !IsQuestCompleted(39526)" > <!-- Assault on the Ruins of Kra'nak -->
 						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Completing Assault on the Ruins of Kra'nak.&quot;);" />
 						<!-- Hard Pulls -->
@@ -1661,7 +1758,7 @@
 									<MoveTo Nav="Fly" DestName="Ruins of Kra'nak" X="4546.603" Y="484.6314" Z="226.6398" />
 									<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39448)" />
 								</While>
-								<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="39448"  NumOfTimes="1000" WaitTime="500" MobIds="90794, 90300, 90706, 90795, 90790, 90792, 90791, 90786" >
+								<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="39448" NumOfTimes="1000" WaitTime="500" MobIds="90794, 90300, 90706, 90795, 90790, 90792, 90791, 90786" >
 									<HuntingGrounds>
 										<Hotspot X="4560.763" Y="443.0881" Z="229.8193" />
 										<Hotspot X="4526.892" Y="518.3264" Z="229.262" />
@@ -1679,7 +1776,7 @@
 									<MoveTo Nav="Fly" DestName="Ruins of Kra'nak" X="4539.619" Y="424.5465" Z="229.3716" />
 									<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39448)" />
 								</While>
-								<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearAll" QuestId="39448"  NumOfTimes="1000" WaitTime="500" MobIds="90794, 90300, 90706, 90795, 90790, 90792, 90791, 90796" >
+								<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearAll" QuestId="39448" NumOfTimes="1000" WaitTime="500" MobIds="90794, 90300, 90706, 90795, 90790, 90792, 90791, 90796" >
 									<HuntingGrounds>
 										<Hotspot X="4513.263" Y="472.1714" Z="228.9365" />
 										<Hotspot X="4577.068" Y="478.2981" Z="229.146" />
@@ -1692,6 +1789,7 @@
 							</If>
 						<!-- END Easy Pulls -->
 					</While>
+
 					<While Condition="!IsQuestCompleted(39450) &amp;&amp; !IsQuestCompleted(38449) &amp;&amp; !IsQuestCompleted(39526)" > <!-- Assault on the Temple of Sha'naar -->
 						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Completing Assault on the Temple of Sha'naar.&quot;);" />
 						<!-- Hard Pulls -->
@@ -1700,7 +1798,7 @@
 									<MoveTo Nav="Fly" DestName="Temple of Sha'naar" X="3612.619" Y="183.9686" Z="129.547" />
 									<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39450)" />
 								</While>
-								<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="39450"  NumOfTimes="1000" WaitTime="500" MobIds="240165, 90501, 90302, 90703, 92597" >
+								<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="39450" NumOfTimes="1000" WaitTime="500" MobIds="240165, 90501, 90302, 90703, 92597" >
 									<HuntingGrounds>
 										<Hotspot Name="Entrace of Sha'naar" X="3620.049" Y="164.0029" Z="124.2737" />
 										<Hotspot Name="Mid Lower Terrace" X="3297.727" Y="287.6227" Z="117.0291" />
@@ -1718,7 +1816,7 @@
 									<MoveTo Nav="Fly" DestName="Temple of Sha'naar" X="3612.619" Y="183.9686" Z="129.547" />
 									<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39450)" />
 								</While>
-								<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearAll" QuestId="39450"  NumOfTimes="1000" WaitTime="500" MobIds="240165, 90501, 90302, 90703, 92597" >
+								<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearAll" QuestId="39450" NumOfTimes="1000" WaitTime="500" MobIds="240165, 90501, 90302, 90703, 92597" >
 									<HuntingGrounds>
 										<Hotspot Name="Entrace of Sha'naar" X="3620.049" Y="164.0029" Z="124.2737" />
 										<Hotspot Name="Mid Lower Terrace" X="3297.727" Y="287.6227" Z="117.0291" />
@@ -1727,6 +1825,7 @@
 							</If>
 						<!-- END Easy Pulls -->
 					</While>
+
 					<While Condition="!IsQuestCompleted(39452) &amp;&amp; !IsQuestCompleted(37940) &amp;&amp; !IsQuestCompleted(39526)" > <!-- Assault on Ironhold Harbor -->
 						<!-- Hard Pulls -->
 							<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
@@ -1734,7 +1833,7 @@
 									<MoveTo Nav="Fly" DestName="Ironhold Harbor" X="4583.305" Y="-399.9979" Z="10.69125" />
 									<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39452)" />
 								</While>
-								<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" QuestId="39452"  NumOfTimes="1000" WaitTime="500" MobIds="239839, 90433, 90069" >
+								<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" QuestId="39452" NumOfTimes="1000" WaitTime="500" MobIds="239839, 90433, 90069" >
 									<HuntingGrounds>
 										<Hotspot X="4583.305" Y="-399.9979" Z="10.69125" />
 										<Hotspot X="4592.449" Y="-238.1564" Z="10.7333" />
@@ -1752,8 +1851,8 @@
 									<MoveTo Nav="Fly" DestName="Ironhold Harbor" X="4633.494" Y="-578.2945" Z="44.38635" />
 									<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39452)" />
 								</While>
-								<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" QuestId="39452"  NumOfTimes="1000" WaitTime="500" MobIds="239839, 90433, 90069" >
-									<HuntingGrounds> <!-- 90069, True Iron Bomb.  Need to click on a tank after picking it up.  Could also just have it click the player's location. -->
+								<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" QuestId="39452" NumOfTimes="1000" WaitTime="500" MobIds="239839, 90433, 90069" >
+									<HuntingGrounds> <!-- 90069, True Iron Bomb. Need to click on a tank after picking it up. Could also just have it click the player's location. -->
 										<Hotspot X="4658.131" Y="-552.9175" Z="36.25991" />
 										<Hotspot X="4634.374" Y="-493.1973" Z="21.42153" />
 										<Hotspot X="4693.737" Y="-519.6089" Z="47.37726" />
@@ -1826,6 +1925,9 @@
 		<While Condition="HasQuest(39582) &amp;&amp; IsQuestCompleted(39582)" >
 			<TurnIn Nav="Fly" QuestName="Tooth and Claw" QuestId="39582" TurnInName="Parvink" TurnInId="96147" />
 		</While>
+		<While Condition="HasQuest(39529) &amp;&amp; IsQuestCompleted(39529)" >
+			<TurnIn Nav="Fly" QuestName="Tooth and Claw" QuestId="39529" TurnInName="Nimi Brightcastle" TurnInId="93396" />
+		</While>
 	<!-- END Saberstalker Tooth and Claw -->
 
 	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: All dailies are complete for today!&quot;);" />
@@ -1882,7 +1984,7 @@
 							<MoveTo Nav="Fly" DestName="Ironhold Harbor" X="4583.305" Y="-399.9979" Z="10.69125" />
 							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39451)" />
 						</While>
-						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" QuestId="39451"  NumOfTimes="1000" WaitTime="500" MobIds="239839, 90433, 90069" >
+						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" QuestId="39451" NumOfTimes="1000" WaitTime="500" MobIds="239839, 90433, 90069" >
 							<HuntingGrounds>
 								<Hotspot X="4583.305" Y="-399.9979" Z="10.69125" />
 								<Hotspot X="4592.449" Y="-238.1564" Z="10.7333" />
@@ -1900,12 +2002,52 @@
 							<MoveTo Nav="Fly" DestName="Ironhold Harbor" X="4633.494" Y="-578.2945" Z="44.38635" />
 							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39451)" />
 						</While>
-						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" QuestId="39451"  NumOfTimes="1000" WaitTime="500" MobIds="239839, 90433, 90069" >
-							<HuntingGrounds> <!-- 90069, True Iron Bomb.  Need to click on a tank after picking it up.  Could also just have it click the player's location. -->
+						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" QuestId="39451" NumOfTimes="1000" WaitTime="500" MobIds="239839, 90433, 90069" >
+							<HuntingGrounds> <!-- 90069, True Iron Bomb. Need to click on a tank after picking it up. Could also just have it click the player's location. -->
 								<Hotspot X="4658.131" Y="-552.9175" Z="36.25991" />
 								<Hotspot X="4634.374" Y="-493.1973" Z="21.42153" />
 								<Hotspot X="4693.737" Y="-519.6089" Z="47.37726" />
 								<Hotspot X="4760.93" Y="-479.2505" Z="37.17424" />
+							</HuntingGrounds>
+						</CustomBehavior>
+					</If>
+				<!-- END Easy Pulls -->
+			</While>
+
+			<While Condition="!IsQuestCompleted(38868) &amp;&amp; !IsQuestCompleted(38250) &amp;&amp; (!HasQuest(39447) &amp;&amp; !IsQuestCompleted(39447))" > <!-- Assault on the Ruins of Kra'nak : Intro Version -->
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Completing Assault on the Ruins of Kra'nak.&quot;);" />
+				<!-- Hard Pulls -->
+					<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
+						<While Condition="!HasQuest(38868) &amp;&amp; !IsQuestCompleted(38868) &amp;&amp; (!HasQuest(39447) &amp;&amp; !IsQuestCompleted(39447))" >
+							<MoveTo Nav="Fly" DestName="Ruins of Kra'nak" X="4546.603" Y="484.6314" Z="226.6398" />
+							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38868) || HasQuest(39447)" />
+						</While>
+						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="38868" NumOfTimes="1000" WaitTime="500" MobIds="90794, 90300, 90706, 90795, 90790, 90792, 90791, 90786" >
+							<HuntingGrounds>
+								<Hotspot X="4560.763" Y="443.0881" Z="229.8193" />
+								<Hotspot X="4526.892" Y="518.3264" Z="229.262" />
+								<Hotspot X="4475.299" Y="649.1726" Z="191.4169" />
+								<Hotspot X="4496.495" Y="744.3486" Z="181.2569" />
+								<Hotspot X="4477.998" Y="792.3724" Z="181.1873" />
+								<Hotspot X="4368.549" Y="871.2369" Z="175.4837" />
+							</HuntingGrounds>
+						</CustomBehavior>
+					</If>
+				<!-- END Hard Pulls -->
+				<!-- Easy Pulls -->
+					<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
+						<While Condition="!HasQuest(38868) &amp;&amp; !IsQuestCompleted(38868) &amp;&amp; (!HasQuest(39447) &amp;&amp; !IsQuestCompleted(39447))" >
+							<MoveTo Nav="Fly" DestName="Ruins of Kra'nak" X="4539.619" Y="424.5465" Z="229.3716" />
+							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38868) || HasQuest(39447)" />
+						</While>
+						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearAll" QuestId="38868" NumOfTimes="1000" WaitTime="500" MobIds="90794, 90300, 90706, 90795, 90790, 90792, 90791, 90796" >
+							<HuntingGrounds>
+								<Hotspot X="4513.263" Y="472.1714" Z="228.9365" />
+								<Hotspot X="4577.068" Y="478.2981" Z="229.146" />
+								<Hotspot X="4550.217" Y="544.4664" Z="229.3091" />
+								<Hotspot X="4472.96" Y="650.1429" Z="192.0173" />
+								<Hotspot X="4624.967" Y="590.0174" Z="203.0758" />
+								<Hotspot X="4631.798" Y="612.7723" Z="203.2114" />
 							</HuntingGrounds>
 						</CustomBehavior>
 					</If>
@@ -1920,14 +2062,12 @@
 							<MoveTo Nav="Fly" DestName="Ruins of Kra'nak" X="4546.603" Y="484.6314" Z="226.6398" />
 							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39447)" />
 						</While>
-						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="39447"  NumOfTimes="1000" WaitTime="500" MobIds="90794, 90300, 90706, 90795, 90790, 90792, 90791, 90786" >
+						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="39447" NumOfTimes="1000" WaitTime="500" MobIds="90794, 90300, 90706, 90795, 90790, 90792, 90791, 90786" >
 							<HuntingGrounds>
-								<Hotspot X="4560.763" Y="443.0881" Z="229.8193" />
-								<Hotspot X="4526.892" Y="518.3264" Z="229.262" />
-								<Hotspot X="4475.299" Y="649.1726" Z="191.4169" />
-								<Hotspot X="4496.495" Y="744.3486" Z="181.2569" />
-								<Hotspot X="4477.998" Y="792.3724" Z="181.1873" />
-								<Hotspot X="4368.549" Y="871.2369" Z="175.4837" />
+								<Hotspot X="3986.365" Y="1106.218" Z="164.2328" />
+								<Hotspot X="3911.007" Y="1119.447" Z="164.1699" />
+								<Hotspot X="3940.948" Y="985.2354" Z="159.1528" />
+								<Hotspot X="4014.21" Y="949.6953" Z="158.4159" />
 							</HuntingGrounds>
 						</CustomBehavior>
 					</If>
@@ -1938,7 +2078,7 @@
 							<MoveTo Nav="Fly" DestName="Ruins of Kra'nak" X="4539.619" Y="424.5465" Z="229.3716" />
 							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39447)" />
 						</While>
-						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearAll" QuestId="39447"  NumOfTimes="1000" WaitTime="500" MobIds="90794, 90300, 90706, 90795, 90790, 90792, 90791, 90796" >
+						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearAll" QuestId="39447" NumOfTimes="1000" WaitTime="500" MobIds="90794, 90300, 90706, 90795, 90790, 90792, 90791, 90796" >
 							<HuntingGrounds>
 								<Hotspot X="4513.263" Y="472.1714" Z="228.9365" />
 								<Hotspot X="4577.068" Y="478.2981" Z="229.146" />
@@ -1952,13 +2092,13 @@
 				<!-- END Easy Pulls -->
 			</While>
 
-			<While Condition="!IsQuestCompleted(39441) &amp;&amp; !IsQuestCompleted(38045)" > <!-- Assault on Zeth'Gol -->
+			<While Condition="!IsQuestCompleted(38870) &amp;&amp; !IsQuestCompleted(38045) &amp;&amp; (!HasQuest(39441) &amp;&amp; !IsQuestCompleted(39441))" > <!-- Assault on Zeth'Gol : Intro Version -->
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Completing Assault on Zeth'Gol.&quot;);" />
-				<While Condition="!HasQuest(39441) &amp;&amp; !IsQuestCompleted(39441)" > <!-- Check ID, may be 39442 -->
+				<While Condition="!HasQuest(38870) &amp;&amp; !IsQuestCompleted(38870) &amp;&amp; (!HasQuest(39441) &amp;&amp; !IsQuestCompleted(39441))" >
 					<MoveTo Nav="Fly" DestName="Zeth'gol" X="4245.792" Y="390.4549" Z="153.8195" />
-					<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39441)" />
+					<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38870) || HasQuest(39441)" />
 				</While>
-				<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="39441"  NumOfTimes="1000" WaitTime="500" MobIds="90704, 90781" >
+				<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="38870" NumOfTimes="1000" WaitTime="500" MobIds="90704, 90781" >
 					<HuntingGrounds>
 						<Hotspot X="4310.75" Y="431.8437" Z="175.2454" />
 						<Hotspot X="4318.75" Y="372.2255" Z="176.6174" />
@@ -1969,58 +2109,105 @@
 				</CustomBehavior>
 			</While>
 
-			<While Condition="!IsQuestCompleted(38866) &amp;&amp; !IsQuestCompleted(38046)" > <!-- Assault on Iron Front : Intro Version -->
-				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Completing Assault on the Iron Front.&quot;);" />
-				<!-- Hard Pulls -->
-					<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-						<While Condition="!HasQuest(38866) &amp;&amp; !IsQuestCompleted(38866)" >
-							<MoveTo Nav="Fly" DestName="The Iron Front" X="3893.965" Y="842.2295" Z="152.6835" />
-							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38866)" />
-						</While>
-						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" QuestId="38866"  NumOfTimes="1000" WaitTime="500" MobIds="90370, 93013" >
-							<HuntingGrounds>
-								<Hotspot X="4560.763" Y="443.0881" Z="229.8193" />
-								<Hotspot X="4526.892" Y="518.3264" Z="229.262" />
-								<Hotspot X="4475.299" Y="649.1726" Z="191.4169" />
-								<Hotspot X="4496.495" Y="744.3486" Z="181.2569" />
-								<Hotspot X="4477.998" Y="792.3724" Z="181.1873" />
-								<Hotspot X="4368.549" Y="871.2369" Z="175.4837" />
-							</HuntingGrounds>
-						</CustomBehavior>
-					</If>
-				<!-- END Hard Pulls -->
-				<!-- Easy Pulls -->
-					<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-						<While Condition="!HasQuest(38866) &amp;&amp; !IsQuestCompleted(38866)" >
-							<MoveTo Nav="Fly" DestName="The Iron Front" X="3992.573" Y="805.0379" Z="151.8674" />
-							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38866)" />
-						</While>
-						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" QuestId="38866"  NumOfTimes="1000" WaitTime="500" MobIds="90370, 93013" >
-							<HuntingGrounds>
-								<Hotspot X="3997.606" Y="870.8727" Z="152.6829" />
-								<Hotspot X="3954.224" Y="782.0494" Z="153.6769" />
-								<Hotspot X="3979.948" Y="986.4142" Z="158.6335" />
-							</HuntingGrounds>
-						</CustomBehavior>
-					</If>
-				<!-- END Easy Pulls -->
+			<While Condition="!IsQuestCompleted(39441) &amp;&amp; !IsQuestCompleted(38045)" > <!-- Assault on Zeth'Gol -->
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Completing Assault on Zeth'Gol.&quot;);" />
+				<While Condition="!HasQuest(39441) &amp;&amp; !IsQuestCompleted(39441)" > <!-- Check ID, may be 39442 -->
+					<MoveTo Nav="Fly" DestName="Zeth'gol" X="4245.792" Y="390.4549" Z="153.8195" />
+					<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39441)" />
+				</While>
+				<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="39441" NumOfTimes="1000" WaitTime="500" MobIds="90704, 90781" >
+					<HuntingGrounds>
+						<Hotspot X="4310.75" Y="431.8437" Z="175.2454" />
+						<Hotspot X="4318.75" Y="372.2255" Z="176.6174" />
+						<Hotspot X="4223.525" Y="552.8775" Z="173.4002" />
+						<Hotspot X="4152.482" Y="654.0584" Z="162.6546" />
+						<Hotspot X="4117.844" Y="594.8691" Z="162.812" />
+					</HuntingGrounds>
+				</CustomBehavior>
 			</While>
-			<While Condition="!IsQuestCompleted(39443) &amp;&amp; !IsQuestCompleted(38046) &amp;&amp; IsQuestCompleted(38866)" > <!-- Assault on Iron Front -->
+
+			<While Condition="!IsQuestCompleted(38866) &amp;&amp; !IsQuestCompleted(38046) &amp;&amp; (!HasQuest(39443) &amp;&amp; !IsQuestCompleted(39443))" > <!-- Assault on Iron Front : Intro Version -->
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Completing Assault on the Iron Front.&quot;);" />
+				<!-- Iron Front Healing Bandages -->
+					<CustomBehavior File="Hooks\DoWhen" AllowUseWhileMounted="true" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="false" ActivityName="Use_Bandages" UseWhen="!IsQuestCompleted(38866) &amp;&amp; HasItem(122139) &amp;&amp; ((Me.IsAlliance &amp;&amp; Unit(90443, u =&gt; u.HealthPercent &lt;= 25 &amp;&amp; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null) || (Me.IsHorde &amp;&amp; Unit(90452, u =&gt; u.HealthPercent &lt;= 25 &amp;&amp; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null))" >
+						<While Condition="HasItem(122139) &amp;&amp; (Me.IsAlliance &amp;&amp; Unit(90443, u =&gt; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null)" >
+							<CustomBehavior File="InteractWith" Range="3" MobHpPercentLeft="25" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" MobId="90443" WaitForNpcs="false" />
+							<CustomBehavior File="WaitTimer" WaitTime="1000" />
+						</While>
+						<While Condition="HasItem(122139) &amp;&amp; (Me.IsHorde &amp;&amp; Unit(90452, u =&gt; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null)" >
+							<CustomBehavior File="InteractWith" Range="3" MobHpPercentLeft="25" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" MobId="90452" WaitForNpcs="false" />
+							<CustomBehavior File="WaitTimer" WaitTime="1000" />
+						</While>
+					</CustomBehavior>
+					<CustomBehavior File="Hooks\DoWhen" AllowUseWhileMounted="true" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="false" ActivityName="Obtain_Bandages" UseWhen="!IsQuestCompleted(38866) &amp;&amp; !HasItem(122139) &amp;&amp; Object(239971, o =&gt; o.Distance &lt;= 40) != null" >
+						<CustomBehavior File="InteractWith" Range="3" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" MobId="239971" WaitForNpcs="false" />
+					</CustomBehavior>
+				<!-- END Iron Front Healing Bandages -->
+				<!-- Hard Pulls -->
+					<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
+						<While Condition="!HasQuest(38866) &amp;&amp; !IsQuestCompleted(38866) &amp;&amp; (!HasQuest(39443) &amp;&amp; !IsQuestCompleted(39443))" >
+							<MoveTo Nav="Fly" DestName="The Iron Front" X="4022.859" Y="1185.233" Z="159.6061" />
+							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38866) || HasQuest(39443)" />
+						</While>
+						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" QuestId="38866" NumOfTimes="1000" WaitTime="500" MobIds="90370, 93013" >
+							<HuntingGrounds>
+								<Hotspot X="4042.293" Y="1179.808" Z="163.2804" />
+								<Hotspot X="3959.691" Y="1151.575" Z="166.0965" />
+								<Hotspot X="3930.58" Y="1010.384" Z="158.9478" />
+								<Hotspot X="3973.543" Y="969.1004" Z="159.216" />
+								<Hotspot X="4003.456" Y="903.0444" Z="152.7976" />
+							</HuntingGrounds>
+						</CustomBehavior>
+					</If>
+				<!-- END Hard Pulls -->
+				<!-- Easy Pulls -->
+					<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
+						<While Condition="!HasQuest(38866) &amp;&amp; !IsQuestCompleted(38866) &amp;&amp; (!HasQuest(39443) &amp;&amp; !IsQuestCompleted(39443))" >
+							<MoveTo Nav="Fly" DestName="The Iron Front" X="3992.573" Y="805.0379" Z="151.8674" />
+							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38866) || HasQuest(39443)" />
+						</While>
+						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" QuestId="38866" NumOfTimes="1000" WaitTime="500" MobIds="90370, 93013" >
+							<HuntingGrounds>
+								<Hotspot X="4042.293" Y="1179.808" Z="163.2804" />
+								<Hotspot X="3959.691" Y="1151.575" Z="166.0965" />
+							</HuntingGrounds>
+						</CustomBehavior>
+					</If>
+				<!-- END Easy Pulls -->
+				<CustomBehavior File="Hooks\DoWhen" ActivityName="Use_Bandages" Command="Remove" />
+				<CustomBehavior File="Hooks\DoWhen" ActivityName="Obtain_Bandages" Command="Remove" />
+			</While>
+
+			<While Condition="!IsQuestCompleted(39443) &amp;&amp; !IsQuestCompleted(38046)" > <!-- Assault on Iron Front -->
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Completing Assault on the Iron Front.&quot;);" />
+					<!-- Iron Front Healing Bandages -->
+						<CustomBehavior File="Hooks\DoWhen" AllowUseWhileMounted="true" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="false" ActivityName="Use_Bandages" UseWhen="!IsQuestCompleted(39443) &amp;&amp; HasItem(122139) &amp;&amp; ((Me.IsAlliance &amp;&amp; Unit(90443, u =&gt; u.HealthPercent &lt;= 25 &amp;&amp; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null) || (Me.IsHorde &amp;&amp; Unit(90452, u =&gt; u.HealthPercent &lt;= 25 &amp;&amp; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null))" >
+							<While Condition="HasItem(122139) &amp;&amp; (Me.IsAlliance &amp;&amp; Unit(90443, u =&gt; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null)" >
+								<CustomBehavior File="InteractWith" Range="3" MobHpPercentLeft="25" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" MobId="90443" WaitForNpcs="false" />
+								<CustomBehavior File="WaitTimer" WaitTime="1000" />
+							</While>
+							<While Condition="HasItem(122139) &amp;&amp; (Me.IsHorde &amp;&amp; Unit(90452, u =&gt; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null)" >
+								<CustomBehavior File="InteractWith" Range="3" MobHpPercentLeft="25" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" MobId="90452" WaitForNpcs="false" />
+								<CustomBehavior File="WaitTimer" WaitTime="1000" />
+							</While>
+						</CustomBehavior>
+						<CustomBehavior File="Hooks\DoWhen" AllowUseWhileMounted="true" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="false" ActivityName="Obtain_Bandages" UseWhen="!IsQuestCompleted(39443) &amp;&amp; !HasItem(122139) &amp;&amp; Object(239971, o =&gt; o.Distance &lt;= 40) != null" >
+							<CustomBehavior File="InteractWith" Range="3" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" MobId="239971" WaitForNpcs="false" />
+						</CustomBehavior>
+					<!-- END Iron Front Healing Bandages -->
 				<!-- Hard Pulls -->
 					<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
 						<While Condition="!HasQuest(39443) &amp;&amp; !IsQuestCompleted(39443)" >
-							<MoveTo Nav="Fly" DestName="The Iron Front" X="3893.965" Y="842.2295" Z="152.6835" />
+							<MoveTo Nav="Fly" DestName="The Iron Front" X="4022.859" Y="1185.233" Z="159.6061" />
 							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39443)" />
 						</While>
-						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" QuestId="39443"  NumOfTimes="1000" WaitTime="500" MobIds="90370, 93013" >
+						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" QuestId="39443" NumOfTimes="1000" WaitTime="500" MobIds="90370, 93013" >
 							<HuntingGrounds>
-								<Hotspot X="4560.763" Y="443.0881" Z="229.8193" />
-								<Hotspot X="4526.892" Y="518.3264" Z="229.262" />
-								<Hotspot X="4475.299" Y="649.1726" Z="191.4169" />
-								<Hotspot X="4496.495" Y="744.3486" Z="181.2569" />
-								<Hotspot X="4477.998" Y="792.3724" Z="181.1873" />
-								<Hotspot X="4368.549" Y="871.2369" Z="175.4837" />
+								<Hotspot X="4042.293" Y="1179.808" Z="163.2804" />
+								<Hotspot X="3959.691" Y="1151.575" Z="166.0965" />
+								<Hotspot X="3930.58" Y="1010.384" Z="158.9478" />
+								<Hotspot X="3973.543" Y="969.1004" Z="159.216" />
+								<Hotspot X="4003.456" Y="903.0444" Z="152.7976" />
 							</HuntingGrounds>
 						</CustomBehavior>
 					</If>
@@ -2031,15 +2218,16 @@
 							<MoveTo Nav="Fly" DestName="The Iron Front" X="3992.573" Y="805.0379" Z="151.8674" />
 							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39443)" />
 						</While>
-						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" QuestId="39443"  NumOfTimes="1000" WaitTime="500" MobIds="90370, 93013" >
+						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" QuestId="39443" NumOfTimes="1000" WaitTime="500" MobIds="90370, 93013" >
 							<HuntingGrounds>
-								<Hotspot X="3997.606" Y="870.8727" Z="152.6829" />
-								<Hotspot X="3954.224" Y="782.0494" Z="153.6769" />
-								<Hotspot X="3979.948" Y="986.4142" Z="158.6335" />
+								<Hotspot X="4042.293" Y="1179.808" Z="163.2804" />
+								<Hotspot X="3959.691" Y="1151.575" Z="166.0965" />
 							</HuntingGrounds>
 						</CustomBehavior>
 					</If>
 				<!-- END Easy Pulls -->
+				<CustomBehavior File="Hooks\DoWhen" ActivityName="Use_Bandages" Command="Remove" />
+				<CustomBehavior File="Hooks\DoWhen" ActivityName="Obtain_Bandages" Command="Remove" />
 			</While>
 
 			<While Condition="!IsQuestCompleted(39449) &amp;&amp; !IsQuestCompleted(37968)" > <!-- Assault on the Temple of Sha'naar -->
@@ -2050,7 +2238,7 @@
 							<MoveTo Nav="Fly" DestName="Temple of Sha'naar" X="3612.619" Y="183.9686" Z="129.547" />
 							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39449)" />
 						</While>
-						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="39449"  NumOfTimes="1000" WaitTime="500" MobIds="240165, 90501, 90302, 90703, 92597" >
+						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="39449" NumOfTimes="1000" WaitTime="500" MobIds="240165, 90501, 90302, 90703, 92597" >
 							<HuntingGrounds>
 								<Hotspot Name="Entrace of Sha'naar" X="3620.049" Y="164.0029" Z="124.2737" />
 								<Hotspot Name="Mid Lower Terrace" X="3297.727" Y="287.6227" Z="117.0291" />
@@ -2068,7 +2256,7 @@
 							<MoveTo Nav="Fly" DestName="Temple of Sha'naar" X="3612.619" Y="183.9686" Z="129.547" />
 							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39449)" />
 						</While>
-						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearAll" QuestId="39449"  NumOfTimes="1000" WaitTime="500" MobIds="240165, 90501, 90302, 90703, 92597" >
+						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearAll" QuestId="39449" NumOfTimes="1000" WaitTime="500" MobIds="240165, 90501, 90302, 90703, 92597" >
 							<HuntingGrounds>
 								<Hotspot Name="Entrace of Sha'naar" X="3620.049" Y="164.0029" Z="124.2737" />
 								<Hotspot Name="Mid Lower Terrace" X="3297.727" Y="287.6227" Z="117.0291" />
@@ -2081,6 +2269,7 @@
 	<!-- END [Alliance] Complete all remaining objective zones -->
 
 	<!-- [Horde] Complete all remaining objective zones -->
+		<!-- ZoneBonusQID && PlanningMapQID -->
 		<If Condition="Me.IsHorde" >
 			<While Condition="!IsQuestCompleted(39446) &amp;&amp; !IsQuestCompleted(38441)" > <!-- Assault on Fel Forge -->
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Completing Assault Fel Forge.&quot;);" />
@@ -2130,7 +2319,7 @@
 							<MoveTo Nav="Fly" DestName="Ironhold Harbor" X="4583.305" Y="-399.9979" Z="10.69125" />
 							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39452)" />
 						</While>
-						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" QuestId="39452"  NumOfTimes="1000" WaitTime="500" MobIds="239839, 90433, 90069" >
+						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" QuestId="39452" NumOfTimes="1000" WaitTime="500" MobIds="239839, 90433, 90069" >
 							<HuntingGrounds>
 								<Hotspot X="4583.305" Y="-399.9979" Z="10.69125" />
 								<Hotspot X="4592.449" Y="-238.1564" Z="10.7333" />
@@ -2148,12 +2337,52 @@
 							<MoveTo Nav="Fly" DestName="Ironhold Harbor" X="4633.494" Y="-578.2945" Z="44.38635" />
 							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39452)" />
 						</While>
-						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" QuestId="39452"  NumOfTimes="1000" WaitTime="500" MobIds="239839, 90433, 90069" >
-							<HuntingGrounds> <!-- 90069, True Iron Bomb.  Need to click on a tank after picking it up.  Could also just have it click the player's location. -->
+						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" QuestId="39452" NumOfTimes="1000" WaitTime="500" MobIds="239839, 90433, 90069" >
+							<HuntingGrounds> <!-- 90069, True Iron Bomb. Need to click on a tank after picking it up. Could also just have it click the player's location. -->
 								<Hotspot X="4658.131" Y="-552.9175" Z="36.25991" />
 								<Hotspot X="4634.374" Y="-493.1973" Z="21.42153" />
 								<Hotspot X="4693.737" Y="-519.6089" Z="47.37726" />
 								<Hotspot X="4760.93" Y="-479.2505" Z="37.17424" />
+							</HuntingGrounds>
+						</CustomBehavior>
+					</If>
+				<!-- END Easy Pulls -->
+			</While>
+
+			<While Condition="!IsQuestCompleted(38869) &amp;&amp; !IsQuestCompleted(38252) &amp;&amp; (!HasQuest(39448) &amp;&amp; !IsQuestCompleted(39448))" > <!-- Assault on the Ruins of Kra'nak : Intro Version -->
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Completing Assault on the Ruins of Kra'nak.&quot;);" />
+				<!-- Hard Pulls -->
+					<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
+						<While Condition="!HasQuest(38869) &amp;&amp; !IsQuestCompleted(38869) &amp;&amp; (!HasQuest(39448) &amp;&amp; !IsQuestCompleted(39448))" >
+							<MoveTo Nav="Fly" DestName="Ruins of Kra'nak" X="4546.603" Y="484.6314" Z="226.6398" />
+							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38869) || HasQuest(39448)" />
+						</While>
+						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="38869" NumOfTimes="1000" WaitTime="500" MobIds="90794, 90300, 90706, 90795, 90790, 90792, 90791, 90786" >
+							<HuntingGrounds>
+								<Hotspot X="4560.763" Y="443.0881" Z="229.8193" />
+								<Hotspot X="4526.892" Y="518.3264" Z="229.262" />
+								<Hotspot X="4475.299" Y="649.1726" Z="191.4169" />
+								<Hotspot X="4496.495" Y="744.3486" Z="181.2569" />
+								<Hotspot X="4477.998" Y="792.3724" Z="181.1873" />
+								<Hotspot X="4368.549" Y="871.2369" Z="175.4837" />
+							</HuntingGrounds>
+						</CustomBehavior>
+					</If>
+				<!-- END Hard Pulls -->
+				<!-- Easy Pulls -->
+					<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
+						<While Condition="!HasQuest(38869) &amp;&amp; !IsQuestCompleted(38869) &amp;&amp; (!HasQuest(39448) &amp;&amp; !IsQuestCompleted(39448))" >
+							<MoveTo Nav="Fly" DestName="Ruins of Kra'nak" X="4539.619" Y="424.5465" Z="229.3716" />
+							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38869) || HasQuest(39448)" />
+						</While>
+						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearAll" QuestId="38869" NumOfTimes="1000" WaitTime="500" MobIds="90794, 90300, 90706, 90795, 90790, 90792, 90791, 90796" >
+							<HuntingGrounds>
+								<Hotspot X="4513.263" Y="472.1714" Z="228.9365" />
+								<Hotspot X="4577.068" Y="478.2981" Z="229.146" />
+								<Hotspot X="4550.217" Y="544.4664" Z="229.3091" />
+								<Hotspot X="4472.96" Y="650.1429" Z="192.0173" />
+								<Hotspot X="4624.967" Y="590.0174" Z="203.0758" />
+								<Hotspot X="4631.798" Y="612.7723" Z="203.2114" />
 							</HuntingGrounds>
 						</CustomBehavior>
 					</If>
@@ -2168,7 +2397,7 @@
 								<MoveTo Nav="Fly" DestName="Ruins of Kra'nak" X="4546.603" Y="484.6314" Z="226.6398" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39448)" />
 							</While>
-							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="39448"  NumOfTimes="1000" WaitTime="500" MobIds="90794, 90300, 90706, 90795, 90790, 90792, 90791, 90786" >
+							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="39448" NumOfTimes="1000" WaitTime="500" MobIds="90794, 90300, 90706, 90795, 90790, 90792, 90791, 90786" >
 								<HuntingGrounds>
 									<Hotspot X="4560.763" Y="443.0881" Z="229.8193" />
 									<Hotspot X="4526.892" Y="518.3264" Z="229.262" />
@@ -2186,7 +2415,7 @@
 								<MoveTo Nav="Fly" DestName="Ruins of Kra'nak" X="4539.619" Y="424.5465" Z="229.3716" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39448)" />
 							</While>
-							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearAll" QuestId="39448"  NumOfTimes="1000" WaitTime="500" MobIds="90794, 90300, 90706, 90795, 90790, 90792, 90791, 90796" >
+							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearAll" QuestId="39448" NumOfTimes="1000" WaitTime="500" MobIds="90794, 90300, 90706, 90795, 90790, 90792, 90791, 90796" >
 								<HuntingGrounds>
 									<Hotspot X="4513.263" Y="472.1714" Z="228.9365" />
 									<Hotspot X="4577.068" Y="478.2981" Z="229.146" />
@@ -2200,13 +2429,13 @@
 					<!-- END Easy Pulls -->
 			</While>
 
-			<While Condition="!IsQuestCompleted(39442) &amp;&amp; !IsQuestCompleted(38044)" > <!-- Assault on Zeth'Gol -->
+			<While Condition="!IsQuestCompleted(38871) &amp;&amp; !IsQuestCompleted(38044) &amp;&amp; (!HasQuest(39442) &amp;&amp; !IsQuestCompleted(39442))" > <!-- Assault on Zeth'Gol : Intro Version -->
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Completing Assault on Zeth'Gol.&quot;);" />
-				<While Condition="!HasQuest(39442) &amp;&amp; !IsQuestCompleted(39442)" > <!-- Check ID, may be 39441 -->
+				<While Condition="!HasQuest(38871) &amp;&amp; !IsQuestCompleted(38871) &amp;&amp; (!HasQuest(39442) &amp;&amp; !IsQuestCompleted(39442))" >
 					<MoveTo Nav="Fly" DestName="Zeth'gol" X="4245.792" Y="390.4549" Z="153.8195" />
-					<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39442)" />
+					<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38871) || HasQuest(39442)" />
 				</While>
-				<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="39442"  NumOfTimes="1000" WaitTime="500" MobIds="90704, 90781" >
+				<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="38871" NumOfTimes="1000" WaitTime="500" MobIds="90704, 90781" >
 					<HuntingGrounds>
 						<Hotspot X="4310.75" Y="431.8437" Z="175.2454" />
 						<Hotspot X="4318.75" Y="372.2255" Z="176.6174" />
@@ -2217,58 +2446,105 @@
 				</CustomBehavior>
 			</While>
 
-			<While Condition="!IsQuestCompleted(38865) &amp;&amp; !IsQuestCompleted(38047)" > <!-- Assault on Iron Front : Intro Version -->
-				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Completing Assault on the Iron Front.&quot;);" />
-				<!-- Hard Pulls -->
-					<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-						<While Condition="!HasQuest(38865) &amp;&amp; !IsQuestCompleted(38865)" >
-							<MoveTo Nav="Fly" DestName="The Iron Front" X="3893.965" Y="842.2295" Z="152.6835" />
-							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38865)" />
-						</While>
-						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" QuestId="38865"  NumOfTimes="1000" WaitTime="500" MobIds="90370, 93013" >
-							<HuntingGrounds>
-								<Hotspot X="4560.763" Y="443.0881" Z="229.8193" />
-								<Hotspot X="4526.892" Y="518.3264" Z="229.262" />
-								<Hotspot X="4475.299" Y="649.1726" Z="191.4169" />
-								<Hotspot X="4496.495" Y="744.3486" Z="181.2569" />
-								<Hotspot X="4477.998" Y="792.3724" Z="181.1873" />
-								<Hotspot X="4368.549" Y="871.2369" Z="175.4837" />
-							</HuntingGrounds>
-						</CustomBehavior>
-					</If>
-				<!-- END Hard Pulls -->
-				<!-- Easy Pulls -->
-					<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-						<While Condition="!HasQuest(38865) &amp;&amp; !IsQuestCompleted(38865)" >
-							<MoveTo Nav="Fly" DestName="The Iron Front" X="3992.573" Y="805.0379" Z="151.8674" />
-							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38865)" />
-						</While>
-						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" QuestId="38865"  NumOfTimes="1000" WaitTime="500" MobIds="90370, 93013" >
-							<HuntingGrounds>
-								<Hotspot X="3997.606" Y="870.8727" Z="152.6829" />
-								<Hotspot X="3954.224" Y="782.0494" Z="153.6769" />
-								<Hotspot X="3979.948" Y="986.4142" Z="158.6335" />
-							</HuntingGrounds>
-						</CustomBehavior>
-					</If>
-				<!-- END Easy Pulls -->
+			<While Condition="!IsQuestCompleted(39442) &amp;&amp; !IsQuestCompleted(38044)" > <!-- Assault on Zeth'Gol -->
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Completing Assault on Zeth'Gol.&quot;);" />
+				<While Condition="!HasQuest(39442) &amp;&amp; !IsQuestCompleted(39442)" > <!-- Check ID, may be 39441 -->
+					<MoveTo Nav="Fly" DestName="Zeth'gol" X="4245.792" Y="390.4549" Z="153.8195" />
+					<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39442) || HasQuest(39442)" />
+				</While>
+				<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="39442" NumOfTimes="1000" WaitTime="500" MobIds="90704, 90781" >
+					<HuntingGrounds>
+						<Hotspot X="4310.75" Y="431.8437" Z="175.2454" />
+						<Hotspot X="4318.75" Y="372.2255" Z="176.6174" />
+						<Hotspot X="4223.525" Y="552.8775" Z="173.4002" />
+						<Hotspot X="4152.482" Y="654.0584" Z="162.6546" />
+						<Hotspot X="4117.844" Y="594.8691" Z="162.812" />
+					</HuntingGrounds>
+				</CustomBehavior>
 			</While>
-			<While Condition="!IsQuestCompleted(39444) &amp;&amp; !IsQuestCompleted(38047) &amp;&amp; IsQuestCompleted(38865)" > <!-- Assault on Iron Front -->
+
+			<While Condition="!IsQuestCompleted(38865) &amp;&amp; !IsQuestCompleted(38047) &amp;&amp; (!HasQuest(39444) &amp;&amp; !IsQuestCompleted(39444))" > <!-- Assault on Iron Front : Intro Version -->
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Completing Assault on the Iron Front.&quot;);" />
+				<!-- Iron Front Healing Bandages -->
+					<CustomBehavior File="Hooks\DoWhen" AllowUseWhileMounted="true" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="false" ActivityName="Use_Bandages" UseWhen="!IsQuestCompleted(38865) &amp;&amp; HasItem(122139) &amp;&amp; ((Me.IsAlliance &amp;&amp; Unit(90443, u =&gt; u.HealthPercent &lt;= 25 &amp;&amp; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null) || (Me.IsHorde &amp;&amp; Unit(90452, u =&gt; u.HealthPercent &lt;= 25 &amp;&amp; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null))" >
+						<While Condition="HasItem(122139) &amp;&amp; (Me.IsAlliance &amp;&amp; Unit(90443, u =&gt; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null)" >
+							<CustomBehavior File="InteractWith" Range="3" MobHpPercentLeft="25" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" MobId="90443" WaitForNpcs="false" />
+							<CustomBehavior File="WaitTimer" WaitTime="1000" />
+						</While>
+						<While Condition="HasItem(122139) &amp;&amp; (Me.IsHorde &amp;&amp; Unit(90452, u =&gt; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null)" >
+							<CustomBehavior File="InteractWith" Range="3" MobHpPercentLeft="25" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" MobId="90452" WaitForNpcs="false" />
+							<CustomBehavior File="WaitTimer" WaitTime="1000" />
+						</While>
+					</CustomBehavior>
+					<CustomBehavior File="Hooks\DoWhen" AllowUseWhileMounted="true" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="false" ActivityName="Obtain_Bandages" UseWhen="!IsQuestCompleted(38865) &amp;&amp; !HasItem(122139) &amp;&amp; Object(239971, o =&gt; o.Distance &lt;= 40) != null" >
+						<CustomBehavior File="InteractWith" Range="3" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" MobId="239971" WaitForNpcs="false" />
+					</CustomBehavior>
+				<!-- END Iron Front Healing Bandages -->
+				<!-- Hard Pulls -->
+					<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
+						<While Condition="!HasQuest(38865) &amp;&amp; !IsQuestCompleted(38865) &amp;&amp; (!HasQuest(39444) &amp;&amp; !IsQuestCompleted(39444))" >
+							<MoveTo Nav="Fly" DestName="The Iron Front" X="4022.859" Y="1185.233" Z="159.6061" />
+							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38865) || HasQuest(39444)" />
+						</While>
+						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" QuestId="38865" NumOfTimes="1000" WaitTime="500" MobIds="90370, 93013" >
+							<HuntingGrounds>
+								<Hotspot X="4042.293" Y="1179.808" Z="163.2804" />
+								<Hotspot X="3959.691" Y="1151.575" Z="166.0965" />
+								<Hotspot X="3930.58" Y="1010.384" Z="158.9478" />
+								<Hotspot X="3973.543" Y="969.1004" Z="159.216" />
+								<Hotspot X="4003.456" Y="903.0444" Z="152.7976" />
+							</HuntingGrounds>
+						</CustomBehavior>
+					</If>
+				<!-- END Hard Pulls -->
+				<!-- Easy Pulls -->
+					<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
+						<While Condition="!HasQuest(38865) &amp;&amp; !IsQuestCompleted(38865) &amp;&amp; (!HasQuest(39444) &amp;&amp; !IsQuestCompleted(39444))" >
+							<MoveTo Nav="Fly" DestName="The Iron Front" X="3992.573" Y="805.0379" Z="151.8674" />
+							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38865) || HasQuest(39444)" />
+						</While>
+						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" QuestId="38865" NumOfTimes="1000" WaitTime="500" MobIds="90370, 93013" >
+							<HuntingGrounds>
+								<Hotspot X="4042.293" Y="1179.808" Z="163.2804" />
+								<Hotspot X="3959.691" Y="1151.575" Z="166.0965" />
+							</HuntingGrounds>
+						</CustomBehavior>
+					</If>
+				<!-- END Easy Pulls -->
+				<CustomBehavior File="Hooks\DoWhen" ActivityName="Use_Bandages" Command="Remove" />
+				<CustomBehavior File="Hooks\DoWhen" ActivityName="Obtain_Bandages" Command="Remove" />
+			</While>
+
+			<While Condition="!IsQuestCompleted(39444) &amp;&amp; !IsQuestCompleted(38047)" > <!-- Assault on Iron Front -->
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Completing Assault on the Iron Front.&quot;);" />
+				<!-- Iron Front Healing Bandages -->
+					<CustomBehavior File="Hooks\DoWhen" AllowUseWhileMounted="true" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="false" ActivityName="Use_Bandages" UseWhen="!IsQuestCompleted(39444) &amp;&amp; HasItem(122139) &amp;&amp; ((Me.IsAlliance &amp;&amp; Unit(90443, u =&gt; u.HealthPercent &lt;= 25 &amp;&amp; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null) || (Me.IsHorde &amp;&amp; Unit(90452, u =&gt; u.HealthPercent &lt;= 25 &amp;&amp; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null))" >
+						<While Condition="HasItem(122139) &amp;&amp; (Me.IsAlliance &amp;&amp; Unit(90443, u =&gt; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null)" >
+							<CustomBehavior File="InteractWith" Range="3" MobHpPercentLeft="25" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" MobId="90443" WaitForNpcs="false" />
+							<CustomBehavior File="WaitTimer" WaitTime="1000" />
+						</While>
+						<While Condition="HasItem(122139) &amp;&amp; (Me.IsHorde &amp;&amp; Unit(90452, u =&gt; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null)" >
+							<CustomBehavior File="InteractWith" Range="3" MobHpPercentLeft="25" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" MobId="90452" WaitForNpcs="false" />
+							<CustomBehavior File="WaitTimer" WaitTime="1000" />
+						</While>
+					</CustomBehavior>
+					<CustomBehavior File="Hooks\DoWhen" AllowUseWhileMounted="true" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="false" ActivityName="Obtain_Bandages" UseWhen="!IsQuestCompleted(39444) &amp;&amp; !HasItem(122139) &amp;&amp; Object(239971, o =&gt; o.Distance &lt;= 40) != null" >
+						<CustomBehavior File="InteractWith" Range="3" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" MobId="239971" WaitForNpcs="false" />
+					</CustomBehavior>
+				<!-- END Iron Front Healing Bandages -->
 				<!-- Hard Pulls -->
 					<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
 						<While Condition="!HasQuest(39444) &amp;&amp; !IsQuestCompleted(39444)" >
-							<MoveTo Nav="Fly" DestName="The Iron Front" X="3893.965" Y="842.2295" Z="152.6835" />
+							<MoveTo Nav="Fly" DestName="The Iron Front" X="4022.859" Y="1185.233" Z="159.6061" />
 							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39444)" />
 						</While>
-						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" QuestId="39444"  NumOfTimes="1000" WaitTime="500" MobIds="90370, 93013" >
+						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" QuestId="39444" NumOfTimes="1000" WaitTime="500" MobIds="90370, 93013" >
 							<HuntingGrounds>
-								<Hotspot X="4560.763" Y="443.0881" Z="229.8193" />
-								<Hotspot X="4526.892" Y="518.3264" Z="229.262" />
-								<Hotspot X="4475.299" Y="649.1726" Z="191.4169" />
-								<Hotspot X="4496.495" Y="744.3486" Z="181.2569" />
-								<Hotspot X="4477.998" Y="792.3724" Z="181.1873" />
-								<Hotspot X="4368.549" Y="871.2369" Z="175.4837" />
+								<Hotspot X="4042.293" Y="1179.808" Z="163.2804" />
+								<Hotspot X="3959.691" Y="1151.575" Z="166.0965" />
+								<Hotspot X="3930.58" Y="1010.384" Z="158.9478" />
+								<Hotspot X="3973.543" Y="969.1004" Z="159.216" />
+								<Hotspot X="4003.456" Y="903.0444" Z="152.7976" />
 							</HuntingGrounds>
 						</CustomBehavior>
 					</If>
@@ -2279,15 +2555,16 @@
 							<MoveTo Nav="Fly" DestName="The Iron Front" X="3992.573" Y="805.0379" Z="151.8674" />
 							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39444)" />
 						</While>
-						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" QuestId="39444"  NumOfTimes="1000" WaitTime="500" MobIds="90370, 93013" >
+						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" QuestId="39444" NumOfTimes="1000" WaitTime="500" MobIds="90370, 93013" >
 							<HuntingGrounds>
-								<Hotspot X="3997.606" Y="870.8727" Z="152.6829" />
-								<Hotspot X="3954.224" Y="782.0494" Z="153.6769" />
-								<Hotspot X="3979.948" Y="986.4142" Z="158.6335" />
+								<Hotspot X="4042.293" Y="1179.808" Z="163.2804" />
+								<Hotspot X="3959.691" Y="1151.575" Z="166.0965" />
 							</HuntingGrounds>
 						</CustomBehavior>
 					</If>
 				<!-- END Easy Pulls -->
+				<CustomBehavior File="Hooks\DoWhen" ActivityName="Use_Bandages" Command="Remove" />
+				<CustomBehavior File="Hooks\DoWhen" ActivityName="Obtain_Bandages" Command="Remove" />
 			</While>
 
 			<While Condition="!IsQuestCompleted(39450) &amp;&amp; !IsQuestCompleted(38449)" > <!-- Assault on the Temple of Sha'naar -->
@@ -2298,7 +2575,7 @@
 								<MoveTo Nav="Fly" DestName="Temple of Sha'naar" X="3612.619" Y="183.9686" Z="129.547" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39450)" />
 							</While>
-							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="39450"  NumOfTimes="1000" WaitTime="500" MobIds="240165, 90501, 90302, 90703, 92597" >
+							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="39450" NumOfTimes="1000" WaitTime="500" MobIds="240165, 90501, 90302, 90703, 92597" >
 								<HuntingGrounds>
 									<Hotspot Name="Entrace of Sha'naar" X="3620.049" Y="164.0029" Z="124.2737" />
 									<Hotspot Name="Mid Lower Terrace" X="3297.727" Y="287.6227" Z="117.0291" />
@@ -2316,7 +2593,7 @@
 								<MoveTo Nav="Fly" DestName="Temple of Sha'naar" X="3612.619" Y="183.9686" Z="129.547" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39450)" />
 							</While>
-							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearAll" QuestId="39450"  NumOfTimes="1000" WaitTime="500" MobIds="240165, 90501, 90302, 90703, 92597" >
+							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearAll" QuestId="39450" NumOfTimes="1000" WaitTime="500" MobIds="240165, 90501, 90302, 90703, 92597" >
 								<HuntingGrounds>
 									<Hotspot Name="Entrace of Sha'naar" X="3620.049" Y="164.0029" Z="124.2737" />
 									<Hotspot Name="Mid Lower Terrace" X="3297.727" Y="287.6227" Z="117.0291" />
@@ -2489,7 +2766,7 @@
 		</While>
 	<!-- END Saberstalker Grind -->
 
-	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: It seems that we're all finished up!  Heading back to base.&quot;);" />
+	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: It seems that we're all finished up! Heading back to base.&quot;);" />
 
 	<If Condition="Me.IsAlliance" >
 		<MoveTo Nav="Fly" DestName="Lion's Watch" X="3875.22" Y="-1311.72" Z="90.4673" />
