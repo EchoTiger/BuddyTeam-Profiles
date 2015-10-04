@@ -26,6 +26,7 @@
 		<Blackspot X="3890.472" Y="1033.717" Z="161.3772" Radius="17.98249" /> <!-- Objects+Bodies near sourthern Wargronn in Iron Hold. -->
 		<Blackspot X="3930.479" Y="947.4286" Z="158.092" Radius="15.64253" /> <!-- Objects+Bodies near mid-Wargronn in Iron Hold -->
 		<Blackspot X="3887.124" Y="913.0439" Z="155.2094" Radius="16.76551" /> <!-- Objects+Bodies near mid-Wargronn in Iron Hold -->
+		<Blackspot X="3947.078" Y="842.6931" Z="152.6834" Radius="2.589339" /> <!-- Banner in Iron Hold that conflicts with Avoid logic. -->
 	</Blackspots>
 
 	<Vendors>
@@ -473,16 +474,16 @@
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Battle At The Iron Front.&quot;);" />
 					<!-- Iron Front Healing Bandages -->
 						<CustomBehavior File="Hooks\DoWhen" AllowUseWhileMounted="true" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="false" ActivityName="Use_Bandages" UseWhen="!IsQuestCompleted(38051) &amp;&amp; HasItem(122139) &amp;&amp; ((Me.IsAlliance &amp;&amp; Unit(90443, u =&gt; u.HealthPercent &lt;= 25 &amp;&amp; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null) || (Me.IsHorde &amp;&amp; Unit(90452, u =&gt; u.HealthPercent &lt;= 25 &amp;&amp; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null))" >
-							<While Condition="HasItem(122139) &amp;&amp; (Me.IsAlliance &amp;&amp; Unit(90443, u =&gt; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null)" >
+							<While Condition="HasItem(122139) &amp;&amp; (Me.IsAlliance &amp;&amp; Unit(90443, u =&gt; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null) &amp;&amp; !IsQuestCompleted(38051)" >
 								<CustomBehavior File="InteractWith" Range="3" MobHpPercentLeft="25" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" MobId="90443" WaitForNpcs="false" />
 								<CustomBehavior File="WaitTimer" WaitTime="1000" />
 							</While>
-							<While Condition="HasItem(122139) &amp;&amp; (Me.IsHorde &amp;&amp; Unit(90452, u =&gt; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null)" >
+							<While Condition="HasItem(122139) &amp;&amp; (Me.IsHorde &amp;&amp; Unit(90452, u =&gt; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null) &amp;&amp; !IsQuestCompleted(38051)" >
 								<CustomBehavior File="InteractWith" Range="3" MobHpPercentLeft="25" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" MobId="90452" WaitForNpcs="false" />
 								<CustomBehavior File="WaitTimer" WaitTime="1000" />
 							</While>
 						</CustomBehavior>
-						<CustomBehavior File="Hooks\DoWhen" AllowUseWhileMounted="true" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="false" ActivityName="Obtain_Bandages" UseWhen="!IsQuestCompleted(38051) &amp;&amp; HasItem(122139) &amp;&amp; Object(239971, o =&gt; o.Distance &lt;= 30) != null" >
+						<CustomBehavior File="Hooks\DoWhen" AllowUseWhileMounted="true" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="false" ActivityName="Obtain_Bandages" UseWhen="!IsQuestCompleted(38051) &amp;&amp; HasItem(122139) &amp;&amp; Object(239971, o =&gt; o.Distance &lt;= 30) != null &amp;&amp; !IsQuestCompleted(38051)" >
 							<CustomBehavior File="InteractWith" Range="4" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" MobId="239971" WaitForNpcs="false" />
 						</CustomBehavior>
 					<!-- END Iron Front Healing Bandages -->
@@ -587,7 +588,7 @@
 								<MoveTo Nav="Fly" DestName="The Fel Forge" X="4472.133" Y="-697.1107" Z="33.81255" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38439)" />
 							</While>
-							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MobState="AliveNotInCombat" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" MobIds="241669, 91721, 91901, 92741" QuestId="38440" NumOfTimes="1000" WaitTime="500" >
+							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MobState="AliveNotInCombat" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" MobIds="241669, 91721, 91901, 92741, 241507" QuestId="38440" NumOfTimes="1000" WaitTime="500" >
 								<HuntingGrounds>
 									<Hotspot X="4421.958" Y="-871.004" Z="43.66127" />
 									<Hotspot X="4233.836" Y="-831.981" Z="25.86019" />
@@ -605,7 +606,7 @@
 								<MoveTo Nav="Fly" DestName="The Fel Forge" X="4472.133" Y="-697.1107" Z="33.81255" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(38439)" />
 							</While>
-							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MobState="AliveNotInCombat" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" MobIds="241669, 91721, 91901, 92741" QuestId="38440" NumOfTimes="1000" WaitTime="500" >
+							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MobState="AliveNotInCombat" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" MobIds="241669, 91721, 91901, 92741, 241507" QuestId="38440" NumOfTimes="1000" WaitTime="500" >
 								<HuntingGrounds>
 									<Hotspot X="4421.958" Y="-871.004" Z="43.66127" />
 									<Hotspot X="4233.836" Y="-831.981" Z="25.86019" />
@@ -1244,11 +1245,11 @@
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Battle At The Iron Front.&quot;);" />
 					<!-- Iron Front Healing Bandages -->
 						<CustomBehavior File="Hooks\DoWhen" AllowUseWhileMounted="true" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="false" ActivityName="Use_Bandages" UseWhen="!IsQuestCompleted(38054) &amp;&amp; HasItem(122139) &amp;&amp; ((Me.IsAlliance &amp;&amp; Unit(90443, u =&gt; u.HealthPercent &lt;= 25 &amp;&amp; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null) || (Me.IsHorde &amp;&amp; Unit(90452, u =&gt; u.HealthPercent &lt;= 25 &amp;&amp; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null))" >
-							<While Condition="HasItem(122139) &amp;&amp; (Me.IsAlliance &amp;&amp; Unit(90443, u =&gt; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null)" >
+							<While Condition="HasItem(122139) &amp;&amp; (Me.IsAlliance &amp;&amp; Unit(90443, u =&gt; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null) &amp;&amp; !IsQuestCompleted(38054)" >
 								<CustomBehavior File="InteractWith" Range="3" MobHpPercentLeft="25" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" MobId="90443" WaitForNpcs="false" />
 								<CustomBehavior File="WaitTimer" WaitTime="1000" />
 							</While>
-							<While Condition="HasItem(122139) &amp;&amp; (Me.IsHorde &amp;&amp; Unit(90452, u =&gt; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null)" >
+							<While Condition="HasItem(122139) &amp;&amp; (Me.IsHorde &amp;&amp; Unit(90452, u =&gt; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null) &amp;&amp; !IsQuestCompleted(38054)" >
 								<CustomBehavior File="InteractWith" Range="3" MobHpPercentLeft="25" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" MobId="90452" WaitForNpcs="false" />
 								<CustomBehavior File="WaitTimer" WaitTime="1000" />
 							</While>
@@ -1377,7 +1378,7 @@
 								<MoveTo Nav="Fly" DestName="The Fel Forge" X="4472.133" Y="-697.1107" Z="33.81255" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(37970)" />
 							</While>
-							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MobState="AliveNotInCombat" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" MobIds="241669, 91721, 91901, 92741" QuestId="38441" NumOfTimes="1000" WaitTime="500" >
+							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MobState="AliveNotInCombat" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" MobIds="241669, 91721, 91901, 92741, 241507" QuestId="38441" NumOfTimes="1000" WaitTime="500" >
 								<HuntingGrounds>
 									<Hotspot X="4421.958" Y="-871.004" Z="43.66127" />
 									<Hotspot X="4233.836" Y="-831.981" Z="25.86019" />
@@ -1395,7 +1396,7 @@
 								<MoveTo Nav="Fly" DestName="The Fel Forge" X="4472.133" Y="-697.1107" Z="33.81255" />
 								<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(37970)" />
 							</While>
-							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MobState="AliveNotInCombat" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" MobIds="241669, 91721, 91901, 92741" QuestId="38441" NumOfTimes="1000" WaitTime="500" >
+							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MobState="AliveNotInCombat" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" MobIds="241669, 91721, 91901, 92741, 241507" QuestId="38441" NumOfTimes="1000" WaitTime="500" >
 								<HuntingGrounds>
 									<Hotspot X="4421.958" Y="-871.004" Z="43.66127" />
 									<Hotspot X="4233.836" Y="-831.981" Z="25.86019" />
@@ -1931,7 +1932,6 @@
 	<!-- END Saberstalker Tooth and Claw -->
 
 	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: All dailies are complete for today!&quot;);" />
-	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Checking to see if we have any other objective zones to complete..&quot;);" />
 
 	<!-- [Alliance] Complete all remaining objective zones -->
 		<!-- ZoneBonusQID && PlanningMapQID -->
@@ -1944,7 +1944,7 @@
 							<MoveTo Nav="Fly" DestName="The Fel Forge" X="4472.133" Y="-697.1107" Z="33.81255" />
 							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39445)" />
 						</While>
-						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MobState="AliveNotInCombat" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" MobIds="241669, 91721, 91901, 92741" QuestId="39445" NumOfTimes="1000" WaitTime="500" >
+						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MobState="AliveNotInCombat" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" MobIds="241669, 91721, 91901, 92741, 241507" QuestId="39445" NumOfTimes="1000" WaitTime="500" >
 							<HuntingGrounds>
 								<Hotspot X="4421.958" Y="-871.004" Z="43.66127" />
 								<Hotspot X="4233.836" Y="-831.981" Z="25.86019" />
@@ -1962,7 +1962,7 @@
 							<MoveTo Nav="Fly" DestName="The Fel Forge" X="4472.133" Y="-697.1107" Z="33.81255" />
 							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39445)" />
 						</While>
-						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MobState="AliveNotInCombat" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" MobIds="241669, 91721, 91901, 92741" QuestId="39445" NumOfTimes="1000" WaitTime="500" >
+						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MobState="AliveNotInCombat" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" MobIds="241669, 91721, 91901, 92741, 241507" QuestId="39445" NumOfTimes="1000" WaitTime="500" >
 							<HuntingGrounds>
 								<Hotspot X="4421.958" Y="-871.004" Z="43.66127" />
 								<Hotspot X="4233.836" Y="-831.981" Z="25.86019" />
@@ -2130,11 +2130,11 @@
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Completing Assault on the Iron Front.&quot;);" />
 				<!-- Iron Front Healing Bandages -->
 					<CustomBehavior File="Hooks\DoWhen" AllowUseWhileMounted="true" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="false" ActivityName="Use_Bandages" UseWhen="!IsQuestCompleted(38866) &amp;&amp; HasItem(122139) &amp;&amp; ((Me.IsAlliance &amp;&amp; Unit(90443, u =&gt; u.HealthPercent &lt;= 25 &amp;&amp; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null) || (Me.IsHorde &amp;&amp; Unit(90452, u =&gt; u.HealthPercent &lt;= 25 &amp;&amp; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null))" >
-						<While Condition="HasItem(122139) &amp;&amp; (Me.IsAlliance &amp;&amp; Unit(90443, u =&gt; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null)" >
+						<While Condition="HasItem(122139) &amp;&amp; (Me.IsAlliance &amp;&amp; Unit(90443, u =&gt; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null) &amp;&amp; !IsQuestCompleted(38866)" >
 							<CustomBehavior File="InteractWith" Range="3" MobHpPercentLeft="25" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" MobId="90443" WaitForNpcs="false" />
 							<CustomBehavior File="WaitTimer" WaitTime="1000" />
 						</While>
-						<While Condition="HasItem(122139) &amp;&amp; (Me.IsHorde &amp;&amp; Unit(90452, u =&gt; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null)" >
+						<While Condition="HasItem(122139) &amp;&amp; (Me.IsHorde &amp;&amp; Unit(90452, u =&gt; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null) &amp;&amp; !IsQuestCompleted(38866)" >
 							<CustomBehavior File="InteractWith" Range="3" MobHpPercentLeft="25" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" MobId="90452" WaitForNpcs="false" />
 							<CustomBehavior File="WaitTimer" WaitTime="1000" />
 						</While>
@@ -2182,11 +2182,11 @@
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Completing Assault on the Iron Front.&quot;);" />
 					<!-- Iron Front Healing Bandages -->
 						<CustomBehavior File="Hooks\DoWhen" AllowUseWhileMounted="true" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="false" ActivityName="Use_Bandages" UseWhen="!IsQuestCompleted(39443) &amp;&amp; HasItem(122139) &amp;&amp; ((Me.IsAlliance &amp;&amp; Unit(90443, u =&gt; u.HealthPercent &lt;= 25 &amp;&amp; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null) || (Me.IsHorde &amp;&amp; Unit(90452, u =&gt; u.HealthPercent &lt;= 25 &amp;&amp; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null))" >
-							<While Condition="HasItem(122139) &amp;&amp; (Me.IsAlliance &amp;&amp; Unit(90443, u =&gt; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null)" >
+							<While Condition="HasItem(122139) &amp;&amp; (Me.IsAlliance &amp;&amp; Unit(90443, u =&gt; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null) &amp;&amp; !IsQuestCompleted(39443)" >
 								<CustomBehavior File="InteractWith" Range="3" MobHpPercentLeft="25" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" MobId="90443" WaitForNpcs="false" />
 								<CustomBehavior File="WaitTimer" WaitTime="1000" />
 							</While>
-							<While Condition="HasItem(122139) &amp;&amp; (Me.IsHorde &amp;&amp; Unit(90452, u =&gt; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null)" >
+							<While Condition="HasItem(122139) &amp;&amp; (Me.IsHorde &amp;&amp; Unit(90452, u =&gt; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null) &amp;&amp; !IsQuestCompleted(39443)" >
 								<CustomBehavior File="InteractWith" Range="3" MobHpPercentLeft="25" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" MobId="90452" WaitForNpcs="false" />
 								<CustomBehavior File="WaitTimer" WaitTime="1000" />
 							</While>
@@ -2279,7 +2279,7 @@
 							<MoveTo Nav="Fly" DestName="The Fel Forge" X="4472.133" Y="-697.1107" Z="33.81255" />
 							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39446)" />
 						</While>
-						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MobState="AliveNotInCombat" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" MobIds="241669, 91721, 91901, 92741" QuestId="39446" NumOfTimes="1000" WaitTime="500" >
+						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MobState="AliveNotInCombat" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" MobIds="241669, 91721, 91901, 92741, 241507" QuestId="39446" NumOfTimes="1000" WaitTime="500" >
 							<HuntingGrounds>
 								<Hotspot X="4421.958" Y="-871.004" Z="43.66127" />
 								<Hotspot X="4233.836" Y="-831.981" Z="25.86019" />
@@ -2297,7 +2297,7 @@
 							<MoveTo Nav="Fly" DestName="The Fel Forge" X="4472.133" Y="-697.1107" Z="33.81255" />
 							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(39446)" />
 						</While>
-						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MobState="AliveNotInCombat" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" MobIds="241669, 91721, 91901, 92741" QuestId="39446" NumOfTimes="1000" WaitTime="500" >
+						<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MobState="AliveNotInCombat" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsThatWillAggro" MobIds="241669, 91721, 91901, 92741, 241507" QuestId="39446" NumOfTimes="1000" WaitTime="500" >
 							<HuntingGrounds>
 								<Hotspot X="4421.958" Y="-871.004" Z="43.66127" />
 								<Hotspot X="4233.836" Y="-831.981" Z="25.86019" />
@@ -2467,11 +2467,11 @@
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Completing Assault on the Iron Front.&quot;);" />
 				<!-- Iron Front Healing Bandages -->
 					<CustomBehavior File="Hooks\DoWhen" AllowUseWhileMounted="true" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="false" ActivityName="Use_Bandages" UseWhen="!IsQuestCompleted(38865) &amp;&amp; HasItem(122139) &amp;&amp; ((Me.IsAlliance &amp;&amp; Unit(90443, u =&gt; u.HealthPercent &lt;= 25 &amp;&amp; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null) || (Me.IsHorde &amp;&amp; Unit(90452, u =&gt; u.HealthPercent &lt;= 25 &amp;&amp; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null))" >
-						<While Condition="HasItem(122139) &amp;&amp; (Me.IsAlliance &amp;&amp; Unit(90443, u =&gt; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null)" >
+						<While Condition="HasItem(122139) &amp;&amp; (Me.IsAlliance &amp;&amp; Unit(90443, u =&gt; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null) &amp;&amp; !IsQuestCompleted(38865)" >
 							<CustomBehavior File="InteractWith" Range="3" MobHpPercentLeft="25" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" MobId="90443" WaitForNpcs="false" />
 							<CustomBehavior File="WaitTimer" WaitTime="1000" />
 						</While>
-						<While Condition="HasItem(122139) &amp;&amp; (Me.IsHorde &amp;&amp; Unit(90452, u =&gt; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null)" >
+						<While Condition="HasItem(122139) &amp;&amp; (Me.IsHorde &amp;&amp; Unit(90452, u =&gt; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null) &amp;&amp; !IsQuestCompleted(38865)" >
 							<CustomBehavior File="InteractWith" Range="3" MobHpPercentLeft="25" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" MobId="90452" WaitForNpcs="false" />
 							<CustomBehavior File="WaitTimer" WaitTime="1000" />
 						</While>
@@ -2519,11 +2519,11 @@
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Completing Assault on the Iron Front.&quot;);" />
 				<!-- Iron Front Healing Bandages -->
 					<CustomBehavior File="Hooks\DoWhen" AllowUseWhileMounted="true" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="false" ActivityName="Use_Bandages" UseWhen="!IsQuestCompleted(39444) &amp;&amp; HasItem(122139) &amp;&amp; ((Me.IsAlliance &amp;&amp; Unit(90443, u =&gt; u.HealthPercent &lt;= 25 &amp;&amp; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null) || (Me.IsHorde &amp;&amp; Unit(90452, u =&gt; u.HealthPercent &lt;= 25 &amp;&amp; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null))" >
-						<While Condition="HasItem(122139) &amp;&amp; (Me.IsAlliance &amp;&amp; Unit(90443, u =&gt; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null)" >
+						<While Condition="HasItem(122139) &amp;&amp; (Me.IsAlliance &amp;&amp; Unit(90443, u =&gt; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null) &amp;&amp; !IsQuestCompleted(39444)" >
 							<CustomBehavior File="InteractWith" Range="3" MobHpPercentLeft="25" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" MobId="90443" WaitForNpcs="false" />
 							<CustomBehavior File="WaitTimer" WaitTime="1000" />
 						</While>
-						<While Condition="HasItem(122139) &amp;&amp; (Me.IsHorde &amp;&amp; Unit(90452, u =&gt; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null)" >
+						<While Condition="HasItem(122139) &amp;&amp; (Me.IsHorde &amp;&amp; Unit(90452, u =&gt; u.Distance &lt; 65 &amp;&amp; !Bots.DungeonBuddy.Avoidance.AvoidanceManager.Avoids.Any(a => a.IsPointInAvoid(u.Location))) != null) &amp;&amp; !IsQuestCompleted(39444)" >
 							<CustomBehavior File="InteractWith" Range="3" MobHpPercentLeft="25" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" MobId="90452" WaitForNpcs="false" />
 							<CustomBehavior File="WaitTimer" WaitTime="1000" />
 						</While>
