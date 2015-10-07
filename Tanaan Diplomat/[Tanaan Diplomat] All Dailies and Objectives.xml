@@ -146,7 +146,7 @@
 				<!-- Use on units attacking us. -->
 				<If Condition="Me.Combat &amp;&amp; Me.GotTarget" >
 					<!-- ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 1 Use this if issues occur. -->
-					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Using True Iron Bomb on mobs attacking us.&quot;);" />
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Using Objective Item on mobs attacking us.&quot;);" />
 					<DisableBehavior Name="Combat" />
 					<CustomBehavior File="RunCode" > <!-- Instead of using CurrentTarget, perhaps we should use ObjectManager to get the location of the closest hostile -->
 					<![CDATA[
@@ -686,258 +686,19 @@
 				</While>
 			<!-- END [Order of the Awakened] Pickup Daily Quest Attempt#2 -->
 
-			<!-- DO Randomized Daily from Vindicator Krethos -->
-				<!-- No easy pull version of this. It's a group quest, so we may have to force the bot to avoid it. -->
-				<!-- <While Condition="HasQuest(39573) &amp;&amp; !IsQuestCompleted(39573)" > [GROUP] Harnessing Their Power 
-					<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="2" ExpiryTime="45" Text="[WARNING]\n\nThe daily we picked up is a group quest.\n\nIf you continue, the bot will attempt to finish it however you may get into a death loop if you are undergeared or a caster class." />
-					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Harnessing Their Power.&quot;);" />
-					<MoveTo Nav="Fly" DestName="The Iron Front" X="4025.265" Y="1064.812" Z="167.5833" />
-					<SetGrindArea>
-						<GrindArea>
-							<MobIds>90585</MobIds>
-							<Hotspots>
-								<Hotspot Name="Iron Front 0" X="3997.606" Y="870.8727" Z="152.6829" />
-								<Hotspot Name="Iron Front 1" X="3954.224" Y="782.0494" Z="153.6769" />
-								<Hotspot Name="Iron Front 2" X="3979.948" Y="986.4142" Z="158.6335" />
-							</Hotspots>
-						</GrindArea>
-					</SetGrindArea>
-					<GrindUntil Condition="IsQuestCompleted(39573)" GoalText="Harnessing Their Power"/>
-				</While> -->
-
-				<While Condition="HasQuest(39571) &amp;&amp; !IsQuestCompleted(39571)" > <!-- Disarming Sha'naar -->
-					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Disarming Sha'naar.&quot;);" />
-					<!-- Hard Pulls -->
-						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="39571" NumOfTimes="1000" WaitTime="500" MobIds="243794" >
-								<HuntingGrounds>
-									<Hotspot Name="Entrace of Sha'naar" X="3620.049" Y="164.0029" Z="124.2737" />
-									<Hotspot Name="Mid Lower Terrace" X="3297.727" Y="287.6227" Z="117.0291" />
-									<Hotspot Name="Inside of cave, in big room" X="3526.195" Y="243.0635" Z="138.8644" />
-								</HuntingGrounds>
-							</CustomBehavior>
+			<!-- Disarming Sha'naar hook -->
+				<If Condition="HasQuest(39571) &amp;&amp; !IsQuestCompleted(39571)" > <!-- Disarming Sha'naar -->
+					<CustomBehavior File="Hooks\DoWhen" AllowUseWhileMounted="true" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="false" ActivityName="Get_ShanaarCrystal" UseWhen="!IsQuestCompleted(39571) &amp;&amp; Object(243794, o =&gt; o.Distance &lt; 70) != null" >
+						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Grabbing a Crystal for Disarming Sha'naar.&quot;);" />
+						<CustomBehavior File="InteractWith" MovementBy="NavigatorOnly" MobId="243794" WaitForNpcs="false" TerminateWhen="IsQuestCompleted(39571)" />
+						<CustomBehavior File="WaitTimer" WaitTime="1000" />
+						<If Condition="IsQuestCompleted(39571)" >
+							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Shutting off Sha'naar Crystal hook.&quot;);" />
+							<CustomBehavior File="Hooks\DoWhen" ActivityName="Get_ShanaarCrystal" Command="Remove" />
 						</If>
-					<!-- END Hard Pulls -->
-					<!-- Easy Pulls -->
-						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearAll" QuestId="39571" NumOfTimes="1000" WaitTime="500" MobIds="243794" >
-								<HuntingGrounds>
-									<Hotspot Name="Entrace of Sha'naar" X="3620.049" Y="164.0029" Z="124.2737" />
-									<Hotspot Name="Mid Lower Terrace" X="3297.727" Y="287.6227" Z="117.0291" />
-								</HuntingGrounds>
-							</CustomBehavior>
-						</If>
-					<!-- END Easy Pulls -->
-				</While>
-
-				<While Condition="HasQuest(39570) &amp;&amp; !IsQuestCompleted(39570)" > <!-- Secrets of the Shadow Council -->
-					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Secrets of the Shadow Council.&quot;);" />
-					<!-- Hard Pulls -->
-						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-							<SetGrindArea>
-								<GrindArea>
-									<MobIds>90649, 90607, 90312, 90654, 89748</MobIds>
-									<Hotspots>
-										<Hotspot X="4560.763" Y="443.0881" Z="229.8193" />
-										<Hotspot X="4526.892" Y="518.3264" Z="229.262" />
-										<Hotspot X="4475.299" Y="649.1726" Z="191.4169" />
-										<Hotspot X="4496.495" Y="744.3486" Z="181.2569" />
-										<Hotspot X="4477.998" Y="792.3724" Z="181.1873" />
-										<Hotspot X="4368.549" Y="871.2369" Z="175.4837" />
-									</Hotspots>
-								</GrindArea>
-							</SetGrindArea>
-							<GrindUntil Condition="IsQuestCompleted(39570)" />
-						</If>
-					<!-- END Hard Pulls -->
-					<!-- Easy Pulls -->
-						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-							<SetGrindArea>
-								<GrindArea>
-									<MobIds>90649, 90607, 90312, 90654, 89748</MobIds>
-									<Hotspots>
-										<Hotspot X="4513.263" Y="472.1714" Z="228.9365" />
-										<Hotspot X="4577.068" Y="478.2981" Z="229.146" />
-										<Hotspot X="4550.217" Y="544.4664" Z="229.3091" />
-										<Hotspot X="4472.96" Y="650.1429" Z="192.0173" />
-										<Hotspot X="4624.967" Y="590.0174" Z="203.0758" />
-									</Hotspots>
-								</GrindArea>
-							</SetGrindArea>
-							<GrindUntil Condition="IsQuestCompleted(39570)" />
-						</If>
-					<!-- END Easy Pulls -->
-				</While>
-				<!-- Could wedge Pavkin's second quest here -->
-
-				<While Condition="HasQuest(39586) &amp;&amp; !IsQuestCompleted(39586)" > <!-- [Pavnik] Bringing Down the Iron Horde -->
-					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Bringing Down the Iron Horde.&quot;);" />
-					<!-- Hard Pulls -->
-						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-							<SetGrindArea>
-								<GrindArea>
-									<MobIds>90066, 91760, 91764, 91721, 89754, 93370</MobIds>
-									<Hotspots>
-										<Hotspot X="4314.433" Y="-1025.236" Z="21.86001" />
-										<Hotspot X="4378.459" Y="-914.2455" Z="34.72607" />
-										<Hotspot X="4478.62" Y="-985.8022" Z="38.02435" />
-										<Hotspot X="4668.208" Y="-878.8555" Z="99.33451" />
-									</Hotspots>
-								</GrindArea>
-							</SetGrindArea>
-							<GrindUntil Condition="IsQuestCompleted(39586)" />
-						</If>
-					<!-- END Hard Pulls -->
-					<!-- Easy Pulls :: Same as hard, make edits if too hard. -->
-						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-							<SetGrindArea>
-								<GrindArea>
-									<MobIds>90066, 91760, 91764, 91721, 89754, 93370</MobIds>
-									<Hotspots>
-										<Hotspot X="4314.433" Y="-1025.236" Z="21.86001" />
-										<Hotspot X="4378.459" Y="-914.2455" Z="34.72607" />
-										<Hotspot X="4478.62" Y="-985.8022" Z="38.02435" />
-										<Hotspot X="4668.208" Y="-878.8555" Z="99.33451" />
-									</Hotspots>
-								</GrindArea>
-							</SetGrindArea>
-							<GrindUntil Condition="IsQuestCompleted(39586)" />
-						</If>
-					<!-- END Easy Pulls -->
-				</While>
-
-				<While Condition="HasQuest(39569) &amp;&amp; !IsQuestCompleted(39569)" > <!-- Breaking Their Fel Bonds -->
-					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Breaking Their Fel Bonds.&quot;);" />
-					<!-- Hard Pulls -->
-						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MobState="AliveNotInCombat" InteractByLooting="true" NumOfTimes="1000" WaitTime="500" ProactiveCombatStrategy="ClearAll" PreInteractMountStrategy="Dismount" MobIds="90066, 91760, 91721, 89754, 93370" QuestId="39569" >
-								<HuntingGrounds>
-									<Hotspot X="4314.433" Y="-1025.236" Z="21.86001" />
-									<Hotspot X="4378.459" Y="-914.2455" Z="34.72607" />
-									<Hotspot X="4478.62" Y="-985.8022" Z="38.02435" />
-									<Hotspot X="4668.208" Y="-878.8555" Z="99.33451" />
-								</HuntingGrounds>
-							</CustomBehavior>
-						</If>
-					<!-- END Hard Pulls -->
-					<!-- Easy Pulls :: Same as hard, make edits if too hard. -->
-						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MobState="AliveNotInCombat" InteractByLooting="true" NumOfTimes="1000" WaitTime="500" ProactiveCombatStrategy="ClearAll" PreInteractMountStrategy="Dismount" MobIds="90066, 91760, 91721, 89754, 93370" QuestId="39569" >
-								<HuntingGrounds>
-									<Hotspot X="4314.433" Y="-1025.236" Z="21.86001" />
-									<Hotspot X="4378.459" Y="-914.2455" Z="34.72607" />
-									<Hotspot X="4478.62" Y="-985.8022" Z="38.02435" />
-									<Hotspot X="4668.208" Y="-878.8555" Z="99.33451" />
-								</HuntingGrounds>
-							</CustomBehavior>
-						</If>
-					<!-- END Easy Pulls -->
-				</While>
-
-				<While Condition="HasQuest(39568) &amp;&amp; !IsQuestCompleted(39568)" > <!-- A Little Wetwork -->
-					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - A Little Wetwork.&quot;);" />
-					<!-- Hard Pulls -->
-						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-							<MoveTo Nav="Fly" DestName="Ironhold Harbor" X="4583.305" Y="-399.9979" Z="10.69125" />
-							<SetGrindArea>
-								<GrindArea>
-									<MobIds>89857, 90136, 89777, 89810, 89935, 89936, 91832</MobIds>
-									<Hotspots>
-										<Hotspot X="4583.305" Y="-399.9979" Z="10.69125" />
-										<Hotspot X="4592.449" Y="-238.1564" Z="10.7333" />
-										<Hotspot X="4770.981" Y="-244.9629" Z="4.211271" />
-										<Hotspot X="4786.581" Y="-386.6306" Z="4.258256" />
-										<Hotspot X="4644.233" Y="-483.5012" Z="21.41648" />
-										<Hotspot X="4581.786" Y="-506.2161" Z="21.41869" />
-									</Hotspots>
-								</GrindArea>
-							</SetGrindArea>
-							<GrindUntil Condition="IsQuestCompleted(39568)" />
-						</If>
-					<!-- END Hard Pulls -->
-					<!-- Easy Pulls -->
-						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-							<MoveTo Nav="Fly" DestName="Ironhold Harbor" X="4633.494" Y="-578.2945" Z="44.38635" />
-							<SetGrindArea>
-								<GrindArea>
-									<MobIds>89857, 90136, 89777, 89810, 89935, 89936, 91832</MobIds>
-									<Hotspots>
-										<Hotspot X="4658.131" Y="-552.9175" Z="36.25991" />
-										<Hotspot X="4634.374" Y="-493.1973" Z="21.42153" />
-										<Hotspot X="4693.737" Y="-519.6089" Z="47.37726" />
-										<Hotspot X="4760.93" Y="-479.2505" Z="37.17424" />
-									</Hotspots>
-								</GrindArea>
-							</SetGrindArea>
-							<GrindUntil Condition="IsQuestCompleted(39568)" />
-						</If>
-					<!-- END Easy Pulls -->
-				</While>
-
-				<While Condition="HasQuest(39567) &amp;&amp; !IsQuestCompleted(39567)" > <!-- Bloodied Blades of Zeth'Gol -->
-					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Bloodied Blades of Zeth'Gol.&quot;);" />
-					<!-- Hard Pulls -->
-						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-							<SetGrindArea>
-								<GrindArea>
-									<MobIds>90851, 89699, 89703, 89705</MobIds>
-									<Hotspots>
-										<Hotspot X="4310.75" Y="431.8437" Z="175.2454" />
-										<Hotspot X="4318.75" Y="372.2255" Z="176.6174" />
-										<Hotspot X="4223.525" Y="552.8775" Z="173.4002" />
-										<Hotspot X="4152.482" Y="654.0584" Z="162.6546" />
-										<Hotspot X="4117.844" Y="594.8691" Z="162.812" />
-									</Hotspots>
-								</GrindArea>
-							</SetGrindArea>
-							<GrindUntil Condition="IsQuestCompleted(39567)" />
-						</If>
-					<!-- END Hard Pulls -->
-					<!-- Easy Pulls -->
-						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-							<SetGrindArea>
-								<GrindArea>
-									<MobIds>90851, 89699, 89703, 89705</MobIds>
-									<Hotspots>
-										<Hotspot X="4031.807" Y="513.1544" Z="142.0807" />
-										<Hotspot X="4083.947" Y="439.1315" Z="140.3514" />
-										<Hotspot X="4090.982" Y="508.5185" Z="141.1908" />
-									</Hotspots>
-								</GrindArea>
-							</SetGrindArea>
-							<GrindUntil Condition="IsQuestCompleted(39567)" />
-						</If>
-					<!-- END Easy Pulls -->
-				</While>
-			<!-- END DO Randomized Daily from Vindicator Krethos -->
-
-			<!-- Turnin Randomized Daily from Vindicator Krethos -->
-				<If Condition="(HasQuest(39573) &amp;&amp; IsQuestCompleted(39573)) || (HasQuest(39571) &amp;&amp; IsQuestCompleted(39571)) || (HasQuest(39570) &amp;&amp; IsQuestCompleted(39570)) || (HasQuest(39569) &amp;&amp; IsQuestCompleted(39569)) || (HasQuest(39568) &amp;&amp; IsQuestCompleted(39568)) || (HasQuest(39567) &amp;&amp; IsQuestCompleted(39567)) || (HasQuest(39586) &amp;&amp; IsQuestCompleted(39586))" >
-					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Turning in Vindicator Krethos' quest.&quot;);" />
-					<MoveTo Nav="Fly" DestName="Lion's Den" X="3839.431" Y="-1338.118" Z="93.82421" />
+					</CustomBehavior>
 				</If>
-				<While Condition="HasQuest(39573) &amp;&amp; IsQuestCompleted(39573)" >
-					<TurnIn QuestName="Harnessing Their Power" QuestId="39573" TurnInName="Vindicator Krethos" TurnInId="90974" />
-				</While>
-				<While Condition="HasQuest(39571) &amp;&amp; IsQuestCompleted(39571)" >
-					<TurnIn QuestName="Disarming Sha'naar" QuestId="39571" TurnInName="Vindicator Krethos" TurnInId="90974" />
-				</While>
-				<While Condition="HasQuest(39570) &amp;&amp; IsQuestCompleted(39570)" >
-					<TurnIn QuestName="Secrets of the Shadow Council" QuestId="39570" TurnInName="Vindicator Krethos" TurnInId="90974" />
-				</While>
-				<While Condition="HasQuest(39569) &amp;&amp; IsQuestCompleted(39569)" >
-					<TurnIn QuestName="Breaking Their Fel Bonds" QuestId="39569" TurnInName="Vindicator Krethos" TurnInId="90974" />
-				</While>
-				<While Condition="HasQuest(39568) &amp;&amp; IsQuestCompleted(39568)" >
-					<TurnIn QuestName="A Little Wetwork" QuestId="39568" TurnInName="Vindicator Krethos" TurnInId="90974" />
-				</While>
-				<While Condition="HasQuest(39567) &amp;&amp; IsQuestCompleted(39567)" >
-					<TurnIn QuestName="Bloodied Blades of Zeth'Gol" QuestId="39567" TurnInName="Vindicator Krethos" TurnInId="90974" />
-				</While>
-				<While Condition="HasQuest(39586) &amp;&amp; IsQuestCompleted(39586)" > <!-- [Pavnik] -->
-					<TurnIn QuestName="Bringing Down the Iron Horde" QuestId="39586" TurnInName="Parvink" TurnInId="96147" />
-				</While>
-			<!-- END Turnin Randomized Daily from Vindicator Krethos -->
+			<!-- END Disarming Sha'naar hook -->
 
 			<!-- [Order of the Awakened] Introductory Quest Complete? Attempt#2 -->
 				<While Condition="HasQuest(39432) &amp;&amp; IsQuestCompleted(39432)" >
@@ -1476,222 +1237,21 @@
 				</While>
 			<!-- END [Order of the Awakened] Pickup Daily Quest Attempt#2 -->
 
-			<!-- DO Randomized Daily from Shadow Hunter Denjai -->
-				<!-- No easy pull version of this. It's a group quest, so we may have to force the bot to avoid it. -->
-				<!-- <While Condition="HasQuest(39514) &amp;&amp; !IsQuestCompleted(39514)" > [GROUP] Harnessing Their Power 
-					<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="2" ExpiryTime="45" Text="[WARNING]\n\nThe daily we picked up is a group quest.\n\nIf you continue, the bot will attempt to finish it however you may get into a death loop if you are undergeared or a caster class." />
-					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Harnessing Their Power.&quot;);" />
-					<MoveTo Nav="Fly" DestName="The Iron Front" X="4025.265" Y="1064.812" Z="167.5833" />
-					<SetGrindArea>
-						<GrindArea>
-							<MobIds>90585</MobIds>
-							<Hotspots>
-								<Hotspot Name="Iron Front 0" X="3997.606" Y="870.8727" Z="152.6829" />
-								<Hotspot Name="Iron Front 1" X="3954.224" Y="782.0494" Z="153.6769" />
-								<Hotspot Name="Iron Front 2" X="3979.948" Y="986.4142" Z="158.6335" />
-							</Hotspots>
-						</GrindArea>
-					</SetGrindArea>
-					<GrindUntil Condition="IsQuestCompleted(39514)" GoalText="Harnessing Their Power"/>
-				</While> -->
+			<!-- Disarming Sha'naar, would be included at the end - but it requires object interaction which complicates things. -->
 
-				<While Condition="HasQuest(39513) &amp;&amp; !IsQuestCompleted(39513)" > <!-- Disarming Sha'naar -->
-					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Disarming Sha'naar.&quot;);" />
-					<!-- Hard Pulls -->
-						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="39513" NumOfTimes="1000" WaitTime="500" MobIds="243794" >
-								<HuntingGrounds>
-									<Hotspot Name="Entrace of Sha'naar" X="3620.049" Y="164.0029" Z="124.2737" />
-									<Hotspot Name="Mid Lower Terrace" X="3297.727" Y="287.6227" Z="117.0291" />
-									<Hotspot Name="Inside of cave, in big room" X="3526.195" Y="243.0635" Z="138.8644" />
-								</HuntingGrounds>
-							</CustomBehavior>
+			<!-- Disarming Sha'naar hook -->
+				<If Condition="HasQuest(39513) &amp;&amp; !IsQuestCompleted(39513)" > <!-- Disarming Sha'naar -->
+					<CustomBehavior File="Hooks\DoWhen" AllowUseWhileMounted="true" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="false" ActivityName="Get_ShanaarCrystal" UseWhen="!IsQuestCompleted(39513) &amp;&amp; Object(243794, o =&gt; o.Distance &lt; 70) != null" >
+						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Grabbing a Crystal for Disarming Sha'naar.&quot;);" />
+						<CustomBehavior File="InteractWith" MovementBy="NavigatorOnly" MobId="243794" WaitForNpcs="false" TerminateWhen="IsQuestCompleted(39513)" />
+						<CustomBehavior File="WaitTimer" WaitTime="1000" />
+						<If Condition="IsQuestCompleted(39513)" >
+							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Shutting off Sha'naar Crystal hook.&quot;);" />
+							<CustomBehavior File="Hooks\DoWhen" ActivityName="Get_ShanaarCrystal" Command="Remove" />
 						</If>
-					<!-- END Hard Pulls -->
-					<!-- Easy Pulls -->
-						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-							<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearAll" QuestId="39513" NumOfTimes="1000" WaitTime="500" MobIds="243794" >
-								<HuntingGrounds>
-									<Hotspot Name="Entrace of Sha'naar" X="3620.049" Y="164.0029" Z="124.2737" />
-									<Hotspot Name="Mid Lower Terrace" X="3297.727" Y="287.6227" Z="117.0291" />
-								</HuntingGrounds>
-							</CustomBehavior>
-						</If>
-					<!-- END Easy Pulls -->
-				</While>
-
-				<While Condition="HasQuest(39512) &amp;&amp; !IsQuestCompleted(39512)" > <!-- Secrets of the Shadow Council -->
-					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Secrets of the Shadow Council.&quot;);" />
-					<!-- Hard Pulls -->
-						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-							<SetGrindArea>
-								<GrindArea>
-									<MobIds>90649, 90607, 90312, 90654, 89748</MobIds>
-									<Hotspots>
-										<Hotspot X="4560.763" Y="443.0881" Z="229.8193" />
-										<Hotspot X="4526.892" Y="518.3264" Z="229.262" />
-										<Hotspot X="4475.299" Y="649.1726" Z="191.4169" />
-										<Hotspot X="4496.495" Y="744.3486" Z="181.2569" />
-										<Hotspot X="4477.998" Y="792.3724" Z="181.1873" />
-										<Hotspot X="4368.549" Y="871.2369" Z="175.4837" />
-									</Hotspots>
-								</GrindArea>
-							</SetGrindArea>
-							<GrindUntil Condition="IsQuestCompleted(39512)" />
-						</If>
-					<!-- END Hard Pulls -->
-					<!-- Easy Pulls -->
-						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-							<SetGrindArea>
-								<GrindArea>
-									<MobIds>90649, 90607, 90312, 90654, 89748</MobIds>
-									<Hotspots>
-										<Hotspot X="4513.263" Y="472.1714" Z="228.9365" />
-										<Hotspot X="4577.068" Y="478.2981" Z="229.146" />
-										<Hotspot X="4550.217" Y="544.4664" Z="229.3091" />
-										<Hotspot X="4472.96" Y="650.1429" Z="192.0173" />
-										<Hotspot X="4624.967" Y="590.0174" Z="203.0758" />
-									</Hotspots>
-								</GrindArea>
-							</SetGrindArea>
-							<GrindUntil Condition="IsQuestCompleted(39512)" />
-						</If>
-					<!-- END Easy Pulls -->
-				</While>
-
-				<!-- There's no easy pull version of this quest. -->
-				<While Condition="HasQuest(39532) &amp;&amp; !IsQuestCompleted(39532)" > <!-- [Nimi Brightcastle] Bringing Down the Iron Horde -->
-					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Bringing Down the Iron Horde.&quot;);" />
-					<SetGrindArea>
-						<GrindArea>
-							<MobIds>90066, 91760, 91764, 91721, 89754, 93370</MobIds>
-							<Hotspots>
-								<Hotspot X="4314.433" Y="-1025.236" Z="21.86001" />
-								<Hotspot X="4378.459" Y="-914.2455" Z="34.72607" />
-								<Hotspot X="4478.62" Y="-985.8022" Z="38.02435" />
-								<Hotspot X="4668.208" Y="-878.8555" Z="99.33451" />
-							</Hotspots>
-						</GrindArea>
-					</SetGrindArea>
-					<GrindUntil Condition="IsQuestCompleted(39532)" />
-				</While>
-				<!-- There's no easy pull version of this quest. -->
-				<While Condition="HasQuest(39511) &amp;&amp; !IsQuestCompleted(39511)" > <!-- Blood of Fallen Brothers -->
-					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Blood of Fallen Brothers.&quot;);" />
-					<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MobState="AliveNotInCombat" InteractByLooting="true" NumOfTimes="1000" WaitTime="500" ProactiveCombatStrategy="ClearAll" PreInteractMountStrategy="Dismount" MobIds="90066, 91760, 91721, 89754, 93370" QuestId="39511" >
-						<HuntingGrounds>
-							<Hotspot X="4314.433" Y="-1025.236" Z="21.86001" />
-							<Hotspot X="4378.459" Y="-914.2455" Z="34.72607" />
-							<Hotspot X="4478.62" Y="-985.8022" Z="38.02435" />
-							<Hotspot X="4668.208" Y="-878.8555" Z="99.33451" />
-						</HuntingGrounds>
 					</CustomBehavior>
-				</While>
-
-				<While Condition="HasQuest(39510) &amp;&amp; !IsQuestCompleted(39510)" > <!-- A Little Wetwork -->
-					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - A Little Wetwork.&quot;);" />
-					<!-- Hard Pulls -->
-						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-							<MoveTo Nav="Fly" DestName="Ironhold Harbor" X="4583.305" Y="-399.9979" Z="10.69125" />
-							<SetGrindArea>
-								<GrindArea>
-									<MobIds>89857, 90136, 89777, 89810, 89935, 89936, 91832</MobIds>
-									<Hotspots>
-										<Hotspot X="4583.305" Y="-399.9979" Z="10.69125" />
-										<Hotspot X="4592.449" Y="-238.1564" Z="10.7333" />
-										<Hotspot X="4770.981" Y="-244.9629" Z="4.211271" />
-										<Hotspot X="4786.581" Y="-386.6306" Z="4.258256" />
-										<Hotspot X="4644.233" Y="-483.5012" Z="21.41648" />
-										<Hotspot X="4581.786" Y="-506.2161" Z="21.41869" />
-									</Hotspots>
-								</GrindArea>
-							</SetGrindArea>
-							<GrindUntil Condition="IsQuestCompleted(39510)" />
-						</If>
-					<!-- END Hard Pulls -->
-					<!-- Easy Pulls -->
-						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-							<MoveTo Nav="Fly" DestName="Ironhold Harbor" X="4633.494" Y="-578.2945" Z="44.38635" />
-							<SetGrindArea>
-								<GrindArea>
-									<MobIds>89857, 90136, 89777, 89810, 89935, 89936, 91832</MobIds>
-									<Hotspots>
-										<Hotspot X="4658.131" Y="-552.9175" Z="36.25991" />
-										<Hotspot X="4634.374" Y="-493.1973" Z="21.42153" />
-										<Hotspot X="4693.737" Y="-519.6089" Z="47.37726" />
-										<Hotspot X="4760.93" Y="-479.2505" Z="37.17424" />
-									</Hotspots>
-								</GrindArea>
-							</SetGrindArea>
-							<GrindUntil Condition="IsQuestCompleted(39510)" />
-						</If>
-					<!-- END Easy Pulls -->
-				</While>
-
-				<While Condition="HasQuest(39509) &amp;&amp; !IsQuestCompleted(39509)" > <!-- Bloodied Blades of Zeth'Gol -->
-					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Bloodied Blades of Zeth'Gol.&quot;);" />
-					<!-- Hard Pulls -->
-						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
-							<SetGrindArea>
-								<GrindArea>
-									<MobIds>90851, 89699, 89703, 89705</MobIds>
-									<Hotspots>
-										<Hotspot X="4310.75" Y="431.8437" Z="175.2454" />
-										<Hotspot X="4318.75" Y="372.2255" Z="176.6174" />
-										<Hotspot X="4223.525" Y="552.8775" Z="173.4002" />
-										<Hotspot X="4152.482" Y="654.0584" Z="162.6546" />
-										<Hotspot X="4117.844" Y="594.8691" Z="162.812" />
-									</Hotspots>
-								</GrindArea>
-							</SetGrindArea>
-							<GrindUntil Condition="IsQuestCompleted(39509)" />
-						</If>
-					<!-- END Hard Pulls -->
-					<!-- Easy Pulls -->
-						<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
-							<SetGrindArea>
-								<GrindArea>
-									<MobIds>90851, 89699, 89703, 89705</MobIds>
-									<Hotspots>
-										<Hotspot X="4031.807" Y="513.1544" Z="142.0807" />
-										<Hotspot X="4083.947" Y="439.1315" Z="140.3514" />
-										<Hotspot X="4090.982" Y="508.5185" Z="141.1908" />
-									</Hotspots>
-								</GrindArea>
-							</SetGrindArea>
-							<GrindUntil Condition="IsQuestCompleted(39509)" />
-						</If>
-					<!-- END Easy Pulls -->
-				</While>
-			<!-- END DO Randomized Daily from Shadow Hunter Denjai -->
-
-			<!-- Turnin Randomized Daily from Shadow Hunter Denjai -->
-				<If Condition="(HasQuest(39514) &amp;&amp; IsQuestCompleted(39514)) || (HasQuest(39513) &amp;&amp; IsQuestCompleted(39513)) || (HasQuest(39512) &amp;&amp; IsQuestCompleted(39512)) || (HasQuest(39511) &amp;&amp; IsQuestCompleted(39511)) || (HasQuest(39510) &amp;&amp; IsQuestCompleted(39510)) || (HasQuest(39509) &amp;&amp; IsQuestCompleted(39509)) || (HasQuest(39532) &amp;&amp; IsQuestCompleted(39532))" >
-					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Turning in Shadow Hunter Denjai's quest.&quot;);" />
-					<MoveTo Nav="Fly" DestName="Vol'mar Hold" X="4317.091" Y="-1491.344" Z="83.46479" />
 				</If>
-				<While Condition="HasQuest(39514) &amp;&amp; IsQuestCompleted(39514)" >
-					<TurnIn QuestName="Harnessing Their Power" QuestId="39514" TurnInName="Shadow Hunter Denjai" TurnInId="96014" />
-				</While>
-				<While Condition="HasQuest(39513) &amp;&amp; IsQuestCompleted(39513)" >
-					<TurnIn QuestName="Disarming Sha'naar" QuestId="39513" TurnInName="Shadow Hunter Denjai" TurnInId="96014" />
-				</While>
-				<While Condition="HasQuest(39512) &amp;&amp; IsQuestCompleted(39512)" >
-					<TurnIn QuestName="Secrets of the Shadow Council" QuestId="39512" TurnInName="Shadow Hunter Denjai" TurnInId="96014" />
-				</While>
-				<While Condition="HasQuest(39511) &amp;&amp; IsQuestCompleted(39511)" >
-					<TurnIn QuestName="Blood of Fallen Brothers" QuestId="39511" TurnInName="Shadow Hunter Denjai" TurnInId="96014" />
-				</While>
-				<While Condition="HasQuest(39510) &amp;&amp; IsQuestCompleted(39510)" >
-					<TurnIn QuestName="A Little Wetwork" QuestId="39510" TurnInName="Shadow Hunter Denjai" TurnInId="96014" />
-				</While>
-				<While Condition="HasQuest(39509) &amp;&amp; IsQuestCompleted(39509)" >
-					<TurnIn QuestName="Bloodied Blades of Zeth'Gol" QuestId="39509" TurnInName="Shadow Hunter Denjai" TurnInId="96014" />
-				</While>
-				<While Condition="HasQuest(39532) &amp;&amp; IsQuestCompleted(39532)" > <!-- [Nimi Brightcastle] -->
-					<TurnIn QuestName="Bringing Down the Iron Horde" QuestId="39532" TurnInName="Nimi Brightcastle" TurnInId="93396" />
-				</While>
-			<!-- END Turnin Randomized Daily from Shadow Hunter Denjai -->
+			<!-- END Disarming Sha'naar hook -->
 
 			<!-- [Order of the Awakened] Introductory Quest Complete? Attempt#2 -->
 				<While Condition="HasQuest(39432) &amp;&amp; IsQuestCompleted(39432)" >
@@ -2268,6 +1828,235 @@
 		</If>
 	<!-- END [Alliance] Complete all remaining objective zones -->
 
+	<!-- [Alliance] DO Randomized Daily from Vindicator Krethos -->
+		<!-- No easy pull version of this. It's a group quest, so we may have to force the bot to avoid it. -->
+		<!-- <While Condition="HasQuest(39573) &amp;&amp; !IsQuestCompleted(39573)" > [GROUP] Harnessing Their Power 
+			<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="2" ExpiryTime="45" Text="[WARNING]\n\nThe daily we picked up is a group quest.\n\nIf you continue, the bot will attempt to finish it however you may get into a death loop if you are undergeared or a caster class." />
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Harnessing Their Power.&quot;);" />
+			<MoveTo Nav="Fly" DestName="The Iron Front" X="4025.265" Y="1064.812" Z="167.5833" />
+			<SetGrindArea>
+				<GrindArea>
+					<MobIds>90585</MobIds>
+					<Hotspots>
+						<Hotspot Name="Iron Front 0" X="3997.606" Y="870.8727" Z="152.6829" />
+						<Hotspot Name="Iron Front 1" X="3954.224" Y="782.0494" Z="153.6769" />
+						<Hotspot Name="Iron Front 2" X="3979.948" Y="986.4142" Z="158.6335" />
+					</Hotspots>
+				</GrindArea>
+			</SetGrindArea>
+			<GrindUntil Condition="IsQuestCompleted(39573)" GoalText="Harnessing Their Power"/>
+		</While> -->
+
+		<If Condition="IsQuestCompleted(39571)" > <!-- Remove Sha'naar hook before doing the farm. -->
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Shutting off Sha'naar Crystal hook.&quot;);" />
+			<CustomBehavior File="Hooks\DoWhen" ActivityName="Get_ShanaarCrystal" Command="Remove" />
+		</If>
+		<While Condition="HasQuest(39571) &amp;&amp; !IsQuestCompleted(39571)" > <!-- Disarming Sha'naar -->
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Disarming Sha'naar.&quot;);" />
+			<!-- Hard Pulls -->
+				<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
+					<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="39571" NumOfTimes="1000" WaitTime="500" MobIds="243794" >
+						<HuntingGrounds>
+							<Hotspot Name="Entrace of Sha'naar" X="3620.049" Y="164.0029" Z="124.2737" />
+							<Hotspot Name="Mid Lower Terrace" X="3297.727" Y="287.6227" Z="117.0291" />
+							<Hotspot Name="Inside of cave, in big room" X="3526.195" Y="243.0635" Z="138.8644" />
+						</HuntingGrounds>
+					</CustomBehavior>
+				</If>
+			<!-- END Hard Pulls -->
+			<!-- Easy Pulls -->
+				<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
+					<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearAll" QuestId="39571" NumOfTimes="1000" WaitTime="500" MobIds="243794" >
+						<HuntingGrounds>
+							<Hotspot Name="Entrace of Sha'naar" X="3620.049" Y="164.0029" Z="124.2737" />
+							<Hotspot Name="Mid Lower Terrace" X="3297.727" Y="287.6227" Z="117.0291" />
+						</HuntingGrounds>
+					</CustomBehavior>
+				</If>
+			<!-- END Easy Pulls -->
+		</While>
+
+		<While Condition="HasQuest(39570) &amp;&amp; !IsQuestCompleted(39570)" > <!-- Secrets of the Shadow Council -->
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Secrets of the Shadow Council.&quot;);" />
+			<!-- Hard Pulls -->
+				<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
+					<SetGrindArea>
+						<GrindArea>
+							<MobIds>90649, 90607, 90312, 90654, 89748</MobIds>
+							<Hotspots>
+								<Hotspot X="4560.763" Y="443.0881" Z="229.8193" />
+								<Hotspot X="4526.892" Y="518.3264" Z="229.262" />
+								<Hotspot X="4475.299" Y="649.1726" Z="191.4169" />
+								<Hotspot X="4496.495" Y="744.3486" Z="181.2569" />
+								<Hotspot X="4477.998" Y="792.3724" Z="181.1873" />
+								<Hotspot X="4368.549" Y="871.2369" Z="175.4837" />
+							</Hotspots>
+						</GrindArea>
+					</SetGrindArea>
+					<GrindUntil Condition="IsQuestCompleted(39570)" />
+				</If>
+			<!-- END Hard Pulls -->
+			<!-- Easy Pulls -->
+				<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
+					<SetGrindArea>
+						<GrindArea>
+							<MobIds>90649, 90607, 90312, 90654, 89748</MobIds>
+							<Hotspots>
+								<Hotspot X="4513.263" Y="472.1714" Z="228.9365" />
+								<Hotspot X="4577.068" Y="478.2981" Z="229.146" />
+								<Hotspot X="4550.217" Y="544.4664" Z="229.3091" />
+								<Hotspot X="4472.96" Y="650.1429" Z="192.0173" />
+								<Hotspot X="4624.967" Y="590.0174" Z="203.0758" />
+							</Hotspots>
+						</GrindArea>
+					</SetGrindArea>
+					<GrindUntil Condition="IsQuestCompleted(39570)" />
+				</If>
+			<!-- END Easy Pulls -->
+		</While>
+		<!-- Could wedge Pavkin's second quest here -->
+
+		<While Condition="HasQuest(39586) &amp;&amp; !IsQuestCompleted(39586)" > <!-- [Pavnik] Bringing Down the Iron Horde -->
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Bringing Down the Iron Horde.&quot;);" />
+			<!-- Hard Pulls -->
+				<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
+					<SetGrindArea>
+						<GrindArea>
+							<MobIds>90066, 91760, 91764, 91721, 89754, 93370</MobIds>
+							<Hotspots>
+								<Hotspot X="4314.433" Y="-1025.236" Z="21.86001" />
+								<Hotspot X="4378.459" Y="-914.2455" Z="34.72607" />
+								<Hotspot X="4478.62" Y="-985.8022" Z="38.02435" />
+								<Hotspot X="4668.208" Y="-878.8555" Z="99.33451" />
+							</Hotspots>
+						</GrindArea>
+					</SetGrindArea>
+					<GrindUntil Condition="IsQuestCompleted(39586)" />
+				</If>
+			<!-- END Hard Pulls -->
+			<!-- Easy Pulls :: Same as hard, make edits if too hard. -->
+				<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
+					<SetGrindArea>
+						<GrindArea>
+							<MobIds>90066, 91760, 91764, 91721, 89754, 93370</MobIds>
+							<Hotspots>
+								<Hotspot X="4314.433" Y="-1025.236" Z="21.86001" />
+								<Hotspot X="4378.459" Y="-914.2455" Z="34.72607" />
+								<Hotspot X="4478.62" Y="-985.8022" Z="38.02435" />
+								<Hotspot X="4668.208" Y="-878.8555" Z="99.33451" />
+							</Hotspots>
+						</GrindArea>
+					</SetGrindArea>
+					<GrindUntil Condition="IsQuestCompleted(39586)" />
+				</If>
+			<!-- END Easy Pulls -->
+		</While>
+
+		<While Condition="HasQuest(39569) &amp;&amp; !IsQuestCompleted(39569)" > <!-- Breaking Their Fel Bonds -->
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Breaking Their Fel Bonds.&quot;);" />
+			<!-- Hard Pulls -->
+				<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
+					<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MobState="AliveNotInCombat" InteractByLooting="true" NumOfTimes="1000" WaitTime="500" ProactiveCombatStrategy="ClearAll" PreInteractMountStrategy="Dismount" MobIds="90066, 91760, 91721, 89754, 93370" QuestId="39569" >
+						<HuntingGrounds>
+							<Hotspot X="4314.433" Y="-1025.236" Z="21.86001" />
+							<Hotspot X="4378.459" Y="-914.2455" Z="34.72607" />
+							<Hotspot X="4478.62" Y="-985.8022" Z="38.02435" />
+							<Hotspot X="4668.208" Y="-878.8555" Z="99.33451" />
+						</HuntingGrounds>
+					</CustomBehavior>
+				</If>
+			<!-- END Hard Pulls -->
+			<!-- Easy Pulls :: Same as hard, make edits if too hard. -->
+				<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
+					<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MobState="AliveNotInCombat" InteractByLooting="true" NumOfTimes="1000" WaitTime="500" ProactiveCombatStrategy="ClearAll" PreInteractMountStrategy="Dismount" MobIds="90066, 91760, 91721, 89754, 93370" QuestId="39569" >
+						<HuntingGrounds>
+							<Hotspot X="4314.433" Y="-1025.236" Z="21.86001" />
+							<Hotspot X="4378.459" Y="-914.2455" Z="34.72607" />
+							<Hotspot X="4478.62" Y="-985.8022" Z="38.02435" />
+							<Hotspot X="4668.208" Y="-878.8555" Z="99.33451" />
+						</HuntingGrounds>
+					</CustomBehavior>
+				</If>
+			<!-- END Easy Pulls -->
+		</While>
+
+		<While Condition="HasQuest(39568) &amp;&amp; !IsQuestCompleted(39568)" > <!-- A Little Wetwork -->
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - A Little Wetwork.&quot;);" />
+			<!-- Hard Pulls -->
+				<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
+					<MoveTo Nav="Fly" DestName="Ironhold Harbor" X="4583.305" Y="-399.9979" Z="10.69125" />
+					<SetGrindArea>
+						<GrindArea>
+							<MobIds>89857, 90136, 89777, 89810, 89935, 89936, 91832</MobIds>
+							<Hotspots>
+								<Hotspot X="4583.305" Y="-399.9979" Z="10.69125" />
+								<Hotspot X="4592.449" Y="-238.1564" Z="10.7333" />
+								<Hotspot X="4770.981" Y="-244.9629" Z="4.211271" />
+								<Hotspot X="4786.581" Y="-386.6306" Z="4.258256" />
+								<Hotspot X="4644.233" Y="-483.5012" Z="21.41648" />
+								<Hotspot X="4581.786" Y="-506.2161" Z="21.41869" />
+							</Hotspots>
+						</GrindArea>
+					</SetGrindArea>
+					<GrindUntil Condition="IsQuestCompleted(39568)" />
+				</If>
+			<!-- END Hard Pulls -->
+			<!-- Easy Pulls -->
+				<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
+					<MoveTo Nav="Fly" DestName="Ironhold Harbor" X="4633.494" Y="-578.2945" Z="44.38635" />
+					<SetGrindArea>
+						<GrindArea>
+							<MobIds>89857, 90136, 89777, 89810, 89935, 89936, 91832</MobIds>
+							<Hotspots>
+								<Hotspot X="4658.131" Y="-552.9175" Z="36.25991" />
+								<Hotspot X="4634.374" Y="-493.1973" Z="21.42153" />
+								<Hotspot X="4693.737" Y="-519.6089" Z="47.37726" />
+								<Hotspot X="4760.93" Y="-479.2505" Z="37.17424" />
+							</Hotspots>
+						</GrindArea>
+					</SetGrindArea>
+					<GrindUntil Condition="IsQuestCompleted(39568)" />
+				</If>
+			<!-- END Easy Pulls -->
+		</While>
+
+		<While Condition="HasQuest(39567) &amp;&amp; !IsQuestCompleted(39567)" > <!-- Bloodied Blades of Zeth'Gol -->
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Bloodied Blades of Zeth'Gol.&quot;);" />
+			<!-- Hard Pulls -->
+				<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
+					<SetGrindArea>
+						<GrindArea>
+							<MobIds>90851, 89699, 89703, 89705</MobIds>
+							<Hotspots>
+								<Hotspot X="4310.75" Y="431.8437" Z="175.2454" />
+								<Hotspot X="4318.75" Y="372.2255" Z="176.6174" />
+								<Hotspot X="4223.525" Y="552.8775" Z="173.4002" />
+								<Hotspot X="4152.482" Y="654.0584" Z="162.6546" />
+								<Hotspot X="4117.844" Y="594.8691" Z="162.812" />
+							</Hotspots>
+						</GrindArea>
+					</SetGrindArea>
+					<GrindUntil Condition="IsQuestCompleted(39567)" />
+				</If>
+			<!-- END Hard Pulls -->
+			<!-- Easy Pulls -->
+				<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
+					<SetGrindArea>
+						<GrindArea>
+							<MobIds>90851, 89699, 89703, 89705</MobIds>
+							<Hotspots>
+								<Hotspot X="4031.807" Y="513.1544" Z="142.0807" />
+								<Hotspot X="4083.947" Y="439.1315" Z="140.3514" />
+								<Hotspot X="4090.982" Y="508.5185" Z="141.1908" />
+							</Hotspots>
+						</GrindArea>
+					</SetGrindArea>
+					<GrindUntil Condition="IsQuestCompleted(39567)" />
+				</If>
+			<!-- END Easy Pulls -->
+		</While>
+	<!-- END [Alliance] DO Randomized Daily from Vindicator Krethos -->
+
 	<!-- [Horde] Complete all remaining objective zones -->
 		<!-- ZoneBonusQID && PlanningMapQID -->
 		<If Condition="Me.IsHorde" >
@@ -2605,6 +2394,199 @@
 		</If>
 	<!-- END [Horde] Complete all remaining objective zones -->
 
+	<!-- [Horde] DO Randomized Daily from Shadow Hunter Denjai -->
+		<!-- No easy pull version of this. It's a group quest, so we may have to force the bot to avoid it. -->
+		<!-- <While Condition="HasQuest(39514) &amp;&amp; !IsQuestCompleted(39514)" > [GROUP] Harnessing Their Power 
+			<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="2" ExpiryTime="45" Text="[WARNING]\n\nThe daily we picked up is a group quest.\n\nIf you continue, the bot will attempt to finish it however you may get into a death loop if you are undergeared or a caster class." />
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Harnessing Their Power.&quot;);" />
+			<MoveTo Nav="Fly" DestName="The Iron Front" X="4025.265" Y="1064.812" Z="167.5833" />
+			<SetGrindArea>
+				<GrindArea>
+					<MobIds>90585</MobIds>
+					<Hotspots>
+						<Hotspot Name="Iron Front 0" X="3997.606" Y="870.8727" Z="152.6829" />
+						<Hotspot Name="Iron Front 1" X="3954.224" Y="782.0494" Z="153.6769" />
+						<Hotspot Name="Iron Front 2" X="3979.948" Y="986.4142" Z="158.6335" />
+					</Hotspots>
+				</GrindArea>
+			</SetGrindArea>
+			<GrindUntil Condition="IsQuestCompleted(39514)" GoalText="Harnessing Their Power"/>
+		</While> -->
+
+		<If Condition="!IsQuestCompleted(39513)" > <!-- Remove Sha'naar hook before doing the farm. -->
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Shutting off Sha'naar Crystal hook.&quot;);" />
+			<CustomBehavior File="Hooks\DoWhen" ActivityName="Get_ShanaarCrystal" Command="Remove" />
+		</If>
+		<While Condition="HasQuest(39513) &amp;&amp; !IsQuestCompleted(39513)" > <!-- Disarming Sha'naar -->
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Disarming Sha'naar.&quot;);" />
+			<!-- Hard Pulls -->
+				<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
+					<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearMobsTargetingUs" QuestId="39513" NumOfTimes="1000" WaitTime="500" MobIds="243794" >
+						<HuntingGrounds>
+							<Hotspot Name="Entrace of Sha'naar" X="3620.049" Y="164.0029" Z="124.2737" />
+							<Hotspot Name="Mid Lower Terrace" X="3297.727" Y="287.6227" Z="117.0291" />
+							<Hotspot Name="Inside of cave, in big room" X="3526.195" Y="243.0635" Z="138.8644" />
+						</HuntingGrounds>
+					</CustomBehavior>
+				</If>
+			<!-- END Hard Pulls -->
+			<!-- Easy Pulls -->
+				<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
+					<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MovementBy="NavigatorOnly" PreInteractMountStrategy="Dismount" ProactiveCombatStrategy="ClearAll" QuestId="39513" NumOfTimes="1000" WaitTime="500" MobIds="243794" >
+						<HuntingGrounds>
+							<Hotspot Name="Entrace of Sha'naar" X="3620.049" Y="164.0029" Z="124.2737" />
+							<Hotspot Name="Mid Lower Terrace" X="3297.727" Y="287.6227" Z="117.0291" />
+						</HuntingGrounds>
+					</CustomBehavior>
+				</If>
+			<!-- END Easy Pulls -->
+		</While>
+
+		<While Condition="HasQuest(39512) &amp;&amp; !IsQuestCompleted(39512)" > <!-- Secrets of the Shadow Council -->
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Secrets of the Shadow Council.&quot;);" />
+			<!-- Hard Pulls -->
+				<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
+					<SetGrindArea>
+						<GrindArea>
+							<MobIds>90649, 90607, 90312, 90654, 89748</MobIds>
+							<Hotspots>
+								<Hotspot X="4560.763" Y="443.0881" Z="229.8193" />
+								<Hotspot X="4526.892" Y="518.3264" Z="229.262" />
+								<Hotspot X="4475.299" Y="649.1726" Z="191.4169" />
+								<Hotspot X="4496.495" Y="744.3486" Z="181.2569" />
+								<Hotspot X="4477.998" Y="792.3724" Z="181.1873" />
+								<Hotspot X="4368.549" Y="871.2369" Z="175.4837" />
+							</Hotspots>
+						</GrindArea>
+					</SetGrindArea>
+					<GrindUntil Condition="IsQuestCompleted(39512)" />
+				</If>
+			<!-- END Hard Pulls -->
+			<!-- Easy Pulls -->
+				<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
+					<SetGrindArea>
+						<GrindArea>
+							<MobIds>90649, 90607, 90312, 90654, 89748</MobIds>
+							<Hotspots>
+								<Hotspot X="4513.263" Y="472.1714" Z="228.9365" />
+								<Hotspot X="4577.068" Y="478.2981" Z="229.146" />
+								<Hotspot X="4550.217" Y="544.4664" Z="229.3091" />
+								<Hotspot X="4472.96" Y="650.1429" Z="192.0173" />
+								<Hotspot X="4624.967" Y="590.0174" Z="203.0758" />
+							</Hotspots>
+						</GrindArea>
+					</SetGrindArea>
+					<GrindUntil Condition="IsQuestCompleted(39512)" />
+				</If>
+			<!-- END Easy Pulls -->
+		</While>
+
+		<!-- There's no easy pull version of this quest. -->
+		<While Condition="HasQuest(39532) &amp;&amp; !IsQuestCompleted(39532)" > <!-- [Nimi Brightcastle] Bringing Down the Iron Horde -->
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Bringing Down the Iron Horde.&quot;);" />
+			<SetGrindArea>
+				<GrindArea>
+					<MobIds>90066, 91760, 91764, 91721, 89754, 93370</MobIds>
+					<Hotspots>
+						<Hotspot X="4314.433" Y="-1025.236" Z="21.86001" />
+						<Hotspot X="4378.459" Y="-914.2455" Z="34.72607" />
+						<Hotspot X="4478.62" Y="-985.8022" Z="38.02435" />
+						<Hotspot X="4668.208" Y="-878.8555" Z="99.33451" />
+					</Hotspots>
+				</GrindArea>
+			</SetGrindArea>
+			<GrindUntil Condition="IsQuestCompleted(39532)" />
+		</While>
+		<!-- There's no easy pull version of this quest. -->
+		<While Condition="HasQuest(39511) &amp;&amp; !IsQuestCompleted(39511)" > <!-- Blood of Fallen Brothers -->
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Blood of Fallen Brothers.&quot;);" />
+			<CustomBehavior File="InteractWith" IgnoreMobsInBlackspots="true" MobState="AliveNotInCombat" InteractByLooting="true" NumOfTimes="1000" WaitTime="500" ProactiveCombatStrategy="ClearAll" PreInteractMountStrategy="Dismount" MobIds="90066, 91760, 91721, 89754, 93370" QuestId="39511" >
+				<HuntingGrounds>
+					<Hotspot X="4314.433" Y="-1025.236" Z="21.86001" />
+					<Hotspot X="4378.459" Y="-914.2455" Z="34.72607" />
+					<Hotspot X="4478.62" Y="-985.8022" Z="38.02435" />
+					<Hotspot X="4668.208" Y="-878.8555" Z="99.33451" />
+				</HuntingGrounds>
+			</CustomBehavior>
+		</While>
+
+		<While Condition="HasQuest(39510) &amp;&amp; !IsQuestCompleted(39510)" > <!-- A Little Wetwork -->
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - A Little Wetwork.&quot;);" />
+			<!-- Hard Pulls -->
+				<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
+					<MoveTo Nav="Fly" DestName="Ironhold Harbor" X="4583.305" Y="-399.9979" Z="10.69125" />
+					<SetGrindArea>
+						<GrindArea>
+							<MobIds>89857, 90136, 89777, 89810, 89935, 89936, 91832</MobIds>
+							<Hotspots>
+								<Hotspot X="4583.305" Y="-399.9979" Z="10.69125" />
+								<Hotspot X="4592.449" Y="-238.1564" Z="10.7333" />
+								<Hotspot X="4770.981" Y="-244.9629" Z="4.211271" />
+								<Hotspot X="4786.581" Y="-386.6306" Z="4.258256" />
+								<Hotspot X="4644.233" Y="-483.5012" Z="21.41648" />
+								<Hotspot X="4581.786" Y="-506.2161" Z="21.41869" />
+							</Hotspots>
+						</GrindArea>
+					</SetGrindArea>
+					<GrindUntil Condition="IsQuestCompleted(39510)" />
+				</If>
+			<!-- END Hard Pulls -->
+			<!-- Easy Pulls -->
+				<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
+					<MoveTo Nav="Fly" DestName="Ironhold Harbor" X="4633.494" Y="-578.2945" Z="44.38635" />
+					<SetGrindArea>
+						<GrindArea>
+							<MobIds>89857, 90136, 89777, 89810, 89935, 89936, 91832</MobIds>
+							<Hotspots>
+								<Hotspot X="4658.131" Y="-552.9175" Z="36.25991" />
+								<Hotspot X="4634.374" Y="-493.1973" Z="21.42153" />
+								<Hotspot X="4693.737" Y="-519.6089" Z="47.37726" />
+								<Hotspot X="4760.93" Y="-479.2505" Z="37.17424" />
+							</Hotspots>
+						</GrindArea>
+					</SetGrindArea>
+					<GrindUntil Condition="IsQuestCompleted(39510)" />
+				</If>
+			<!-- END Easy Pulls -->
+		</While>
+
+		<While Condition="HasQuest(39509) &amp;&amp; !IsQuestCompleted(39509)" > <!-- Bloodied Blades of Zeth'Gol -->
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Quest Detected - Bloodied Blades of Zeth'Gol.&quot;);" />
+			<!-- Hard Pulls -->
+				<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 645" >
+					<SetGrindArea>
+						<GrindArea>
+							<MobIds>90851, 89699, 89703, 89705</MobIds>
+							<Hotspots>
+								<Hotspot X="4310.75" Y="431.8437" Z="175.2454" />
+								<Hotspot X="4318.75" Y="372.2255" Z="176.6174" />
+								<Hotspot X="4223.525" Y="552.8775" Z="173.4002" />
+								<Hotspot X="4152.482" Y="654.0584" Z="162.6546" />
+								<Hotspot X="4117.844" Y="594.8691" Z="162.812" />
+							</Hotspots>
+						</GrindArea>
+					</SetGrindArea>
+					<GrindUntil Condition="IsQuestCompleted(39509)" />
+				</If>
+			<!-- END Hard Pulls -->
+			<!-- Easy Pulls -->
+				<If Condition="Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &lt; 645" >
+					<SetGrindArea>
+						<GrindArea>
+							<MobIds>90851, 89699, 89703, 89705</MobIds>
+							<Hotspots>
+								<Hotspot X="4031.807" Y="513.1544" Z="142.0807" />
+								<Hotspot X="4083.947" Y="439.1315" Z="140.3514" />
+								<Hotspot X="4090.982" Y="508.5185" Z="141.1908" />
+							</Hotspots>
+						</GrindArea>
+					</SetGrindArea>
+					<GrindUntil Condition="IsQuestCompleted(39509)" />
+				</If>
+			<!-- END Easy Pulls -->
+		</While>
+	<!-- END [Horde] DO Randomized Daily from Shadow Hunter Denjai -->
+
 	<!-- [Alliance] Order of the Awakened Dailies -->
 		<If Condition="Me.IsAlliance" >
 			<!-- [Order of the Awakened] Introductory Quest Complete? FINAL -->
@@ -2741,6 +2723,63 @@
 		</If>
 	<!-- END [Horde] Order of the Awakened Dailies -->
 
+	<!-- [Alliance] Turnin Randomized Daily from Vindicator Krethos -->
+		<If Condition="(HasQuest(39573) &amp;&amp; IsQuestCompleted(39573)) || (HasQuest(39571) &amp;&amp; IsQuestCompleted(39571)) || (HasQuest(39570) &amp;&amp; IsQuestCompleted(39570)) || (HasQuest(39569) &amp;&amp; IsQuestCompleted(39569)) || (HasQuest(39568) &amp;&amp; IsQuestCompleted(39568)) || (HasQuest(39567) &amp;&amp; IsQuestCompleted(39567)) || (HasQuest(39586) &amp;&amp; IsQuestCompleted(39586))" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Turning in Vindicator Krethos' quest.&quot;);" />
+			<MoveTo Nav="Fly" DestName="Lion's Den" X="3839.431" Y="-1338.118" Z="93.82421" />
+		</If>
+		<While Condition="HasQuest(39573) &amp;&amp; IsQuestCompleted(39573)" >
+			<TurnIn QuestName="Harnessing Their Power" QuestId="39573" TurnInName="Vindicator Krethos" TurnInId="90974" />
+		</While>
+		<While Condition="HasQuest(39571) &amp;&amp; IsQuestCompleted(39571)" >
+			<TurnIn QuestName="Disarming Sha'naar" QuestId="39571" TurnInName="Vindicator Krethos" TurnInId="90974" />
+		</While>
+		<While Condition="HasQuest(39570) &amp;&amp; IsQuestCompleted(39570)" >
+			<TurnIn QuestName="Secrets of the Shadow Council" QuestId="39570" TurnInName="Vindicator Krethos" TurnInId="90974" />
+		</While>
+		<While Condition="HasQuest(39569) &amp;&amp; IsQuestCompleted(39569)" >
+			<TurnIn QuestName="Breaking Their Fel Bonds" QuestId="39569" TurnInName="Vindicator Krethos" TurnInId="90974" />
+		</While>
+		<While Condition="HasQuest(39568) &amp;&amp; IsQuestCompleted(39568)" >
+			<TurnIn QuestName="A Little Wetwork" QuestId="39568" TurnInName="Vindicator Krethos" TurnInId="90974" />
+		</While>
+		<While Condition="HasQuest(39567) &amp;&amp; IsQuestCompleted(39567)" >
+			<TurnIn QuestName="Bloodied Blades of Zeth'Gol" QuestId="39567" TurnInName="Vindicator Krethos" TurnInId="90974" />
+		</While>
+		<While Condition="HasQuest(39586) &amp;&amp; IsQuestCompleted(39586)" > <!-- [Pavnik] -->
+			<TurnIn QuestName="Bringing Down the Iron Horde" QuestId="39586" TurnInName="Parvink" TurnInId="96147" />
+		</While>
+	<!-- END [Alliance] Turnin Randomized Daily from Vindicator Krethos -->
+
+	<!-- [Horde] Turnin Randomized Daily from Shadow Hunter Denjai -->
+		<If Condition="(HasQuest(39514) &amp;&amp; IsQuestCompleted(39514)) || (HasQuest(39513) &amp;&amp; IsQuestCompleted(39513)) || (HasQuest(39512) &amp;&amp; IsQuestCompleted(39512)) || (HasQuest(39511) &amp;&amp; IsQuestCompleted(39511)) || (HasQuest(39510) &amp;&amp; IsQuestCompleted(39510)) || (HasQuest(39509) &amp;&amp; IsQuestCompleted(39509)) || (HasQuest(39532) &amp;&amp; IsQuestCompleted(39532))" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Turning in Shadow Hunter Denjai's quest.&quot;);" />
+			<MoveTo Nav="Fly" DestName="Vol'mar Hold" X="4317.091" Y="-1491.344" Z="83.46479" />
+		</If>
+		<While Condition="HasQuest(39514) &amp;&amp; IsQuestCompleted(39514)" >
+			<TurnIn QuestName="Harnessing Their Power" QuestId="39514" TurnInName="Shadow Hunter Denjai" TurnInId="96014" />
+		</While>
+		<While Condition="HasQuest(39513) &amp;&amp; IsQuestCompleted(39513)" >
+			<TurnIn QuestName="Disarming Sha'naar" QuestId="39513" TurnInName="Shadow Hunter Denjai" TurnInId="96014" />
+		</While>
+		<While Condition="HasQuest(39512) &amp;&amp; IsQuestCompleted(39512)" >
+			<TurnIn QuestName="Secrets of the Shadow Council" QuestId="39512" TurnInName="Shadow Hunter Denjai" TurnInId="96014" />
+		</While>
+		<While Condition="HasQuest(39511) &amp;&amp; IsQuestCompleted(39511)" >
+			<TurnIn QuestName="Blood of Fallen Brothers" QuestId="39511" TurnInName="Shadow Hunter Denjai" TurnInId="96014" />
+		</While>
+		<While Condition="HasQuest(39510) &amp;&amp; IsQuestCompleted(39510)" >
+			<TurnIn QuestName="A Little Wetwork" QuestId="39510" TurnInName="Shadow Hunter Denjai" TurnInId="96014" />
+		</While>
+		<While Condition="HasQuest(39509) &amp;&amp; IsQuestCompleted(39509)" >
+			<TurnIn QuestName="Bloodied Blades of Zeth'Gol" QuestId="39509" TurnInName="Shadow Hunter Denjai" TurnInId="96014" />
+		</While>
+		<While Condition="HasQuest(39532) &amp;&amp; IsQuestCompleted(39532)" > <!-- [Nimi Brightcastle] -->
+			<TurnIn QuestName="Bringing Down the Iron Horde" QuestId="39532" TurnInName="Nimi Brightcastle" TurnInId="93396" />
+		</While>
+	<!-- END [Horde] Turnin Randomized Daily from Shadow Hunter Denjai -->
+
+
 	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: All bonus objective zones complete!&quot;);" />
  
 	<!-- Saberstalker Grind -->
@@ -2766,15 +2805,108 @@
 		</While>
 	<!-- END Saberstalker Grind -->
 
-	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: It seems that we're all finished up! Heading back to base.&quot;);" />
+	<!-- Finale -->
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: It seems that we're all finished up! Heading back to base.&quot;);" />
+		<If Condition="Me.IsAlliance" >
+			<MoveTo Nav="Fly" DestName="Lion's Watch" X="3875.22" Y="-1311.72" Z="90.4673" />
+		</If>
+		<If Condition="Me.IsHorde" >
+			<MoveTo Nav="Fly" DestName="Vol'mar" X="4307.258" Y="-1467.488" Z="79.11794" />
+		</If>
+	<!-- END Finale -->
 
-	<If Condition="Me.IsAlliance" >
-		<MoveTo Nav="Fly" DestName="Lion's Watch" X="3875.22" Y="-1311.72" Z="90.4673" />
-	</If>
-	<If Condition="Me.IsHorde" >
-		<MoveTo Nav="Fly" DestName="Vol'mar" X="4307.258" Y="-1467.488" Z="79.11794" />
-	</If>
+	<!-- Blueprint Turn Ins -->
+		<If Condition="(HasItem(128231) || HasItem(128252) || HasItem(126950) || HasItem(128257) || HasItem(128258) || HasItem(128255) || HasItem(128232)) || (HasQuest(39364) || HasQuest(39355) || HasQuest(39360) || HasQuest(38932) || HasQuest(39365) || HasQuest(39366) || HasQuest(39363) || HasQuest(39356))" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: We have an Equipment Blueprint. Turning them in.&quot;);" />
+			<If Condition="HasItem(128256)" >
+				<PickUp QuestName="Equipment Blueprint: Gyroscopic Internal Stabilizer" QuestId="39364" GiverName="Equipment Blueprint: Gyroscopic Internal Stabilizer" GiverId="128256" GiverType="Item" />
+			</If>
+			<If Condition="HasItem(128231)" >
+				<PickUp QuestName="Equipment Blueprint: Trained Shark Tank" QuestId="39355" GiverName="Equipment Blueprint: Trained Shark Tank" GiverId="128231" GiverType="Item" />
+			</If>
+			<If Condition="HasItem(128252)" >
+				<PickUp QuestName="Equipment Blueprint: True Iron Rudder" QuestId="39360" GiverName="Equipment Blueprint: True Iron Rudder" GiverId="128252" GiverType="Item" />
+			</If>
+			<If Condition="HasItem(126950)" >
+				<PickUp QuestName="Equipment Blueprint: Bilge Pump" QuestId="38932" GiverName="Equipment Blueprint: Bilge Pump" GiverId="126950" GiverType="Item" />
+			</If>
+			<If Condition="HasItem(128257)" >
+				<PickUp QuestName="Equipment Blueprint: Ghostly Spyglass" QuestId="39365" GiverName="Equipment Blueprint: Ghostly Spyglass" GiverId="128257" GiverType="Item" />
+			</If>
+			<If Condition="HasItem(128258)" >
+				<PickUp QuestName="Equipment Blueprint: Felsmoke Launchers" QuestId="39366" GiverName="Equipment Blueprint: Felsmoke Launchers" GiverId="128258" GiverType="Item" />
+			</If>
+			<If Condition="HasItem(128255)" >
+				<PickUp QuestName="Equipment Blueprint: Ice Cutter" QuestId="39363" GiverName="Equipment Blueprint: Ice Cutter" GiverId="128255" GiverType="Item" />
+			</If>
+			<If Condition="HasItem(128232)" >
+				<PickUp QuestName="Equipment Blueprint: High Intensity Fog Lights" QuestId="39356" GiverName="Equipment Blueprint: High Intensity Fog Lights" GiverId="128232" GiverType="Item" />
+			</If>
 
+			<If Condition="HasItem(110560) &amp;&amp; Me.BagItems.FirstOrDefault(h => h.Entry == 110560).CooldownTimeLeft.TotalMilliseconds == 0" >
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Using our Garrison Hearthstone.&quot;);" />
+				<CustomBehavior File="ForcedDismount" />
+				<While Condition="!(Me.ZoneId == 7078 || Me.ZoneId == 7004)" >
+					<CustomBehavior File="Misc\RunLua" Lua="UseItemByName(110560);" WaitTime="500" />
+					<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="!(Me.ZoneId == 7078 || Me.ZoneId == 7004) || Me.Combat || !Me.IsCasting" />
+				</While>
+			</If>
 
+			<If Condition="Me.IsAlliance" >
+				<MoveTo Nav="Fly" DestName="Lunarfall Shipyard to turn in Blueprints" X="2177.041" Y="351.6085" Z="5.966983" />
+				<If Condition="HasQuest(39364)" >
+					<TurnIn Nav="Fly" QuestName="Equipment Blueprint: Gyroscopic Internal Stabilizer" QuestId="39364" TurnInName="Salty Jorren" TurnInId="93812" />
+				</If>
+				<If Condition="HasQuest(39355)" >
+					<TurnIn Nav="Fly" QuestName="Equipment Blueprint: Trained Shark Tank" QuestId="39355" TurnInName="Salty Jorren" TurnInId="93812" />
+				</If>
+				<If Condition="HasQuest(39360)" >
+					<TurnIn Nav="Fly" QuestName="Equipment Blueprint: True Iron Rudder" QuestId="39360" TurnInName="Salty Jorren" TurnInId="93812" />
+				</If>
+				<If Condition="HasQuest(38932)" >
+					<TurnIn Nav="Fly" QuestName="Equipment Blueprint: Bilge Pump" QuestId="38932" TurnInName="Salty Jorren" TurnInId="93812" />
+				</If>
+				<If Condition="HasQuest(39365)" >
+					<TurnIn Nav="Fly" QuestName="Equipment Blueprint: Ghostly Spyglass" QuestId="39365" TurnInName="Salty Jorren" TurnInId="93812" />
+				</If>
+				<If Condition="HasQuest(39366)" >
+					<TurnIn Nav="Fly" QuestName="Equipment Blueprint: Felsmoke Launchers" QuestId="39366" TurnInName="Salty Jorren" TurnInId="93812" />
+				</If>
+				<If Condition="HasQuest(39363)" >
+					<TurnIn Nav="Fly" QuestName="Equipment Blueprint: Ice Cutter" QuestId="39363" TurnInName="Salty Jorren" TurnInId="93812" />
+				</If>
+				<If Condition="HasQuest(39356)" >
+					<TurnIn Nav="Fly" QuestName="Equipment Blueprint: High Intensity Fog Lights" QuestId="39356" TurnInName="Salty Jorren" TurnInId="93812" />
+				</If>
+			</If>
+			<If Condition="Me.IsHorde" >
+				<MoveTo Nav="Fly" DestName="Frostwall Shipyard to turn in Blueprints" X="5333.883" Y="5060.396" Z="3.282828" />
+				<If Condition="HasQuest(39364)" >
+					<TurnIn Nav="Fly" QuestName="Equipment Blueprint: Gyroscopic Internal Stabilizer" QuestId="39364" TurnInName="Kronk Rustspark" TurnInId="94801" />
+				</If>
+				<If Condition="HasQuest(39355)" >
+					<TurnIn Nav="Fly" QuestName="Equipment Blueprint: Trained Shark Tank" QuestId="39355" TurnInName="Kronk Rustspark" TurnInId="94801" />
+				</If>
+				<If Condition="HasQuest(39360)" >
+					<TurnIn Nav="Fly" QuestName="Equipment Blueprint: True Iron Rudder" QuestId="39360" TurnInName="Kronk Rustspark" TurnInId="94801" />
+				</If>
+				<If Condition="HasQuest(38932)" >
+					<TurnIn Nav="Fly" QuestName="Equipment Blueprint: Bilge Pump" QuestId="38932" TurnInName="Kronk Rustspark" TurnInId="94801" />
+				</If>
+				<If Condition="HasQuest(39365)" >
+					<TurnIn Nav="Fly" QuestName="Equipment Blueprint: Ghostly Spyglass" QuestId="39365" TurnInName="Kronk Rustspark" TurnInId="94801" />
+				</If>
+				<If Condition="HasQuest(39366)" >
+					<TurnIn Nav="Fly" QuestName="Equipment Blueprint: Felsmoke Launchers" QuestId="39366" TurnInName="Kronk Rustspark" TurnInId="94801" />
+				</If>
+				<If Condition="HasQuest(39363)" >
+					<TurnIn Nav="Fly" QuestName="Equipment Blueprint: Ice Cutter" QuestId="39363" TurnInName="Kronk Rustspark" TurnInId="94801" />
+				</If>
+				<If Condition="HasQuest(39356)" >
+					<TurnIn Nav="Fly" QuestName="Equipment Blueprint: High Intensity Fog Lights" QuestId="39356" TurnInName="Kronk Rustspark" TurnInId="94801" />
+				</If>
+			</If>
+		</If>
+	<!-- END Blueprint Turn Ins -->
 </QuestOrder>
 </HBProfile>
