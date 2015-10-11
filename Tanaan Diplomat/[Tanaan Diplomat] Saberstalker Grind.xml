@@ -36,26 +36,24 @@
 	<QuestOrder>
 
 		<!-- Saberstalker Grind -->
-			<While Condition="Me.GetReputationLevelWith(1850) &lt; WoWUnitReaction.Revered &amp;&amp; Lua.GetReturnVal&lt;float&gt;(&quot;return GetAverageItemLevel()&quot;, 0) &gt;= 670" >
-				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Going to grind Saberstalker reputation until we're revered or until you stop the bot.&quot;);" />
-				<If Condition="(!HasQuest(39582) &amp;&amp; !IsQuestCompleted(39582) &amp;&amp; Me.IsAlliance) || (!HasQuest(39529) &amp;&amp; !IsQuestCompleted(39529) &amp;&amp; Me.IsHorde)" >
-					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Red, &quot;[Notification]: You may want to pick up Tooth and Claw before letting this grind commence.&quot;);" />
-				</If>
-				<SetGrindArea>
-					<GrindArea>
-						<MobIds>89746, 89747, 89695, 89695, 92466</MobIds>
-						<Hotspots>
-							<Hotspot X="3214.202" Y="-1176.236" Z="38.20932" />
-							<Hotspot X="3223.522" Y="-1096.341" Z="15.67206" />
-							<Hotspot X="3264.671" Y="-1073.653" Z="24.47884" />
-							<Hotspot X="3275.426" Y="-997.3123" Z="61.89376" />
-							<Hotspot X="3207.052" Y="-982.5129" Z="56.06119" />
-							<Hotspot X="3243.372" Y="-916.5643" Z="77.88932" />
-						</Hotspots>
-					</GrindArea>
-				</SetGrindArea>
-				<GrindUntil Condition="Me.GetReputationLevelWith(1850) &gt;= WoWUnitReaction.Revered" />
-			</While>
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Going to grind Saberstalker reputation until we're revered or until you stop the bot.&quot;);" />
+			<If Condition="(!HasQuest(39582) &amp;&amp; !IsQuestCompleted(39582) &amp;&amp; Me.IsAlliance) || (!HasQuest(39529) &amp;&amp; !IsQuestCompleted(39529) &amp;&amp; Me.IsHorde)" >
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Red, &quot;[Notification]: You may want to pick up Tooth and Claw before letting this grind commence.&quot;);" />
+			</If>
+			<SetGrindArea>
+				<GrindArea>
+					<MobIds>89746, 89747, 89695, 89695, 92466</MobIds>
+					<Hotspots>
+						<Hotspot X="3214.202" Y="-1176.236" Z="38.20932" />
+						<Hotspot X="3223.522" Y="-1096.341" Z="15.67206" />
+						<Hotspot X="3264.671" Y="-1073.653" Z="24.47884" />
+						<Hotspot X="3275.426" Y="-997.3123" Z="61.89376" />
+						<Hotspot X="3207.052" Y="-982.5129" Z="56.06119" />
+						<Hotspot X="3243.372" Y="-916.5643" Z="77.88932" />
+					</Hotspots>
+				</GrindArea>
+			</SetGrindArea>
+			<GrindUntil Condition="Me.GetReputationLevelWith(1850) &gt;= WoWUnitReaction.Revered" />
 		<!-- END Saberstalker Grind -->
 		
 	</QuestOrder>

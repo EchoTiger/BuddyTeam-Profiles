@@ -137,8 +137,8 @@
 		<CustomBehavior File="Hooks\Avoid" AvoidName="Shadow_Zone" Command="Add" ObjectType="Missile" ObjectId="183165" Radius="5" />
 		<CustomBehavior File="Hooks\Avoid" AvoidName="Fel_Pool" Command="Add" ObjectType="AreaTrigger" ObjectId="8757" Radius="5" />
 		<CustomBehavior File="Hooks\Avoid" AvoidName="IronHordeCannonBombardment" Command="Add" ObjectType="Missile" ObjectId="184281" Radius="5" />
-		<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="true" ActivityName="Use_ObjectiveItems" UseWhen="Styx.CommonBot.Bars.ActionBar.Extra.IsActive &amp;&amp; ((Me.Combat &amp;&amp; Me.GotTarget) || ((ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069, 90781, 91901, 92741}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 15).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null) &amp;&amp; !(ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Any(u =&gt; u.IsHostile &amp;&amp; u.Distance &lt;= 16 &amp;&amp; u.IsAlive))) || (Unit(90074, u =&gt; Navigator.PathDistance(Me.Location, u.Location) &lt;= 50 &amp;&amp; u.IsAlive) != null &amp;&amp; !Me.Combat) || (Unit(92616, u =&gt; Navigator.PathDistance(Me.Location, u.Location) &lt;= 50 &amp;&amp; u.IsAlive) != null &amp;&amp; !Me.Combat))" >
-			<While Condition="Styx.CommonBot.Bars.ActionBar.Extra.IsActive &amp;&amp; ((Me.Combat &amp;&amp; Me.GotTarget) || ((ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069, 90781, 91901, 92741}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 15).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null) &amp;&amp; !(ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Any(u =&gt; u.IsHostile &amp;&amp; u.Distance &lt;= 16 &amp;&amp; u.IsAlive))) || (Unit(90074, u =&gt; Navigator.PathDistance(Me.Location, u.Location) &lt;= 50 &amp;&amp; u.IsAlive) != null &amp;&amp; !Me.Combat) || (Unit(92616, u =&gt; Navigator.PathDistance(Me.Location, u.Location) &lt;= 50 &amp;&amp; u.IsAlive) != null &amp;&amp; !Me.Combat))" >
+		<CustomBehavior File="Hooks\DoWhen" AllowExecutionWhileNotAlive="false" AllowUseDuringCombat="true" ActivityName="Use_ObjectiveItems" UseWhen="Styx.CommonBot.Bars.ActionBar.Extra.IsActive &amp;&amp; ((Me.Combat &amp;&amp; Me.GotTarget) || ((ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069, 90781, 91901, 92741}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 15).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null)) || (!Me.Combat &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{92616, 90074}.Contains((int)o.Entry) &amp;&amp; Navigator.PathDistance(Me.Location, o.Location) &lt; 50 &amp;&amp; o.IsAlive).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null))" >
+			<While Condition="Styx.CommonBot.Bars.ActionBar.Extra.IsActive &amp;&amp; ((Me.Combat &amp;&amp; Me.GotTarget) || ((ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069, 90781, 91901, 92741}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 15).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null)) || (Unit(90074, u =&gt; Navigator.PathDistance(Me.Location, u.Location) &lt;= 50 &amp;&amp; u.IsAlive) != null &amp;&amp; !Me.Combat) || (Unit(92616, u =&gt; Navigator.PathDistance(Me.Location, u.Location) &lt;= 50 &amp;&amp; u.IsAlive) != null &amp;&amp; !Me.Combat))" >
 				<If Condition="Me.Combat &amp;&amp; !Me.GotTarget" >
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Lagging hook until we get a target.&quot;);" />
 					<CustomBehavior File="WaitTimer" WaitTime="5000" TerminateWhen="Me.GotTarget || !Me.Combat" />
@@ -161,7 +161,7 @@
 					<EnableBehavior Name="Combat" />
 				</If>
 				<!-- Use on nearby tank. -->
-				<If Condition="!Me.Combat &amp;&amp; (Unit(92616, u =&gt; u.IsAlive &amp;&amp; Navigator.PathDistance(Me.Location, u.Location) &lt;= 50) != null || Unit(90074, u =&gt; u.IsAlive &amp;&amp; Navigator.PathDistance(Me.Location, u.Location) &lt;= 50) != null)" >
+				<If Condition="!Me.Combat &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{92616, 90074}.Contains((int)o.Entry) &amp;&amp; Navigator.PathDistance(Me.Location, o.Location) &lt; 50 &amp;&amp; o.IsAlive).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null" >
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Using Objective Item on nearby tank.&quot;);" />
 					<CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting to leave combat: {TimeRemaining}" TerminateWhen="!Me.Combat" /> <!-- We need to be out of combat first. -->
 					<CustomBehavior File="TargetAndMoveToMob" MobId1="90074" MobId2="92616" WaitForNpcs="false" MoveWithinMaxRangeOfMob="25" TerminateWhen="!Styx.CommonBot.Bars.ActionBar.Extra.IsActive || Me.Combat" />
@@ -180,7 +180,8 @@
 					</If>
 				</If>
 				<!-- Dispose if another nearby. -->
-				<If Condition="(ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069, 90781, 91901, 92741}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 15).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null) &amp;&amp; !(ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Any(u =&gt; u.IsHostile &amp;&amp; u.Distance &lt;= 16 &amp;&amp; u.IsAlive))" >
+				<If Condition="(ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(o =&gt; new[]{90069, 90781, 91901, 92741}.Contains((int)o.Entry) &amp;&amp; o.Distance &lt; 15).OrderBy(o =&gt; o.Distance).FirstOrDefault() != null)" >
+					<!-- Hostile check, assumed to cause <If/> errors: !(ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Any(u =&gt; u.IsHostile &amp;&amp; u.Distance &lt;= 16 &amp;&amp; u.IsAlive)) -->
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Yellow, &quot;[Notification]: Disposing of Objective Item to loot another.&quot;);" />
 					<CustomBehavior File="RunCode">
 					<![CDATA[ 
