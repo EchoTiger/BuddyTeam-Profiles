@@ -149,9 +149,12 @@
 			</If>
 
 			<If Condition="!IsQuestCompleted(35695)" > <!-- Name="Warsong Cache" -->
-				<MoveTo DestName="Warsong Cache" X="2641.028" Y="6374.121" Z="49.67361" />
+				<MoveTo DestName="Warsong Cache" X="2634.927" Y="6362.379" Z="46.88122" />
+				<MoveTo DestName="Warsong Cache"  X="2640.193" Y="6375.854" Z="49.6729" />
 				<CustomBehavior File="InteractWith" NumOfTimes="3" WaitTime="1500" WaitForNpcs="false" ProactiveCombatStrategy="ClearMobsThatWillAggro" PreInteractMountStrategy="Dismount" 
 					 MobIds="233135" X="2642.108" Y="6373.464" Z="49.61965" />
+				<MoveTo DestName="Moving away from house." X="2636.752" Y="6372.147" Z="49.61976" />
+				<MoveTo DestName="Moving away from house." X="2634.662" Y="6360.341" Z="46.26606" />
 			</If>
 
 			<If Condition="!IsQuestCompleted(35999)" > <!-- Name="Genedar Debris #3" -->
