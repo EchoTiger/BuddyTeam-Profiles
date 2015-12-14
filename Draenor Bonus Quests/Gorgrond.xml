@@ -318,7 +318,7 @@ Using KillUntilComplete instead.
 	</While>
 
 	<If Condition="!IsQuestCompleted(36603)" > <!-- Brimstone Springs, mid Gorgrond -->
-		<CustomBehavior File="Hooks\Avoid" AvoidName="Sulfur_Acid" Command="Add" ObjectType="AreaTrigger" ObjectId="8093" Radius="5" />
+		<CustomBehavior File="Hooks\Avoid" AvoidName="Sulfur_Acid" IgnoreLootInAvoid ="true" Command="Add" ObjectType="AreaTrigger" ObjectId="8093" Radius="5" />
 		<If Condition="!HasQuest(36603)" >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Brimstone Springs.&quot;);" />
 			<DisableBehavior Name="Pull" />
