@@ -262,7 +262,6 @@
 			</If>
 
 			<If Condition="!IsQuestCompleted(33525) &amp;&amp; !HasItem(107272)" >
-				<!-- Add code here to vendor or inventory check. Also protect this. -->
 				<CustomBehavior File="FlyTo" DestName="Young Orc Woman" X="7667.789" Y="3633.24" Z="129.0918" />
 				<CustomBehavior File="InteractWith" PreInteractMountStrategy="DismountOrCancelShapeshift" MobIds="75081" ProactiveCombatStrategy="ClearMobsThatWillAggro" X="7675.647" Y="3629.538" Z="129.7265" />
 				<CustomBehavior File="Misc\RunLua" Lua="GossipTitleButton1:Click();" /> <!-- Using Lua instead of IW's solution to be safe. -->
@@ -2420,7 +2419,7 @@
 					Name="Spirit's Gift" MobId="236610" Range="9" IgnoreLoSToTarget="true" X="2757.136" Y="7295.27" Z="89.1935" />
 			</If>
 
-			<If Condition="!IsQuestCompleted(35765)" >
+			<If Condition="!IsQuestCompleted(35969)" >
 				<CustomBehavior File="FlyTo" DestName="Adventurer's Pack" X="2957.418" Y="6719.5" Z="25.38932" />
 				<CustomBehavior File="ForcedDismount" />
 				<CustomBehavior File="InteractWith" PreInteractMountStrategy="DismountOrCancelShapeshift" ProactiveCombatStrategy="ClearMobsTargetingUs" WaitForNpcs="false" 
