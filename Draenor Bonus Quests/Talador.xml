@@ -89,7 +89,7 @@
 		<If Condition="!HasQuest(34667)" >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Court of Souls.&quot;);" />
 			<DisableBehavior Name="Pull" />
-			<MoveTo DestName="Court of Souls" X="2000.563" Y="3228.425" Z="121.1691" />
+			<MoveTo Nav="Fly" DestName="Court of Souls" X="2000.563" Y="3228.425" Z="121.1691" />
 			<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(34667)" />
 			<EnableBehavior Name="Pull" />
 		</If>
@@ -122,7 +122,7 @@
 		<If Condition="!HasQuest(34660)" >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Zorkra's Fall.&quot;);" />
 			<DisableBehavior Name="Pull" />
-			<MoveTo DestName="Zorkra's Fall" X="969.8188" Y="2731.16" Z="137.1027" />
+			<MoveTo Nav="Fly" DestName="Zorkra's Fall" X="969.8188" Y="2731.16" Z="137.1027" />
 			<EnableBehavior Name="Pull" />
 		</If>
 		<CustomBehavior File="InteractWith" QuestId="34660" NumOfTimes="10" IgnoreMobsInBlackspots="True" IgnoreLoSToTarget="false" MobId="79520" X="947.933" Y="2640.73" Z="141.6125" TerminateWhen="IsObjectiveComplete(1, 34660)" />
@@ -133,7 +133,7 @@
 		<If Condition="!HasQuest(35237)" >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Mor'gran Logworks.&quot;);" />
 			<DisableBehavior Name="Pull" />
-			<MoveTo DestName="Mor'gran Logworks" X="3122.872" Y="1894.693" Z="128.6658" />
+			<MoveTo Nav="Fly" DestName="Mor'gran Logworks" X="3122.872" Y="1894.693" Z="128.6658" />
 			<EnableBehavior Name="Pull" />
 		</If>
 		<Objective QuestName="Bonus Objective: Mor'gran Logworks" QuestId="35237" Type="CollectItem" ItemId="112994" CollectCount="20" />
@@ -146,14 +146,14 @@
 		</CustomBehavior>
 	</If>
 
-	<If Condition="!IsQuestCompleted(37421)" > <!-- Kuuro's Calm, northern Talador -->
+	<While Condition="!IsQuestCompleted(37421)" > <!-- Kuuro's Calm, northern Talador -->
 		<If Condition="!HasQuest(37421)" >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Kuuro's Calm.&quot;);" />
 			<DisableBehavior Name="Pull" />
-			<MoveTo DestName="Kuuro's Calm" X="3494.314" Y="1402.375" Z="115.9437" />
+			<MoveTo Nav="Fly" DestName="Kuuro's Calm" X="3494.314" Y="1402.375" Z="115.9437" />
 			<EnableBehavior Name="Pull" />
 		</If>
-		<CustomBehavior File="KillUntilComplete" QuestId="37421" MobId="80013" TerminateWhen="IsObjectiveComplete(1, 37421)" >
+		<CustomBehavior File="KillUntilComplete" QuestId="37421" MovementBy="NavigatorPreferred" MobId="80013" TerminateWhen="IsObjectiveComplete(1, 37421)" >
 			<HuntingGrounds>
 				<Hotspot X="3543.029" Y="1335.53" Z="116.7838" />
 				<Hotspot X="3774.019" Y="1181.711" Z="82.73631" />
@@ -162,7 +162,7 @@
 				<Hotspot X="3839.212" Y="1131.293" Z="108.7187" />
 			</HuntingGrounds>
 		</CustomBehavior>
-		<CustomBehavior File="KillUntilComplete" QuestId="37421" MobId="80072" TerminateWhen="IsObjectiveComplete(2, 37421)" >
+		<CustomBehavior File="KillUntilComplete" QuestId="37421" MovementBy="NavigatorPreferred" MobId="80072" TerminateWhen="IsObjectiveComplete(2, 37421)" >
 			<HuntingGrounds>
 				<Hotspot X="3543.029" Y="1335.53" Z="116.7838" />
 				<Hotspot X="3774.019" Y="1181.711" Z="82.73631" />
@@ -171,7 +171,7 @@
 				<Hotspot X="3839.212" Y="1131.293" Z="108.7187" />
 			</HuntingGrounds>
 		</CustomBehavior>
-	</If>
+	</While>
 
 	<If Condition="Me.IsAlliance" >
 		<CustomBehavior File="LoadProfile" ProfileName="Nagrand.xml" RememberProfile="false" />

@@ -93,7 +93,7 @@
 		<If Condition="!HasQuest(34505)" >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Forbidden Glacier.&quot;);" />
 			<DisableBehavior Name="Pull" />
-			<MoveTo DestName="Forbidden Glacier" X="6112.04" Y="5739.216" Z="141.4469" />
+			<MoveTo Nav="Fly" DestName="Forbidden Glacier" X="6112.04" Y="5739.216" Z="141.4469" />
 			<EnableBehavior Name="Pull" />
 		</If>
 		<CustomBehavior File="InteractWith" QuestId="34505" NumOfTimes="28" IgnoreMobsInBlackspots="True" IgnoreLoSToTarget="false" MobId1="78894" MobId2="78907" MobId3="78870" WaitTime="2000" KeepTargetSelected="true" Range="4" TerminateWhen="IsObjectiveComplete(2, 34505)" >
@@ -103,14 +103,14 @@
 				<Hotspot X="6221.833" Y="5932.442" Z="142.7567" />
 			</HuntingGrounds>
 		</CustomBehavior>
-		<Objective QuestName="Bonus Objective: Forbidden Glacier" QuestId="34505" Type="KillMob" MobId="78791" KillCount="10" />
+		<Objective QuestName="Bonus Objective: Forbidden Glacier" QuestId="34505" QuestObjectiveIndex="1" Type="KillMob" MobId="78791" KillCount="10" />
 	</If>
 
 	<If Condition="!IsQuestCompleted(33145)" > <!-- Grimfrost Hill, eastern Frostfire Ridge -->
 		<If Condition="!HasQuest(33145)" >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Grimfrost Hill.&quot;);" />
 			<DisableBehavior Name="Pull" />
-			<MoveTo DestName="Grimfrost Hill" X="6342.8" Y="3513.593" Z="144.3603" />
+			<MoveTo Nav="Fly" DestName="Grimfrost Hill" X="6342.8" Y="3513.593" Z="144.3603" />
 			<EnableBehavior Name="Pull" />
 		</If>
 		<CustomBehavior File="InteractWith" QuestId="33145" NumOfTimes="8" IgnoreMobsInBlackspots="True" IgnoreLoSToTarget="false" MobId="73284" WaitTime="2000" KeepTargetSelected="true" Range="4" TerminateWhen="IsObjectiveComplete(2, 33145)" X="6381.066" Y="3428.322" Z="144.0861" />
@@ -128,6 +128,7 @@
 		<If Condition="!HasQuest(34501)" >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Frostbite Hollow.&quot;);" />
 			<DisableBehavior Name="Pull" />
+			<MoveTo Nav="Fly" DestName="Frostbite Hollow" X="7568.468" Y="3512.314" Z="101.0012" />
 			<MoveTo DestName="Frostbite Hollow" X="7529.899" Y="3478.612" Z="103.6384" />
 			<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(34501)" />
 			<EnableBehavior Name="Pull" />

@@ -35,7 +35,7 @@
 		<If Condition="!IsQuestCompleted(34667)" > <!-- Court of Souls, mid Talador -->
 			<If Condition="!HasQuest(34667)" >
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Court of Souls.&quot;);" />
-				<MoveTo DestName="Court of Souls" X="1977.804" Y="3149.379" Z="132.3365" />
+				<MoveTo Nav="Fly" DestName="Court of Souls" X="1977.804" Y="3149.379" Z="132.3365" />
 			</If>
 			<Objective QuestName="Bonus Objective: Court of Souls" QuestId="34667" Type="KillMob" MobId="79499" KillCount="8" />
 			<Objective QuestName="Bonus Objective: Court of Souls" QuestId="34667" Type="KillMob" MobId="79503" KillCount="10" />

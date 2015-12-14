@@ -60,7 +60,7 @@
 		<If Condition="!HasQuest(35379)" >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Hemet's Happy Hunting Grounds.&quot;);" />
 			<DisableBehavior Name="Pull" />
-			<MoveTo DestName="Hemet's Happy Hunting Grounds" X="3037.637" Y="4319.546" Z="164.1211" />
+			<MoveTo Nav="Fly" DestName="Hemet's Happy Hunting Grounds" X="3037.637" Y="4319.546" Z="164.1211" />
 			<EnableBehavior Name="Pull" />
 		</If>
 		<Objective QuestName="Bonus Objective: Hemet's Happy Hunting Grounds" QuestId="35379" Type="KillMob" MobId="82205" KillCount="1" />
@@ -78,7 +78,7 @@
 		<If Condition="!HasQuest(34723)" >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Ironfist Harbor.&quot;);" />
 			<DisableBehavior Name="Pull" />
-			<MoveTo DestName="Ironfist Harbor" X="2103.605" Y="6878.182" Z="1.212917" />
+			<MoveTo Nav="Fly" DestName="Ironfist Harbor" X="2103.605" Y="6878.182" Z="1.212917" />
 			<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(34723) || Me.Combat" />
 			<EnableBehavior Name="Pull" />
 		</If>
@@ -89,7 +89,7 @@
 			<CustomBehavior File="KillUntilComplete" QuestId="34723" MobId="79588" X="2205.747" Y="7167.661" Z="34.17261" TerminateWhen="IsObjectiveComplete(4, 34723)" />
 			<MoveTo X="2194.194" Y="7105.935" Z="3.260756" />
 		</If>
-			<CustomBehavior File="InteractWith" QuestId="34723" MobId="230653" NumOfTimes="30" TerminateWhen="IsObjectiveComplete(2, 34723)" >
+			<CustomBehavior File="InteractWith" QuestId="34723" MobId="230653" NumOfTimes="30" PreInteractMountStrategy="Dismount" TerminateWhen="IsObjectiveComplete(2, 34723)" >
 				<HuntingGrounds>
 					<Hotspot X="2040.59" Y="7133.468" Z="2.290698" />
 					<Hotspot X="1974.882" Y="7177.077" Z="11.91693" />

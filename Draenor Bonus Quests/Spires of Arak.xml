@@ -64,7 +64,7 @@
 		<If Condition="!HasQuest(36660)" >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Bloodmane Pridelands.&quot;);" />
 			<DisableBehavior Name="Pull" />
-			<MoveTo DestName="Bloodmane Pridelands" X="-1218.563" Y="1796.782" Z="8.032583" />
+			<MoveTo Nav="Fly" DestName="Bloodmane Pridelands" X="-1218.563" Y="1796.782" Z="8.032583" />
 			<EnableBehavior Name="Pull" />
 		</If>
 		<Objective QuestName="Bonus Objective: Bloodmane Pridelands" QuestId="36660" Type="KillMob" MobId="86076" KillCount="1" />
@@ -97,7 +97,7 @@
 		<If Condition="!HasQuest(35649)" >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to The Writhing Mire.&quot;);" />
 			<DisableBehavior Name="Pull" />
-			<MoveTo DestName="The Writhing Mire" X="-355.5406" Y="2546.91" Z="-0.7122562" />
+			<MoveTo Nav="Fly" DestName="The Writhing Mire" X="-355.5406" Y="2546.91" Z="-0.7122562" />
 			<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(35649)" />
 			<EnableBehavior Name="Pull" />
 		</If>
@@ -125,20 +125,20 @@
 		<If Condition="!HasQuest(36792)" >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Bladefist Hold.&quot;);" />
 			<DisableBehavior Name="Pull" />
-			<MoveTo DestName="Bladefist Hold" X="89.93101" Y="2765.979" Z="63.6528" />
+			<MoveTo Nav="Fly" DestName="Bladefist Hold" X="89.93101" Y="2765.979" Z="63.6528" />
 			<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(36792)" />
 			<EnableBehavior Name="Pull" />
 		</If>
-		<CustomBehavior File="KillUntilComplete" QuestId="36792" MobId="86455" X="185.8316" Y="2816.909" Z="15.28534" TerminateWhen="IsObjectiveComplete(4, 36792)" />
-		<CustomBehavior File="KillUntilComplete" QuestId="36792" MobId="86461" X="264.7496" Y="2817.09" Z="78.09679" TerminateWhen="IsObjectiveComplete(5, 36792)" />
+		<CustomBehavior File="InteractWith" QuestId="36792" MobState="AliveNotInCombat" MobId="86455" X="185.8316" Y="2816.909" Z="15.28534" TerminateWhen="IsObjectiveComplete(4, 36792)" />
+		<CustomBehavior File="InteractWith" QuestId="36792" MobState="AliveNotInCombat" MobId="86461" X="264.7496" Y="2817.09" Z="78.09679" TerminateWhen="IsObjectiveComplete(5, 36792)" />
 		<If Condition="!IsObjectiveComplete(6, 36792)" >
 			<MoveTo X="292.7845" Y="2997.369" Z="99.24784" />
 			<!--<Objective QuestName="Bonus Objective: Bladefist Hold" QuestId="36792" Type="KillMob" MobId="86482" KillCount="1" />-->
-			<CustomBehavior File="KillUntilComplete" QuestId="36792" MobId="86482" X="298.8264" Y="2989.751" Z="135.6285" TerminateWhen="IsObjectiveComplete(6, 36792)" />
+			<CustomBehavior File="InteractWith" QuestId="36792" MobState="AliveNotInCombat" MobId="86482" X="298.8264" Y="2989.751" Z="135.6285" TerminateWhen="IsObjectiveComplete(6, 36792)" />
 		</If>
 		<While Condition="!IsObjectiveComplete(3, 36792) &amp;&amp; HasQuest(36792)" >
 			<!--<Objective QuestName="Bonus Objective: Bladefist Hold" QuestId="36792" Type="KillMob" MobId="86524" KillCount="6" /> -->
-			<CustomBehavior File="InteractWith" QuestId="36792" IgnoreMobsInBlackspots="True" IgnoreLoSToTarget="false" MobId="86524" TerminateWhen="IsObjectiveComplete(3, 36792)" >
+			<CustomBehavior File="InteractWith" QuestId="36792" IgnoreMobsInBlackspots="True" PreInteractMountStrategy="Dismount" IgnoreLoSToTarget="false" MobId="86524" TerminateWhen="IsObjectiveComplete(3, 36792)" >
 				<HuntingGrounds WaypointVisitStrategy="Random">
 					<Hotspot X="349.9356" Y="2905.86" Z="94.68056" />
 					<Hotspot X="345.815" Y="2906.87" Z="109.3956" />
@@ -148,13 +148,13 @@
 				</HuntingGrounds>
 			</CustomBehavior>
 		</While>
-		<CustomBehavior File="KillUntilComplete" QuestId="36792" MobId1="86285" MobId2="86295" MobId3="86416" MobId4="86268" MobId5="86399" MobId6="86461" MobId7="86296" TerminateWhen="IsObjectiveComplete(1, 36792)" >
+		<CustomBehavior File="InteractWith" QuestId="36792" MobState="AliveNotInCombat" PreInteractMountStrategy="Dismount" MobId1="86285" MobId2="86295" MobId3="86416" MobId4="86268" MobId5="86399" MobId6="86461" MobId7="86296" TerminateWhen="IsObjectiveComplete(1, 36792)" >
 			<HuntingGrounds>
 				<Hotspot X="277.972" Y="2839.729" Z="78.09667" />
 				<Hotspot X="232.0873" Y="2959.968" Z="83.16968" />
 			</HuntingGrounds>
 		</CustomBehavior>
-		<CustomBehavior File="KillUntilComplete" QuestId="36792" MobId1="86294" TerminateWhen="IsObjectiveComplete(2, 36792) &amp;&amp; IsQuestCompleted(36792)" >
+		<CustomBehavior File="InteractWith" QuestId="36792" MobState="AliveNotInCombat" PreInteractMountStrategy="Dismount" MobId1="86294" MobId2="86286" TerminateWhen="IsObjectiveComplete(2, 36792) &amp;&amp; IsQuestCompleted(36792)" >
 			<HuntingGrounds>
 				<Hotspot X="95.37838" Y="2865.529" Z="46.81274" />
 			</HuntingGrounds>
@@ -165,7 +165,7 @@
 		<If Condition="!HasQuest(36590)" >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to The Howling Crag.&quot;);" />
 			<DisableBehavior Name="Pull" />
-			<MoveTo DestName="The Howling Crag" X="382.063" Y="940.6853" Z="72.67851" />
+			<MoveTo Nav="Fly" DestName="The Howling Crag" X="382.063" Y="940.6853" Z="72.67851" />
 			<EnableBehavior Name="Pull" />
 		</If>
 		<CustomBehavior File="KillUntilComplete" QuestId="36590" MobId="85898" X="319.8438" Y="515.8768" Z="16.00463" TerminateWhen="IsObjectiveComplete(3, 36590)" />
@@ -189,7 +189,7 @@
 		</CustomBehavior>
 		<If Condition="!IsObjectiveComplete(2,36590)" >
 			<MoveTo X="306.2009" Y="815.7618" Z="85.41898" />
-			<CustomBehavior File="InteractWith" QuestId="36590" IgnoreMobsInBlackspots="True" IgnoreLoSToTarget="false" MobId="236010" NumOfTimes="10" TerminateWhen="IsObjectiveComplete(2, 36590) || IsQuestCompleted(36590)" >
+			<CustomBehavior File="InteractWith" QuestId="36590" IgnoreMobsInBlackspots="True" PreInteractMountStrategy="Dismount" IgnoreLoSToTarget="false" MobId="236010" NumOfTimes="10" TerminateWhen="IsObjectiveComplete(2, 36590) || IsQuestCompleted(36590)" >
 				<HuntingGrounds WaypointVisitStrategy="InOrder">
 					<Hotspot X="434.4074" Y="867.9259" Z="83.73187" />
 					<Hotspot X="277.662" Y="803.8696" Z="92.978" />

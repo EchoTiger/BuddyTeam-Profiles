@@ -84,7 +84,7 @@
 		<If Condition="!HasQuest(34504)" >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Bloodthorn Cave.&quot;);" />
 			<DisableBehavior Name="Pull" />
-			<MoveTo DestName="Bloodthorn Cave" X="1189.02" Y="669.9084" Z="108.1194" />
+			<MoveTo Nav="Fly" DestName="Bloodthorn Cave" X="1189.02" Y="669.9084" Z="108.1194" />
 			<EnableBehavior Name="Pull" />
 		</If>
 		<While Condition="!IsObjectiveComplete(2, 34504)" >
@@ -115,7 +115,7 @@
 		<If Condition="!HasQuest(34496)" >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Hills of Valuun.&quot;);" />
 			<DisableBehavior Name="Pull" />
-			<MoveTo DestName="Hills of Valuun" X="1154.234" Y="-1719.671" Z="19.27662" />
+			<MoveTo Nav="Fly" DestName="Hills of Valuun" X="1154.234" Y="-1719.671" Z="19.27662" />
 			<EnableBehavior Name="Pull" />
 		</If>
 		<CustomBehavior File="KillUntilComplete" QuestId="34496" MobId="75483" TerminateWhen="IsObjectiveComplete(1, 34496)" >
@@ -140,7 +140,7 @@
 		<If Condition="!HasQuest(34728)" >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to The Shimmer Moor.&quot;);" />
 			<DisableBehavior Name="Pull" />
-			<MoveTo DestName="The Shimmer Moor" X="-128.2493" Y="-1683.439" Z="72.79427" />
+			<MoveTo Nav="Fly" DestName="The Shimmer Moor" X="-128.2493" Y="-1683.439" Z="72.79427" />
 			<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(34728)" />
 			<EnableBehavior Name="Pull" />
 		</If>

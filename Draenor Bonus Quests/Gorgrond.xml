@@ -88,15 +88,15 @@ Using KillUntilComplete instead.
 
 <QuestOrder>
 
-	<If Condition="!IsQuestCompleted(36520)" > <!-- Tailthrasher Basin, southern Gorgrond -->
-		<If Condition="!HasQuest(36520)" >
+
+	<While Condition="!IsQuestCompleted(36520)" > <!-- Tailthrasher Basin, southern Gorgrond -->
+		<If Condition="!HasQuest(36520) &amp;&amp; !IsQuestCompleted(36520)" >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Tailthrasher Basin.&quot;);" />
-			<DisableBehavior Name="Pull" />
-			<MoveTo DestName="Tailthrasher Basin" X="4551.19" Y="1275.023" Z="145.4546" />
-			<EnableBehavior Name="Pull" />
+			<MoveTo Nav="Fly" DestName="Tailthrasher Basin" X="4699.052" Y="1281.002" Z="122.0951" />
+			<CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting for quest to trigger {TimeRemaining}" TerminateWhen="HasQuest(36520)" />
 		</If>
 		<While Condition="!IsObjectiveComplete(2, 36520)" >
-			<CustomBehavior File="InteractWith" QuestId="36520" MobId="85810" TerminateWhen="IsObjectiveComplete(2, 36520)" >
+			<CustomBehavior File="InteractWith" QuestId="36520" MovementBy="NavigatorPreferred" MobId="85810" TerminateWhen="IsObjectiveComplete(2, 36520)" >
 				<HuntingGrounds WaypointVisitStrategy="InOrder">
 					<Hotspot X="4622.737" Y="1355.936" Z="119.246" />
 					<Hotspot X="4692.831" Y="1308.706" Z="122.0948" />
@@ -104,21 +104,22 @@ Using KillUntilComplete instead.
 				</HuntingGrounds>
 			</CustomBehavior>
 		</While>
-		<CustomBehavior File="KillUntilComplete" QuestId="36520" MobId="85733" X="4749.683" Y="1435.49" Z="138.4854" TerminateWhen="IsObjectiveComplete(3, 36520)" />
-		<CustomBehavior File="KillUntilComplete" QuestId="36520" MobId1="85770" MobId2="85724" MobId3="85718" MobId4="85725" TerminateWhen="IsObjectiveComplete(1, 36520)" >
+		<CustomBehavior File="InteractWith" QuestId="36520" MovementBy="NavigatorPreferred" MobId="85733" X="4749.683" Y="1435.49" Z="138.4854" TerminateWhen="IsObjectiveComplete(3, 36520)" />
+		<CustomBehavior File="InteractWith" QuestId="36520" MovementBy="NavigatorPreferred" MobState="AliveNotInCombat" MobId1="85770" MobId2="85724" MobId3="85718" MobId4="85725" TerminateWhen="IsObjectiveComplete(1, 36520)" >
 			<HuntingGrounds>
 				<Hotspot X="4664.397" Y="1400.371" Z="136.5752" />
 				<Hotspot X="4681.579" Y="1326.879" Z="122.1064" />
 				<Hotspot X="4635.645" Y="1496.011" Z="124.9741" />
 			</HuntingGrounds>
 		</CustomBehavior>
-	</If>
+		<CustomBehavior File="WaitTimer" WaitTime="10000" GoalText="Waiting for quest to Complete {TimeRemaining}" TerminateWhen="IsQuestCompleted(36520)" />
+	</While>
 
 	<If Condition="!IsQuestCompleted(36504) &amp;&amp; SpellManager.HasSpell(&quot;Champion&apos;s Honor&quot;)" > <!-- Evermorn Springs, southern Gorgrond -->
 		<If Condition="!HasQuest(36504)" >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Evermorn Springs.&quot;);" />
 			<DisableBehavior Name="Pull" />
-			<MoveTo DestName="Evermorn Springs" X="5254.659" Y="1456.283" Z="84.42194" />
+			<MoveTo Nav="Fly" DestName="Evermorn Springs" X="5254.659" Y="1456.283" Z="84.42194" />
 			<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(36504)" />
 			<EnableBehavior Name="Pull" />
 		</If>
@@ -136,15 +137,17 @@ Using KillUntilComplete instead.
 		<If Condition="!HasQuest(36500)" >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to The Razorbloom.&quot;);" />
 			<DisableBehavior Name="Pull" />
-			<MoveTo DestName="The Razorbloom" X="5500.91" Y="1230.265" Z="91.35429" />
+			<MoveTo Nav="Fly" DestName="The Razorbloom" X="5500.91" Y="1230.265" Z="91.35429" />
 			<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(36500)" />
 			<EnableBehavior Name="Pull" />
 		</If>
-		<Objective QuestName="Bonus Objective: The Razorbloom" QuestId="36500" Type="KillMob" MobId="81634" KillCount="1" />
-		<Objective QuestName="Bonus Objective: The Razorbloom" QuestId="36500" Type="KillMob" MobId="81617" KillCount="12" />
+		<If Condition="HasQuest(36500)" >
+			<Objective QuestName="Bonus Objective: The Razorbloom" QuestId="36500" Type="KillMob" MobId="81634" KillCount="1" />
+			<Objective QuestName="Bonus Objective: The Razorbloom" QuestId="36500" Type="KillMob" MobId="81617" KillCount="12" />
+		</If>
 
 		<If Condition="!IsObjectiveComplete(3, 36500)" >
-			<CustomBehavior File="TargetAndMoveToMob" MobId="85732" MoveWithinMaxRangeOfMob="6" TerminateWhen="IsObjectiveComplete(3, 36500) &amp;&amp; !IsQuestCompleted(36500) &amp;&amp; !HasQuest(36500)" >
+			<CustomBehavior File="TargetAndMoveToMob" MobId="85732" MoveWithinMaxRangeOfMob="1" TerminateWhen="IsObjectiveComplete(3, 36500) &amp;&amp; !IsQuestCompleted(36500) &amp;&amp; !HasQuest(36500)" >
 				<HuntingGrounds>
 					<Hotspot X="5648.192" Y="1198.595" Z="89.2859" />
 					<Hotspot X="5608.077" Y="1122.168" Z="84.00389" />
@@ -160,7 +163,7 @@ Using KillUntilComplete instead.
 		<If Condition="!HasQuest(35881)" >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Ruins of the First Bastion.&quot;);" />
 			<DisableBehavior Name="Pull" />
-			<MoveTo DestName="Ruins of the First Bastion" X="5216.542" Y="992.7067" Z="103.4424" />
+			<MoveTo Nav="Fly" DestName="Ruins of the First Bastion" X="5216.542" Y="992.7067" Z="103.4424" />
 			<EnableBehavior Name="Pull" />
 		</If>
 		<Objective QuestName="Bonus Objective: Ruins of the First Bastion" QuestId="35881" Type="KillMob" MobId="83450" KillCount="20" />
@@ -181,7 +184,7 @@ Using KillUntilComplete instead.
 		<If Condition="!HasQuest(34724)" >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to The Forgotten Caves.&quot;);" />
 			<DisableBehavior Name="Pull" />
-			<MoveTo DestName="The Forgotten Caves" X="5313.846" Y="875.9498" Z="115.6524" />
+			<MoveTo Nav="Fly" DestName="The Forgotten Caves" X="5313.846" Y="875.9498" Z="115.6524" />
 			<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(34724)" />
 			<EnableBehavior Name="Pull" />
 		</If>
@@ -201,9 +204,9 @@ Using KillUntilComplete instead.
 			</HuntingGrounds>
 		</CustomBehavior>
 		<While Condition="!IsObjectiveComplete(3, 34724) &amp;&amp; HasQuest(34724)" >
-			<MoveTo DestName="Gorg the Host" X="5249.643" Y="716.8337" Z="97.50163" />
+			<MoveTo Nav="Fly" DestName="Gorg the Host" X="5249.643" Y="716.8337" Z="97.50163" />
 			<CustomBehavior File="WaitTimer" WaitTime="5000" TerminateWhen="!Me.Combat" />
-			<MoveTo DestName="Gorg the Host" X="5244.111" Y="709.4721" Z="97.82377" />
+			<MoveTo Nav="Fly" DestName="Gorg the Host" X="5244.111" Y="709.4721" Z="97.82377" />
 			<CustomBehavior File="MyCTM" X="5245.159" Y="700.5564" Z="102.5283" />
 			<CustomBehavior File="WaitTimer" WaitTime="500" />
 			<CustomBehavior File="MyCTM" X="5250.422" Y="697.1744" Z="102.7632" TerminateWhen="Me.Z &lt;= 100" />
@@ -217,7 +220,7 @@ Using KillUntilComplete instead.
 		<If Condition="!HasQuest(36564)" >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Tangleheart.&quot;);" />
 			<DisableBehavior Name="Pull" />
-			<MoveTo DestName="Tangleheart" X="5666.406" Y="423.5011" Z="100.3807" />
+			<MoveTo Nav="Fly" DestName="Tangleheart" X="5666.406" Y="423.5011" Z="100.3807" />
 			<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(36564)" />
 			<EnableBehavior Name="Pull" />
 		</If>
@@ -239,9 +242,16 @@ Using KillUntilComplete instead.
 		<If Condition="!HasQuest(36563)" >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Mistcreep Mire.&quot;);" />
 			<DisableBehavior Name="Pull" />
-			<MoveTo DestName="The Forgotten Caves" X="5857.397" Y="911.9937" Z="47.29003" />
+			<MoveTo Nav="Fly" DestName="The Forgotten Caves" X="5857.397" Y="911.9937" Z="47.29003" />
 			<EnableBehavior Name="Pull" />
 		</If>
+		<CustomBehavior File="KillUntilComplete" QuestId="36563" MobId="85786" TerminateWhen="IsObjectiveComplete(2, 36563) || !HasQuest(36563)" >
+			<HuntingGrounds>
+				<Hotspot X="5870.462" Y="972.0964" Z="52.89219" />
+				<Hotspot X="5915.771" Y="856.0225" Z="46.70253" />
+				<Hotspot X="6047.883" Y="836.684" Z="54.01108" />
+			</HuntingGrounds>
+		</CustomBehavior>
 		<CustomBehavior File="KillUntilComplete" QuestId="36563" MobId="85693" TerminateWhen="IsObjectiveComplete(1, 36563) || !HasQuest(36563)" >
 			<HuntingGrounds>
 				<Hotspot X="5925.766" Y="867.4125" Z="47.68984" />
@@ -250,32 +260,25 @@ Using KillUntilComplete instead.
 				<Hotspot X="5903.233" Y="773.3055" Z="41.26099" />
 			</HuntingGrounds>
 		</CustomBehavior>
-		<CustomBehavior File="KillUntilComplete" QuestId="36563" MobId="85786" TerminateWhen="IsObjectiveComplete(2, 36563) || !HasQuest(36563)" >
-			<HuntingGrounds>
-				<Hotspot X="5870.462" Y="972.0964" Z="52.89219" />
-				<Hotspot X="5915.771" Y="856.0225" Z="46.70253" />
-				<Hotspot X="6047.883" Y="836.684" Z="54.01108" />
-			</HuntingGrounds>
-		</CustomBehavior>
 	</If>
 
 	<If Condition="!IsQuestCompleted(36473) &amp;&amp; SpellManager.HasSpell(164050)" > <!-- Affliction Ridge, mid Gorgrond -->
 		<If Condition="!HasQuest(36473)" >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Affliction Ridge.&quot;);" />
 			<DisableBehavior Name="Pull" />
-			<MoveTo DestName="Affliction Ridge" X="6113.302" Y="940.6376" Z="91.10766" />
+			<MoveTo Nav="Fly" DestName="Affliction Ridge" X="6113.302" Y="940.6376" Z="91.10766" />
 			<EnableBehavior Name="Pull" />
 		</If>
 		<While Condition="!IsObjectiveComplete(2, 36473)" >
-			<MoveTo DestName="Ancient Seedbearer #1" X="6117.884" Y="1293.662" Z="75.4975" />
+			<MoveTo Nav="Fly" DestName="Ancient Seedbearer #1" X="6117.884" Y="1293.662" Z="75.4975" />
 			<CustomBehavior File="InteractWith" QuestId="36473" MobId="85524" X="6118.614" Y="1294.847" Z="75.56393" TerminateWhen="IsObjectiveComplete(2, 36473) || !HasQuest(36473)" />
-			<MoveTo DestName="Ancient Seedbearer #2" X="6090.437" Y="1344.038" Z="66.58992" />
+			<MoveTo Nav="Fly" DestName="Ancient Seedbearer #2" X="6090.437" Y="1344.038" Z="66.58992" />
 			<CustomBehavior File="InteractWith" QuestId="36473" MobId="85524" X="6091.611" Y="1341.894" Z="66.67241" TerminateWhen="IsObjectiveComplete(2, 36473) || !HasQuest(36473)" />
-			<MoveTo DestName="Ancient Seedbearer #3" X="6059.327" Y="1345.313" Z="73.00879" />
+			<MoveTo Nav="Fly" DestName="Ancient Seedbearer #3" X="6059.327" Y="1345.313" Z="73.00879" />
 			<CustomBehavior File="InteractWith" QuestId="36473" MobId="85524" X="6055.791" Y="1342.849" Z="74.22137" TerminateWhen="IsObjectiveComplete(2, 36473) || !HasQuest(36473)" />
-			<MoveTo DestName="Ancient Seedbearer #4" X="6121.661" Y="1408.622" Z="48.41551" />
+			<MoveTo Nav="Fly" DestName="Ancient Seedbearer #4" X="6121.661" Y="1408.622" Z="48.41551" />
 			<CustomBehavior File="InteractWith" QuestId="36473" MobId="85524" X="6121.661" Y="1408.622" Z="48.41551" TerminateWhen="IsObjectiveComplete(2, 36473) || !HasQuest(36473)" />
-			<MoveTo DestName="Ancient Seedbearer #5" X="6084.318" Y="1440.922" Z="69.50586" />
+			<MoveTo Nav="Fly" DestName="Ancient Seedbearer #5" X="6084.318" Y="1440.922" Z="69.50586" />
 			<CustomBehavior File="InteractWith" QuestId="36473" MobId="85524" X="6084.318" Y="1440.922" Z="69.50586" TerminateWhen="IsObjectiveComplete(2, 36473) || !HasQuest(36473)" />
 		</While>
 
@@ -293,7 +296,7 @@ Using KillUntilComplete instead.
 		<If Condition="!HasQuest(36566)" >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Stonemaul Arena.&quot;);" />
 			<DisableBehavior Name="Pull" />
-			<MoveTo DestName="Stonemaul Arena" X="6028.301" Y="1631.128" Z="79.51354" />
+			<MoveTo Nav="Fly" DestName="Stonemaul Arena" X="6028.301" Y="1631.128" Z="79.51354" />
 			<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(36566)" />
 			<EnableBehavior Name="Pull" />
 		</If>
@@ -315,10 +318,11 @@ Using KillUntilComplete instead.
 	</While>
 
 	<If Condition="!IsQuestCompleted(36603)" > <!-- Brimstone Springs, mid Gorgrond -->
+		<CustomBehavior File="Hooks\Avoid" AvoidName="Sulfur_Acid" Command="Add" ObjectType="AreaTrigger" ObjectId="8093" Radius="5" />
 		<If Condition="!HasQuest(36603)" >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Brimstone Springs.&quot;);" />
 			<DisableBehavior Name="Pull" />
-			<MoveTo DestName="Brimstone Springs" X="6333.886" Y="1696.357" Z="75.88833" />
+			<MoveTo Nav="Fly" DestName="Brimstone Springs" X="6333.886" Y="1696.357" Z="75.88833" />
 			<EnableBehavior Name="Pull" />
 		</If>
 		<Objective QuestName="Bonus Objective: Brimstone Springs" QuestId="36603" Type="KillMob" MobId="85924" KillCount="8" />
@@ -331,13 +335,14 @@ Using KillUntilComplete instead.
 				<Hotspot X="6664.009" Y="1801.7" Z="34.19957" />
 			</HuntingGrounds>
 		</CustomBehavior>
+		<CustomBehavior File="Hooks\Avoid" AvoidName="Sulfur_Acid" Command="Remove" />
 	</If>
 
 	<If Condition="!IsQuestCompleted(36476) &amp;&amp; SpellManager.HasSpell(164050)" > <!-- South Gronn Canyon, upper-mid Gorgrond -->
 		<If Condition="!HasQuest(36476)" >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to South Gronn Canyon.&quot;);" />
 			<DisableBehavior Name="Pull" />
-			<MoveTo DestName="South Gronn Canyon" X="6812.661" Y="1513.258" Z="7.483188" />
+			<MoveTo Nav="Fly" DestName="South Gronn Canyon" X="6812.661" Y="1513.258" Z="7.483188" />
 			<EnableBehavior Name="Pull" />
 		</If>
 		<CustomBehavior File="InteractWith" QuestId="36476" MobId="85540" NumOfTimes="20" MobState="Alive" IgnoreMobsInBlackspots="True" TerminateWhen="IsObjectiveComplete(3, 36476)" >
@@ -367,7 +372,7 @@ Using KillUntilComplete instead.
 		<If Condition="!HasQuest(36480)" >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Valley of Destruction.&quot;);" />
 			<DisableBehavior Name="Pull" />
-			<MoveTo DestName="Valley of Destruction" X="7008.043" Y="1384.127" Z="24.07438" />
+			<MoveTo Nav="Fly" DestName="Valley of Destruction" X="7008.043" Y="1384.127" Z="24.07438" />
 			<EnableBehavior Name="Pull" />
 		</If>
 		<While Condition="!IsObjectiveComplete(3, 36480)" >
@@ -415,7 +420,7 @@ Using KillUntilComplete instead.
 		<If Condition="!HasQuest(36571)" >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Iyun Weald.&quot;);" />
 			<DisableBehavior Name="Pull" />
-			<MoveTo DestName="Iyun Weald" X="6658.743" Y="-71.13366" Z="74.32645" />
+			<MoveTo Nav="Fly" DestName="Iyun Weald" X="6658.743" Y="-71.13366" Z="74.32645" />
 			<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(36571)" />
 			<EnableBehavior Name="Pull" />
 		</If>
