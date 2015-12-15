@@ -315,9 +315,9 @@ Using KillUntilComplete instead.
 				<Hotspot Name="Inside Tower" X="5941.154" Y="1854.749" Z="68.31141" ArrivalTolerance="5" />
 			</HuntingGrounds>
 		</CustomBehavior>
-		<CustomBehavior File="KillUntilComplete" QuestId="36566" MobId="79621" X="5954.416" Y="1752.411" Z="62.67847" TerminateWhen="IsObjectiveComplete(4, 36566) || !HasQuest(36566)" />
-		<CustomBehavior File="KillUntilComplete" QuestId="36566" MobId="79626" X="5842.162" Y="1878.981" Z="84.85074" TerminateWhen="IsObjectiveComplete(5, 36566) || !HasQuest(36566)" />
-		<CustomBehavior File="KillUntilComplete" QuestId="36566" MobId="79623" X="5977.632" Y="1707.88" Z="118.5487"  TerminateWhen="IsObjectiveComplete(3, 36566) || !HasQuest(36566)" />
+		<CustomBehavior File="KillUntilComplete" QuestId="36566" MobId="79621" MovementBy="NavigatorPreferred" X="5954.416" Y="1752.411" Z="62.67847" TerminateWhen="IsObjectiveComplete(4, 36566) || !HasQuest(36566)" />
+		<CustomBehavior File="KillUntilComplete" QuestId="36566" MobId="79626" MovementBy="NavigatorPreferred" X="5842.162" Y="1878.981" Z="84.85074" TerminateWhen="IsObjectiveComplete(5, 36566) || !HasQuest(36566)" />
+		<CustomBehavior File="KillUntilComplete" QuestId="36566" MobId="79623" MovementBy="NavigatorPreferred" X="5977.632" Y="1707.88" Z="118.5487"  TerminateWhen="IsObjectiveComplete(3, 36566) || !HasQuest(36566)" />
 		<CustomBehavior File="KillUntilComplete" QuestId="36566" MobId1="75819" MobId2="75835" TerminateWhen="IsObjectiveComplete(1, 36566) || !HasQuest(36566)" >
 			<HuntingGrounds>
 				<Hotspot X="6001.991" Y="1724.773" Z="77.37874" />
