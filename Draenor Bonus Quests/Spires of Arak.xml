@@ -20,6 +20,11 @@
 <Blackspots>
 	<Blackspot X="398.7562" Y="661.1585" Z="85.17808" Radius="7.054037" /> <!-- Rylak Egg on rocks. -->
 </Blackspots>
+
+<Blacklist>
+	<Mob Name="Stored Projection" Id="85887" Flags="Pull" />
+</Blacklist>
+
 <AvoidMobs></AvoidMobs>
 
 	<Mailboxes>
@@ -175,10 +180,12 @@
 			<If Condition="GetItemCount(116766) &lt;= 2" >
 				<CustomBehavior File="KillUntilComplete" QuestId="36590" MobId="86035" X="287.5187" Y="798.2712" Z="46.21162" TerminateWhen="GetItemCount(116766) &gt;= 3" />
 			</If>
-			<DisableBehavior Name="Combat" />
-			<CustomBehavior File="InteractWith" MobId="86019" WaitTime="2000" NumOfTimes="3" IgnoreCombat="true" WaitForNpcs="false" X="273.4531" Y="785.9983" Z="50.86313" />
-			<EnableBehavior Name="Combat" />
-			<CustomBehavior File="KillUntilComplete" QuestId="36590" MobId="85887" X="267.8611" Y="799.3073" Z="47.39889" TerminateWhen="IsObjectiveComplete(6, 36590)" />
+			<While Condition="Unit(85887, u => u.HasAura(171789)) != null &amp;&amp; HasItem(116766)" >
+				<DisableBehavior Name="Combat" />
+				<CustomBehavior File="InteractWith" MobId="86019" WaitTime="2000" MovementBy="NavigatorPreferred" IgnoreCombat="true" WaitForNpcs="false" X="273.4531" Y="785.9983" Z="50.86313" />
+				<EnableBehavior Name="Combat" />
+			</While>
+			<CustomBehavior File="KillUntilComplete" QuestId="36590" MovementBy="NavigatorPreferred" MobId="85887" X="267.8611" Y="799.3073" Z="47.39889" TerminateWhen="IsObjectiveComplete(6, 36590)" />
 		</If>
 		<CustomBehavior File="KillUntilComplete" QuestId="36590" MobId1="85893" MobId2="85898" MobId3="85902" MobId4="85883" MobId5="85894" MobId6="85901" MobId7="86044" TerminateWhen="IsObjectiveComplete(1, 36590)" >
 			<HuntingGrounds>
@@ -204,7 +211,7 @@
 		<CustomBehavior File="LoadProfile" ProfileName="Talador.xml" RememberProfile="false" />
 	</If>
 	<If Condition="Me.IsHorde" >
-		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Bonus quest farming complete.  While you want to farm Ashran you must load it manually.&quot;);" />
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Bonus quest farming complete.&quot;);" />
 	</If>
 
 </QuestOrder>

@@ -115,7 +115,7 @@ Using KillUntilComplete instead.
 		<CustomBehavior File="WaitTimer" WaitTime="10000" GoalText="Waiting for quest to Complete {TimeRemaining}" TerminateWhen="IsQuestCompleted(36520)" />
 	</While>
 
-	<If Condition="!IsQuestCompleted(36504) &amp;&amp; SpellManager.HasSpell(&quot;Champion&apos;s Honor&quot;)" > <!-- Evermorn Springs, southern Gorgrond -->
+	<While Condition="!IsQuestCompleted(36504) &amp;&amp; SpellManager.HasSpell(&quot;Champion&apos;s Honor&quot;)" > <!-- Evermorn Springs, southern Gorgrond -->
 		<If Condition="!HasQuest(36504)" >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Evermorn Springs.&quot;);" />
 			<DisableBehavior Name="Pull" />
@@ -123,15 +123,24 @@ Using KillUntilComplete instead.
 			<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="HasQuest(36504)" />
 			<EnableBehavior Name="Pull" />
 		</If>
-		<Objective QuestName="Bonus Objective: Evermorn Springs" QuestId="36504" Type="KillMob" MobId="81575" KillCount="10" />
-		<Objective QuestName="Bonus Objective: Evermorn Springs" QuestId="36504" Type="KillMob" MobId="82062" KillCount="1" />
-		<CustomBehavior File="KillUntilComplete" QuestId="36504" MobId="81553" TerminateWhen="IsObjectiveComplete(3, 36504)" >
+		<CustomBehavior File="InteractWith" QuestId="36504" MobId="82062" PreInteractMountStrategy="Dismount" MobState="Alive" TerminateWhen="IsObjectiveComplete(2, 36504)" X="5195.9" Y="1555.344" Z="73.56567" />
+		<CustomBehavior File="InteractWith" QuestId="36504" MobId="81575" NumOfTimes="10" PreInteractMountStrategy="Dismount" MobState="Alive" TerminateWhen="IsObjectiveComplete(1, 36504)" >
+			<HuntingGrounds>
+				<Hotspot X="5210.85" Y="1610.758" Z="75.77358" />
+				<Hotspot X="5286.154" Y="1627.828" Z="79.11728" />
+				<Hotspot X="5344.793" Y="1538.249" Z="88.26038" />
+				<Hotspot X="5309.852" Y="1487.115" Z="96.49928" />
+				<Hotspot X="5050.038" Y="1520.543" Z="93.44433" />
+				<Hotspot X="5074.38" Y="1614.859" Z="95.8547" />
+			</HuntingGrounds>
+		</CustomBehavior>
+		<CustomBehavior File="InteractWith" QuestId="36504" MobId="81553" NumOfTimes="3" PreInteractMountStrategy="Dismount" MobState="Alive" TerminateWhen="IsObjectiveComplete(3, 36504)" >
 			<HuntingGrounds>
 				<Hotspot X="5157.021" Y="1781.686" Z="120.8765" />
 				<Hotspot X="5085.153" Y="1814.424" Z="120.1872" />
 			</HuntingGrounds>
 		</CustomBehavior>
-	</If>
+	</While>
 
 	<While Condition="!IsQuestCompleted(36500) &amp;&amp; SpellManager.HasSpell(&quot;Champion&apos;s Honor&quot;)" > <!-- The Razorbloom, southern Gorgrond -->
 		<If Condition="!HasQuest(36500)" >
@@ -142,18 +151,18 @@ Using KillUntilComplete instead.
 			<EnableBehavior Name="Pull" />
 		</If>
 		<If Condition="HasQuest(36500)" >
-			<Objective QuestName="Bonus Objective: The Razorbloom" QuestId="36500" Type="KillMob" MobId="81634" KillCount="1" />
+			<Objective QuestName="Bonus Objective: The Razorbloom" QuestId="36500" Type="KillMob" MobId="81634" KillCount="1" X="5684.644" Y="1024.561" Z="83.9402" />
 			<Objective QuestName="Bonus Objective: The Razorbloom" QuestId="36500" Type="KillMob" MobId="81617" KillCount="12" />
 		</If>
 
 		<If Condition="!IsObjectiveComplete(3, 36500)" >
-			<CustomBehavior File="TargetAndMoveToMob" MobId="85732" MoveWithinMaxRangeOfMob="1" TerminateWhen="IsObjectiveComplete(3, 36500) &amp;&amp; !IsQuestCompleted(36500) &amp;&amp; !HasQuest(36500)" >
+			<CustomBehavior File="TargetAndMoveToMob" MobId="85732" MoveWithinMaxRangeOfMob="1" TargetOnlyIfHealthPercentAbove="90" TerminateWhen="IsObjectiveComplete(3, 36500) &amp;&amp; IsQuestCompleted(36500) &amp;&amp; !HasQuest(36500)" >
 				<HuntingGrounds>
 					<Hotspot X="5648.192" Y="1198.595" Z="89.2859" />
 					<Hotspot X="5608.077" Y="1122.168" Z="84.00389" />
 				</HuntingGrounds>
 			</CustomBehavior>
-			<CustomBehavior File="Misc\RunLua" Lua="MoveForwardStart();" WaitTime="700" />
+			<CustomBehavior File="Misc\RunLua" Lua="MoveForwardStart();" WaitTime="150" />
 			<CustomBehavior File="Misc\RunLua" Lua="MoveForwardStop();" />
 		</If>
 		<!--<Objective QuestName="Bonus Objective: The Razorbloom" QuestId="36500" Type="KillMob" MobId="85732" KillCount="25" />-->
@@ -168,7 +177,7 @@ Using KillUntilComplete instead.
 		</If>
 		<Objective QuestName="Bonus Objective: Ruins of the First Bastion" QuestId="35881" Type="KillMob" MobId="83450" KillCount="20" />
 		<While Condition="!IsObjectiveComplete(2, 35881)" >
-			<CustomBehavior File="InteractWith" QuestId="35881" MobId="233296" Range="7" TerminateWhen="IsObjectiveComplete(2, 35881)" >
+			<CustomBehavior File="InteractWith" QuestId="35881" MobId="233296" PreInteractMountStrategy="Dismount" Range="7" TerminateWhen="IsObjectiveComplete(2, 35881)" >
 				<HuntingGrounds WaypointVisitStrategy="InOrder">
 					<Hotspot X="5217.877" Y="975.8366" Z="102.3339" />
 					<Hotspot X="5258.97" Y="920.384" Z="105.5563" />
@@ -317,7 +326,7 @@ Using KillUntilComplete instead.
 		</CustomBehavior>
 	</While>
 
-	<If Condition="!IsQuestCompleted(36603)" > <!-- Brimstone Springs, mid Gorgrond -->
+	<While Condition="!IsQuestCompleted(36603)" > <!-- Brimstone Springs, mid Gorgrond -->
 		<CustomBehavior File="Hooks\Avoid" AvoidName="Sulfur_Acid" IgnoreLootInAvoid ="true" Command="Add" ObjectType="AreaTrigger" ObjectId="8093" Radius="5" />
 		<If Condition="!HasQuest(36603)" >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Brimstone Springs.&quot;);" />
@@ -336,7 +345,7 @@ Using KillUntilComplete instead.
 			</HuntingGrounds>
 		</CustomBehavior>
 		<CustomBehavior File="Hooks\Avoid" AvoidName="Sulfur_Acid" Command="Remove" />
-	</If>
+	</While>
 
 	<If Condition="!IsQuestCompleted(36476) &amp;&amp; SpellManager.HasSpell(164050)" > <!-- South Gronn Canyon, upper-mid Gorgrond -->
 		<If Condition="!HasQuest(36476)" >

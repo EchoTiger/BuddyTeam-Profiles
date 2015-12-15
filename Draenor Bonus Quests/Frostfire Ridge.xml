@@ -103,7 +103,13 @@
 				<Hotspot X="6221.833" Y="5932.442" Z="142.7567" />
 			</HuntingGrounds>
 		</CustomBehavior>
-		<Objective QuestName="Bonus Objective: Forbidden Glacier" QuestId="34505" QuestObjectiveIndex="1" Type="KillMob" MobId="78791" KillCount="10" />
+		<CustomBehavior File="InteractWith" QuestId="34505" QuestObjectiveIndex="1" MovementBy="NavigatorPreferred" PreInteractMountStrategy="Dismount" NumOfTimes="500" MobId="78791" TerminateWhen="IsObjectiveComplete(1, 34505)" >
+			<HuntingGrounds>
+				<Hotspot X="6102.07" Y="5790.35" Z="135.0609" />
+				<Hotspot X="6122.794" Y="5890.688" Z="133.6971" />
+				<Hotspot X="6142.071" Y="5980.21" Z="135.3168" />
+			</HuntingGrounds>
+		</CustomBehavior>
 	</If>
 
 	<If Condition="!IsQuestCompleted(33145)" > <!-- Grimfrost Hill, eastern Frostfire Ridge -->
